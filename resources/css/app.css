@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Fira Sans Condensed', sans-serif;
+    }
+}
+
+@layer components {
+    /* Navigation */
+
+    .navigation {
+        @apply relative hidden w-full px-4 py-3;
+    }
+
+    .navigation .nav-item {
+        @apply relative cursor-pointer font-bold text-white;
+    }
+
+    .navigation.black {
+        @apply block bg-fr-black;
+    }
+    .navigation.black .nav-item {
+        @apply text-white transition-all duration-300 ease-in;
+    }
+    .navigation.black .nav-item:hover,
+    .navigation.black .nav-active {
+        @apply text-[#f8c249];
+    }
+    .navigation.black .nav-item::after {
+        content: ' ';
+        @apply absolute inset-x-0 -bottom-[10px] h-1 w-full;
+    }
+    .navigation.black .nav-item:hover::after,
+    .navigation.black .nav-active::after {
+        @apply bg-red-500;
+    }
+
+    .navigation.cappucino {
+        @apply block bg-[#fdc64b];
+    }
+    .navigation.cappucino .nav-item {
+        @apply text-slate-900;
+    }
+    .navigation.cappucino .nav-item:hover,
+    .navigation.cappucino .nav-item.nav-active {
+        @apply text-[#006738];
+    }
+    .navigation.cappucino .nav-item::after {
+        content: ' ';
+        @apply absolute inset-x-0 -bottom-[10px] h-1 w-full;
+    }
+    .navigation.cappucino .nav-item:hover::after,
+    .navigation.cappucino .nav-item.nav-active::after {
+        @apply bg-red-500;
+    }
+
+    /* Introduction */
+
+    .introduction.black {
+        @apply bg-fr-black;
+    }
+
+    .introduction.cappucino {
+        @apply bg-fr-yellow;
+    }
+
+    /* Video Coffee */
+
+    .video-coffee.black {
+        @apply bg-fr-red;
+    }
+
+    .video-coffee.cappucino {
+        @apply bg-fr-green;
+    }
+
+    /* Post Feed */
+
+    .post-feed.black {
+        @apply bg-fr-yellow;
+    }
+
+    .post-feed.cappucino {
+        @apply bg-fr-darker-red;
+    }
+}
+
+@layer utilities {
+    .font-poppins {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .font-courgette {
+        font-family: 'Courgette', cursive;
+    }
+}
