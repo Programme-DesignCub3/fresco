@@ -5,9 +5,7 @@ import { onMounted, ref } from 'vue';
 import SplitType from 'split-type';
 
 const themeStore = useThemeStore();
-const manifestDesktop = ref(null);
-const manifestMobile = ref(null);
-const fragment = ref(null);
+const manifest = ref(null);
 const delayAos = ref(0);
 const datas = ref([
     {
@@ -51,22 +49,14 @@ const splitWords = (group, limit) => {
 };
 
 onMounted(() => {
-    // splitWords(0, 1);
-    // splitWords(1, 1);
-    // splitWords(2, 1);
-    // splitWords(3, 1);
-
-    let split = new SplitType(manifestDesktop.value, { types: 'lines' });
-    let lines = split.lines;
-    let delay = 100;
-
-    for (let index = 0; index < lines.length; index++) {
-        fragment.value = manifestDesktop.value[index];
-        // console.log(fragment.children);
-        console.log(element);
-    }
-
-    console.log(manifestDesktop.value);
+    splitWords(0, 1);
+    splitWords(1, 1);
+    splitWords(2, 1);
+    splitWords(3, 1);
+    splitWords(4, 1);
+    splitWords(5, 1);
+    splitWords(6, 1);
+    splitWords(7, 1);
 });
 </script>
 
@@ -80,7 +70,7 @@ onMounted(() => {
                     <div class="block absolute w-fullmx-auto top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 lg:hidden">
                         <div
                             class="text-shadow w-[350px] text-[45px] font-bold leading-none sm:w-[600px] sm:text-[90px] md:w-[700px] md:text-[110px]"
-                            ref="manifestMobile">
+                            ref="manifest">
                             {{ data.title }}
                         </div>
                         <div
@@ -109,7 +99,7 @@ onMounted(() => {
                     :class="(index + 1) % 2 == 0 ? 'right-6 xl:-right-48 2xl:-right-24' : '-left-24'">
                     <div
                         class="text-shadow text-[110px] font-bold leading-none lg:w-[450px] lg:text-[78px] xl:text-[90px] xl:w-[630px] 2xl:text-[110px]"
-                        ref="manifestDesktop">
+                        ref="manifest">
                         {{ data.title }}
                     </div>
                     <div class="w-[450px]" :class="(index + 1) % 2 == 1 && 'ml-[130px] xl:ml-[170px] 2xl:ml-[200px]'">

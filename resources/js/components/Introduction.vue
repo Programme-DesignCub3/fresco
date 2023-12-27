@@ -15,7 +15,6 @@ onMounted(() => {
 
     for (let index = 0; index < words.length; index++) {
         let element = manifest.value.children[index];
-        console.log(element);
         delay += 100;
         themeStore.theme == 'black'
             ? splitBlack(element, index, delay, 2)
