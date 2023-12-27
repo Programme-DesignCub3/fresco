@@ -23,7 +23,7 @@ const enableCustomLayout = (theme) => {
                         <a href="">ARTIKEL</a>
                     </li>
                     <li class="relative z-50 h-[60px] w-[200px]">
-                        <a><img src="/assets/images/logo.png" class="absolute top-[20%]" /></a>
+                        <a class="cursor-pointer" @click="themeStore.setTheme(null)"><img src="/assets/images/logo.png" class="absolute top-[20%]" /></a>
                     </li>
                     <li class="nav-item">
                         <a href="">AKTIVITAS</a>
