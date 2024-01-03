@@ -1,10 +1,11 @@
 <script setup>
-import { splitDescriptionBlack, splitDescriptionCappucino } from '@/utils.js';
+import { splitDescriptionBlack, splitDescriptionCappucino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/user-theme.js';
-import { onMounted, ref } from 'vue';
+import { onMounted, watch, ref } from 'vue';
 import SplitType from 'split-type';
 
 const themeStore = useThemeStore();
+const currentTheme = themeStore.theme;
 const manifest = ref(null);
 const delayAos = ref(0);
 const datas = ref([
@@ -32,7 +33,7 @@ const datas = ref([
 
 const splitWords = (group, limit) => {
     let split = new SplitType(manifest.value[group], {
-        types: 'lines,words',
+        types: 'lines',
     });
     let lines = split.lines;
     let delay = 100;
@@ -49,14 +50,11 @@ const splitWords = (group, limit) => {
 };
 
 onMounted(() => {
-    splitWords(0, 1);
-    splitWords(1, 1);
-    splitWords(2, 1);
-    splitWords(3, 1);
-    splitWords(4, 1);
-    splitWords(5, 1);
-    splitWords(6, 1);
-    splitWords(7, 1);
+    setTimeout(() => {
+        for (let index = 0; index < manifest.value.length; index++) {
+            splitWords(index, 1);
+        }
+    }, 1);
 });
 </script>
 

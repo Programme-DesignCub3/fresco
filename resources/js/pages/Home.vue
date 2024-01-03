@@ -25,7 +25,7 @@ const currentTheme = themeStore.getTheme();
                         <source src="/assets/videos/black-coffee-video.mp4" type="video/mp4" />
                         Your browser does not support HTML5 video.
                     </video>
-                    <div class="shadow-up-black absolute bottom-0 h-16 w-full"></div>
+                    <div class="shadow-up-black absolute -bottom-1 h-20 z-10 w-full"></div>
                 </section>
                 <Introduction></Introduction>
             </div>
@@ -43,7 +43,7 @@ const currentTheme = themeStore.getTheme();
                         <source src="/assets/videos/cappucinno-video.mp4" type="video/mp4" />
                         Your browser does not support HTML5 video.
                     </video>
-                    <div class="shadow-up-cappucino absolute bottom-0 h-16 w-full"></div>
+                    <div class="shadow-up-cappucino absolute -bottom-1 h-20 z-10 w-full"></div>
                 </section>
                 <Introduction></Introduction>
             </div>

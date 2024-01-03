@@ -1,36 +1,29 @@
 import { createApp } from 'vue/dist/vue.esm-bundler.js';
 import { createPinia } from 'pinia';
+import { Home, Product, Article, Activity, Gallery, Contact } from '@/pages/pages';
+import { Menu, Navbar, SocialMedia, Footer, Introduction, ProductCoffee, VideoCoffee, Description, PostFeed } from '@/components/components';
 import VueSplide from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
-import './plugins';
-import './bootstrap';
-// Pages
-import Home from '@/pages/Home.vue';
-import Product from '@/pages/Product.vue';
-import Article from '@/pages/Article.vue';
-import Activity from '@/pages/Activity.vue';
-import Gallery from '@/pages/Gallery.vue';
-import Contact from '@/pages/Contact.vue';
-// Component
-import Menu from '@/Menu.vue';
-import Navbar from '@/components/Navbar.vue';
-import SocialMedia from '@/components/SocialMedia.vue';
-import Footer from '@/components/Footer.vue';
-import Introduction from '@/components/Introduction.vue';
-import ProductCoffee from '@/components/ProductCoffee.vue';
-import VideoCoffee from '@/components/VideoCoffee.vue';
-import Description from '@/components/Description.vue';
-import PostFeed from '@/components/PostFeed.vue';
+import '@/misc/plugins';
+import '@/bootstrap';
 
 const app = createApp({});
 const pinia = createPinia();
 
-app.component('Home', Home)
+app
+    /**
+     * @import Pages
+     */
+    .component('Home', Home)
     .component('Product', Product)
     .component('Article', Article)
     .component('Activity', Activity)
     .component('Gallery', Gallery)
     .component('Contact', Contact)
+
+    /**
+     * @import Components
+     */
     .component('Menu', Menu)
     .component('Navbar', Navbar)
     .component('SocialMedia', SocialMedia)

@@ -1,5 +1,5 @@
 <script setup>
-import { splitBlack, splitCappucino } from '@/utils.js';
+import { splitBlack, splitCappucino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/user-theme.js';
 import { onMounted, ref } from 'vue';
 import SplitType from 'split-type';
