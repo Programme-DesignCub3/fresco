@@ -96,4 +96,8 @@
     .font-courgette {
         font-family: 'Courgette', cursive;
     }
+
+    .text-primary-500 {
+        @apply text-blue-500;
+    }
 }

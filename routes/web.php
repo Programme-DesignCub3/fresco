@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,26 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+/**
+ * Redirect route
+ * @route login to admin/login
+ */
+Route::redirect('login', 'admin/login');
 
-Route::get('produk', function () {
-    return view('pages.product');
-});
-
-Route::get('artikel', function () {
-    return view('pages.article');
-});
-
-Route::get('aktivitas', function () {
-    return view('pages.activity');
-});
-
-Route::get('galeri', function () {
-    return view('pages.gallery');
-});
-
-Route::get('hubungi', function () {
-    return view('pages.contact');
-});
+/**
+ * Pages routes
+ * @all pages route managed with controller
+ */
+Route::get('/', [HomeController::class, 'index']);
+Route::get('produk', [ProductController::class, 'index']);
+Route::get('artikel', [ArticleController::class, 'index']);
+Route::get('aktivitas', [ActivityController::class, 'index']);
+Route::get('galeri', [GalleryController::class, 'index']);
+Route::get('hubungi', [ContactController::class, 'index']);
