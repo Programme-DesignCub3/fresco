@@ -6,59 +6,61 @@ const currentTheme = themeStore.getTheme();
 </script>
 
 <template>
-    <div>
-        <Menu v-if="currentTheme == null"></Menu>
+    <section>
+        <Menu v-if="currentTheme == null || currentTheme == 'null'"></Menu>
 
-        <SocialMedia></SocialMedia>
+        <div v-else>
+            <SocialMedia></SocialMedia>
 
-        <Navbar></Navbar>
+            <Navbar></Navbar>
 
-        <Transition name="right">
-            <div v-if="themeStore.theme == 'black'">
-                <section class="relative bg-fr-red">
-                    <video
-                        autoplay
-                        muted
-                        loop
-                        id="black-coffee"
-                        class="relative h-[90vh] w-full object-cover object-bottom">
-                        <source src="/assets/videos/black-coffee-video.mp4" type="video/mp4" />
-                        Your browser does not support HTML5 video.
-                    </video>
-                    <div class="shadow-up-black absolute -bottom-1 h-20 z-10 w-full"></div>
-                </section>
-                <Introduction></Introduction>
-            </div>
-        </Transition>
+            <Transition name="right">
+                <div v-if="themeStore.theme == 'black'">
+                    <section class="relative bg-fr-red">
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            id="black-coffee"
+                            class="relative h-[90vh] w-full object-cover object-bottom">
+                            <source src="/assets/videos/black-coffee-video.mp4" type="video/mp4" />
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="shadow-up-black absolute -bottom-1 h-20 z-10 w-full"></div>
+                    </section>
+                    <Introduction></Introduction>
+                </div>
+            </Transition>
 
-        <Transition name="left">
-            <div v-if="themeStore.theme == 'cappucino'">
-                <section class="relative bg-fr-yellow">
-                    <video
-                        autoplay
-                        muted
-                        loop
-                        id="black-coffee"
-                        class="relative h-[90vh] w-full object-cover object-bottom">
-                        <source src="/assets/videos/cappucinno-video.mp4" type="video/mp4" />
-                        Your browser does not support HTML5 video.
-                    </video>
-                    <div class="shadow-up-cappucino absolute -bottom-1 h-20 z-10 w-full"></div>
-                </section>
-                <Introduction></Introduction>
-            </div>
-        </Transition>
+            <Transition name="left">
+                <div v-if="themeStore.theme == 'cappucino'">
+                    <section class="relative bg-fr-yellow">
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            id="black-coffee"
+                            class="relative h-[90vh] w-full object-cover object-bottom">
+                            <source src="/assets/videos/cappucinno-video.mp4" type="video/mp4" />
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="shadow-up-cappucino absolute -bottom-1 h-20 z-10 w-full"></div>
+                    </section>
+                    <Introduction></Introduction>
+                </div>
+            </Transition>
 
-        <ProductCoffee></ProductCoffee>
+            <ProductCoffee></ProductCoffee>
 
-        <VideoCoffee></VideoCoffee>
+            <VideoCoffee></VideoCoffee>
 
-        <Description></Description>
+            <Description></Description>
 
-        <PostFeed></PostFeed>
+            <PostFeed></PostFeed>
 
-        <Footer v-if="currentTheme != null"></Footer>
-    </div>
+            <Footer v-if="currentTheme != null"></Footer>
+        </div>
+    </section>
 </template>
 
 <style scoped>

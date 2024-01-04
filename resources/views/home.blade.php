@@ -5,8 +5,5 @@
 @section('content')
 
 <Home></Home>
-{{-- <Description></Description> --}}
-{{-- <Introduction></Introduction> --}}
-{{-- <SocialMedia></SocialMedia> --}}
 
 @endsection

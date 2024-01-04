@@ -12,6 +12,10 @@ export const useThemeStore = defineStore('theme', () => {
 
     const setTheme = (user_theme) => {
         theme.value = user_theme;
+
+        if(user_theme == null) {
+            localStorage.setItem('user_theme', null);
+        }
     };
 
     watch(theme, () => {

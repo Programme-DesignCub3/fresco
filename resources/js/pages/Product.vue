@@ -5,8 +5,8 @@ const themeStore = useThemeStore().getTheme();
 </script>
 
 <template>
-    <div>
+    <section>
         <Navbar></Navbar>
         <p>Ini halaman produk bjirr</p>
-    </div>
+    </section>
 </template>
