@@ -15,20 +15,13 @@ return new class extends SettingsMigration
                 'desc' => 'Minum kopi telah menjadi tradisi yang sudah ada sejak puluhan tahun yang lalu di Indonesia. Tradisi tersebut dijaga dengan baik oleh Kapal Api yang selalu membuat produk dengan biji kopi pilihan. Salah satunya adalah Kapal Api Fresco, yang dibuat dengan perpaduan 100% biji kopi arabica dan robusta berkualitas tinggi. Aroma dan kualitas setiap seduhan Kapal Api Fresco memberikan sensasi minum kopi yang jelas lebih enak.',
                 'image' => ''
             ],
-            'product' => [
-                'name' => '',
-                'image' => ''
-            ],
             'video' => [
                 'url' => 'XPspg1WM2zM',
                 'desc' => 'Minum kopi telah menjadi tradisi yang sudah ada sejak puluhan tahun yang lalu di Indonesia. Tradisi tersebut dijaga dengan baik oleh Kapal Api yang selalu membuat produk dengan biji kopi pilihan. Salah satunya adalah Kapal Api Fresco, yang dibuat dengan perpaduan 100% biji kopi arabica dan robusta berkualitas tinggi. Aroma dan kualitas setiap seduhan Kapal Api Fresco memberikan sensasi minum kopi yang jelas lebih enak.',
                 'collab' => ''
             ],
-            'description' => [
-                'title' => '',
-                'explanation' => '',
-                'image' => ''
-            ]
+            'product' => [],
+            'description' => []
         ];
 
         /**
@@ -40,20 +33,13 @@ return new class extends SettingsMigration
                 'desc' => 'Minum kopi telah menjadi tradisi yang sudah ada sejak puluhan tahun yang lalu di Indonesia. Tradisi tersebut dijaga dengan baik oleh Kapal Api yang selalu membuat produk dengan biji kopi pilihan. Salah satunya adalah Kapal Api Fresco, yang dibuat dengan perpaduan 100% biji kopi arabica dan robusta berkualitas tinggi. Aroma dan kualitas setiap seduhan Kapal Api Fresco memberikan sensasi minum kopi yang jelas lebih enak.',
                 'image' => ''
             ],
-            'product' => [
-                'name' => '',
-                'image' => ''
-            ],
+            'product' => [],
             'video' => [
                 'url' => 'QXYyFCfruRg',
                 'desc' => 'Kopi FresCo berkolaborasi dengan Tenue de Attire untuk mendukung para pengrajin kemeja lokal di Indonesia. Melalui kemitraan ini, kami berupaya memberikan dukungan kepada para perajin pakaian dalam negeri, mempromosikan keindahan dan kualitas produk lokal. Kopi FresCo, turut mendukung pertumbuhan industri kreatif Indonesia.',
                 'collab' => '',
             ],
-            'description' => [
-                'title' => '',
-                'explanation' => '',
-                'image' => ''
-            ]
+            'description' => []
         ];
 
         /**
@@ -69,10 +55,8 @@ return new class extends SettingsMigration
         /**
          * Product List Section
          */
-        $this->migrator->add('home.black_product_image', $black_coffee_default['product']['image']);
-        $this->migrator->add('home.black_product_name', $black_coffee_default['product']['name']);
-        $this->migrator->add('home.cappuccino_product_image', $cappuccino_coffee_default['product']['image']);
-        $this->migrator->add('home.cappuccino_product_name', $cappuccino_coffee_default['product']['name']);
+        $this->migrator->add('home.black_product_list', $black_coffee_default['product']);
+        $this->migrator->add('home.cappuccino_product_list', $cappuccino_coffee_default['product']);
 
         /**
          * Video & Collaboration Section
@@ -87,11 +71,7 @@ return new class extends SettingsMigration
         /**
          * Description Section
          */
-        $this->migrator->add('home.black_desc_image', $black_coffee_default['description']['image']);
-        $this->migrator->add('home.black_desc_title', $black_coffee_default['description']['title']);
-        $this->migrator->add('home.black_desc_explanation', $black_coffee_default['description']['explanation']);
-        $this->migrator->add('home.cappuccino_desc_image', $cappuccino_coffee_default['description']['image']);
-        $this->migrator->add('home.cappuccino_desc_title', $cappuccino_coffee_default['description']['title']);
-        $this->migrator->add('home.cappuccino_desc_explanation', $cappuccino_coffee_default['description']['explanation']);
+        $this->migrator->add('home.black_desc_list', $black_coffee_default['description']);
+        $this->migrator->add('home.cappuccino_desc_list', $cappuccino_coffee_default['description']);
     }
 };

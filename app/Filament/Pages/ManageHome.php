@@ -4,7 +4,6 @@ namespace App\Filament\Pages;
 
 use App\Settings\HomeSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
@@ -88,7 +87,7 @@ class ManageHome extends SettingsPage
                                 Tab::make('Black Coffee')
                                     ->icon('heroicon-s-plus-circle')
                                     ->schema([
-                                        Repeater::make('Black Coffee Product List')
+                                        Repeater::make('black_product_list')
                                             ->label('Black Coffee Product List')
                                             ->schema([
                                                 TextInput::make('black_product_name')
@@ -105,7 +104,7 @@ class ManageHome extends SettingsPage
                                 Tab::make('Cappuccino Coffee')
                                     ->icon('heroicon-o-plus-circle')
                                     ->schema([
-                                        Repeater::make('Cappuccino Coffee Product List')
+                                        Repeater::make('cappuccino_product_list')
                                             ->label('Cappuccino Coffee Product List')
                                             ->schema([
                                                 TextInput::make('cappuccino_product_name')
@@ -182,7 +181,7 @@ class ManageHome extends SettingsPage
                                 Tab::make('Black Coffee')
                                     ->icon('heroicon-s-plus-circle')
                                     ->schema([
-                                        Repeater::make('Black Coffee Description List')
+                                        Repeater::make('black_desc_list')
                                             ->label('Black Coffee Description List')
                                             ->schema([
                                                 TextInput::make('black_desc_title')
@@ -203,7 +202,7 @@ class ManageHome extends SettingsPage
                                     Tab::make('Cappuccino Coffee')
                                         ->icon('heroicon-o-plus-circle')
                                         ->schema([
-                                            Repeater::make('Cappuccino Coffee Description List')
+                                            Repeater::make('cappuccino_desc_list')
                                                 ->label('Cappuccino Coffee Description List')
                                                 ->schema([
                                                     TextInput::make('cappuccino_desc_title')

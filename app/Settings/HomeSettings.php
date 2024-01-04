@@ -19,10 +19,8 @@ class HomeSettings extends Settings
     /**
      * Product List Section
      */
-    public string $black_product_image;
-    public string $black_product_name;
-    public string $cappuccino_product_image;
-    public string $cappuccino_product_name;
+    public array $black_product_list;
+    public array $cappuccino_product_list;
 
     /**
      * Video & Collaboration Section
@@ -37,12 +35,8 @@ class HomeSettings extends Settings
     /**
      * Description Section
      */
-    public string $black_desc_image;
-    public string $black_desc_title;
-    public string $black_desc_explanation;
-    public string $cappuccino_desc_image;
-    public string $cappuccino_desc_title;
-    public string $cappuccino_desc_explanation;
+    public array $black_desc_list;
+    public array $cappuccino_desc_list;
 
     public static function group(): string
     {
