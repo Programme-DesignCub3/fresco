@@ -22,7 +22,6 @@ export default {
                 'fr-green': '#006838',
             },
         },
-
     },
     plugins: [
         function ({ addComponents }) {

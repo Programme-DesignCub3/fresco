@@ -57,10 +57,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 CuratorPlugin::make()
-                    ->label('Media Gallery')
-                    ->pluralLabel('Media Gallery')
+                    ->label('Gallery')
+                    ->pluralLabel('Gallery')
                     ->navigationIcon('heroicon-o-photo')
-                    ->navigationGroup('Settings & Media')
+                    ->navigationGroup('Settings & Gallery')
             ])
             ->viteTheme('resources/css/filament/admin/theme.css');
     }

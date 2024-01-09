@@ -1,7 +1,24 @@
 import { createApp } from 'vue/dist/vue.esm-bundler.js';
 import { createPinia } from 'pinia';
-import { Home, Product, Article, Activity, Gallery, Contact } from '@/pages/pages';
-import { Menu, Navbar, SocialMedia, Footer, Introduction, ProductCoffee, VideoCoffee, Description, PostFeed } from '@/components/components';
+import {
+    Home,
+    Product,
+    Article,
+    Activity,
+    Gallery,
+    Contact,
+} from '@/pages/pages';
+import {
+    Menu,
+    Navbar,
+    SocialMedia,
+    Footer,
+    Introduction,
+    ProductCoffee,
+    VideoCoffee,
+    Description,
+    PostFeed,
+} from '@/components/components';
 import VueSplide from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 import '@/misc/plugins';

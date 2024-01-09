@@ -4,6 +4,8 @@
 
 @section('content')
 
-<Home></Home>
+<section>
+    <Home :settings="{{ $settings }}"></Home>
+</section>
 
 @endsection

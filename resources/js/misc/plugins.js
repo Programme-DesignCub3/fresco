@@ -3,15 +3,15 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 
 Aos.init();
-let lenis = new Lenis();
+// let lenis = new Lenis();
 
-lenis.on("scroll", (e) => {
-    // console.log(e);
-});
+// lenis.on("scroll", (e) => {
+//     // console.log(e);
+// });
 
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
+// function raf(time) {
+//     lenis.raf(time);
+//     requestAnimationFrame(raf);
+// }
 
-requestAnimationFrame(raf);
+// requestAnimationFrame(raf);

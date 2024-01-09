@@ -5,11 +5,4 @@ import Activity from '@/pages/Activity.vue';
 import Gallery from '@/pages/Gallery.vue';
 import Contact from '@/pages/Contact.vue';
 
-export {
-    Home,
-    Product,
-    Article,
-    Activity,
-    Gallery,
-    Contact
-};
+export { Home, Product, Article, Activity, Gallery, Contact };

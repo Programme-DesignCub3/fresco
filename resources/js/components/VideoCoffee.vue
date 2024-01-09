@@ -56,7 +56,9 @@ const themeStore = useThemeStore();
                         src="/assets/images/pssi.png"
                         alt="PSSI" />
                 </div>
-                <div v-else class="grid items-center justify-center md:justify-start">
+                <div
+                    v-else
+                    class="grid items-center justify-center md:justify-start">
                     <img
                         data-aos="zoom-out"
                         data-aos-delay="500"
@@ -73,10 +75,11 @@ const themeStore = useThemeStore();
                     data-aos-offset="0"
                     v-if="themeStore.theme == 'black'"
                     class="text-center font-medium leading-8 text-white">
-                    Kopi FresCo bangga berkolaborasi dengan PSSI untuk mendukung para pemain sepak
-                    bola Indonesia dan pengembangan olahraga. Melalui kemitraan ini, Kami
-                    berkomitmen untuk memajukan prestasi sepak bola nasional dan menyemangati
-                    semangat juang atlet-atlet Indonesia. Kopi FresCo, menyertai setiap langkah
+                    Kopi FresCo bangga berkolaborasi dengan PSSI untuk mendukung
+                    para pemain sepak bola Indonesia dan pengembangan olahraga.
+                    Melalui kemitraan ini, Kami berkomitmen untuk memajukan
+                    prestasi sepak bola nasional dan menyemangati semangat juang
+                    atlet-atlet Indonesia. Kopi FresCo, menyertai setiap langkah
                     menuju kejayaan.
                 </p>
                 <p
@@ -85,11 +88,12 @@ const themeStore = useThemeStore();
                     data-aos="fade-up"
                     data-aos-delay="500"
                     data-aos-offset="0">
-                    Kopi FresCo berkolaborasi dengan Tenue de Attire untuk mendukung para pengrajin
-                    kemeja lokal di Indonesia. Melalui kemitraan ini, kami berupaya memberikan
-                    dukungan kepada para perajin pakaian dalam negeri, mempromosikan keindahan dan
-                    kualitas produk lokal. Kopi FresCo, turut mendukung pertumbuhan industri kreatif
-                    Indonesia.
+                    Kopi FresCo berkolaborasi dengan Tenue de Attire untuk
+                    mendukung para pengrajin kemeja lokal di Indonesia. Melalui
+                    kemitraan ini, kami berupaya memberikan dukungan kepada para
+                    perajin pakaian dalam negeri, mempromosikan keindahan dan
+                    kualitas produk lokal. Kopi FresCo, turut mendukung
+                    pertumbuhan industri kreatif Indonesia.
                 </p>
             </div>
         </div>

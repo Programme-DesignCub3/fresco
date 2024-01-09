@@ -15,9 +15,9 @@ use Filament\Pages\SettingsPage;
 
 class ManageHome extends SettingsPage
 {
-    protected static ?string $navigationGroup = 'Settings & Media';
+    protected static ?string $navigationGroup = 'Settings & Gallery';
 
-    protected static ?string $navigationLabel = 'Manage Home';
+    protected static ?string $navigationLabel = 'Home';
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
@@ -89,6 +89,8 @@ class ManageHome extends SettingsPage
                                     ->schema([
                                         Repeater::make('black_product_list')
                                             ->label('Black Coffee Product List')
+                                            ->addActionLabel('Add to Black Coffee Product List')
+                                            ->reorderableWithButtons()
                                             ->schema([
                                                 TextInput::make('black_product_name')
                                                     ->label('Product Name')
@@ -106,6 +108,8 @@ class ManageHome extends SettingsPage
                                     ->schema([
                                         Repeater::make('cappuccino_product_list')
                                             ->label('Cappuccino Coffee Product List')
+                                            ->addActionLabel('Add to Cappuccino Coffee Product List')
+                                            ->reorderableWithButtons()
                                             ->schema([
                                                 TextInput::make('cappuccino_product_name')
                                                     ->label('Product Name')
@@ -183,6 +187,8 @@ class ManageHome extends SettingsPage
                                     ->schema([
                                         Repeater::make('black_desc_list')
                                             ->label('Black Coffee Description List')
+                                            ->addActionLabel('Add to Black Coffee Description List')
+                                            ->reorderableWithButtons()
                                             ->schema([
                                                 TextInput::make('black_desc_title')
                                                     ->label('Title')
@@ -204,6 +210,8 @@ class ManageHome extends SettingsPage
                                         ->schema([
                                             Repeater::make('cappuccino_desc_list')
                                                 ->label('Cappuccino Coffee Description List')
+                                                ->addActionLabel('Add to Cappuccino Coffee Description List')
+                                                ->reorderableWithButtons()
                                                 ->schema([
                                                     TextInput::make('cappuccino_desc_title')
                                                         ->label('Title')

@@ -7,18 +7,18 @@ const datas = ref([
     {
         image: '/assets/images/article.png',
         title: 'VISIT US AT SIAL INTERFOOD EXHIBITION 2023',
-        desc: 'Nikmati Sensasi Kopi Terbaru bersama Kopi FresCo: Dengan biji segar dan aroma yang memikat, setiap tegukan adalah perjalanan rasa yang menggairahkan."'
+        desc: 'Nikmati Sensasi Kopi Terbaru bersama Kopi FresCo: Dengan biji segar dan aroma yang memikat, setiap tegukan adalah perjalanan rasa yang menggairahkan."',
     },
     {
         image: '/assets/images/article.png',
         title: 'VISIT US AT SIAL INTERFOOD EXHIBITION 2023',
-        desc: 'Nikmati Sensasi Kopi Terbaru bersama Kopi FresCo: Dengan biji segar dan aroma yang memikat, setiap tegukan adalah perjalanan rasa yang menggairahkan."'
+        desc: 'Nikmati Sensasi Kopi Terbaru bersama Kopi FresCo: Dengan biji segar dan aroma yang memikat, setiap tegukan adalah perjalanan rasa yang menggairahkan."',
     },
     {
         image: '/assets/images/article.png',
         title: 'VISIT US AT SIAL INTERFOOD EXHIBITION 2023',
-        desc: 'Nikmati Sensasi Kopi Terbaru bersama Kopi FresCo: Dengan biji segar dan aroma yang memikat, setiap tegukan adalah perjalanan rasa yang menggairahkan."'
-    }
+        desc: 'Nikmati Sensasi Kopi Terbaru bersama Kopi FresCo: Dengan biji segar dan aroma yang memikat, setiap tegukan adalah perjalanan rasa yang menggairahkan."',
+    },
 ]);
 </script>
 
@@ -29,20 +29,32 @@ const datas = ref([
                 <div class="w-full lg:w-2/5">
                     <h1
                         class="text-[40px] font-bold leading-none"
-                        :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
+                        :class="
+                            themeStore.theme == 'black'
+                                ? 'text-black'
+                                : 'text-white'
+                        ">
                         Activities
                     </h1>
                     <div
                         class="my-6 h-[2px] w-16"
-                        :class="themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-yellow'"></div>
+                        :class="
+                            themeStore.theme == 'black'
+                                ? 'bg-fr-red'
+                                : 'bg-fr-yellow'
+                        "></div>
                     <Splide
                         :options="{ rewind: true, arrows: false }"
                         aria-label="My Favorite Images">
                         <SplideSlide>
-                            <img src="/assets/images/slide.png" alt="Sample 1" />
+                            <img
+                                src="/assets/images/slide.png"
+                                alt="Sample 1" />
                         </SplideSlide>
                         <SplideSlide>
-                            <img src="/assets/images/slide.png" alt="Sample 2" />
+                            <img
+                                src="/assets/images/slide.png"
+                                alt="Sample 2" />
                         </SplideSlide>
                     </Splide>
                 </div>
@@ -50,33 +62,48 @@ const datas = ref([
                     <div>
                         <h1
                             class="text-[40px] font-bold leading-none"
-                            :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
+                            :class="
+                                themeStore.theme == 'black'
+                                    ? 'text-black'
+                                    : 'text-white'
+                            ">
                             Articles
                         </h1>
                         <div
                             class="my-6 h-[2px] w-16"
                             :class="
-                                themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-yellow'
+                                themeStore.theme == 'black'
+                                    ? 'bg-fr-red'
+                                    : 'bg-fr-yellow'
                             "></div>
                     </div>
                     <div class="flex flex-grow flex-col justify-between">
                         <div v-for="(data, index) in datas">
-                            <div class="flex flex-col space-y-6 sm:space-y-0 sm:flex-row sm:space-x-10">
+                            <div
+                                class="flex flex-col space-y-6 sm:flex-row sm:space-x-10 sm:space-y-0">
                                 <div class="w-full flex-grow sm:w-2/5 lg:w-1/3">
-                                    <img class="w-full" :src="data.image" alt="FresCo" />
+                                    <img
+                                        class="w-full"
+                                        :src="data.image"
+                                        alt="FresCo" />
                                 </div>
-                                <div class="flex w-full flex-col space-y-4 sm:space-y-0 sm:justify-between sm:w-3/5 lg:w-2/3">
+                                <div
+                                    class="flex w-full flex-col space-y-4 sm:w-3/5 sm:justify-between sm:space-y-0 lg:w-2/3">
                                     <h1
                                         class="text-2xl font-bold"
                                         :class="
-                                            themeStore.theme == 'black' ? 'text-black' : 'text-white'
+                                            themeStore.theme == 'black'
+                                                ? 'text-black'
+                                                : 'text-white'
                                         ">
                                         {{ data.title }}
                                     </h1>
                                     <p
                                         class="font-medium"
                                         :class="
-                                            themeStore.theme == 'black' ? 'text-black' : 'text-white'
+                                            themeStore.theme == 'black'
+                                                ? 'text-black'
+                                                : 'text-white'
                                         ">
                                         {{ data.desc }}
                                     </p>
@@ -97,7 +124,9 @@ const datas = ref([
                                 v-if="index < 2"
                                 class="my-[46px] h-px w-full border-b-2 border-dashed lg:mt-[40px]"
                                 :class="
-                                    themeStore.theme == 'black' ? 'border-black' : 'border-white'
+                                    themeStore.theme == 'black'
+                                        ? 'border-black'
+                                        : 'border-white'
                                 "></div>
                         </div>
                     </div>

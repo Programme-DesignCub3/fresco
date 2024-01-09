@@ -17,5 +17,5 @@ export {
     ProductCoffee,
     VideoCoffee,
     Description,
-    PostFeed
-}
+    PostFeed,
+};

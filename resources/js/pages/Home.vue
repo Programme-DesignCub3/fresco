@@ -1,12 +1,17 @@
 <script setup>
 import { useThemeStore } from '@/stores/user-theme.js';
+import { useHomeStore } from '@/stores/home-stores.js';
 
 const themeStore = useThemeStore();
+const homeSettings = useHomeStore();
 const currentTheme = themeStore.getTheme();
+const { settings } = defineProps(['settings']);
+
+homeSettings.setHome(settings);
 </script>
 
 <template>
-    <section>
+    <div>
         <Menu v-if="currentTheme == null || currentTheme == 'null'"></Menu>
 
         <div v-else>
@@ -23,10 +28,13 @@ const currentTheme = themeStore.getTheme();
                             loop
                             id="black-coffee"
                             class="relative h-[90vh] w-full object-cover object-bottom">
-                            <source src="/assets/videos/black-coffee-video.mp4" type="video/mp4" />
+                            <source
+                                src="/assets/videos/black-coffee-video.mp4"
+                                type="video/mp4" />
                             Your browser does not support HTML5 video.
                         </video>
-                        <div class="shadow-up-black absolute -bottom-1 h-20 z-10 w-full"></div>
+                        <div
+                            class="shadow-up-black absolute -bottom-1 z-10 h-20 w-full"></div>
                     </section>
                     <Introduction></Introduction>
                 </div>
@@ -41,10 +49,13 @@ const currentTheme = themeStore.getTheme();
                             loop
                             id="black-coffee"
                             class="relative h-[90vh] w-full object-cover object-bottom">
-                            <source src="/assets/videos/cappucinno-video.mp4" type="video/mp4" />
+                            <source
+                                src="/assets/videos/cappucinno-video.mp4"
+                                type="video/mp4" />
                             Your browser does not support HTML5 video.
                         </video>
-                        <div class="shadow-up-cappucino absolute -bottom-1 h-20 z-10 w-full"></div>
+                        <div
+                            class="shadow-up-cappucino absolute -bottom-1 z-10 h-20 w-full"></div>
                     </section>
                     <Introduction></Introduction>
                 </div>
@@ -60,7 +71,7 @@ const currentTheme = themeStore.getTheme();
 
             <Footer v-if="currentTheme != null"></Footer>
         </div>
-    </section>
+    </div>
 </template>
 
 <style scoped>

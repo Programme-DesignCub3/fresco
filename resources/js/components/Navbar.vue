@@ -13,17 +13,27 @@ const enableCustomLayout = (theme) => {
         <header class="navigation" :class="themeStore.theme">
             <div class="mx-auto max-w-7xl">
                 <ul class="flex items-baseline justify-center space-x-20">
-                    <li class="nav-item" :class="url.pathname == '/' && 'nav-active'">
+                    <li
+                        class="nav-item"
+                        :class="url.pathname == '/' && 'nav-active'">
                         <a href="/">BERANDA</a>
                     </li>
-                    <li class="nav-item" :class="url.pathname == '/produk' && 'nav-active'">
+                    <li
+                        class="nav-item"
+                        :class="url.pathname == '/produk' && 'nav-active'">
                         <a href="produk">PRODUK</a>
                     </li>
                     <li class="nav-item">
                         <a href="">ARTIKEL</a>
                     </li>
                     <li class="relative z-50 h-[60px] w-[200px]">
-                        <a class="cursor-pointer" @click="themeStore.setTheme(null)"><img src="/assets/images/logo.png" class="absolute top-[20%]" /></a>
+                        <a
+                            class="cursor-pointer"
+                            @click="themeStore.setTheme(null)"
+                            ><img
+                                src="/assets/images/logo.png"
+                                class="absolute top-[20%]"
+                        /></a>
                     </li>
                     <li class="nav-item">
                         <a href="">AKTIVITAS</a>
@@ -43,7 +53,9 @@ const enableCustomLayout = (theme) => {
                     <div
                         class="flex h-24 w-24 items-center justify-center bg-[#fdc64a]"
                         @click="enableCustomLayout('cappucino')">
-                        <img src="/assets/images/theme-changer-cappuccino.png" class="max-w-full" />
+                        <img
+                            src="/assets/images/theme-changer-cappuccino.png"
+                            class="max-w-full" />
                     </div>
                 </div>
             </Transition>

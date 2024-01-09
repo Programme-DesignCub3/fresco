@@ -16,7 +16,7 @@
     }
 
     .navigation .nav-item {
-        @apply relative cursor-pointer font-bold text-white hidden lg:block;
+        @apply relative hidden cursor-pointer font-bold text-white lg:block;
     }
 
     .navigation.black {

@@ -1,10 +1,13 @@
 <script setup>
 import { splitBlack, splitCappucino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/user-theme.js';
+import { useHomeStore } from '@/stores/home-stores';
 import { onMounted, ref } from 'vue';
 import SplitType from 'split-type';
 
 const themeStore = useThemeStore();
+const homeSettings = useHomeStore();
+const home = homeSettings.home;
 const manifest = ref(null);
 const delayAos = ref(0);
 
@@ -36,7 +39,7 @@ onMounted(() => {
                             <div
                                 class="text-[60px] font-bold leading-none sm:text-[80px] md:text-[100px]"
                                 ref="manifest">
-                                FRESH KOPINYA, JELAS LEBIH ENAK
+                                {{ home.black_intro_title }}
                             </div>
                         </div>
                     </template>
@@ -45,7 +48,7 @@ onMounted(() => {
                             <div
                                 class="text-[60px] font-bold leading-none sm:text-[80px] md:text-[130px]"
                                 ref="manifest">
-                                STRONG CREAMY SMOOTH CRUNCHY PERFECTO!
+                                {{ home.cappuccino_intro_title }}
                             </div>
                             <div
                                 data-aos="fade-in"
@@ -54,7 +57,7 @@ onMounted(() => {
                                 data-aos-anchor="#cappucino-anchor"
                                 data-aos-offset="100"
                                 class="text-stroke absolute -left-1.5 -right-1.5 -top-1.5 text-[60px] font-bold leading-none text-white sm:text-[80px] md:text-[130px]">
-                                STRONG CREAMY SMOOTH CRUNCHY PERFECTO!
+                                {{ home.cappuccino_intro_title }}
                             </div>
                         </div>
                     </template>
@@ -70,7 +73,9 @@ onMounted(() => {
                         src="/assets/images/black-coffee-width.png"
                         alt="Black Coffee" />
                 </div>
-                <div v-else class="flex w-full flex-grow justify-end md:relative md:w-1/4">
+                <div
+                    v-else
+                    class="flex w-full flex-grow justify-end md:relative md:w-1/4">
                     <img
                         data-aos="zoom-in"
                         data-aos-delay="150"
@@ -91,13 +96,17 @@ onMounted(() => {
                     data-aos-delay="200"
                     data-aos-offset="0"
                     class="text-center font-medium leading-8"
-                    :class="themeStore.theme == 'black' ? 'text-white' : 'text-black'">
-                    Minum kopi telah menjadi tradisi yang sudah ada sejak puluhan tahun yang lalu di
-                    Indonesia. Tradisi tersebut dijaga dengan baik oleh Kapal Api yang selalu
-                    membuat produk dengan biji kopi pilihan. Salah satunya adalah Kapal Api Fresco,
-                    yang dibuat dengan perpaduan 100% biji kopi arabica dan robusta berkualitas
-                    tinggi. Aroma dan kualitas setiap seduhan Kapal Api Fresco memberikan sensasi
-                    minum kopi yang jelas lebih enak.
+                    :class="
+                        themeStore.theme == 'black'
+                            ? 'text-white'
+                            : 'text-black'
+                    ">
+                    <template v-if="themeStore.theme == 'black'">
+                        {{ home.black_intro_desc }}
+                    </template>
+                    <template v-else>
+                        {{ home.cappuccino_intro_desc }}
+                    </template>
                 </p>
             </div>
         </div>
@@ -107,7 +116,11 @@ onMounted(() => {
 <style scoped>
 .bg-glow-yellow {
     background: rgb(253, 198, 75);
-    background: radial-gradient(circle, rgba(253, 198, 75, 1) 5%, rgba(0, 212, 255, 0) 45%);
+    background: radial-gradient(
+        circle,
+        rgba(253, 198, 75, 1) 5%,
+        rgba(0, 212, 255, 0) 45%
+    );
 }
 
 .text-stroke {
