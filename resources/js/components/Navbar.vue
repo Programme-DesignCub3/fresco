@@ -3,14 +3,13 @@ import { useThemeStore } from '@/stores/user-theme.js';
 
 const url = window.location;
 const themeStore = useThemeStore();
-const enableCustomLayout = (theme) => {
-    themeStore.setTheme(theme);
-};
+
+const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 </script>
 
 <template>
     <Transition>
-        <header class="navigation" :class="themeStore.theme">
+        <header v-if="themeStore.theme != undefined || themeStore.theme != null" class="navigation" :class="themeStore.theme">
             <div class="mx-auto max-w-7xl">
                 <ul class="flex items-baseline justify-center space-x-20">
                     <li
@@ -23,8 +22,10 @@ const enableCustomLayout = (theme) => {
                         :class="url.pathname == '/produk' && 'nav-active'">
                         <a href="produk">PRODUK</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="">ARTIKEL</a>
+                    <li
+                        class="nav-item"
+                        :class="url.pathname == '/artikel' && 'nav-active'">
+                        <a href="artikel">ARTIKEL</a>
                     </li>
                     <li class="relative z-50 h-[60px] w-[200px]">
                         <a
@@ -35,14 +36,20 @@ const enableCustomLayout = (theme) => {
                                 class="absolute top-[20%]"
                         /></a>
                     </li>
-                    <li class="nav-item">
-                        <a href="">AKTIVITAS</a>
+                    <li
+                        class="nav-item"
+                        :class="url.pathname == '/aktivitas' && 'nav-active'">
+                        <a href="aktivitas">AKTIVITAS</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="">GALERI</a>
+                    <li
+                        class="nav-item"
+                        :class="url.pathname == '/galeri' && 'nav-active'">
+                        <a href="galeri">GALERI</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="">HUBUNGI</a>
+                    <li
+                        class="nav-item"
+                        :class="url.pathname == '/hubungi' && 'nav-active'">
+                        <a href="hubungi">HUBUNGI</a>
                     </li>
                 </ul>
             </div>
@@ -52,7 +59,7 @@ const enableCustomLayout = (theme) => {
                     v-if="themeStore.theme && themeStore.theme == 'black'">
                     <div
                         class="flex h-24 w-24 items-center justify-center bg-[#fdc64a]"
-                        @click="enableCustomLayout('cappucino')">
+                        @click="enableCustomLayout('cappuccino')">
                         <img
                             src="/assets/images/theme-changer-cappuccino.png"
                             class="max-w-full" />
@@ -62,7 +69,7 @@ const enableCustomLayout = (theme) => {
             <Transition name="slide" mode="out-in">
                 <div
                     class="absolute right-10 top-2/4 z-50 cursor-pointer overflow-hidden rounded-full border-2 border-white shadow-lg transition-transform hover:translate-x-2 hover:scale-105"
-                    v-if="themeStore.theme && themeStore.theme == 'cappucino'">
+                    v-if="themeStore.theme && themeStore.theme == 'cappuccino'">
                     <div
                         class="flex h-24 w-24 items-center justify-center bg-[#3b2314]"
                         @click="enableCustomLayout('black')">

@@ -7,6 +7,8 @@ import ProductCoffee from '@/components/ProductCoffee.vue';
 import VideoCoffee from '@/components/VideoCoffee.vue';
 import Description from '@/components/Description.vue';
 import PostFeed from '@/components/PostFeed.vue';
+import DescBackground from '@/components/misc/DescBackground.vue';
+import IntroProduct from '@/components/misc/IntroProduct.vue';
 
 export {
     Menu,
@@ -18,4 +20,6 @@ export {
     VideoCoffee,
     Description,
     PostFeed,
+    DescBackground,
+    IntroProduct
 };

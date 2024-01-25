@@ -1,90 +1,98 @@
 <script setup>
 import {
     splitDescriptionBlack,
-    splitDescriptionCappucino,
+    splitDescriptionCappuccino,
 } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/user-theme.js';
 import { onMounted, watch, ref } from 'vue';
+import { storeToRefs } from 'pinia';
 import SplitType from 'split-type';
+import AOS from 'aos';
 
+const { data, index, themes } = defineProps(['data', 'index', 'themes']);
 const themeStore = useThemeStore();
-const currentTheme = themeStore.theme;
+const { theme } = storeToRefs(themeStore);
 const manifest = ref(null);
 const delayAos = ref(0);
-const datas = ref([
-    {
-        image: '/assets/images/desc-1.png',
-        title: 'BIJI KOPI PILIHAN TERBAIK',
-        desc: 'Biji kopi pilihan memiliki kualitas unggul dengan rasa yang kaya dan aroma yang mendalam. Dipetik secara selektif dari kebun terbaik, biji kopi ini menjanjikan pengalaman kopi yang istimewa dan memikat bagi para pencinta kopi sejati.',
-    },
-    {
-        image: '/assets/images/desc-2.png',
-        title: 'DIRACIK OLEH AHLI KOPI',
-        desc: 'Kopi blend adalah hasil racikan para ahli kopi yang menggabungkan biji dari berbagai daerah. Dengan resep khusus, kopi blend menciptakan harmoni cita rasa unik, menyajikan pengalaman kopi yang istimewa yang memikat lidah para penikmat kopi.',
-    },
-    {
-        image: '/assets/images/desc-3.png',
-        title: 'MENGGUNAKAN TEKNOLOGI CANGGIH',
-        desc: 'Teknologi canggih diterapkan oleh para ahli dalam pembuatan produk kopi. Dari penggilingan presisi hingga metode pemanggangan inovatif, penggunaan teknologi terkini memastikan setiap gelas menghadirkan cita rasa kopi terbaik, memuaskan keinginan para penikmat kopi yang menghargai inovasi.',
-    },
-    {
-        image: '/assets/images/desc-4.png',
-        title: 'PENGALAMAN KOPI YANG FRESH',
-        desc: 'Kopi FresCo menyajikan pengalaman minum kopi baru dengan biji kopi segar. Nikmati keharuman yang melepaskan semangat kopi yang baru dipanggang, serta rasa yang penuh cita, memberikan sensasi minum kopi yang memikat dan memuaskan.',
-    },
-]);
 
-const splitWords = (group, limit) => {
-    let split = new SplitType(manifest.value[group], {
+onMounted(() => {
+    let split = new SplitType(manifest.value, {
         types: 'lines',
     });
     let lines = split.lines;
     let delay = 100;
 
     for (let index = 0; index < lines.length; index++) {
-        let element = manifest.value[group].children[index];
+        let element = manifest.value.children[index];
         delay += 100;
         themeStore.theme == 'black'
-            ? splitDescriptionBlack(element, index, delay, limit, group)
-            : splitDescriptionCappucino(element, index, delay, limit, group);
+            ? splitDescriptionBlack(element, index, delay, 1, manifest.value)
+            : splitDescriptionCappuccino(element, index, delay, 1, manifest.value);
     }
 
     delayAos.value = delay + 50;
-};
 
-onMounted(() => {
     setTimeout(() => {
-        for (let index = 0; index < manifest.value.length; index++) {
-            splitWords(index, 1);
+        AOS.refresh();
+    }, 10);
+
+});
+
+watch(theme, () => {
+    setTimeout(() => {
+        let split = new SplitType(manifest.value, {
+            types: 'lines',
+        });
+        let lines = split.lines;
+        let delay = 100;
+
+        for (let index = 0; index < lines.length; index++) {
+            let element = manifest.value.children[index];
+            delay += 100;
+            themeStore.theme == 'black'
+                ? splitDescriptionBlack(element, index, delay, 1, manifest.value)
+                : splitDescriptionCappuccino(element, index, delay, 1, manifest.value);
         }
-    }, 1);
+
+        delayAos.value = delay + 50;
+    }, 10);
 });
 </script>
 
 <template>
-    <div class="grid overflow-x-hidden">
+    <div v-if="themeStore.theme != undefined || themeStore.theme != null" class="grid overflow-x-hidden">
         <div
-            v-for="(data, index) in datas"
             class="grid grid-cols-1 lg:grid-cols-2">
-            <div :class="(index + 1) % 2 == 0 && 'order-last'">
+            <div :class="
+                data.black_desc_position
+                ?
+                data.black_desc_position == 'right' && 'order-last'
+                :
+                data.cappuccino_desc_position == 'right' && 'order-last'
+                ">
                 <div
                     class="relative w-full"
                     :class="
                         themeStore.theme == 'black'
                             ? 'bg-fr-black'
-                            : 'bg-fr-yellow'
-                    ">
-                    <img
-                        class="opacity-30 lg:opacity-100"
-                        :src="data.image"
-                        alt="FresCo" />
+                            : 'bg-fr-yellow'">
+
+                    <!-- Image Slot -->
+                    <slot v-if="themeStore.theme == 'black'" name="black-desc-image" />
+                    <slot v-else name="cappuccino-desc-image" />
+
                     <!-- Text (Mobile) -->
                     <div
-                        class="w-fullmx-auto absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 lg:hidden">
+                        class="w-full mx-auto absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 lg:hidden">
                         <div
                             class="text-shadow w-[350px] text-[45px] font-bold leading-none sm:w-[600px] sm:text-[90px] md:w-[700px] md:text-[110px]"
                             ref="manifest">
-                            {{ data.title }}
+                            <template v-if="data.black_desc_title">
+                                {{ data.black_desc_title }}
+                            </template>
+                            <template v-else>
+                                {{ data.cappuccino_desc_title }}
+                            </template>
                         </div>
                         <div
                             data-aos="fade-down"
@@ -95,18 +103,23 @@ onMounted(() => {
                             data-aos="fade-down"
                             data-aos-offset="0"
                             :data-aos-delay="delayAos"
-                            class="font-medium leading-6 sm:w-[500px] sm:leading-8 md:w-[700px]"
+                            class="font-medium leading-6 text-white sm:w-[500px] sm:leading-8 md:w-[700px]"
                             :class="
                                 themeStore.theme == 'black'
                                     ? 'text-white'
                                     : 'text-black'
                             ">
-                            {{ data.desc }}
+                            <template v-if="data.black_desc_explanation">
+                                {{ data.black_desc_explanation }}
+                            </template>
+                            <template v-else>
+                                {{ data.cappuccino_desc_explanation }}
+                            </template>
                         </p>
                     </div>
                     <div
                         v-if="index < 3"
-                        class="block h-[2px] w-full lg:hidden"
+                        class="block h-[2px] w-full bg-fr-yellow lg:hidden"
                         :class="
                             themeStore.theme == 'black'
                                 ? 'bg-fr-yellow'
@@ -114,29 +127,40 @@ onMounted(() => {
                         "></div>
                 </div>
             </div>
+
             <!-- Text (Desktop) -->
             <div
-                class="relative z-20 hidden h-full w-full lg:block"
+                class="relative z-20 hidden h-full w-full bg-fr-black lg:block"
                 :class="
                     themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'
                 ">
                 <div
                     class="absolute top-1/2 -translate-y-1/2"
                     :class="
-                        (index + 1) % 2 == 0
-                            ? 'right-6 xl:-right-48 2xl:-right-24'
-                            : '-left-24'
-                    ">
+                        data.black_desc_position
+                        ?
+                        data.black_desc_position == 'right' ? 'right-6 xl:-right-48 2xl:-right-24' : '-left-24'
+                        :
+                        data.cappuccino_desc_position == 'right' ? 'right-6 xl:-right-48 2xl:-right-24' : '-left-24'
+                        ">
                     <div
                         class="text-shadow text-[110px] font-bold leading-none lg:w-[450px] lg:text-[78px] xl:w-[630px] xl:text-[90px] 2xl:text-[110px]"
                         ref="manifest">
-                        {{ data.title }}
+                        <template v-if="data.black_desc_title">
+                            {{ data.black_desc_title }}
+                        </template>
+                        <template v-else>
+                            {{ data.cappuccino_desc_title }}
+                        </template>
                     </div>
                     <div
                         class="w-[450px]"
                         :class="
-                            (index + 1) % 2 == 1 &&
-                            'ml-[130px] xl:ml-[170px] 2xl:ml-[200px]'
+                            data.black_desc_position
+                            ?
+                            data.black_desc_position == 'left' && 'ml-[130px] xl:ml-[170px] 2xl:ml-[200px]'
+                            :
+                            data.cappuccino_desc_position == 'left' && 'ml-[130px] xl:ml-[170px] 2xl:ml-[200px]'
                         ">
                         <div
                             data-aos="fade-down"
@@ -153,7 +177,12 @@ onMounted(() => {
                                     ? 'text-white'
                                     : 'text-black'
                             ">
-                            {{ data.desc }}
+                            <template v-if="data.black_desc_explanation">
+                                {{ data.black_desc_explanation }}
+                            </template>
+                            <template v-else>
+                                {{ data.cappuccino_desc_explanation }}
+                            </template>
                         </p>
                     </div>
                 </div>

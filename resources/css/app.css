@@ -38,22 +38,22 @@
         @apply bg-red-500;
     }
 
-    .navigation.cappucino {
+    .navigation.cappuccino {
         @apply block bg-[#fdc64b];
     }
-    .navigation.cappucino .nav-item {
+    .navigation.cappuccino .nav-item {
         @apply text-slate-900;
     }
-    .navigation.cappucino .nav-item:hover,
-    .navigation.cappucino .nav-item.nav-active {
+    .navigation.cappuccino .nav-item:hover,
+    .navigation.cappuccino .nav-item.nav-active {
         @apply text-[#006738];
     }
-    .navigation.cappucino .nav-item::after {
+    .navigation.cappuccino .nav-item::after {
         content: ' ';
         @apply absolute inset-x-0 -bottom-[10px] h-1 w-full;
     }
-    .navigation.cappucino .nav-item:hover::after,
-    .navigation.cappucino .nav-item.nav-active::after {
+    .navigation.cappuccino .nav-item:hover::after,
+    .navigation.cappuccino .nav-item.nav-active::after {
         @apply bg-red-500;
     }
 
@@ -63,7 +63,7 @@
         @apply bg-fr-black;
     }
 
-    .introduction.cappucino {
+    .introduction.cappuccino {
         @apply bg-fr-yellow;
     }
 
@@ -73,7 +73,7 @@
         @apply bg-fr-red;
     }
 
-    .video-coffee.cappucino {
+    .video-coffee.cappuccino {
         @apply bg-fr-green;
     }
 
@@ -83,7 +83,7 @@
         @apply bg-fr-yellow;
     }
 
-    .post-feed.cappucino {
+    .post-feed.cappuccino {
         @apply bg-fr-darker-red;
     }
 }

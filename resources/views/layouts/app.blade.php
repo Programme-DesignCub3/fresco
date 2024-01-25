@@ -10,7 +10,11 @@
     </head>
     <body class="antialiased">
         <div id="app">
+            @include('partials.header')
+
             @yield('content')
+
+            @include('partials.footer')
         </div>
     </body>
 </html>

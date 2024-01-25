@@ -17,12 +17,6 @@ class HomeSettings extends Settings
     public string $cappuccino_intro_image;
 
     /**
-     * Product List Section
-     */
-    public array $black_product_list;
-    public array $cappuccino_product_list;
-
-    /**
      * Video & Collaboration Section
      */
     public string $black_video_url;

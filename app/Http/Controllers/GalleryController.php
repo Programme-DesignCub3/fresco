@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-    public function index()
+    public function index(GeneralSettings $generalSettings)
     {
-        return view('pages.gallery');
+        $general = $generalSettings->toArray();
+
+        return view('pages.gallery', compact('general'));
     }
 }

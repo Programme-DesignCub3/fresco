@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(GeneralSettings $generalSettings)
     {
-        return view('pages.contact');
+        $general = $generalSettings->toArray();
+
+        return view('pages.contact', compact('general'));
     }
 }

@@ -8,9 +8,9 @@ const splitBlack = (element, index, delay = 100, limit) => {
         : element.classList.add('text-fr-yellow');
 };
 
-const splitCappucino = (element, index, delay = 100, limit) => {
+const splitCappuccino = (element, index, delay = 100, limit) => {
     element.setAttribute('data-aos', 'fade-right');
-    element.setAttribute('data-aos-anchor', '#cappucino-anchor');
+    element.setAttribute('data-aos-anchor', '#cappuccino-anchor');
     element.setAttribute('data-aos-offset', 0);
     element.setAttribute('data-aos-delay', delay);
     index < limit
@@ -29,7 +29,7 @@ const splitDescriptionBlack = (element, index, delay = 100, limit, group) => {
         : element.classList.add('text-fr-yellow');
 };
 
-const splitDescriptionCappucino = (
+const splitDescriptionCappuccino = (
     element,
     index,
     delay = 100,
@@ -48,7 +48,7 @@ const splitDescriptionCappucino = (
 
 export {
     splitBlack,
-    splitCappucino,
+    splitCappuccino,
     splitDescriptionBlack,
-    splitDescriptionCappucino,
+    splitDescriptionCappuccino,
 };

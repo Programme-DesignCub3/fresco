@@ -7,6 +7,14 @@ return new class extends SettingsMigration
     public function up(): void
     {
         /**
+         * Menu Section
+         */
+        $this->migrator->add('general.black_menu_bg', '');
+        $this->migrator->add('general.black_menu_coffee', '');
+        $this->migrator->add('general.cappuccino_menu_bg', '');
+        $this->migrator->add('general.cappuccino_menu_coffee', '');
+
+        /**
          * Social Media Link
          */
         $this->migrator->add('general.facebook_link');

@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Settings\HomeSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
@@ -20,6 +21,8 @@ class ManageHome extends SettingsPage
     protected static ?string $navigationLabel = 'Home';
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+
+    protected ?string $subheading = 'Controls all home page content';
 
     protected static string $settings = HomeSettings::class;
 
@@ -72,57 +75,6 @@ class ManageHome extends SettingsPage
                     ]),
                 /**
                  * <END> Introduction Section
-                 */
-
-                /**
-                 * <START> Product List Section
-                 */
-                Section::make('Product List Section')
-                    ->description('Managing product list of coffee')
-                    ->icon('heroicon-s-shopping-cart')
-                    ->columns(2)
-                    ->schema([
-                        Tabs::make('Theme')
-                            ->tabs([
-                                Tab::make('Black Coffee')
-                                    ->icon('heroicon-s-plus-circle')
-                                    ->schema([
-                                        Repeater::make('black_product_list')
-                                            ->label('Black Coffee Product List')
-                                            ->addActionLabel('Add to Black Coffee Product List')
-                                            ->reorderableWithButtons()
-                                            ->schema([
-                                                TextInput::make('black_product_name')
-                                                    ->label('Product Name')
-                                                    ->required(),
-                                                CuratorPicker::make('black_product_image')
-                                                    ->label('Product Image')
-                                                    ->required()
-                                            ])
-                                    ])
-                            ]),
-                        Tabs::make('Theme')
-                            ->tabs([
-                                Tab::make('Cappuccino Coffee')
-                                    ->icon('heroicon-o-plus-circle')
-                                    ->schema([
-                                        Repeater::make('cappuccino_product_list')
-                                            ->label('Cappuccino Coffee Product List')
-                                            ->addActionLabel('Add to Cappuccino Coffee Product List')
-                                            ->reorderableWithButtons()
-                                            ->schema([
-                                                TextInput::make('cappuccino_product_name')
-                                                    ->label('Product Name')
-                                                    ->required(),
-                                                CuratorPicker::make('cappuccino_product_image')
-                                                    ->label('Product Image')
-                                                    ->required()
-                                            ]),
-                                    ])
-                            ])
-                    ]),
-                /**
-                 * <END> Product List Section
                  */
 
                 /**
@@ -181,28 +133,38 @@ class ManageHome extends SettingsPage
                         ->columns(2)
                         ->schema([
                             Tabs::make('Theme')
-                            ->tabs([
-                                Tab::make('Black Coffee')
-                                    ->icon('heroicon-s-plus-circle')
-                                    ->schema([
-                                        Repeater::make('black_desc_list')
-                                            ->label('Black Coffee Description List')
-                                            ->addActionLabel('Add to Black Coffee Description List')
-                                            ->reorderableWithButtons()
-                                            ->schema([
-                                                TextInput::make('black_desc_title')
-                                                    ->label('Title')
-                                                    ->required(),
-                                                Textarea::make('black_desc_explanation')
-                                                    ->label('Explanation')
-                                                    ->rows(5)
-                                                    ->required(),
-                                                CuratorPicker::make('black_desc_image')
-                                                    ->label('Image')
-                                                    ->required()
-                                            ])
-                                    ])
-                            ]),
+                                ->tabs([
+                                    Tab::make('Black Coffee')
+                                        ->icon('heroicon-s-plus-circle')
+                                        ->schema([
+                                            Repeater::make('black_desc_list')
+                                                ->label('Black Coffee Description List')
+                                                ->addActionLabel('Add to Black Coffee Description List')
+                                                ->reorderableWithButtons()
+                                                ->schema([
+                                                    TextInput::make('black_desc_title')
+                                                        ->label('Title')
+                                                        ->required(),
+                                                    Textarea::make('black_desc_explanation')
+                                                        ->label('Explanation')
+                                                        ->rows(5)
+                                                        ->required(),
+                                                    Radio::make('black_desc_position')
+                                                        ->label('Position')
+                                                        ->options([
+                                                            'left' => 'Left',
+                                                            'right' => 'Right'
+                                                        ])
+                                                        ->descriptions([
+                                                            'left' => 'The left position starts from the image to the text',
+                                                            'right' => 'The right position starts from the text to the image'
+                                                        ]),
+                                                    CuratorPicker::make('black_desc_image')
+                                                        ->label('Image')
+                                                        ->required()
+                                                ])
+                                        ])
+                                ]),
                             Tabs::make('Theme')
                                 ->tabs([
                                     Tab::make('Cappuccino Coffee')
@@ -220,6 +182,16 @@ class ManageHome extends SettingsPage
                                                         ->label('Explanation')
                                                         ->rows(5)
                                                         ->required(),
+                                                    Radio::make('cappuccino_desc_position')
+                                                        ->label('Position')
+                                                        ->options([
+                                                            'left' => 'Left',
+                                                            'right' => 'Right'
+                                                        ])
+                                                        ->descriptions([
+                                                            'left' => 'The left position starts from the image to the text',
+                                                            'right' => 'The right position starts from the text to the image'
+                                                        ]),
                                                     CuratorPicker::make('cappuccino_desc_image')
                                                         ->label('Image')
                                                         ->required()

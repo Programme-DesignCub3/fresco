@@ -23,7 +23,7 @@ const datas = ref([
 </script>
 
 <template>
-    <div class="post-feed" :class="themeStore.theme">
+    <div v-if="themeStore.theme != undefined || themeStore.theme != null" class="post-feed" :class="themeStore.theme">
         <div class="fr-container mx-auto w-full px-10 py-24 md:px-0">
             <div class="flex flex-col gap-y-24 lg:flex-row lg:gap-x-12">
                 <div class="w-full lg:w-2/5">
@@ -155,12 +155,12 @@ const datas = ref([
     background: #ed1d24;
 }
 
-.post-feed.cappucino .splide__pagination {
+.post-feed.cappuccino .splide__pagination {
     bottom: -3em;
     outline: none;
 }
 
-.post-feed.cappucino .splide__pagination__page {
+.post-feed.cappuccino .splide__pagination__page {
     width: 16px;
     height: 16px;
     margin: 0 8px;
@@ -168,7 +168,7 @@ const datas = ref([
     opacity: 1;
 }
 
-.post-feed.cappucino .splide__pagination__page.is-active {
+.post-feed.cappuccino .splide__pagination__page.is-active {
     transform: scale(1);
     background: #006838;
 }
