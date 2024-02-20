@@ -107,7 +107,7 @@ watch(theme, () => {
 
             <!-- Text -->
             <div
-                class="relative z-20 hidden h-full w-full bg-fr-black lg:block"
+                class="relative z-20 hidden h-full w-full transition-all duration-700 ease-in-out lg:block"
                 :class="
                     themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'
                 ">

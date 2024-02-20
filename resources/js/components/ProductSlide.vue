@@ -1,7 +1,7 @@
 <script setup>
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
-import { ref, onMounted, nextTick, watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/user-theme.js';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -16,106 +16,79 @@ const swiperOption = {
     loop: true,
     modules: [Navigation],
     navigation: {
-        nextEl: '.fr-slider-next',
-        prevEl: '.fr-slider-prev',
+        nextEl: '.fr-product-slider-next',
+        prevEl: '.fr-product-slider-prev',
     },
 };
 
 const initSwiper = () => {
-    if (swiper.value) {
-        swiper.value.destroy();
-    }
     swiper.value = new Swiper(product.value, swiperOption);
 };
 
 onMounted(() => {
-    nextTick();
-
-    initSwiper();
+    if(!swiper.value) {
+        initSwiper();
+    }
 });
 
 watch(theme, () => {
-    initSwiper();
+    swiper.value = null;
+    setTimeout(() => {
+        initSwiper();
+    });
 });
 </script>
 
 <template>
-    <Transition :name="themeStore.theme == 'black' ? 'right' : 'left'">
+    <div
+        v-if="
+            themeStore.getTheme().value != undefined &&
+            themeStore.getTheme().value != null
+        "
+        class="product-coffee relative transition-all duration-700 ease-in-out px-0 py-16 md:px-10"
+        :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-red'">
         <div
-            class="product-coffee relative px-0 py-16 md:px-10"
-            :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-red'">
-            <div
-                class="fr-slider-prev absolute left-[12.5%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
-                :class="
-                    themeStore.theme == 'black'
-                        ? 'bg-fr-red text-white'
-                        : 'bg-fr-yellow text-black'
-                ">
-                <v-icon name="fa-chevron-left" />
-            </div>
-            <div
-                class="fr-slider-next absolute right-[12.5%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
-                :class="
-                    themeStore.theme == 'black'
-                        ? 'bg-fr-red text-white'
-                        : 'bg-fr-yellow text-black'
-                ">
-                <v-icon name="fa-chevron-right" />
-            </div>
-            <div class="fr-container mx-auto w-full space-y-16 text-center">
-                <div class="swiper" ref="product">
-                    <div class="swiper-wrapper items-end py-6">
-                        <slot
-                            v-if="themeStore.theme == 'black'"
-                            name="black-product-coffee" />
-                        <slot v-else name="cappuccino-product-coffee" />
-                    </div>
-                </div>
-                <a
-                    href="#"
-                    class="inline-block rounded-lg border px-8 py-2.5 text-sm font-medium text-white group-hover:border group-hover:border-white"
-                    :class="
-                        themeStore.theme == 'black'
-                            ? 'border-fr-red bg-fr-red'
-                            : 'border-fr-green bg-fr-green'
-                    ">
-                    BELI SEKARANG >
-                </a>
-            </div>
+            class="fr-product-slider-prev absolute left-[12.5%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            :class="
+                themeStore.theme == 'black'
+                    ? 'bg-fr-red text-white'
+                    : 'bg-fr-yellow text-black'
+            ">
+            <v-icon name="fa-chevron-left" />
         </div>
-    </Transition>
+        <div
+            class="fr-product-slider-next absolute right-[12.5%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            :class="
+                themeStore.theme == 'black'
+                    ? 'bg-fr-red text-white'
+                    : 'bg-fr-yellow text-black'
+            ">
+            <v-icon name="fa-chevron-right" />
+        </div>
+        <div class="fr-container mx-auto w-full space-y-16 text-center">
+            <!-- Slide Black Coffee -->
+            <div v-if="themeStore.theme == 'black'" class="swiper" ref="product">
+                <div class="swiper-wrapper items-end py-6">
+                    <slot name="black-product-coffee" />
+                </div>
+            </div>
+
+            <!-- Slide Cappuccino -->
+            <div v-if="themeStore.theme == 'cappuccino'" class="swiper" ref="product">
+                <div class="swiper-wrapper items-end py-6">
+                    <slot name="cappuccino-product-coffee" />
+                </div>
+            </div>
+            <a
+                href="#"
+                class="inline-block transition-all duration-700 ease-in-out rounded-lg border px-8 py-2.5 text-sm font-medium text-white group-hover:border group-hover:border-white"
+                :class="
+                    themeStore.theme == 'black'
+                        ? 'border-fr-red bg-fr-red'
+                        : 'border-fr-green bg-fr-green'
+                ">
+                BELI SEKARANG >
+            </a>
+        </div>
+    </div>
 </template>
-
-<style scoped>
-.right-enter-active {
-    animation: wipe-in-right 2.5s cubic-bezier(0.25, 1, 0.3, 1) both;
-}
-
-.right-leave-from {
-    opacity: 0;
-}
-.left-enter-active {
-    animation: wipe-in-left 2.5s cubic-bezier(0.25, 1, 0.3, 1) both;
-}
-.left-leave-from {
-    opacity: 0;
-}
-
-@keyframes wipe-in-right {
-    from {
-        clip-path: inset(0 100% 0 0);
-    }
-    to {
-        clip-path: inset(0 0 0 0);
-    }
-}
-
-@keyframes wipe-in-left {
-    from {
-        clip-path: inset(0 0 0 100%);
-    }
-    to {
-        clip-path: inset(0 0 0 0);
-    }
-}
-</style>

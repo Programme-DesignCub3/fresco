@@ -70,7 +70,7 @@ watch(theme, () => {
 
 <template>
     <div
-        class="py-16"
+        class="py-16 transition-all duration-700 ease-in-out"
         :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
         <div class="fr-container mx-auto" id="product-title-head-anchor">
             <h1

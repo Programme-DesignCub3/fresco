@@ -25,11 +25,11 @@ const datas = ref([
 <template>
     <div
         v-if="themeStore.theme != undefined || themeStore.theme != null"
-        class="post-feed"
+        class="post-feed transition-all duration-700 ease-in-out"
         :class="themeStore.theme">
         <div class="fr-container mx-auto w-full px-10 py-24 md:px-0">
             <div class="flex flex-col gap-y-24 lg:flex-row lg:gap-x-12">
-                <div class="w-full lg:w-2/5">
+                <div class="w-full transition-all duration-700 ease-in-out lg:w-2/5">
                     <h1
                         class="text-[40px] font-bold leading-none"
                         :class="
@@ -110,7 +110,7 @@ const datas = ref([
                                     </p>
                                     <div>
                                         <button
-                                            class="rounded-lg px-6 py-2 text-sm text-white"
+                                            class="rounded-lg px-6 py-2 text-sm text-white transition-all duration-700 ease-in-out"
                                             :class="
                                                 themeStore.theme == 'black'
                                                     ? 'bg-fr-red'

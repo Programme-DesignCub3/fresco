@@ -1,7 +1,7 @@
 <script setup>
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
-import { ref, onMounted, nextTick, watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/user-theme.js';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -27,8 +27,8 @@ const swiperOption = {
         slideShadows: true,
     },
     navigation: {
-        nextEl: '.fr-slider-next',
-        prevEl: '.fr-slider-prev',
+        nextEl: '.fr-activity-slider-next',
+        prevEl: '.fr-activity-slider-prev',
     },
 };
 
@@ -40,22 +40,18 @@ const initSwiper = () => {
 };
 
 onMounted(() => {
-    nextTick();
-
     initSwiper();
 });
 
 watch(theme, () => {
-    nextTick(() => {
-        initSwiper();
-    });
+    initSwiper();
 });
 </script>
 
 <template>
     <div class="relative">
         <div
-            class="fr-slider-prev absolute left-[12%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-activity-slider-prev absolute left-[12%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
             :class="
                 themeStore.theme == 'black'
                     ? 'bg-fr-yellow text-black'
@@ -64,7 +60,7 @@ watch(theme, () => {
             <v-icon name="fa-chevron-left" />
         </div>
         <div
-            class="fr-slider-next absolute right-[12%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-activity-slider-next absolute right-[12%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
             :class="
                 themeStore.theme == 'black'
                     ? 'bg-fr-yellow text-black'

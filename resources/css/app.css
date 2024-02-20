@@ -16,16 +16,24 @@
     }
 
     .navigation .nav-item {
-        @apply relative w-[110px] cursor-pointer text-center font-bold leading-5;
+        @apply relative w-[110px] cursor-pointer text-center font-bold leading-5 transition-all ease-in-out duration-300;
     }
 
     .navigation.black .nav-item {
-        @apply text-white transition-all duration-300 ease-in;
+        @apply text-white transition-all duration-700 ease-in-out;
     }
 
     .navigation.black .nav-item:hover,
     .navigation.black .nav-active {
         @apply text-fr-yellow;
+    }
+
+    .navigation.black .nav-item::after:hover {
+        @apply slide-center;
+    }
+
+    .navigation.black .nav-item.nav-active::after:hover {
+        @apply animate-none
     }
 
     .navigation.black .nav-item::after {
@@ -45,6 +53,14 @@
     .navigation.cappuccino .nav-item:hover,
     .navigation.cappuccino .nav-item.nav-active {
         @apply text-fr-green;
+    }
+
+    .navigation.cappuccino .nav-item::after:hover {
+        @apply slide-center;
+    }
+
+    .navigation.cappuccino .nav-item.nav-active::after:hover {
+        @apply animate-none
     }
 
     .navigation.cappuccino .nav-item::after {
@@ -120,10 +136,37 @@
     );
 }
 
-.nav-up {
-    @apply -top-[150px] transition-all duration-500 ease-in-out;
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-.nav-down {
-    @apply top-[0px] transition-all duration-500 ease-in-out;
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #979797;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #808080;
+}
+
+.slide-center {
+    animation: slideFromCenterToLeftAndRight .7s;
+}
+
+@keyframes slideFromCenterToLeftAndRight {
+  0% {
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: center;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left, right;
+  }
 }

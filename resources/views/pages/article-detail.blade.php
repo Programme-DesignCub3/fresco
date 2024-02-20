@@ -55,7 +55,7 @@
                                     alt="FresCo" />
                             </div>
                             <div
-                                class="flex flex-col gap-y-3 w-full">
+                                class="flex flex-col gap-y-3 w-full transition-all duration-700 ease-in-out">
                                 <h1
                                     class="text-2xl font-bold text-fr-yellow">
                                     {{ $d['title'] }}
@@ -66,7 +66,7 @@
                                 </p>
                                 <div>
                                     <button
-                                        class="rounded-lg px-6 py-2 text-sm border border-white bg-transparent text-white">
+                                        class="rounded-lg px-6 py-2 text-sm border border-white bg-transparent text-white transition-all duration-300 ease-in-out hover:bg-white hover:text-fr-red group-hover:border group-hover:border-white">
                                         READ MORE >
                                     </button>
                                 </div>

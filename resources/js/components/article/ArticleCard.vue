@@ -13,7 +13,7 @@ const themeStore = useThemeStore();
                 <img :src="image" alt="FresCo" />
             </div>
             <div
-                class="space-y-3 p-6 group-hover:bg-fr-red"
+                class="space-y-3 p-6 group-hover:bg-fr-red group-hover:transition-all group-hover:duration-300 group-hover:ease-in-out"
                 :class="
                     themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
                 ">

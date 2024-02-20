@@ -34,13 +34,12 @@ const sendMessageHandler = (e) => {
             // Handle error response
             console.error('Error sending message:', error);
         });
-    console.log(name.value, email.value, subject.value, message.value);
 };
 </script>
 
 <template>
     <div
-        class="py-20"
+        class="py-20 transition-all duration-700 ease-in-out"
         :class="themeStore.theme == 'black' ? 'bg-black' : 'bg-fr-yellow'">
         <div
             class="fr-container mx-auto grid grid-cols-1 grid-rows-1 gap-x-0 gap-y-12 px-8 md:grid-cols-2 md:gap-x-6 md:gap-y-0 md:px-0">
@@ -48,10 +47,6 @@ const sendMessageHandler = (e) => {
             <div class="space-y-6">
                 <div class="space-y-3">
                     <h1
-                        data-aos="flip-down"
-                        data-aos-delay="400"
-                        data-aos-duration="1000"
-                        data-aos-offset="0"
                         class="text-[50px] font-bold"
                         :class="
                             themeStore.theme == 'black'
@@ -61,16 +56,9 @@ const sendMessageHandler = (e) => {
                         HUBUNGI KAMI
                     </h1>
                     <div
-                        data-aos="fade-right"
-                        data-aos-delay="200"
-                        data-aos-duration="500"
-                        data-aos-offset="0"
                         class="h-[4px] w-16 rounded-full bg-fr-red"></div>
                 </div>
                 <div
-                    data-aos="fade-down"
-                    data-aos-delay="300"
-                    data-aos-offset="0"
                     class="space-y-6 font-medium">
                     <p
                         :class="
@@ -82,9 +70,6 @@ const sendMessageHandler = (e) => {
                         kopi Fresco dengan menggunakan form kontak disamping.
                     </p>
                     <div
-                        data-aos="fade-down"
-                        data-aos-delay="400"
-                        data-aos-offset="0"
                         class="space-y-1"
                         :class="
                             themeStore.theme == 'black'

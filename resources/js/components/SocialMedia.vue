@@ -11,7 +11,7 @@ const themeStore = useThemeStore();
             themeStore.getTheme().value != undefined ||
             themeStore.getTheme().value != null
         "
-        class="fixed right-0 top-0 z-40 mr-4 mt-40 flex flex-col space-y-2">
+        class="fixed right-0 top-0 z-40 mr-4 mt-40 flex flex-col space-y-2 transition-all duration-700 ease-in-out">
         <a
             class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="

@@ -49,7 +49,7 @@
                     @endforeach
                 @endfor
             @else
-                @foreach($list_product as $key => $product)
+                @foreach($black as $key => $product)
                     <div class="swiper-slide">
                         <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                             <x-curator-glider
@@ -91,7 +91,7 @@
                     @endforeach
                 @endfor
             @else
-                @foreach($list_product as $key => $product)
+                @foreach($cappuccino as $key => $product)
                     <div class="swiper-slide">
                         <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                             <x-curator-glider

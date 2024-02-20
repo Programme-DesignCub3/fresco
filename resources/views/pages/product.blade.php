@@ -9,20 +9,18 @@
     <product-list-component>
         <template #black-product-list>
             @foreach($black as $key => $product)
-                @php
-                    $multiplier = ($key + 1) * 100;
-                    $delay = 200 + $multiplier;
-                @endphp
                 <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                     <x-curator-glider
                         :media="$product['image']"
                         data-aos="fade-up"
-                        data-aos-delay="{{ $delay }}"
+                        data-aos-delay="200"
+                        data-aos-duration="1000"
                         class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]"
                     />
                     <div
                         data-aos="fade-down"
-                        data-aos-delay="{{ $delay }}"
+                        data-aos-delay="200"
+                        data-aos-duration="1000"
                         data-aos-offset="20"
                         class="text-center font-bold">
                         <p>Fresco</p>

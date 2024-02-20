@@ -24,7 +24,7 @@ const articles = ref([
 </script>
 
 <template>
-    <!-- Black Coffee Theme -->
+    <!-- === Black Coffee Theme === -->
     <div
         v-if="themeStore.theme == 'black'"
         class="bg-black bg-article bg-cover bg-top bg-no-repeat py-20">
@@ -89,7 +89,7 @@ const articles = ref([
         </div>
     </div>
 
-    <!-- Cappuccino Theme -->
+    <!-- === Cappuccino Theme === -->
     <div v-else class="bg-fr-yellow bg-cover bg-top bg-no-repeat py-20">
         <div class="fr-container mx-auto space-y-12">
             <!-- Toolbar -->

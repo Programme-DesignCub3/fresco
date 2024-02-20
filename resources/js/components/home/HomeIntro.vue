@@ -1,76 +1,75 @@
 <script setup>
 import { useThemeStore } from '@/stores/user-theme.js';
 import HomeIntroProduct from '@/components/home/HomeIntroProduct.vue';
-import Navbar from '@/components/Navbar.vue';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
 </script>
 
 <template>
-    <Transition name="right">
-        <div v-if="themeStore.theme == 'black'">
-            <div
-                class="w-full space-y-20 bg-black-home bg-cover bg-center bg-no-repeat pt-40">
-                <div class="fr-container mx-auto">
-                    <video
-                        autoplay
-                        muted
-                        loop
-                        playsinline
-                        id="black-coffee"
-                        class="z-40">
-                        <source
-                            src="/assets/videos/black-coffee-video.mp4"
-                            type="video/mp4" />
-                        Your browser does not support HTML5 video.
-                    </video>
-                </div>
-                <div class="shadow-up-black h-20 w-full"></div>
+    <!-- === Black Theme === -->
+    <div v-if="themeStore.theme == 'black'">
+        <div
+            class="w-full space-y-20 bg-black-home bg-black bg-cover bg-center bg-no-repeat pt-40">
+            <div class="fr-container mx-auto">
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    id="black-coffee"
+                    class="z-40"
+                    poster="/assets/images/placeholder-video.webp">
+                    <source
+                        src="/assets/videos/black-coffee-video.mp4"
+                        type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                </video>
             </div>
-            <HomeIntroProduct :data="data">
-                <template #black>
-                    <slot name="black-slide-image" />
-                </template>
-                <template #cappuccino>
-                    <slot name="cappuccino-slide-image" />
-                </template>
-            </HomeIntroProduct>
+            <div class="shadow-up-black h-20 w-full"></div>
         </div>
-    </Transition>
+        <HomeIntroProduct :data="data">
+            <template #black>
+                <slot name="black-slide-image" />
+            </template>
+            <template #cappuccino>
+                <slot name="cappuccino-slide-image" />
+            </template>
+        </HomeIntroProduct>
+    </div>
 
-    <Transition name="left">
-        <div v-if="themeStore.theme == 'cappuccino'">
-            <div class="w-full space-y-20 bg-fr-yellow pt-40">
-                <img
-                    class="absolute -left-24 z-20 scale-[1.25]"
-                    src="/assets/images/bg-cappuccino-home.svg"
-                    alt="Background Cappuccino Home" />
-                <div class="fr-container mx-auto">
-                    <video
-                        autoplay
-                        muted
-                        loop
-                        playsinline
-                        id="cappuccino-coffee"
-                        class="relative z-40">
-                        <source
-                            src="/assets/videos/cappuccino-video.mp4"
-                            type="video/mp4" />
-                        Your browser does not support HTML5 video.
-                    </video>
-                </div>
+    <!-- === Cappuccino Theme === -->
+    <div v-if="themeStore.theme == 'cappuccino'">
+        <div class="w-full space-y-20 bg-fr-yellow py-20">
+            <img
+                class="absolute -left-24 top-40 z-20 scale-[1.25]"
+                src="/assets/images/bg-cappuccino-home.svg"
+                alt="Background Cappuccino Home" />
+            <div class="fr-container mx-auto">
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    id="cappuccino-coffee"
+                    class="relative z-40"
+                    poster="/assets/images/placeholder-video.webp">
+                    <source
+                        src="/assets/videos/cappuccino-video.mp4"
+                        type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                </video>
             </div>
-            <HomeIntroProduct :data="data">
-                <template #black>
-                    <slot name="black-slide-image" />
-                </template>
-                <template #cappuccino>
-                    <slot name="cappuccino-slide-image" />
-                </template>
-            </HomeIntroProduct>
         </div>
-    </Transition>
+        <HomeIntroProduct :data="data">
+            <template #black>
+                <slot name="black-slide-image" />
+            </template>
+            <template #cappuccino>
+                <slot name="cappuccino-slide-image" />
+            </template>
+        </HomeIntroProduct>
+    </div>
 </template>
 
 <style scoped>

@@ -3,7 +3,7 @@ import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { splitBlack, splitCappuccino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/user-theme.js';
-import { onMounted, ref, nextTick, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { Navigation } from 'swiper/modules';
 import SplitType from 'split-type';
 import AOS from 'aos';
@@ -24,8 +24,8 @@ const swiperOption = {
     loop: true,
     modules: [Navigation],
     navigation: {
-        nextEl: '.fr-slider-next',
-        prevEl: '.fr-slider-prev',
+        nextEl: '.fr-intro-slider-next',
+        prevEl: '.fr-intro-slider-prev',
     },
 };
 
@@ -37,7 +37,6 @@ const initSwiper = () => {
 };
 
 onMounted(() => {
-    nextTick();
     initSwiper();
 
     const splitterLine = (target) => {
@@ -65,9 +64,11 @@ onMounted(() => {
         delayAos.value = delay + 100;
     };
 
-    swiper.value.on('slideChange', (target) => {
-        splitterLine(target);
-    });
+    // swiper.value.on('slideChange', () => {
+    //     setTimeout(() => {
+    //         AOS.refresh();
+    //     }, 10);
+    // });
 
     splitterLine(first.value);
     splitterLine(second.value);
@@ -78,9 +79,7 @@ onMounted(() => {
 });
 
 watch(theme, () => {
-    nextTick(() => {
-        initSwiper();
-    });
+    initSwiper();
 
     setTimeout(() => {
         AOS.refresh();
@@ -94,13 +93,12 @@ watch(theme, () => {
             themeStore.getTheme().value != undefined &&
             themeStore.getTheme().value != null
         "
-        class="introduction relative overflow-x-hidden py-24"
-        :class="[
-            themeStore.theme,
-            themeStore.theme == 'cappuccino' && 'pt-40',
-        ]">
+        class="introduction transition-all duration-700 ease-in-out relative overflow-x-hidden py-24"
+        :class="themeStore.theme">
+
+        <!-- Navigation Swiper (Arrow) -->
         <div
-            class="fr-slider-prev absolute left-[10%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-intro-slider-prev absolute left-[10%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
             :class="
                 themeStore.theme == 'black'
                     ? 'border-2 border-white bg-transparent text-white'
@@ -109,7 +107,7 @@ watch(theme, () => {
             <v-icon name="fa-chevron-left" />
         </div>
         <div
-            class="fr-slider-next absolute right-[10%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-intro-slider-next absolute right-[10%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
             :class="
                 themeStore.theme == 'black'
                     ? 'border-2 border-white bg-transparent text-white'
@@ -117,11 +115,14 @@ watch(theme, () => {
             ">
             <v-icon name="fa-chevron-right" />
         </div>
+
         <div class="fr-container mx-auto w-full px-8 md:px-0">
             <div class="swiper" ref="home">
                 <div class="swiper-wrapper">
-                    <!-- Black Theme -->
+
+                    <!-- === Black Theme === -->
                     <template v-if="themeStore.theme == 'black'">
+                        <!-- First Slide -->
                         <div class="swiper-slide">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
@@ -140,7 +141,6 @@ watch(theme, () => {
                                     <slot name="black" />
                                 </div>
                             </div>
-
                             <!-- Description -->
                             <div class="mt-12 overflow-y-hidden">
                                 <div
@@ -154,6 +154,8 @@ watch(theme, () => {
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Second Slide -->
                         <div class="swiper-slide">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
@@ -172,7 +174,6 @@ watch(theme, () => {
                                     <slot name="cappuccino" />
                                 </div>
                             </div>
-
                             <!-- Description -->
                             <div class="mt-12 overflow-y-hidden">
                                 <div
@@ -188,15 +189,16 @@ watch(theme, () => {
                         </div>
                     </template>
 
-                    <!-- Cappuccino Theme -->
+                    <!-- === Cappuccino Theme === -->
                     <template v-if="themeStore.theme == 'cappuccino'">
+                        <!-- First Slide -->
                         <div class="swiper-slide">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
                                 <div class="mb-10 md:mb-0 md:w-1/4">
                                     <!-- Title -->
                                     <div
-                                        class="relative"
+                                        class="relative "
                                         id="cappuccino-anchor">
                                         <h1
                                             class="text-center text-[60px] font-bold leading-none md:text-left md:text-[80px] lg:text-[100px]"
@@ -219,7 +221,6 @@ watch(theme, () => {
                                     <slot name="cappuccino" />
                                 </div>
                             </div>
-
                             <!-- Description -->
                             <div class="mt-12 overflow-y-hidden">
                                 <div
@@ -233,6 +234,8 @@ watch(theme, () => {
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Second Slide -->
                         <div class="swiper-slide">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
@@ -262,7 +265,6 @@ watch(theme, () => {
                                     <slot name="black" />
                                 </div>
                             </div>
-
                             <!-- Description -->
                             <div class="mt-12 overflow-y-hidden">
                                 <div
@@ -277,6 +279,7 @@ watch(theme, () => {
                             </div>
                         </div>
                     </template>
+
                 </div>
             </div>
         </div>
