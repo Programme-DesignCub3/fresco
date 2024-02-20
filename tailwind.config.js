@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
     content: [
         './resources/**/*.blade.php',
@@ -7,6 +8,25 @@ export default {
     ],
     theme: {
         extend: {
+            backgroundImage: {
+                'header-article':
+                    "url('http://fresco.test/assets/images/header-article.webp')",
+                'header-activity':
+                    "url('http://fresco.test/assets/images/header-activity.webp')",
+                'header-contact':
+                    "url('http://fresco.test/assets/images/header-contact.webp')",
+                menu: "url('http://fresco.test/assets/images/bg-menu.webp')",
+                'black-home':
+                    "url('http://fresco.test/assets/images/bg-black-home.webp')",
+                'cappuccino-home':
+                    "url('http://fresco.test/assets/images/bg-cappuccino-home.webp')",
+                product:
+                    "url('http://fresco.test/assets/images/bg-product.webp')",
+                article:
+                    "url('http://fresco.test/assets/images/bg-article.webp')",
+                activity:
+                    "url('http://fresco.test/assets/images/bg-activity.webp')",
+            },
             backgroundColor: {
                 'fr-black': '#231f20',
                 'fr-yellow': '#fdc64b',
@@ -24,6 +44,7 @@ export default {
         },
     },
     plugins: [
+        require('@tailwindcss/typography'),
         function ({ addComponents }) {
             addComponents({
                 '.fr-container': {

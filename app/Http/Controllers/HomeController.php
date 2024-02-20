@@ -22,14 +22,11 @@ class HomeController extends Controller
          * @product
          * Products
          */
-        $black_coffee = Product::where('type', 'black')->orderBy('sort')->get()->toArray();
-        $cappuccino_coffee = Product::where('type', 'cappuccino')->orderBy('sort')->get()->toArray();
+        $list_product = Product::orderBy('type')->orderBy('sort')->get()->toArray();
 
-        $list_product = [
-            'black_coffee' => $black_coffee,
-            'cappuccino_coffee' => $cappuccino_coffee
-        ];
+        $black = collect($list_product)->toArray();
+        $cappuccino = collect($list_product)->sortByDesc('type')->toArray();
 
-        return view('home', compact('general', 'home', 'list_product'));
+        return view('home', compact('home', 'general', 'black', 'cappuccino'));
     }
 }

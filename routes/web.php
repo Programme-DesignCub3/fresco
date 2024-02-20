@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +31,21 @@ Route::redirect('login', 'admin/login');
  * @all pages route managed with controller
  */
 Route::get('/', [HomeController::class, 'index']);
+
 Route::get('produk', [ProductController::class, 'index']);
-Route::get('artikel', [ArticleController::class, 'index']);
+
+Route::group(['prefix' => 'artikel'], function () {
+    Route::controller(ArticleController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('{slug}', 'detail');
+    });
+});
+
 Route::get('aktivitas', [ActivityController::class, 'index']);
+
 Route::get('galeri', [GalleryController::class, 'index']);
-Route::get('hubungi', [ContactController::class, 'index']);
+
+Route::controller(ContactController::class)->group(function () {
+    Route::get('/hubungi', 'index');
+    Route::post('/send-message', 'sendMessage');
+});

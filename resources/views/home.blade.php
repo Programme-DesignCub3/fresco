@@ -5,9 +5,9 @@
 @section('content')
 
 <section>
-    {{-- === Introduction Section === --}}
-    <introduction-component :data="{{ json_encode($home) }}">
-        <template #black-intro-image>
+    {{-- Home Introduction Section --}}
+    <home-intro-component :data="{{ json_encode($home) }}">
+        <template #black-slide-image>
             <x-curator-glider
                 :media="$home['black_intro_image']"
                 class="w-full"
@@ -15,7 +15,7 @@
                 data-aos-delay="150"
             />
         </template>
-        <template #cappuccino-intro-image>
+        <template #cappuccino-slide-image>
             <x-curator-glider
                 :media="$home['cappuccino_intro_image']"
                 class="w-full"
@@ -23,37 +23,97 @@
                 data-aos-delay="150"
             />
         </template>
-    </introduction-component>
+    </home-intro-component>
 
-    {{-- === Product Section === --}}
-    <product-coffee-component>
-        <template #black-product>
-            @foreach($list_product['black_coffee'] as $key => $product)
-                @php
-                    $multiplier = ($key + 1) * 100;
-                    $delay = 200 + $multiplier;
-                @endphp
-                <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
-                    <x-curator-glider
-                        :media="$product['image']"
-                        data-aos="fade-up"
-                        data-aos-delay="{{ $delay }}"
-                        class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]"
-                    />
-                    <div
-                        data-aos="fade-down"
-                        data-aos-delay="{{ $delay }}"
-                        class="text-center font-bold">
-                        <p>Fresco</p>
-                        <p>{{ $product['product'] }}</p>
+    {{-- Home Product Section --}}
+    <product-slide-component>
+        <template #black-product-coffee>
+            @if(count($black) >= 4)
+                @for($index = 1; $index <= 2; $index++)
+                    @foreach($black as $key => $product)
+                        <div class="swiper-slide">
+                            <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                                <x-curator-glider
+                                    :media="$product['image']"
+                                    data-aos="fade-up"
+                                    class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]"
+                                />
+                                <div
+                                    data-aos="fade-down"
+                                    class="text-center font-bold text-fr-black">
+                                    <p>Fresco</p>
+                                    <p>{{ $product['product'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endfor
+            @else
+                @foreach($list_product as $key => $product)
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                            <x-curator-glider
+                                :media="$product['image']"
+                                data-aos="fade-up"
+                                class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]"
+                            />
+                            <div
+                                data-aos="fade-down"
+                                class="text-center font-bold">
+                                <p>Fresco</p>
+                                <p>{{ $product['product'] }}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
         </template>
-    </product-coffee-component>
 
-    {{-- === Video Section === --}}
-    <video-coffee-component :data="{{ json_encode($home) }}">
+        <template #cappuccino-product-coffee>
+            @if(count($cappuccino) >= 4)
+                @for($index = 1; $index <= 2; $index++)
+                    @foreach($cappuccino as $key => $product)
+                        <div class="swiper-slide">
+                            <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                                <x-curator-glider
+                                    :media="$product['image']"
+                                    data-aos="fade-up"
+                                    class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]"
+                                />
+                                <div
+                                    data-aos="fade-down"
+                                    class="text-center font-bold text-white">
+                                    <p>Fresco</p>
+                                    <p>{{ $product['product'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endfor
+            @else
+                @foreach($list_product as $key => $product)
+                    <div class="swiper-slide">
+                        <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                            <x-curator-glider
+                                :media="$product['image']"
+                                data-aos="fade-up"
+                                class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]"
+                            />
+                            <div
+                                data-aos="fade-down"
+                                class="text-center font-bold">
+                                <p>Fresco</p>
+                                <p>{{ $product['product'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        </template>
+    </product-slide-component>
+
+    {{-- Home Video Section --}}
+    <home-video-component :data="{{ json_encode($home) }}">
         <template #black-video-collab>
             <x-curator-glider
                 :media="$home['black_video_collab']"
@@ -72,9 +132,9 @@
                 class="block w-[220px]"
             />
         </template>
-    </video-coffee-component>
+    </home-video-component>
 
-    {{-- === Description Section === --}}
+    {{-- Home Description Section --}}
     @foreach($home['black_desc_list'] as $key => $black)
         <description-component :themes="'black'" :data="{{ json_encode($black) }}" :index="{{ $key }}">
             <template #black-desc-image>
@@ -94,8 +154,8 @@
         </description-component>
     @endforeach
 
-    {{-- === Post Feed === --}}
-    <post-feed-component></post-feed-component>
+    {{-- Home Post Section --}}
+    <home-post-component></home-post-component>
 </section>
 
 @endsection

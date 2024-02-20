@@ -4,6 +4,20 @@
 
 @section('content')
 
-<App />
+<section>
+    {{-- Contact Header Section --}}
+    <header-page-component header="contact"></header-page-component>
+
+    {{-- Contact Form Section --}}
+    <contact-form-component></contact-form-component>
+</section>
 
 @endsection
+
+@push('scripts')
+    <script>
+        if(localStorage.getItem('user_theme') == null) {
+            localStorage.setItem('user_theme', 'black');
+        }
+    </script>
+@endpush

@@ -60,14 +60,14 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationGroups([
                 'Content',
-                'Settings & Gallery'
+                'Configuration'
             ])
             ->plugins([
                 CuratorPlugin::make()
                     ->label('Gallery')
                     ->pluralLabel('Gallery')
                     ->navigationIcon('heroicon-o-photo')
-                    ->navigationGroup('Settings & Gallery')
+                    ->navigationGroup('Configuration')
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->sidebarCollapsibleOnDesktop()

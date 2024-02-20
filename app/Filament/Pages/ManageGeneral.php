@@ -14,7 +14,7 @@ use Filament\Pages\SettingsPage;
 
 class ManageGeneral extends SettingsPage
 {
-    protected static ?string $navigationGroup = 'Settings & Gallery';
+    protected static ?string $navigationGroup = 'Configuration';
 
     protected static ?string $navigationLabel = 'General';
 

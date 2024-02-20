@@ -4,6 +4,11 @@
 
 @section('content')
 
-<App />
+<section>
+    {{-- Gallery Header Section --}}
+    <header-page-component
+        :background="'http://fresco.test/assets/images/header-gallery.png'"
+    ></header-page-component>
+</section>
 
 @endsection

@@ -3,12 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>FresCo - @yield('title')</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="canonical" href="{{ url('/') }}" />
         <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}">
+        <title>FresCo - @yield('title')</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased">
+    <body class="antialiased overflow-x-hidden">
         <div id="app">
             @include('partials.header')
 
@@ -16,5 +18,7 @@
 
             @include('partials.footer')
         </div>
+
+        @stack('scripts')
     </body>
 </html>

@@ -6,6 +6,7 @@ use App\Settings\HomeSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
@@ -16,7 +17,7 @@ use Filament\Pages\SettingsPage;
 
 class ManageHome extends SettingsPage
 {
-    protected static ?string $navigationGroup = 'Settings & Gallery';
+    protected static ?string $navigationGroup = 'Configuration';
 
     protected static ?string $navigationLabel = 'Home';
 
@@ -38,6 +39,7 @@ class ManageHome extends SettingsPage
                     ->icon('heroicon-s-clipboard-document-list')
                     ->columns(2)
                     ->schema([
+                        RichEditor::make('aaaaa'),
                         Tabs::make('Theme')
                             ->tabs([
                                 Tab::make('Black Coffee')

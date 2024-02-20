@@ -13,4 +13,11 @@ class ArticleController extends Controller
 
         return view('pages.article', compact('general'));
     }
+
+    public function detail(GeneralSettings $generalSettings, $slug)
+    {
+        $general = $generalSettings->toArray();
+
+        return view('pages.article-detail', compact('general'));
+    }
 }
