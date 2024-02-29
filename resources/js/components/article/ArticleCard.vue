@@ -8,12 +8,12 @@ const themeStore = useThemeStore();
 <template>
     <div class="group flex flex-col">
         <div
-            class="transition-all duration-300 ease-in-out group-hover:scale-110">
+            class="transition-all duration-300 ease-in-out md:group-hover:scale-110">
             <div class="w-full object-cover">
                 <img :src="image" alt="FresCo" />
             </div>
             <div
-                class="space-y-3 p-6 group-hover:bg-fr-red group-hover:transition-all group-hover:duration-300 group-hover:ease-in-out"
+                class="space-y-3 p-6 transition-all duration-700 ease-in-out group-hover:bg-fr-red group-hover:transition-all group-hover:duration-300 group-hover:ease-in-out"
                 :class="
                     themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
                 ">
@@ -35,11 +35,18 @@ const themeStore = useThemeStore();
                     ">
                     {{ desc }}
                 </p>
-                <a
-                    href="artikel/ini-contoh-artikel"
-                    class="inline-block rounded-lg border border-fr-red bg-fr-red px-6 py-2 text-sm font-medium text-white transition-all duration-300 ease-in-out hover:bg-white hover:text-fr-red group-hover:border group-hover:border-white">
-                    READ MORE >
-                </a>
+                <div>
+                    <a
+                        href="artikel/ini-contoh-artikel"
+                        class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2 text-xs font-medium text-white transition-all duration-300 ease-in-out group-hover:border md:text-sm"
+                        :class="
+                            themeStore.theme == 'black'
+                                ? 'group-hover:border-fr-yellow group-hover:bg-fr-yellow group-hover:font-medium group-hover:text-black'
+                                : 'group-hover:border-fr-green group-hover:bg-fr-green group-hover:font-medium group-hover:text-white'
+                        ">
+                        READ MORE >
+                    </a>
+                </div>
             </div>
         </div>
     </div>

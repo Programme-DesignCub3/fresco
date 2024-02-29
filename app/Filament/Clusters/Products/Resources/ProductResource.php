@@ -24,13 +24,17 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
-    protected static ?string $navigationLabel = 'All Products';
+    protected static ?string $navigationGroup = 'Manage';
+
+    protected static ?string $slug = 'all-products';
+
+    protected static ?string $navigationLabel = 'Products';
 
     protected static ?string $model = Product::class;
 
     protected static ?string $cluster = Products::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
     public static function form(Form $form): Form
     {
@@ -41,14 +45,20 @@ class ProductResource extends Resource
                         TextInput::make('product')
                             ->label('Product Name')
                             ->required(),
+                        TextInput::make('link')
+                            ->label('Product Link')
+                            ->url()
+                            ->suffixIcon('heroicon-s-shopping-bag')
+                            ->required(),
                         Radio::make('type')
+                            ->label('Product Type')
                             ->options([
                                 'black' => 'Black Coffee',
                                 'cappuccino' => 'Cappuccino Coffee'
                             ])
                             ->required(),
                         CuratorPicker::make('image')
-                            ->label('Image')
+                            ->label('Product Image')
                             ->required(),
                         Hidden::make('sort')
                     ]),

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('image');
             $table->string('title');
             $table->string('slug');
-            $table->string('excerpt');
             $table->longText('body');
+            $table->boolean('published');
             $table->timestamps();
         });
     }

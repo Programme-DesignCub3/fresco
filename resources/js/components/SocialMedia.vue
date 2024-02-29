@@ -6,12 +6,14 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
+    <!-- === Social Media Link === -->
     <div
         v-if="
             themeStore.getTheme().value != undefined ||
             themeStore.getTheme().value != null
         "
-        class="fixed right-0 top-0 z-40 mr-4 mt-40 flex flex-col space-y-2 transition-all duration-700 ease-in-out">
+        class="fixed right-0 top-48 z-[100] mr-4 hidden flex-col space-y-2 transition-all duration-700 ease-in-out md:flex">
+        <!-- Facebook -->
         <a
             class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
@@ -25,6 +27,8 @@ const themeStore = useThemeStore();
                 "
                 name="fa-facebook-f" />
         </a>
+
+        <!-- Instagram -->
         <a
             class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
@@ -38,6 +42,8 @@ const themeStore = useThemeStore();
                 "
                 name="fa-instagram" />
         </a>
+
+        <!-- Twitter -->
         <a
             class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
@@ -51,6 +57,8 @@ const themeStore = useThemeStore();
                 "
                 name="fa-twitter" />
         </a>
+
+        <!-- Tiktok -->
         <a
             class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
@@ -64,6 +72,8 @@ const themeStore = useThemeStore();
                 "
                 name="fa-tiktok" />
         </a>
+
+        <!-- Youtube -->
         <a
             class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
@@ -78,7 +88,9 @@ const themeStore = useThemeStore();
                 name="fa-youtube" />
         </a>
     </div>
-    <div class="fixed bottom-4 right-4 z-40">
+
+    <!-- === WhatsApp Link === -->
+    <div class="fixed bottom-32 right-4 z-[100] md:bottom-4">
         <a :href="data.whatsapp_link ? data.whatsapp_link : '#'">
             <img
                 class="h-16 w-16"

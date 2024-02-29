@@ -12,11 +12,13 @@
         "awcodes/filament-curator": "^3.3",
         "filament/filament": "3.2",
         "filament/spatie-laravel-settings-plugin": "3.2",
+        "filament/widgets": "3.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "spatie/laravel-settings": "^3.2"
+        "spatie/laravel-settings": "^3.2",
+        "spatie/laravel-sluggable": "^3.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

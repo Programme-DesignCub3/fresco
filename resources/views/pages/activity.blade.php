@@ -13,13 +13,13 @@
         <template #activity-slide>
             @for($index = 1; $index <= 2; $index++)
                 <div class="swiper-slide">
-                    <img class="mx-auto h-[580px] w-[580px] object-cover object-center" src="{{ asset('assets/images/activity-1.png') }}" alt="Activity">
+                    <img class="object-cover object-center mx-auto aspect-square" src="{{ asset('assets/images/activity-1.png') }}" alt="Activity">
                 </div>
                 <div class="swiper-slide">
-                    <img class="mx-auto h-[580px] w-[580px] object-cover object-center" src="{{ asset('assets/images/activity-2.png') }}" alt="Activity">
+                    <img class="object-cover object-center mx-auto aspect-square" src="{{ asset('assets/images/activity-2.png') }}" alt="Activity">
                 </div>
                 <div class="swiper-slide">
-                    <img class="mx-auto h-[580px] w-[580px] object-cover object-center" src="{{ asset('assets/images/activity-3.png') }}" alt="Activity">
+                    <img class="object-cover object-center mx-auto aspect-square" src="{{ asset('assets/images/activity-3.png') }}" alt="Activity">
                 </div>
             @endfor
         </template>

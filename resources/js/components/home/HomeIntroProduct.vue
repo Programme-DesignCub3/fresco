@@ -14,6 +14,7 @@ const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const first = ref(null);
 const second = ref(null);
+const stroke = ref(null);
 const delayAos = ref(0);
 const swiper = ref();
 const home = ref();
@@ -36,42 +37,40 @@ const initSwiper = () => {
     swiper.value = new Swiper(home.value, swiperOption);
 };
 
+const splitterText = (target) => {
+    let split = new SplitType(target, {
+        types: 'lines',
+        tagName: 'span',
+    });
+    let lines = split.lines;
+    let delay = 100;
+
+    for (let index = 0; index < lines.length; index++) {
+        let element = target.children[index];
+        delay += 100;
+        themeStore.theme == 'black'
+            ? splitBlack(element, index, delay, 1, '#black-anchor')
+            : splitCappuccino(element, index, delay, 2, '#cappuccino-anchor');
+    }
+
+    delayAos.value = delay + 100;
+};
+
+const splitterStroke = () => {
+    let strokeSplit = new SplitType(stroke.value, {
+        types: 'lines',
+        tagName: 'span'
+    });
+    strokeSplit.lines;
+};
+
 onMounted(() => {
     initSwiper();
 
-    const splitterLine = (target) => {
-        let split = new SplitType(target, {
-            types: 'lines',
-            tagName: 'span',
-        });
-        let lines = split.lines;
-        let delay = 100;
+    splitterText(first.value);
+    splitterText(second.value);
 
-        for (let index = 0; index < lines.length; index++) {
-            let element = target.children[index];
-            delay += 100;
-            themeStore.theme == 'black'
-                ? splitBlack(element, index, delay, 2, '#black-anchor')
-                : splitCappuccino(
-                      element,
-                      index,
-                      delay,
-                      4,
-                      '#cappuccino-anchor',
-                  );
-        }
-
-        delayAos.value = delay + 100;
-    };
-
-    // swiper.value.on('slideChange', () => {
-    //     setTimeout(() => {
-    //         AOS.refresh();
-    //     }, 10);
-    // });
-
-    splitterLine(first.value);
-    splitterLine(second.value);
+    splitterStroke();
 
     setTimeout(() => {
         AOS.refresh();
@@ -81,9 +80,21 @@ onMounted(() => {
 watch(theme, () => {
     initSwiper();
 
+    splitterText(first.value);
+    splitterText(second.value);
+
+    splitterStroke();
+
     setTimeout(() => {
         AOS.refresh();
     }, 10);
+});
+
+window.addEventListener('resize', () => {
+    splitterText(first.value);
+    splitterText(second.value);
+
+    splitterStroke();
 });
 </script>
 
@@ -93,12 +104,11 @@ watch(theme, () => {
             themeStore.getTheme().value != undefined &&
             themeStore.getTheme().value != null
         "
-        class="introduction transition-all duration-700 ease-in-out relative overflow-x-hidden py-24"
+        class="relative py-10 pt-0 pb-10 overflow-x-hidden transition-all duration-700 ease-in-out introduction lg:py-24"
         :class="themeStore.theme">
-
         <!-- Navigation Swiper (Arrow) -->
         <div
-            class="fr-intro-slider-prev absolute left-[10%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-intro-slider-prev absolute left-[2%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:left-[4%] md:left-[6%] lg:left-[8%] 2xl:left-[10%]"
             :class="
                 themeStore.theme == 'black'
                     ? 'border-2 border-white bg-transparent text-white'
@@ -107,7 +117,7 @@ watch(theme, () => {
             <v-icon name="fa-chevron-left" />
         </div>
         <div
-            class="fr-intro-slider-next absolute right-[10%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-intro-slider-next absolute right-[2%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:right-[4%] md:right-[6%] lg:right-[8%] 2xl:right-[10%]"
             :class="
                 themeStore.theme == 'black'
                     ? 'border-2 border-white bg-transparent text-white'
@@ -116,10 +126,9 @@ watch(theme, () => {
             <v-icon name="fa-chevron-right" />
         </div>
 
-        <div class="fr-container mx-auto w-full px-8 md:px-0">
+        <div class="relative w-full px-4 mx-auto fr-container md:px-0">
             <div class="swiper" ref="home">
                 <div class="swiper-wrapper">
-
                     <!-- === Black Theme === -->
                     <template v-if="themeStore.theme == 'black'">
                         <!-- First Slide -->
@@ -130,14 +139,14 @@ watch(theme, () => {
                                     <!-- Title -->
                                     <div id="black-anchor">
                                         <h1
-                                            class="text-center text-[60px] font-bold leading-none md:text-left md:text-[80px] lg:text-[100px]"
+                                            class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
                                             ref="first">
                                             {{ data.black_intro_title }}
                                         </h1>
                                     </div>
                                 </div>
                                 <!-- Image -->
-                                <div class="bg-glow-yellow w-full">
+                                <div class="w-full bg-glow-yellow">
                                     <slot name="black" />
                                 </div>
                             </div>
@@ -147,7 +156,7 @@ watch(theme, () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center text-center font-medium leading-8">
+                                    class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.black_intro_desc"
                                         class="text-white md:text-lg"></p>
@@ -163,14 +172,14 @@ watch(theme, () => {
                                     <!-- Title -->
                                     <div id="black-anchor">
                                         <h1
-                                            class="text-center text-[60px] font-bold leading-none md:text-left md:text-[80px] lg:text-[100px]"
+                                            class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
                                             ref="second">
                                             {{ data.cappuccino_intro_title }}
                                         </h1>
                                     </div>
                                 </div>
                                 <!-- Image -->
-                                <div class="bg-glow-yellow w-full">
+                                <div class="w-full bg-glow-yellow">
                                     <slot name="cappuccino" />
                                 </div>
                             </div>
@@ -180,7 +189,7 @@ watch(theme, () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center text-center font-medium leading-8">
+                                    class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.cappuccino_intro_desc"
                                         class="text-white md:text-lg"></p>
@@ -192,26 +201,27 @@ watch(theme, () => {
                     <!-- === Cappuccino Theme === -->
                     <template v-if="themeStore.theme == 'cappuccino'">
                         <!-- First Slide -->
-                        <div class="swiper-slide">
+                        <div class="p-2 swiper-slide">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
                                 <div class="mb-10 md:mb-0 md:w-1/4">
                                     <!-- Title -->
                                     <div
-                                        class="relative "
+                                        class="relative"
                                         id="cappuccino-anchor">
                                         <h1
-                                            class="text-center text-[60px] font-bold leading-none md:text-left md:text-[80px] lg:text-[100px]"
+                                            class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
                                             ref="first">
                                             {{ data.cappuccino_intro_title }}
                                         </h1>
                                         <h1
+                                            ref="stroke"
                                             data-aos="fade-in"
                                             :data-aos-delay="delayAos"
                                             data-aos-duration="1200"
                                             data-aos-anchor="#cappuccino-anchor"
                                             data-aos-offset="100"
-                                            class="text-stroke absolute -left-1.5 -right-1.5 -top-1.5 text-center text-[60px] font-bold leading-none text-white md:text-left md:text-[80px] lg:text-[100px]">
+                                            class="text-stroke absolute -left-1 -right-1 -top-1 text-center text-[45px] font-bold leading-none text-white sm:text-[50px] md:text-left md:text-[60px] lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-[80px] xl:text-[100px]">
                                             {{ data.cappuccino_intro_title }}
                                         </h1>
                                     </div>
@@ -227,7 +237,7 @@ watch(theme, () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center text-center font-medium leading-8">
+                                    class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.cappuccino_intro_desc"
                                         class="text-fr-black md:text-lg"></p>
@@ -236,7 +246,7 @@ watch(theme, () => {
                         </div>
 
                         <!-- Second Slide -->
-                        <div class="swiper-slide">
+                        <div class="p-2 swiper-slide">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
                                 <div class="mb-10 md:mb-0 md:w-1/4">
@@ -245,7 +255,7 @@ watch(theme, () => {
                                         class="relative"
                                         id="cappuccino-anchor">
                                         <h1
-                                            class="text-center text-[60px] font-bold leading-none md:text-left md:text-[80px] lg:text-[100px]"
+                                            class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
                                             ref="second">
                                             {{ data.black_intro_title }}
                                         </h1>
@@ -255,7 +265,7 @@ watch(theme, () => {
                                             data-aos-duration="1200"
                                             data-aos-anchor="#cappuccino-anchor"
                                             data-aos-offset="100"
-                                            class="text-stroke absolute -left-1.5 -right-1.5 -top-1.5 text-center text-[60px] font-bold leading-none text-white md:text-left md:text-[80px] lg:text-[100px]">
+                                            class="text-stroke absolute -left-1 -right-1 -top-1 text-center text-[45px] font-bold leading-none text-white sm:text-[50px] md:text-left md:text-[60px] lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-[80px] xl:text-[100px]">
                                             {{ data.black_intro_title }}
                                         </h1>
                                     </div>
@@ -271,7 +281,7 @@ watch(theme, () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center text-center font-medium leading-8">
+                                    class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.black_intro_desc"
                                         class="text-fr-black md:text-lg"></p>
@@ -279,7 +289,6 @@ watch(theme, () => {
                             </div>
                         </div>
                     </template>
-
                 </div>
             </div>
         </div>

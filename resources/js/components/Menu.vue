@@ -3,10 +3,10 @@ import { useThemeStore } from '@/stores/user-theme.js';
 import { ref } from 'vue';
 
 const themeStore = useThemeStore();
-
-const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 const blackHover = ref(false);
 const cappuccinoHover = ref(false);
+
+const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 </script>
 
 <template>
@@ -56,7 +56,7 @@ const cappuccinoHover = ref(false);
         </div>
 
         <div class="relative flex w-full">
-            <!-- Black Coffee Theme -->
+            <!-- === Black Coffee Theme === -->
             <button
                 @mouseenter="blackHover = true"
                 @mouseleave="blackHover = false"
@@ -87,7 +87,7 @@ const cappuccinoHover = ref(false);
                     alt="Black Coffee Theme" />
             </button>
 
-            <!-- Cappuccino Theme -->
+            <!-- === Cappuccino Theme === -->
             <button
                 @mouseenter="cappuccinoHover = true"
                 @mouseleave="cappuccinoHover = false"

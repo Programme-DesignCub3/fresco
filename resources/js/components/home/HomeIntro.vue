@@ -10,15 +10,15 @@ const themeStore = useThemeStore();
     <!-- === Black Theme === -->
     <div v-if="themeStore.theme == 'black'">
         <div
-            class="w-full space-y-20 bg-black-home bg-black bg-cover bg-center bg-no-repeat pt-40">
-            <div class="fr-container mx-auto">
+            class="w-full pt-20 space-y-2 bg-black bg-center bg-no-repeat bg-cover bg-black-home md:space-y-12 md:pt-48 lg:pt-40 2xl:pt-44">
+            <div class="mx-auto fr-container">
                 <video
                     autoplay
                     muted
                     loop
                     playsinline
                     id="black-coffee"
-                    class="z-40"
+                    class="z-40 px-4 pt-6 sm:px-0 md:pt-0"
                     poster="/assets/images/placeholder-video.webp">
                     <source
                         src="/assets/videos/black-coffee-video.mp4"
@@ -26,7 +26,7 @@ const themeStore = useThemeStore();
                     Your browser does not support HTML5 video.
                 </video>
             </div>
-            <div class="shadow-up-black h-20 w-full"></div>
+            <div class="w-full h-20 shadow-up-black"></div>
         </div>
         <HomeIntroProduct :data="data">
             <template #black>
@@ -40,19 +40,20 @@ const themeStore = useThemeStore();
 
     <!-- === Cappuccino Theme === -->
     <div v-if="themeStore.theme == 'cappuccino'">
-        <div class="w-full space-y-20 bg-fr-yellow py-20">
+        <div
+            class="relative w-full py-20 space-y-12 overflow-hidden bg-fr-yellow pt-14 md:space-y-20 md:pt-28 lg:pt-20 xl:py-32 2xl:py-24">
             <img
-                class="absolute -left-24 top-40 z-20 scale-[1.25]"
+                class="absolute -left-24 top-36 scale-[1.75] sm:scale-[1.5] md:-left-20 md:scale-[1.25] md:top-40 lg:-left-24 lg:scale-[1.2] lg:top-28 xl:top-40 xl:-left-32 2xl:scale-[1.15] 2xl:-left-[120px] 2xl:rotate-[3deg] 2xl:top-20 min-[1950px]:scale-100 min-[1950px]:w-[1800px] min-[1950px]:top-24 min-[1950px]:left-1/2 min-[1950px]:-translate-x-1/2"
                 src="/assets/images/bg-cappuccino-home.svg"
                 alt="Background Cappuccino Home" />
-            <div class="fr-container mx-auto">
+            <div class="mx-auto fr-container">
                 <video
                     autoplay
                     muted
                     loop
                     playsinline
                     id="cappuccino-coffee"
-                    class="relative z-40"
+                    class="relative z-40 px-4 sm:px-0"
                     poster="/assets/images/placeholder-video.webp">
                     <source
                         src="/assets/videos/cappuccino-video.mp4"
@@ -88,15 +89,15 @@ const themeStore = useThemeStore();
 }
 
 .shadow-up-black {
-    background: rgb(35, 31, 32);
+    background: rgb(5, 5, 5);
     background: linear-gradient(
         0deg,
-        rgba(35, 31, 32, 1) 10%,
-        rgba(35, 31, 32, 0.9) 20%,
-        rgba(35, 31, 32, 0.8) 30%,
-        rgba(35, 31, 32, 0.6) 55%,
-        rgba(35, 31, 32, 0.3) 75%,
-        rgba(35, 31, 32, 0) 95%
+        rgba(5, 5, 5, 1) 10%,
+        rgba(5, 5, 5, 0.9) 20%,
+        rgba(5, 5, 5, 0.8) 30%,
+        rgba(5, 5, 5, 0.6) 55%,
+        rgba(5, 5, 5, 0.3) 75%,
+        rgba(5, 5, 5, 0) 95%
     );
 }
 

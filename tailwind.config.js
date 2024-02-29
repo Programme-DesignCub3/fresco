@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-
 export default {
     content: [
         './resources/**/*.blade.php',
@@ -28,17 +27,19 @@ export default {
                     "url('http://fresco.test/assets/images/bg-activity.webp')",
             },
             backgroundColor: {
-                'fr-black': '#231f20',
+                'fr-black': '#050505',
                 'fr-yellow': '#fdc64b',
                 'fr-red': '#ed1d24',
-                'fr-darker-red': '#be1e2d',
+                // 'fr-darker-red': '#cd161c',
+                'fr-darker-red': '#bf1f2e',
                 'fr-green': '#006838',
             },
             colors: {
-                'fr-black': '#231f20',
+                'fr-black': '#050505',
                 'fr-yellow': '#fdc64b',
                 'fr-red': '#ed1d24',
-                'fr-darker-red': '#be1e2d',
+                // 'fr-darker-red': '#cd161c',
+                'fr-darker-red': '#bf1f2e',
                 'fr-green': '#006838',
             },
         },

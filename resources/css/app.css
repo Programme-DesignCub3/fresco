@@ -12,11 +12,11 @@
     /* Navigation */
 
     .navigation {
-        @apply top-0 z-[99999] w-full pt-10;
+        @apply top-0 z-[99999] w-full md:pt-4 lg:pt-10;
     }
 
     .navigation .nav-item {
-        @apply relative w-[110px] cursor-pointer text-center font-bold leading-5 transition-all ease-in-out duration-300;
+        @apply relative w-full cursor-pointer text-center font-bold leading-5 transition-all duration-300 ease-in-out lg:w-[110px];
     }
 
     .navigation.black .nav-item {
@@ -33,7 +33,7 @@
     }
 
     .navigation.black .nav-item.nav-active::after:hover {
-        @apply animate-none
+        @apply animate-none;
     }
 
     .navigation.black .nav-item::after {
@@ -60,7 +60,7 @@
     }
 
     .navigation.cappuccino .nav-item.nav-active::after:hover {
-        @apply animate-none
+        @apply animate-none;
     }
 
     .navigation.cappuccino .nav-item::after {
@@ -106,8 +106,14 @@
     /* Article */
 
     .article-wrapper {
-        column-count: 2;
-        column-gap: 2rem;
+        column-count: 1;
+    }
+
+    @media (min-width: 1024px) {
+        .article-wrapper {
+            column-count: 2;
+            column-gap: 2rem;
+        }
     }
 }
 
@@ -126,6 +132,42 @@
 }
 
 /* Custom Styles */
+.home-article-gradient {
+    background: rgb(208, 154, 61);
+    background: linear-gradient(
+        45deg,
+        rgba(208, 154, 61, 1) 20%,
+        rgba(250, 194, 75, 1) 40%,
+        rgba(250, 194, 75, 1) 60%,
+        rgba(208, 154, 61, 1) 80%
+    );
+}
+
+.fr-activity-pagination {
+    @apply space-x-3 pt-8 text-center;
+}
+
+.fr-activity-pagination .swiper-pagination-bullet {
+    @apply h-4 w-4 cursor-pointer rounded-full;
+}
+
+.fr-activity-pagination.black .swiper-pagination-bullet {
+    @apply bg-black/60 opacity-100;
+}
+
+.fr-activity-pagination.black
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    @apply bg-fr-red;
+}
+
+.fr-activity-pagination.cappuccino .swiper-pagination-bullet {
+    @apply bg-white opacity-100;
+}
+
+.fr-activity-pagination.cappuccino
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    @apply bg-fr-yellow;
+}
 
 .bg-glow-yellow {
     background: rgb(253, 198, 75);
@@ -153,20 +195,20 @@
 }
 
 .slide-center {
-    animation: slideFromCenterToLeftAndRight .7s;
+    animation: slideFromCenterToLeftAndRight 0.7s;
 }
 
 @keyframes slideFromCenterToLeftAndRight {
-  0% {
-    transform: scaleX(0);
-    transform-origin: center;
-  }
-  50% {
-    transform: scaleX(1);
-    transform-origin: center;
-  }
-  100% {
-    transform: scaleX(1);
-    transform-origin: left, right;
-  }
+    0% {
+        transform: scaleX(0);
+        transform-origin: center;
+    }
+    50% {
+        transform: scaleX(1);
+        transform-origin: center;
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: left, right;
+    }
 }

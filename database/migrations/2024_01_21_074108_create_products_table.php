@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product');
             $table->enum('type', ['black', 'cappuccino']);
+            $table->string('link');
             $table->string('image');
             $table->integer('sort')->nullable();
             $table->timestamps();

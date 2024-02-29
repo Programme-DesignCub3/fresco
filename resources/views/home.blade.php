@@ -11,6 +11,7 @@
             <x-curator-glider
                 :media="$home['black_intro_image']"
                 class="w-full"
+                data-aos-offset="0"
                 data-aos="zoom-in"
                 data-aos-delay="150"
             />
@@ -19,6 +20,7 @@
             <x-curator-glider
                 :media="$home['cappuccino_intro_image']"
                 class="w-full"
+                data-aos-offset="0"
                 data-aos="zoom-in"
                 data-aos-delay="150"
             />
@@ -40,9 +42,17 @@
                                 />
                                 <div
                                     data-aos="fade-down"
-                                    class="text-center font-bold text-fr-black">
+                                    class="font-bold text-center text-fr-black">
                                     <p>Fresco</p>
                                     <p>{{ $product['product'] }}</p>
+                                    <div class="pt-4">
+                                        <a
+                                            href="{{ $product['link'] }}"
+                                            target="_blank"
+                                            class="inline px-6 py-2.5 mt-4 text-sm font-medium text-white transition-all duration-700 ease-in-out border rounded-lg border-fr-red bg-fr-red md:px-8 group-hover:border group-hover:border-white">
+                                            BELI SEKARANG
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -59,9 +69,17 @@
                             />
                             <div
                                 data-aos="fade-down"
-                                class="text-center font-bold">
+                                class="font-bold text-center">
                                 <p>Fresco</p>
                                 <p>{{ $product['product'] }}</p>
+                                <div class="pt-4">
+                                    <a
+                                        href="{{ $product['link'] }}"
+                                        target="_blank"
+                                        class="inline px-6 py-2.5 mt-4 text-sm font-medium text-white transition-all duration-700 ease-in-out border rounded-lg border-fr-red bg-fr-red md:px-8 group-hover:border group-hover:border-white">
+                                        BELI SEKARANG >
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,9 +100,17 @@
                                 />
                                 <div
                                     data-aos="fade-down"
-                                    class="text-center font-bold text-white">
+                                    class="font-bold text-center text-white">
                                     <p>Fresco</p>
                                     <p>{{ $product['product'] }}</p>
+                                    <div class="pt-4">
+                                        <a
+                                            href="{{ $product['link'] }}"
+                                            target="_blank"
+                                            class="inline px-6 py-2.5 mt-4 text-sm font-medium text-white transition-all duration-700 ease-in-out border rounded-lg border-fr-green bg-fr-green md:px-8 group-hover:border group-hover:border-white">
+                                            BELI SEKARANG >
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -101,9 +127,17 @@
                             />
                             <div
                                 data-aos="fade-down"
-                                class="text-center font-bold">
+                                class="font-bold text-center">
                                 <p>Fresco</p>
                                 <p>{{ $product['product'] }}</p>
+                                <div class="pt-4">
+                                    <a
+                                        href="{{ $product['link'] }}"
+                                        target="_blank"
+                                        class="inline px-6 py-2.5 mt-4 text-sm font-medium text-white transition-all duration-700 ease-in-out border rounded-lg border-fr-green bg-fr-green md:px-8 group-hover:border group-hover:border-white">
+                                        BELI SEKARANG >
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -153,6 +187,57 @@
             </template>
         </description-component>
     @endforeach
+
+    {{-- Home Description Section (Mobile) --}}
+    <description-slide-component>
+        <template #black-desc-slide>
+            @foreach($home['black_desc_list'] as $key => $black)
+                <div class="swiper-slide">
+                    <div class="grid grid-rows-1">
+                        <x-curator-glider
+                            :media="$black['black_desc_image']"
+                        />
+                        <div class="flex flex-col justify-between w-full px-4 py-8 space-y-4">
+                            <h1
+                                class="text-shadow text-center text-white text-[40px] font-bold leading-none">
+                                {{ $black['black_desc_title'] }}
+                            </h1>
+                            <p
+                                data-aos="fade-down"
+                                data-aos-offset="0"
+                                class="font-medium leading-8 text-center text-white">
+                                {{ $black['black_desc_explanation'] }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </template>
+
+        <template #cappuccino-desc-slide>
+            @foreach($home['cappuccino_desc_list'] as $cappuccino)
+                <div class="swiper-slide">
+                    <div class="grid grid-rows-1">
+                        <x-curator-glider
+                            :media="$cappuccino['cappuccino_desc_image']"
+                        />
+                        <div class="flex flex-col justify-between w-full px-4 py-8 space-y-4">
+                            <h1
+                                class="text-shadow text-center text-fr-green text-[40px] font-bold leading-none">
+                                {{ $cappuccino['cappuccino_desc_title'] }}
+                            </h1>
+                            <p
+                                data-aos="fade-down"
+                                data-aos-offset="0"
+                                class="font-medium leading-8 text-center text-black">
+                                {{ $cappuccino['cappuccino_desc_explanation'] }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </template>
+    </description-slide-component>
 
     {{-- Home Post Section --}}
     <home-post-component></home-post-component>

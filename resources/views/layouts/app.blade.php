@@ -6,11 +6,16 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="canonical" href="{{ url('/') }}" />
         <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}">
+        <style>
+            [x-cloak] {
+                display: none !important;
+            }
+        </style>
         <title>FresCo - @yield('title')</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased overflow-x-hidden">
+    <body class="overflow-x-hidden antialiased">
         <div id="app">
             @include('partials.header')
 

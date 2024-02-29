@@ -12,12 +12,37 @@ const product = ref();
 const swiper = ref();
 
 const swiperOption = {
-    slidesPerView: 4,
+    spaceBetween: -120,
+    slidesPerView: 1,
     loop: true,
     modules: [Navigation],
     navigation: {
         nextEl: '.fr-product-slider-next',
         prevEl: '.fr-product-slider-prev',
+    },
+    breakpoints: {
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 0
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 0
+        },
+        550: {
+            slidesPerView: 1,
+            spaceBetween: -300
+        },
+        425: {
+            slidesPerView: 1,
+            spaceBetween: -200
+        },
+        375: {
+            spaceBetween: -160
+        },
+        320: {
+            spaceBetween: -140
+        }
     },
 };
 
@@ -26,7 +51,7 @@ const initSwiper = () => {
 };
 
 onMounted(() => {
-    if(!swiper.value) {
+    if (!swiper.value) {
         initSwiper();
     }
 });
@@ -37,6 +62,10 @@ watch(theme, () => {
         initSwiper();
     });
 });
+
+window.addEventListener('resize', () => {
+    initSwiper();
+})
 </script>
 
 <template>
@@ -45,10 +74,11 @@ watch(theme, () => {
             themeStore.getTheme().value != undefined &&
             themeStore.getTheme().value != null
         "
-        class="product-coffee relative transition-all duration-700 ease-in-out px-0 py-16 md:px-10"
+        class="relative px-0 py-10 transition-all duration-700 ease-in-out product-coffee md:px-10 md:py-16"
         :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-red'">
+        <!-- Navigation Swiper (Arrow) -->
         <div
-            class="fr-product-slider-prev absolute left-[12.5%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-product-slider-prev absolute left-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]"
             :class="
                 themeStore.theme == 'black'
                     ? 'bg-fr-red text-white'
@@ -57,7 +87,7 @@ watch(theme, () => {
             <v-icon name="fa-chevron-left" />
         </div>
         <div
-            class="fr-product-slider-next absolute right-[12.5%] top-1/2 z-[999] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full"
+            class="fr-product-slider-next absolute right-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]"
             :class="
                 themeStore.theme == 'black'
                     ? 'bg-fr-red text-white'
@@ -65,30 +95,27 @@ watch(theme, () => {
             ">
             <v-icon name="fa-chevron-right" />
         </div>
-        <div class="fr-container mx-auto w-full space-y-16 text-center">
-            <!-- Slide Black Coffee -->
-            <div v-if="themeStore.theme == 'black'" class="swiper" ref="product">
-                <div class="swiper-wrapper items-end py-6">
+
+        <div class="w-full mx-auto space-y-16 text-center fr-container">
+            <!-- === Slide Black Coffee === -->
+            <div
+                v-if="themeStore.theme == 'black'"
+                class="swiper"
+                ref="product">
+                <div class="items-end py-4 swiper-wrapper md:py-6">
                     <slot name="black-product-coffee" />
                 </div>
             </div>
 
-            <!-- Slide Cappuccino -->
-            <div v-if="themeStore.theme == 'cappuccino'" class="swiper" ref="product">
-                <div class="swiper-wrapper items-end py-6">
+            <!-- === Slide Cappuccino === -->
+            <div
+                v-if="themeStore.theme == 'cappuccino'"
+                class="swiper"
+                ref="product">
+                <div class="items-end py-4 swiper-wrapper md:py-6">
                     <slot name="cappuccino-product-coffee" />
                 </div>
             </div>
-            <a
-                href="#"
-                class="inline-block transition-all duration-700 ease-in-out rounded-lg border px-8 py-2.5 text-sm font-medium text-white group-hover:border group-hover:border-white"
-                :class="
-                    themeStore.theme == 'black'
-                        ? 'border-fr-red bg-fr-red'
-                        : 'border-fr-green bg-fr-green'
-                ">
-                BELI SEKARANG >
-            </a>
         </div>
     </div>
 </template>

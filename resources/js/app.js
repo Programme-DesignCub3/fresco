@@ -7,6 +7,7 @@ import {
     SocialMedia,
     ProductSlide,
     Description,
+    DescriptionSlide,
     HeaderPage,
     Footer,
     HomeIntro,
@@ -37,8 +38,6 @@ import {
     FaChevronLeft,
     FaChevronRight,
 } from 'oh-vue-icons/icons';
-import VueSplide from '@splidejs/vue-splide';
-import '@splidejs/vue-splide/css';
 import '@/misc/plugins';
 import '@/bootstrap';
 
@@ -67,6 +66,7 @@ app
     .component('SocialMediaComponent', SocialMedia)
     .component('ProductSlideComponent', ProductSlide)
     .component('DescriptionComponent', Description)
+    .component('DescriptionSlideComponent', DescriptionSlide)
     .component('HeaderPageComponent', HeaderPage)
     .component('FooterComponent', Footer)
 
@@ -93,6 +93,6 @@ app
     /** @register Contact Components */
     .component('ContactFormComponent', ContactForm);
 
-app.use(pinia).use(VueSplide);
+app.use(pinia);
 app.component('v-icon', OhVueIcon);
 app.mount('#app');

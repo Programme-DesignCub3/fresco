@@ -1,8 +1,17 @@
 <script setup>
-import { ref } from 'vue';
+import { Swiper } from 'swiper';
+import { storeToRefs } from 'pinia';
+import { ref, onMounted, watch } from 'vue';
+import { Pagination } from 'swiper/modules';
 import { useThemeStore } from '@/stores/user-theme.js';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const themeStore = useThemeStore();
+const { theme } = storeToRefs(themeStore);
+const feed = ref();
+const swiper = ref();
+
 const datas = ref([
     {
         image: '/assets/images/article.png',
@@ -20,6 +29,31 @@ const datas = ref([
         desc: 'Nikmati Sensasi Kopi Terbaru bersama Kopi FresCo: Dengan biji segar dan aroma yang memikat, setiap tegukan adalah perjalanan rasa yang menggairahkan."',
     },
 ]);
+
+const swiperOption = {
+    slidesPerView: 1,
+    loop: true,
+    modules: [Pagination],
+    pagination: {
+        clickable: true,
+        el: '.fr-activity-pagination',
+    },
+};
+
+const initSwiper = () => {
+    if (swiper.value) {
+        swiper.value.destroy(true, true);
+    }
+    swiper.value = new Swiper(feed.value, swiperOption);
+};
+
+onMounted(() => {
+    initSwiper();
+});
+
+watch(theme, () => {
+    initSwiper();
+});
 </script>
 
 <template>
@@ -27,9 +61,13 @@ const datas = ref([
         v-if="themeStore.theme != undefined || themeStore.theme != null"
         class="post-feed transition-all duration-700 ease-in-out"
         :class="themeStore.theme">
-        <div class="fr-container mx-auto w-full px-10 py-24 md:px-0">
-            <div class="flex flex-col gap-y-24 lg:flex-row lg:gap-x-12">
-                <div class="w-full transition-all duration-700 ease-in-out lg:w-2/5">
+        <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-24">
+            <div
+                class="flex flex-col gap-y-10 lg:flex-row lg:gap-x-10 lg:gap-y-0">
+                <!-- === Activities === -->
+                <div
+                    class="w-full transition-all duration-700 ease-in-out lg:w-1/2 xl:w-2/5">
+                    <!-- Title -->
                     <h1
                         class="text-[40px] font-bold leading-none"
                         :class="
@@ -39,27 +77,42 @@ const datas = ref([
                         ">
                         Activities
                     </h1>
+                    <!-- Divider -->
                     <div
-                        class="my-6 h-[2px] w-16"
+                        class="my-6 h-[4px] w-16 rounded-full"
                         :class="
                             themeStore.theme == 'black'
                                 ? 'bg-fr-red'
                                 : 'bg-fr-yellow'
                         "></div>
-                    <Splide :options="{ rewind: true, arrows: false }">
-                        <SplideSlide>
-                            <img
-                                src="/assets/images/slide.png"
-                                alt="Sample 1" />
-                        </SplideSlide>
-                        <SplideSlide>
-                            <img
-                                src="/assets/images/slide.png"
-                                alt="Sample 2" />
-                        </SplideSlide>
-                    </Splide>
+                    <!-- Activity Slider -->
+                    <div class="swiper" ref="feed">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img
+                                    src="/assets/images/slide.png"
+                                    alt="Activity 1" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img
+                                    src="/assets/images/slide.png"
+                                    alt="Activity 2" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img
+                                    src="/assets/images/slide.png"
+                                    alt="Activity 3" />
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="fr-activity-pagination"
+                        :class="themeStore.theme"></div>
                 </div>
-                <div class="flex w-full flex-col lg:w-3/5">
+
+                <!-- === Articles === -->
+                <div class="flex w-full flex-col lg:w-1/2 xl:w-3/5">
+                    <!-- Title -->
                     <div>
                         <h1
                             class="text-[40px] font-bold leading-none"
@@ -71,30 +124,34 @@ const datas = ref([
                             Articles
                         </h1>
                         <div
-                            class="my-6 h-[2px] w-16"
+                            class="my-6 h-[4px] w-16 rounded-full"
                             :class="
                                 themeStore.theme == 'black'
                                     ? 'bg-fr-red'
                                     : 'bg-fr-yellow'
                             "></div>
                     </div>
-                    <div class="flex flex-grow flex-col justify-between">
-                        <div v-for="(data, index) in datas">
+                    <!-- List Articles -->
+                    <div class="flex flex-grow flex-col gap-6">
+                        <div v-for="data in datas">
                             <div
-                                class="flex flex-col space-y-6 sm:flex-row sm:space-x-10 sm:space-y-0">
-                                <div class="w-full flex-grow sm:w-2/5 lg:w-1/3">
-                                    <img
-                                        class="w-full"
-                                        :src="data.image"
-                                        alt="FresCo" />
-                                </div>
+                                class="box-shadow flex flex-col space-x-0 space-y-6 p-6 transition-all duration-700 ease-in-out sm:flex-row sm:space-x-6 sm:space-y-0 lg:flex-col lg:space-x-0 lg:space-y-6 xl:flex-row xl:space-x-6 xl:space-y-0"
+                                :class="
+                                    themeStore.theme == 'black'
+                                        ? 'home-article-gradient'
+                                        : 'bg-fr-darker-red'
+                                ">
+                                <img
+                                    class="aspect-square w-full flex-grow sm:w-[220px] lg:w-full xl:w-[220px]"
+                                    :src="data.image"
+                                    alt="FresCo" />
                                 <div
-                                    class="flex w-full flex-col space-y-4 sm:w-3/5 sm:justify-between sm:space-y-0 lg:w-2/3">
+                                    class="flex w-full flex-col gap-y-4 lg:w-full xl:w-3/5 xl:space-y-0">
                                     <h1
                                         class="text-2xl font-bold"
                                         :class="
                                             themeStore.theme == 'black'
-                                                ? 'text-black'
+                                                ? 'text-fr-red'
                                                 : 'text-white'
                                         ">
                                         {{ data.title }}
@@ -121,15 +178,19 @@ const datas = ref([
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                v-if="index < 2"
-                                class="my-[46px] h-px w-full border-b-2 border-dashed lg:mt-[40px]"
-                                :class="
-                                    themeStore.theme == 'black'
-                                        ? 'border-black'
-                                        : 'border-white'
-                                "></div>
                         </div>
+                    </div>
+                    <div class="mt-8 text-end">
+                        <a
+                            href="/artikel"
+                            class="mt-4 inline rounded-lg border px-5 py-2.5 text-sm font-medium text-white transition-all duration-700 ease-in-out group-hover:border group-hover:border-white"
+                            :class="
+                                themeStore.theme == 'black'
+                                    ? 'border-fr-red bg-fr-red'
+                                    : 'border-fr-green bg-fr-green'
+                            ">
+                            SEE ALL ARTICLES >
+                        </a>
                     </div>
                 </div>
             </div>
@@ -137,40 +198,10 @@ const datas = ref([
     </div>
 </template>
 
-<style>
-.post-feed.black .splide__pagination {
-    bottom: -3em;
-    outline: none;
-}
-
-.post-feed.black .splide__pagination__page {
-    width: 16px;
-    height: 16px;
-    margin: 0 8px;
-    background: #231f20;
-    opacity: 1;
-}
-
-.post-feed.black .splide__pagination__page.is-active {
-    transform: scale(1);
-    background: #ed1d24;
-}
-
-.post-feed.cappuccino .splide__pagination {
-    bottom: -3em;
-    outline: none;
-}
-
-.post-feed.cappuccino .splide__pagination__page {
-    width: 16px;
-    height: 16px;
-    margin: 0 8px;
-    background: white;
-    opacity: 1;
-}
-
-.post-feed.cappuccino .splide__pagination__page.is-active {
-    transform: scale(1);
-    background: #006838;
+<style scoped>
+.box-shadow {
+    box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.3);
 }
 </style>

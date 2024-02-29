@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SortProductResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Manage';
+
     protected static ?string $navigationLabel = 'Sort Products';
 
     protected static ?string $navigationIcon = 'heroicon-o-arrows-up-down';
