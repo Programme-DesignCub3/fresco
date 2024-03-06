@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\General\Pages;
 use App\Filament\Clusters\General;
 use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
@@ -31,6 +32,17 @@ class ManageVideo extends SettingsPage
 
     protected static ?string $cluster = General::class;
 
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $black_collab_image = Media::where('id', $data['black_video_collab_id'])->get();
+        $cappuccino_collab_image = Media::where('id', $data['cappuccino_video_collab_id'])->get();
+
+        $data['black_video_collab'] = 'storage/' . $black_collab_image[0]->path;
+        $data['cappuccino_video_collab'] = 'storage/' . $cappuccino_collab_image[0]->path;
+
+        return $data;
+    }
+
     public function form(Form $form): Form
     {
         return $form
@@ -46,7 +58,7 @@ class ManageVideo extends SettingsPage
                         RichEditor::make('black_video_desc')
                             ->label('Description')
                             ->required(),
-                        CuratorPicker::make('black_video_collab')
+                        CuratorPicker::make('black_video_collab_id')
                             ->label('Collaboration Image')
                             ->required()
                     ]),
@@ -62,7 +74,7 @@ class ManageVideo extends SettingsPage
                         RichEditor::make('cappuccino_video_desc')
                             ->label('Description')
                             ->required(),
-                        CuratorPicker::make('cappuccino_video_collab')
+                        CuratorPicker::make('cappuccino_video_collab_id')
                             ->label('Collaboration Image')
                             ->required()
                         ])

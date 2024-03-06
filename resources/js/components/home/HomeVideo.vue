@@ -33,6 +33,8 @@ const themeStore = useThemeStore();
                 <!-- FresCo Logo -->
                 <div class="grid items-center justify-center md:justify-end">
                     <img
+                        width="auto"
+                        height="auto"
                         data-aos="zoom-out"
                         data-aos-delay="200"
                         data-aos-duration="1000"
@@ -54,12 +56,28 @@ const themeStore = useThemeStore();
                 <div
                     v-if="themeStore.theme == 'black'"
                     class="grid items-center justify-center md:justify-start">
-                    <slot name="black-video-collab" />
+                    <img
+                        width="auto"
+                        height="auto"
+                        :src="data.black_video_collab"
+                        alt="Collaboration"
+                        data-aos="zoom-out"
+                        data-aos-delay="500"
+                        data-aos-duration="1000"
+                        class="block w-[220px]">
                 </div>
                 <div
                     v-else
                     class="grid items-center justify-center md:justify-start">
-                    <slot name="cappuccino-video-collab" />
+                    <img
+                        width="auto"
+                        height="auto"
+                        :src="data.cappuccino_video_collab"
+                        alt="Collaboration"
+                        data-aos="zoom-out"
+                        data-aos-delay="500"
+                        data-aos-duration="1000"
+                        class="block w-[220px]">
                 </div>
             </div>
             <!-- Description` -->

@@ -7,9 +7,9 @@ import { EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 
+const { data } = defineProps(['data'])
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
-const arrowAnimation = ref(false);
 const activity = ref();
 const swiper = ref();
 
@@ -54,6 +54,13 @@ const initSwiper = () => {
 
 onMounted(() => {
     initSwiper();
+
+    swiper.value.on('init', () => {
+        console.log('ke 1');
+        swiper.value.on('realIndexChange', () => {
+            console.log('ke 2 dan selanjutnya');
+        });
+    });
 });
 
 watch(theme, () => {
@@ -63,9 +70,10 @@ watch(theme, () => {
 
 <template>
     <div
-        class="relative bg-cover bg-bottom bg-no-repeat py-10 md:py-20"
+        class="relative py-10 bg-bottom bg-no-repeat bg-cover md:py-20"
         :class="themeStore.theme == 'black' ? 'bg-activity' : 'bg-fr-yellow'">
-        <!-- Navigation Swiper (Arrow) -->
+
+        <!-- Navigation Swiper (Arrow Left) -->
         <div
             class="fr-activity-slider-prev absolute left-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]"
             :class="
@@ -75,6 +83,8 @@ watch(theme, () => {
             ">
             <v-icon name="fa-chevron-left" />
         </div>
+
+        <!-- Navigation Swiper (Arrow Right) -->
         <div
             class="fr-activity-slider-next absolute right-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]"
             :class="
@@ -85,10 +95,12 @@ watch(theme, () => {
             <v-icon name="fa-chevron-right" />
         </div>
 
-        <div class="fr-container mx-auto space-y-12">
-            <!-- Title (Separate for refresh AOS Animation) -->
+        <!-- Title -->
+        <div class="mx-auto space-y-12 fr-container">
             <div class="space-y-6">
-                <h1
+
+                <!-- Double element for refresh AOS Animation -->
+                <h2
                     v-if="themeStore.theme == 'black'"
                     data-aos="flip-down"
                     data-aos-delay="400"
@@ -96,8 +108,8 @@ watch(theme, () => {
                     data-aos-offset="0"
                     class="text-shadow px-4 text-[30px] font-bold leading-none text-white sm:px-0 sm:text-[40px] md:text-[50px]">
                     AKTIVITAS
-                </h1>
-                <h1
+                </h2>
+                <h2
                     v-else
                     data-aos="flip-down"
                     data-aos-delay="400"
@@ -105,7 +117,9 @@ watch(theme, () => {
                     data-aos-offset="0"
                     class="text-shadow px-4 text-[30px] font-bold leading-none text-fr-green sm:px-0 sm:text-[40px] md:text-[50px]">
                     AKTIVITAS
-                </h1>
+                </h2>
+
+                <!-- Double element for refresh AOS Animation -->
                 <div
                     v-if="themeStore.theme == 'black'"
                     data-aos="fade-right"
@@ -120,29 +134,37 @@ watch(theme, () => {
                     data-aos-duration="500"
                     data-aos-offset="0"
                     class="ml-4 h-[4px] w-16 rounded-full bg-fr-red sm:ml-0"></div>
+
             </div>
 
             <!-- Slider -->
             <div class="swiper" ref="activity">
                 <div class="swiper-wrapper">
-                    <slot name="activity-slide" />
+                    <template v-for="n in 2">
+                        <div v-for="(d, i) in data" :key="i" class="swiper-slide">
+                            <img
+                                :src="d.image"
+                                width="auto"
+                                height="auto"
+                                alt="FresCo Activity"
+                                class="object-cover object-center mx-auto aspect-square xl:w-[600px] xl:h-[600px]">
+                        </div>
+                    </template>
                 </div>
             </div>
 
             <!-- Read More Button -->
             <div class="text-center">
                 <a
-                    @mouseenter="arrowAnimation = true"
-                    @mouseleave="arrowAnimation = false"
                     href="#"
-                    class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2 text-xs font-medium text-white transition-all duration-300 ease-in-out hover:border-fr-darker-red hover:bg-fr-darker-red group-hover:border group-hover:border-white md:px-8 md:text-sm">
+                    class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2.5 text-xs font-medium text-white transition-all duration-300 ease-in-out hover:border-fr-darker-red hover:bg-fr-darker-red group-hover:border group-hover:border-white md:px-8 md:text-sm">
                     READ MORE
                     <v-icon
                         class="h-4 w-4 stroke-2 py-[2px]"
-                        :class="arrowAnimation && 'arrow-slide-fade-right'"
                         name="fa-chevron-right" />
                 </a>
             </div>
+
         </div>
     </div>
 </template>
@@ -165,9 +187,5 @@ watch(theme, () => {
 
 .arrow-slide-fade-right {
     animation: arrow-slide-fade 1.5s ease-in-out infinite;
-}
-
-.swiper.previousIndex {
-    display: none;
 }
 </style>

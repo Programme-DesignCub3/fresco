@@ -8,8 +8,8 @@ const themeStore = useThemeStore();
     <div
         class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-16"
         :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
-        <div class="fr-container mx-auto">
-            <h1
+        <div class="mx-auto fr-container">
+            <h2
                 class="text-shadow flex flex-col text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px] xl:text-[80px]">
                 <span
                     data-aos="fade-right"
@@ -31,7 +31,7 @@ const themeStore = useThemeStore();
                     "
                     >KOPI FRESCO</span
                 >
-            </h1>
+            </h2>
             <div class="mt-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
         </div>
     </div>

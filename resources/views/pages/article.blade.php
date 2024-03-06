@@ -4,8 +4,7 @@
 
 @section('content')
 
-{{-- @dd(session('theme')) --}}
-<section>
+<section id="article">
     {{-- Article Header Section --}}
     <header-page-component header="article"></header-page-component>
 

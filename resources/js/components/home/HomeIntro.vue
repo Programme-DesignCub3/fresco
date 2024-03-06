@@ -28,14 +28,7 @@ const themeStore = useThemeStore();
             </div>
             <div class="w-full h-20 shadow-up-black"></div>
         </div>
-        <HomeIntroProduct :data="data">
-            <template #black>
-                <slot name="black-slide-image" />
-            </template>
-            <template #cappuccino>
-                <slot name="cappuccino-slide-image" />
-            </template>
-        </HomeIntroProduct>
+        <HomeIntroProduct :data="data" />
     </div>
 
     <!-- === Cappuccino Theme === -->
@@ -43,6 +36,8 @@ const themeStore = useThemeStore();
         <div
             class="relative w-full py-20 space-y-12 overflow-hidden bg-fr-yellow pt-14 md:space-y-20 md:pt-28 lg:pt-20 xl:py-32 2xl:py-24">
             <img
+                width="auto"
+                height="auto"
                 class="absolute -left-24 top-36 scale-[1.75] sm:scale-[1.5] md:-left-20 md:scale-[1.25] md:top-40 lg:-left-24 lg:scale-[1.2] lg:top-28 xl:top-40 xl:-left-32 2xl:scale-[1.15] 2xl:-left-[120px] 2xl:rotate-[3deg] 2xl:top-20 min-[1950px]:scale-100 min-[1950px]:w-[1800px] min-[1950px]:top-24 min-[1950px]:left-1/2 min-[1950px]:-translate-x-1/2"
                 src="/assets/images/bg-cappuccino-home.svg"
                 alt="Background Cappuccino Home" />
@@ -62,14 +57,7 @@ const themeStore = useThemeStore();
                 </video>
             </div>
         </div>
-        <HomeIntroProduct :data="data">
-            <template #black>
-                <slot name="black-slide-image" />
-            </template>
-            <template #cappuccino>
-                <slot name="cappuccino-slide-image" />
-            </template>
-        </HomeIntroProduct>
+        <HomeIntroProduct :data="data" />
     </div>
 </template>
 

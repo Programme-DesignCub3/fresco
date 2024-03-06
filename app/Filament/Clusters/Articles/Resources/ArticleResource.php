@@ -10,7 +10,9 @@ use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Actions\Action;
 use Filament\Forms;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -18,6 +20,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -52,13 +55,19 @@ class ArticleResource extends Resource
                             ->onIcon('heroicon-o-signal')
                             ->offIcon('heroicon-o-signal-slash'),
                         CuratorPicker::make('image')
-                            ->label('Article Image')
+                            ->label('Image')
+                            ->required(),
+                        Radio::make('type')
+                            ->options([
+                                'article' => 'Article',
+                                'promotion' => 'Promotion'
+                            ])
                             ->required(),
                         TextInput::make('title')
-                            ->label('Article Title')
+                            ->label('Title')
                             ->required(),
                         RichEditor::make('body')
-                            ->label('Article Body')
+                            ->label('Body')
                             ->toolbarButtons([
                                 'bold',
                                 'italic',
@@ -80,23 +89,53 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 CuratorColumn::make('image')
-                    ->width(80),
+                ->width(80),
+                TextColumn::make('type')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'article' => 'primary',
+                        'promotion' => 'warning'
+                    }),
                 TextColumn::make('title')
                     ->limit(30)
                     ->toggleable(),
-                TextColumn::make('body')
-                    ->limit(30)
-                    ->toggleable(),
+                CheckboxColumn::make('pin')
+                    ->beforeStateUpdated(function($record, $state) {
+                        $check = Article::where('pin', 1);
+
+                        if($check->count() >= 1) {
+                            $check->update(['pin' => null]);
+                        }
+                    })
+                    ->afterStateUpdated(function ($record, $state) {
+                        if($record['published'] == 0) {
+                            $record->update(['published' => 1]);
+                        }
+
+                        $record->pin = $state;
+                        $record->save();
+                    }),
                 ToggleColumn::make('published')
                     ->onIcon('heroicon-o-signal')
                     ->offIcon('heroicon-o-signal-slash')
+                    ->afterStateUpdated(function ($record, $state) {
+                        if($record['pin'] == 1) {
+                            $record->update(['pin' => 0]);
+                        }
+                    })
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
+                SelectFilter::make('type')
+                    ->options([
+                        'article' => 'Article',
+                        'promotion' => 'Promotion',
+                    ]),
                 SelectFilter::make('published')
                     ->options([
                         0 => 'Draft',
                         1 => 'Published',
-                    ])
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

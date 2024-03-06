@@ -2,7 +2,7 @@
 import { useThemeStore } from '@/stores/user-theme.js';
 import { ref } from 'vue';
 
-const { type } = defineProps(['type']);
+const { data, type } = defineProps(['data', 'type']);
 const url = window.location;
 const themeStore = useThemeStore();
 const openMenu = ref(false);
@@ -33,7 +33,8 @@ window.addEventListener('scroll', () => {
                   : 'bg-transparent md:bg-fr-yellow',
         ]">
         <div
-            class="fr-container relative mx-auto flex flex-row justify-end md:flex-col md:gap-4 md:text-center lg:flex-row">
+            class="relative flex flex-row justify-end mx-auto fr-container md:flex-col md:gap-4 md:text-center lg:flex-row">
+
             <!-- Logo Image -->
             <div
                 class="absolute left-4 top-4 z-[999] sm:left-0 md:static lg:absolute lg:-top-3">
@@ -41,12 +42,16 @@ window.addEventListener('scroll', () => {
                     v-if="url.pathname == '/'"
                     @click="themeStore.setTheme(null)">
                     <img
+                        width="auto"
+                        height="auto"
                         class="w-[140px] md:w-[160px] lg:w-auto"
                         src="/assets/images/logo.png"
                         alt="FresCo Logo" />
                 </button>
                 <a v-else href="/">
                     <img
+                        width="auto"
+                        height="auto"
                         class="w-[130px] md:mx-auto md:w-[160px] lg:w-auto"
                         src="/assets/images/logo.png"
                         alt="FresCo Logo" />
@@ -136,6 +141,87 @@ window.addEventListener('scroll', () => {
                         >
                     </li>
                 </ul>
+                <div class="px-8 gap-x-1.5 mt-8 flex md:hidden">
+                    <!-- Facebook -->
+                    <a
+                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        :class="
+                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                        "
+                        :href="data.facebook_link ? data.facebook_link : '#'"
+                        target="_blank">
+                        <v-icon
+                            class="pt-2 h-9 w-9"
+                            :class="
+                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                            "
+                            name="fa-facebook-f" />
+                    </a>
+
+                    <!-- Instagram -->
+                    <a
+                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        :class="
+                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                        "
+                        :href="data.instagram_link ? data.instagram_link : '#'"
+                        target="_blank">
+                        <v-icon
+                            class="p-1 h-9 w-9"
+                            :class="
+                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                            "
+                            name="fa-instagram" />
+                    </a>
+
+                    <!-- Twitter -->
+                    <a
+                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        :class="
+                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                        "
+                        :href="data.x_link ? data.x_link : '#'"
+                        target="_blank">
+                        <v-icon
+                            class="h-9 w-9 p-1.5"
+                            :class="
+                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                            "
+                            name="fa-twitter" />
+                    </a>
+
+                    <!-- Tiktok -->
+                    <a
+                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        :class="
+                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                        "
+                        :href="data.tiktok_link ? data.tiktok_link : '#'"
+                        target="_blank">
+                        <v-icon
+                            class="h-9 w-9 p-1.5"
+                            :class="
+                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                            "
+                            name="fa-tiktok" />
+                    </a>
+
+                    <!-- Youtube -->
+                    <a
+                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        :class="
+                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                        "
+                        :href="data.youtube_link ? data.youtube_link : '#'"
+                        target="_blank">
+                        <v-icon
+                            class="h-9 w-9 p-1.5"
+                            :class="
+                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                            "
+                            name="fa-youtube" />
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -145,10 +231,13 @@ window.addEventListener('scroll', () => {
                 class="float-animate fixed bottom-4 right-4 z-[99999] cursor-pointer overflow-hidden rounded-full border-[5px] border-white shadow-lg transition-transform hover:scale-105 md:absolute md:bottom-auto md:right-10 md:top-5 xl:bottom-auto xl:right-24 xl:top-2/4"
                 v-if="themeStore.theme == 'black'">
                 <div
-                    class="flex h-20 w-20 items-center justify-center bg-fr-yellow p-2 lg:h-24 lg:w-24"
+                    class="flex items-center justify-center w-20 h-20 p-2 bg-fr-yellow lg:h-24 lg:w-24"
                     @click="enableCustomLayout('cappuccino')">
                     <img
+                        width="auto"
+                        height="auto"
                         src="/assets/images/cappuccino-toggler.png"
+                        alt="Cappuccino Toggler"
                         class="max-w-full" />
                 </div>
             </div>
@@ -163,11 +252,15 @@ window.addEventListener('scroll', () => {
                     class="flex h-20 w-20 items-center justify-center bg-[#3b2314] p-3 lg:h-24 lg:w-24"
                     @click="enableCustomLayout('black')">
                     <img
+                        width="auto"
+                        height="auto"
                         src="/assets/images/black-toggler.png"
+                        alt="Black Coffee Toggler"
                         class="max-w-full" />
                 </div>
             </div>
         </Transition>
+
     </header>
 </template>
 

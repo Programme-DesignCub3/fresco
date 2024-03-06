@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\General\Pages;
 use App\Filament\Clusters\General;
 use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
@@ -31,6 +32,19 @@ class ManageDescription extends SettingsPage
     protected static string $settings = GeneralSettings::class;
 
     protected static ?string $cluster = General::class;
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        for($i = 0; $i < count($data['black_desc_list']); $i++) {
+            $data['black_desc_list'][$i]['black_desc_image'] = 'storage/' . Media::where('id', $data['black_desc_list'][$i]['black_desc_image_id'])->get()[0]->path;
+        }
+
+        for($i = 0; $i < count($data['cappuccino_desc_list']); $i++) {
+            $data['cappuccino_desc_list'][$i]['cappuccino_desc_image'] = 'storage/' . Media::where('id', $data['cappuccino_desc_list'][$i]['cappuccino_desc_image_id'])->get()[0]->path;
+        }
+
+        return $data;
+    }
 
     public function form(Form $form): Form
     {
@@ -63,7 +77,7 @@ class ManageDescription extends SettingsPage
                                         'left' => 'The left position starts from the image to the text',
                                         'right' => 'The right position starts from the text to the image'
                                     ]),
-                                CuratorPicker::make('black_desc_image')
+                                CuratorPicker::make('black_desc_image_id')
                                     ->label('Image')
                                     ->required()
                             ])
@@ -96,7 +110,7 @@ class ManageDescription extends SettingsPage
                                         'left' => 'The left position starts from the image to the text',
                                         'right' => 'The right position starts from the text to the image'
                                     ]),
-                                CuratorPicker::make('cappuccino_desc_image')
+                                CuratorPicker::make('cappuccino_desc_image_id')
                                     ->label('Image')
                                     ->required()
                             ])

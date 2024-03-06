@@ -8,11 +8,13 @@ use App\Models\Activity;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,14 +37,15 @@ class ActivityResource extends Resource
                 Section::make()
                     ->schema([
                         CuratorPicker::make('image')
-                            ->label('Activity Image')
+                            ->label('Image')
                             ->required(),
                         CuratorPicker::make('image_portrait')
-                            ->label('Activity Image Portrait (Optional)'),
+                            ->label('Image Portrait (Optional)'),
                         TextInput::make('link')
-                            ->label('Activity Link')
+                            ->label('Link')
                             ->suffixIcon('heroicon-c-link')
-                            ->required()
+                            ->required(),
+                        Hidden::make('sort')
                     ])
             ]);
     }
@@ -54,6 +57,11 @@ class ActivityResource extends Resource
                 CuratorColumn::make('image')
                     ->label('Image')
                     ->width(120),
+                IconColumn::make('image_portrait')
+                    ->label('Image Portrait')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-badge')
+                    ->falseIcon('heroicon-o-x-mark'),
                 TextColumn::make('link')
                     ->label('Link')
                     ->limit(60)
@@ -61,6 +69,9 @@ class ActivityResource extends Resource
             ->filters([
                 //
             ])
+            ->reorderable('sort')
+            ->defaultSort('sort')
+            ->modifyQueryUsing(fn (Builder $query) => $query->orderBy('sort'))
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

@@ -12,46 +12,46 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 <template>
     <header
         v-if="themeStore.theme == undefined || themeStore.theme == null"
-        class="relative z-[99999] flex h-screen flex-col">
-        <div class="h-full w-full bg-menu bg-cover bg-center bg-no-repeat">
-            <div class="space-y-6 p-8 text-center">
+        class="relative z-[9999999] flex h-[100dvh] flex-col">
+        <div class="relative w-full h-full bg-center bg-no-repeat bg-cover bg-menu">
+            <div class="p-8 space-y-6 text-center">
                 <img
                     class="mx-auto w-[180px]"
                     src="/assets/images/logo.png"
                     alt="FresCo Logo" />
-                <h1 class="text-stroke text-[60px]">TENTUKAN PILIHANMU!</h1>
-                <div class="flex items-end justify-center">
-                    <div>
-                        <img
-                            class="w-[180px]"
-                            src="/assets/images/kopi-gula.png"
-                            alt="" />
-                    </div>
-                    <div>
+                <div class="inline-block px-8 -skew-x-12 bg-fr-red border-4 border-[#ce9638]">
+                    <h1 class="text-white font-black text-[50px] text-shadow">TENTUKAN PILIHANMU!</h1>
+                </div>
+                    <div class="absolute left-[380px] -rotate-12 bottom-28">
                         <img
                             class="w-[180px]"
                             src="/assets/images/bubuk-hitam.png"
-                            alt="" />
+                            alt="Kopi Bubuk Hitam" />
                     </div>
-                    <div>
-                        <img
-                            class="w-[180px]"
-                            src="/assets/images/cappuccino.png"
-                            alt="" />
-                    </div>
-                    <div>
-                        <img
-                            class="w-[180px]"
-                            src="/assets/images/krim-moka.png"
-                            alt="" />
-                    </div>
-                    <div>
+                    <div class="absolute left-[600px] -rotate-12 bottom-28">
                         <img
                             class="w-[180px]"
                             src="/assets/images/krim-susu.png"
-                            alt="" />
+                            alt="Kopi Krim Susu" />
                     </div>
-                </div>
+                    <div class="absolute left-[260px] -rotate-12 bottom-12">
+                        <img
+                            class="w-[180px]"
+                            src="/assets/images/kopi-gula.png"
+                            alt="Kopi + Gula" />
+                    </div>
+                    <div class="absolute left-[540px] -rotate-12 bottom-12">
+                        <img
+                            class="w-[180px]"
+                            src="/assets/images/krim-moka.png"
+                            alt="Kopi Krim Moka" />
+                    </div>
+                    <div class="absolute right-[320px] bottom-12 -rotate-12">
+                        <img
+                            class="w-[180px]"
+                            src="/assets/images/cappuccino.png"
+                            alt="Cappuccino" />
+                    </div>
             </div>
         </div>
 
@@ -66,19 +66,19 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
                         blackHover = false;
                     }
                 "
-                class="flex w-1/2 justify-end gap-x-8 bg-fr-red px-8 pb-24 pt-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3">
-                <span
-                    class="flex h-9 w-9 items-center justify-center rounded-full bg-fr-yellow">
-                    <v-icon
-                        class="arrow-slide-fade-left"
-                        name="fa-chevron-left" />
-                </span>
-                <h4
-                    class="flex flex-col text-[40px] font-bold leading-10 text-white">
-                    <span>JELAS</span>
-                    <span>LEBIH</span>
-                    <span>ENAK</span>
-                </h4>
+                class="relative flex justify-end w-1/2 h-[200px] px-8 pt-4 pb-24 transition-all duration-700 ease-in-out outline-none gap-x-8 bg-fr-red hover:w-2/3">
+                <div class="absolute flex items-center justify-center mr-24 gap-x-6">
+                    <span
+                        class="flex items-center justify-center rounded-full h-9 w-9 bg-fr-yellow">
+                        <v-icon
+                            class="arrow-slide-fade-left"
+                            name="fa-chevron-left" />
+                    </span>
+                    <h4
+                        class="flex flex-col text-[50px] text-white text-left z-[999] text-shadow font-black w-[300px] leading-[1] italic">
+                        ENAKNYA SELALU ASIK
+                    </h4>
+                </div>
                 <div class="w-[350px]"></div>
                 <img
                     :class="blackHover && 'float-animate'"
@@ -97,25 +97,30 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
                         cappuccinoHover = false;
                     }
                 "
-                class="group flex w-1/2 gap-x-8 bg-fr-yellow px-8 pb-24 pt-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3">
+                class="flex w-1/2 h-[200px] px-8 pt-4 pb-24 transition-all duration-700 ease-in-out outline-none group gap-x-8 bg-fr-yellow hover:w-2/3">
                 <img
                     :class="cappuccinoHover && 'float-animate'"
                     class="absolute -top-24 w-[350px]"
                     src="/assets/images/menu-cappuccino.png"
                     alt="Cappuccino Theme" />
                 <div class="w-[350px]"></div>
-                <h4
+                <div class="absolute flex items-center justify-center ml-24 gap-x-6">
+                    <h4
+                        class="flex flex-col text-[50px] text-white text-right z-[999] text-shadow font-black w-[300px] leading-[1] italic">
+                        ENAKNYA MAKIN EPIK
+                    </h4>
+                    <span
+                        class="flex items-center justify-center text-white rounded-full h-9 w-9 bg-fr-red">
+                        <v-icon
+                            class="arrow-slide-fade-right"
+                            name="fa-chevron-right" />
+                    </span>
+                </div>
+                <!-- <h4
                     class="flex flex-col text-right text-[40px] font-bold leading-10 text-fr-green">
-                    <span>ENAKIN</span>
-                    <span>TIAP</span>
-                    <span>MOMEN</span>
-                </h4>
-                <span
-                    class="flex h-9 w-9 items-center justify-center rounded-full bg-fr-red text-white">
-                    <v-icon
-                        class="arrow-slide-fade-right"
-                        name="fa-chevron-right" />
-                </span>
+                    <span>ENAKNYA</span>
+                    <span>MAKIN EPIC</span>
+                </h4> -->
             </button>
         </div>
     </header>
@@ -149,6 +154,10 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
     }
 }
 
+.text-shadow {
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+}
+
 .float-animate {
     animation: float-animation 3s ease-in-out infinite;
 }
@@ -159,163 +168,5 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 
 .arrow-slide-fade-right {
     animation: arrow-slide-fade 2s ease-in-out infinite;
-}
-
-.text-stroke {
-    color: #fff;
-    font-weight: 800;
-    line-height: 1;
-    overflow: hidden;
-    position: relative;
-    text-shadow:
-        -4px -2px 0 #bb202f,
-        -4px -1px 0 #bb202f,
-        -4px 0 0 #bb202f,
-        -4px 1px 0 #bb202f,
-        -4px 2px 0 #bb202f,
-        -3px -3px 0 #bb202f,
-        -3px -2px 0 #bb202f,
-        -3px -1px 0 #bb202f,
-        -3px 0 0 #bb202f,
-        -3px 1px 0 #bb202f,
-        -3px 2px 0 #bb202f,
-        -3px 3px 0 #bb202f,
-        -2px -4px 0 #bb202f,
-        -2px -3px 0 #bb202f,
-        -2px -2px 0 #bb202f,
-        -2px -1px 0 #bb202f,
-        -2px 0 0 #bb202f,
-        -2px 1px 0 #bb202f,
-        -2px 2px 0 #bb202f,
-        -2px 3px 0 #bb202f,
-        -2px 4px 0 #bb202f,
-        -1px -4px 0 #bb202f,
-        -1px -3px 0 #bb202f,
-        -1px -2px 0 #bb202f,
-        -1px -1px 0 #bb202f,
-        -1px 0 0 #bb202f,
-        -1px 1px 0 #bb202f,
-        -1px 2px 0 #bb202f,
-        -1px 3px 0 #bb202f,
-        -1px 4px 0 #bb202f,
-        0 -4px 0 #bb202f,
-        0 -3px 0 #bb202f,
-        0 -2px 0 #bb202f,
-        0 -1px 0 #bb202f,
-        0 0 0 #bb202f,
-        0 1px 0 #bb202f,
-        0 2px 0 #bb202f,
-        0 3px 0 #bb202f,
-        0 4px 0 #bb202f,
-        1px -4px 0 #bb202f,
-        1px -3px 0 #bb202f,
-        1px -2px 0 #bb202f,
-        1px -1px 0 #bb202f,
-        1px 0 0 #bb202f,
-        1px 1px 0 #bb202f,
-        1px 2px 0 #bb202f,
-        1px 3px 0 #bb202f,
-        1px 4px 0 #bb202f,
-        2px -4px 0 #bb202f,
-        2px -3px 0 #bb202f,
-        2px -2px 0 #bb202f,
-        2px -1px 0 #bb202f,
-        2px 0 0 #bb202f,
-        2px 1px 0 #bb202f,
-        2px 2px 0 #bb202f,
-        2px 3px 0 #bb202f,
-        2px 4px 0 #bb202f,
-        3px -3px 0 #bb202f,
-        3px -2px 0 #bb202f,
-        3px -1px 0 #bb202f,
-        3px 0 0 #bb202f,
-        3px 1px 0 #bb202f,
-        3px 2px 0 #bb202f,
-        3px 3px 0 #bb202f,
-        4px -2px 0 #bb202f,
-        4px -1px 0 #bb202f,
-        4px 0 0 #bb202f,
-        4px 1px 0 #bb202f,
-        4px 2px 0 #bb202f;
-    z-index: 0;
-}
-
-.text-outline-invers {
-    color: #fff;
-    font-weight: 800;
-    line-height: 1;
-    overflow: hidden;
-    position: relative;
-    text-shadow:
-        -4px -2px 0 #bb202f,
-        -4px -1px 0 #bb202f,
-        -4px 0 0 #bb202f,
-        -4px 1px 0 #bb202f,
-        -4px 2px 0 #bb202f,
-        -3px -3px 0 #bb202f,
-        -3px -2px 0 #bb202f,
-        -3px -1px 0 #bb202f,
-        -3px 0 0 #bb202f,
-        -3px 1px 0 #bb202f,
-        -3px 2px 0 #bb202f,
-        -3px 3px 0 #bb202f,
-        -2px -4px 0 #bb202f,
-        -2px -3px 0 #bb202f,
-        -2px -2px 0 #bb202f,
-        -2px -1px 0 #bb202f,
-        -2px 0 0 #bb202f,
-        -2px 1px 0 #bb202f,
-        -2px 2px 0 #bb202f,
-        -2px 3px 0 #bb202f,
-        -2px 4px 0 #bb202f,
-        -1px -4px 0 #bb202f,
-        -1px -3px 0 #bb202f,
-        -1px -2px 0 #bb202f,
-        -1px -1px 0 #bb202f,
-        -1px 0 0 #bb202f,
-        -1px 1px 0 #bb202f,
-        -1px 2px 0 #bb202f,
-        -1px 3px 0 #bb202f,
-        -1px 4px 0 #bb202f,
-        0 -4px 0 #bb202f,
-        0 -3px 0 #bb202f,
-        0 -2px 0 #bb202f,
-        0 -1px 0 #bb202f,
-        0 0 0 #bb202f,
-        0 1px 0 #bb202f,
-        0 2px 0 #bb202f,
-        0 3px 0 #bb202f,
-        0 4px 0 #bb202f,
-        1px -4px 0 #bb202f,
-        1px -3px 0 #bb202f,
-        1px -2px 0 #bb202f,
-        1px -1px 0 #bb202f,
-        1px 0 0 #bb202f,
-        1px 1px 0 #bb202f,
-        1px 2px 0 #bb202f,
-        1px 3px 0 #bb202f,
-        1px 4px 0 #bb202f,
-        2px -4px 0 #bb202f,
-        2px -3px 0 #bb202f,
-        2px -2px 0 #bb202f,
-        2px -1px 0 #bb202f,
-        2px 0 0 #bb202f,
-        2px 1px 0 #bb202f,
-        2px 2px 0 #bb202f,
-        2px 3px 0 #bb202f,
-        2px 4px 0 #bb202f,
-        3px -3px 0 #bb202f,
-        3px -2px 0 #bb202f,
-        3px -1px 0 #bb202f,
-        3px 0 0 #bb202f,
-        3px 1px 0 #bb202f,
-        3px 2px 0 #bb202f,
-        3px 3px 0 #bb202f,
-        4px -2px 0 #bb202f,
-        4px -1px 0 #bb202f,
-        4px 0 0 #bb202f,
-        4px 1px 0 #bb202f,
-        4px 2px 0 #bb202f;
-    z-index: 0;
 }
 </style>

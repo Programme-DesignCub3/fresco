@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ArticleCategoryResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Manage';
+    protected static ?string $navigationGroup = 'Categories';
 
     protected static ?int $navigationSort = 2;
 

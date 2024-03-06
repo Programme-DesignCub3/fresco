@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ActivityResource\Pages;
 
 use App\Filament\Resources\ActivityResource;
+use App\Models\Activity;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
 
@@ -15,7 +16,18 @@ class ManageActivities extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->mutateFormDataUsing(function (array $data): array {
+                    $totalActivity = Activity::all()->count();
+
+                    if($totalActivity == 0) {
+                        $data['sort'] = 1;
+                    } else {
+                        $data['sort'] = $totalActivity + 1;
+                    }
+
+                    return $data;
+                }),
         ];
     }
 }

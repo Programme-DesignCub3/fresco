@@ -1,6 +1,7 @@
 <script setup>
 import { useThemeStore } from '@/stores/user-theme.js';
 
+const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
 </script>
 
@@ -9,7 +10,7 @@ const themeStore = useThemeStore();
         class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-20"
         :class="themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-green'">
         <div
-            class="fr-container mx-auto flex flex-col gap-y-3 md:gap-y-5 lg:gap-y-8">
+            class="flex flex-col mx-auto fr-container gap-y-3 md:gap-y-5 lg:gap-y-8">
             <div
                 class="text-shadow flex flex-col text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px] xl:text-[80px]">
                 <span
@@ -33,18 +34,30 @@ const themeStore = useThemeStore();
                     themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-red'
                 "></div>
             <div class="flex flex-wrap gap-5">
-                <img
-                    class="w-36 md:w-44 lg:w-52"
-                    src="/assets/images/icons/tokopedia.png"
-                    alt="Tokopedia" />
-                <img
-                    class="w-36 md:w-44 lg:w-52"
-                    src="/assets/images/icons/shopee.png"
-                    alt="Shopee" />
-                <img
-                    class="w-36 md:w-44 lg:w-52"
-                    src="/assets/images/icons/lazada.png"
-                    alt="Lazada" />
+                <a :href="data.tokopedia_store" target="_blank">
+                    <img
+                        width="auto"
+                        height="auto"
+                        class="w-36 md:w-44 lg:w-52"
+                        src="/assets/images/icons/tokopedia.png"
+                        alt="Tokopedia" />
+                </a>
+                <a :href="data.shopee_store" target="_blank">
+                    <img
+                        width="auto"
+                        height="auto"
+                        class="w-36 md:w-44 lg:w-52"
+                        src="/assets/images/icons/shopee.png"
+                        alt="Shopee" />
+                </a>
+                <a :href="data.lazada_store" target="_blank">
+                    <img
+                        width="auto"
+                        height="auto"
+                        class="w-36 md:w-44 lg:w-52"
+                        src="/assets/images/icons/lazada.png"
+                        alt="Lazada" />
+                </a>
             </div>
         </div>
     </div>

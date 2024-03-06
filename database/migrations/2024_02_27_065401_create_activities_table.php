@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('image_portrait')->nullable();
             $table->string('link');
+            $table->integer('sort')->nullable();
             $table->timestamps();
         });
     }

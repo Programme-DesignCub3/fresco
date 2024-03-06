@@ -17,4 +17,9 @@ class Activity extends Model
     {
         return $this->belongsTo(Media::class, 'image', 'id');
     }
+
+    public function featured_image_portrait(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'image_portrait', 'id');
+    }
 }

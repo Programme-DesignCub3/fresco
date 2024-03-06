@@ -43,22 +43,22 @@ class ProductResource extends Resource
                 Section::make()
                     ->schema([
                         TextInput::make('product')
-                            ->label('Product Name')
+                            ->label('Name')
                             ->required(),
                         TextInput::make('link')
-                            ->label('Product Link')
+                            ->label('Link')
                             ->url()
                             ->suffixIcon('heroicon-s-shopping-bag')
                             ->required(),
                         Radio::make('type')
-                            ->label('Product Type')
+                            ->label('Type')
                             ->options([
                                 'black' => 'Black Coffee',
                                 'cappuccino' => 'Cappuccino Coffee'
                             ])
                             ->required(),
                         CuratorPicker::make('image')
-                            ->label('Product Image')
+                            ->label('Image')
                             ->required(),
                         Hidden::make('sort')
                     ]),
@@ -84,7 +84,6 @@ class ProductResource extends Resource
                     })
                 ])
                 ->paginated(false)
-                ->defaultSort('type')
             ->filters([
                 SelectFilter::make('type')
                     ->options([

@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\General\Pages;
 use App\Filament\Clusters\General;
 use App\Settings\GeneralSettings;
 use Filament\Forms;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -35,42 +36,85 @@ class ManageLink extends SettingsPage
                 // Link
                 Section::make('Link')
                     ->collapsible()
-                    ->columns(2)
                     ->schema([
-                        TextInput::make('facebook_link')
-                            ->suffixIcon('heroicon-c-link')
-                            ->label('Facebook'),
-                        TextInput::make('instagram_link')
-                            ->suffixIcon('heroicon-c-link')
-                            ->label('Instagram'),
-                        TextInput::make('x_link')
-                            ->suffixIcon('heroicon-c-link')
-                            ->label('X (Twitter)'),
-                        TextInput::make('tiktok_link')
-                            ->suffixIcon('heroicon-c-link')
-                            ->label('Tiktok'),
-                        TextInput::make('youtube_link')
-                            ->suffixIcon('heroicon-c-link')
-                            ->label('YouTube')
+                        Fieldset::make('Facebook')
+                            ->schema([
+                                TextInput::make('facebook_alias')
+                                    ->label('Alias'),
+                                TextInput::make('facebook_link')
+                                    ->suffixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('Instagram')
+                            ->schema([
+                                TextInput::make('instagram_alias')
+                                    ->label('Alias'),
+                                TextInput::make('instagram_link')
+                                    ->suffixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('X (Twitter)')
+                            ->schema([
+                                TextInput::make('x_alias')
+                                    ->label('Alias'),
+                                TextInput::make('x_link')
+                                    ->suffixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('Tiktok')
+                            ->schema([
+                                TextInput::make('tiktok_alias')
+                                    ->label('Alias'),
+                                TextInput::make('tiktok_link')
+                                    ->suffixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('YouTube')
+                            ->schema([
+                                TextInput::make('youtube_alias')
+                                    ->label('Alias'),
+                                TextInput::make('youtube_link')
+                                    ->suffixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ])
                     ]),
 
                 // Contact
                 Section::make('Contact')
                     ->collapsible()
-                    ->columns(2)
                     ->schema([
-                        TextInput::make('line_link')
-                            ->suffixIcon('heroicon-m-user-plus')
-                            ->label('Line'),
-                        TextInput::make('phone_link')
-                            ->suffixIcon('heroicon-m-user-plus')
-                            ->label('Email'),
-                        TextInput::make('email_link')
-                            ->suffixIcon('heroicon-m-user-plus')
-                            ->label('Email'),
-                        TextInput::make('whatsapp_link')
-                            ->suffixIcon('heroicon-m-user-plus')
-                            ->label('WhatsApp'),
+                        Fieldset::make('Line')
+                            ->schema([
+                                TextInput::make('line_alias')
+                                    ->label('Alias'),
+                                TextInput::make('line_link')
+                                    ->suffixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('Email')
+                            ->schema([
+                                TextInput::make('email_alias')
+                                    ->label('Alias'),
+                                TextInput::make('email_link')
+                                    ->suffixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('Phone')
+                            ->schema([
+                                TextInput::make('phone_alias')
+                                    ->label('Alias'),
+                                TextInput::make('phone_link')
+                                    ->suffixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('WhatsApp')
+                            ->schema([
+                                TextInput::make('whatsapp_alias')
+                                    ->label('Alias'),
+                                TextInput::make('whatsapp_link')
+                                    ->suffixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
+                            ]),
                     ]),
             ]);
     }

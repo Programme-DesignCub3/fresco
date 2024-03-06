@@ -13,6 +13,7 @@ import HomeIntro from '@/components/home/HomeIntro.vue';
 import HomeIntroProduct from '@/components/home/HomeIntroProduct.vue';
 import HomeVideo from '@/components/home/HomeVideo.vue';
 import HomePost from '@/components/home/HomePost.vue';
+import HomePopup from '@/components/home/HomePopup.vue';
 
 /** @import Product Components */
 import ProductList from '@/components/product/ProductList.vue';
@@ -44,6 +45,7 @@ export {
     HomeIntroProduct,
     HomeVideo,
     HomePost,
+    HomePopup,
     ProductList,
     ProductMarketplace,
     ProductDescTitle,

@@ -4,12 +4,12 @@
 
 @section('content')
 
-<section>
+<section id="contact">
     {{-- Contact Header Section --}}
-    <header-page-component header="contact"></header-page-component>
+    <header-page-component :header="'contact'"></header-page-component>
 
     {{-- Contact Form Section --}}
-    <contact-form-component></contact-form-component>
+    <contact-form-component :data="{{ json_encode($general) }}"></contact-form-component>
 </section>
 
 @endsection

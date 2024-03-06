@@ -10,13 +10,33 @@ class ProductController extends Controller
 {
     public function index(GeneralSettings $generalSettings, Product $product)
     {
-        $home = $generalSettings->toArray();
+        /**
+         * Settings Resource
+         */
         $general = $generalSettings->toArray();
 
-        $list_product = Product::orderBy('type')->orderBy('sort')->get()->toArray();
-        $black = collect($list_product)->toArray();
-        $cappuccino = collect($list_product)->sortByDesc('type')->toArray();
+        /**
+         * Product Resource
+         */
 
-        return view('pages.product', compact('general', 'home', 'black', 'cappuccino'));
+        // === Black Coffee ===
+        $list_product_black = Product::where('type', 'black')->orderBy('sort')->with('featured_image')->get();
+
+        for($i = 0; $i < $list_product_black->count(); $i++) {
+            $list_product_black[$i]['image'] = 'storage/' . $list_product_black[$i]->featured_image->path;
+        }
+
+        $black = collect($list_product_black)->values()->toArray();
+
+        // === Cappuccino ===
+        $list_product_cappuccino = Product::where('type', 'cappuccino')->orderBy('sort')->with('featured_image')->get();
+
+        for($i = 0; $i < $list_product_cappuccino->count(); $i++) {
+            $list_product_cappuccino[$i]['image'] = 'storage/' . $list_product_cappuccino[$i]->featured_image->path;
+        }
+
+        $cappuccino = collect($list_product_cappuccino)->values()->toArray();
+
+        return view('pages.product', compact('general', 'black', 'cappuccino'));
     }
 }

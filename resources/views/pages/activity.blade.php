@@ -4,26 +4,12 @@
 
 @section('content')
 
-<section>
+<section id="activity">
     {{-- Activity Header Section --}}
     <header-page-component header="activity"></header-page-component>
 
     {{-- Activity List Section --}}
-    <activity-list-component>
-        <template #activity-slide>
-            @for($index = 1; $index <= 2; $index++)
-                <div class="swiper-slide">
-                    <img class="object-cover object-center mx-auto aspect-square" src="{{ asset('assets/images/activity-1.png') }}" alt="Activity">
-                </div>
-                <div class="swiper-slide">
-                    <img class="object-cover object-center mx-auto aspect-square" src="{{ asset('assets/images/activity-2.png') }}" alt="Activity">
-                </div>
-                <div class="swiper-slide">
-                    <img class="object-cover object-center mx-auto aspect-square" src="{{ asset('assets/images/activity-3.png') }}" alt="Activity">
-                </div>
-            @endfor
-        </template>
-    </activity-list-component>
+    <activity-list-component :data="{{ json_encode($activity) }}"></activity-list-component>
 </section>
 
 @endsection

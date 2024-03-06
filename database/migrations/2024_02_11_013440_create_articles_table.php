@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->enum('type', ['article', 'promotion']);
             $table->string('title');
             $table->string('slug');
+            $table->string('excerpt');
             $table->longText('body');
             $table->boolean('published');
+            $table->boolean('pin')->nullable();
             $table->timestamps();
         });
     }

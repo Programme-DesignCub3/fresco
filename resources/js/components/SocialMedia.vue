@@ -13,15 +13,17 @@ const themeStore = useThemeStore();
             themeStore.getTheme().value != null
         "
         class="fixed right-0 top-48 z-[100] mr-4 hidden flex-col space-y-2 transition-all duration-700 ease-in-out md:flex">
+
         <!-- Facebook -->
         <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
-            :href="data.facebook_link ? data.facebook_link : '#'">
+            :href="data.facebook_link ? data.facebook_link : '#'"
+            target="_blank">
             <v-icon
-                class="h-9 w-9 pt-2"
+                class="pt-2 h-9 w-9"
                 :class="
                     themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
                 "
@@ -30,13 +32,14 @@ const themeStore = useThemeStore();
 
         <!-- Instagram -->
         <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
-            :href="data.instagram_link ? data.instagram_link : '#'">
+            :href="data.instagram_link ? data.instagram_link : '#'"
+            target="_blank">
             <v-icon
-                class="h-9 w-9 p-1"
+                class="p-1 h-9 w-9"
                 :class="
                     themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
                 "
@@ -45,11 +48,12 @@ const themeStore = useThemeStore();
 
         <!-- Twitter -->
         <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
-            :href="data.x_link ? data.x_link : '#'">
+            :href="data.x_link ? data.x_link : '#'"
+            target="_blank">
             <v-icon
                 class="h-9 w-9 p-1.5"
                 :class="
@@ -60,11 +64,12 @@ const themeStore = useThemeStore();
 
         <!-- Tiktok -->
         <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
-            :href="data.tiktok_link ? data.tiktok_link : '#'">
+            :href="data.tiktok_link ? data.tiktok_link : '#'"
+            target="_blank">
             <v-icon
                 class="h-9 w-9 p-1.5"
                 :class="
@@ -75,11 +80,12 @@ const themeStore = useThemeStore();
 
         <!-- Youtube -->
         <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
-            :href="data.youtube_link ? data.youtube_link : '#'">
+            :href="data.youtube_link ? data.youtube_link : '#'"
+            target="_blank">
             <v-icon
                 class="h-9 w-9 p-1.5"
                 :class="
@@ -90,10 +96,13 @@ const themeStore = useThemeStore();
     </div>
 
     <!-- === WhatsApp Link === -->
-    <div class="fixed bottom-32 right-4 z-[100] md:bottom-4">
-        <a :href="data.whatsapp_link ? data.whatsapp_link : '#'">
+    <div class="fixed bottom-32 right-4 z-[99999] md:bottom-4">
+        <a :href="data.whatsapp_link ? data.whatsapp_link : '#'"
+        target="_blank">
             <img
-                class="h-16 w-16"
+                width="auto"
+                height="auto"
+                class="w-16 h-16"
                 src="/assets/images/icons/whatsapp.png"
                 alt="WhatsApp" />
         </a>

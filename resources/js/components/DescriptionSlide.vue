@@ -1,15 +1,24 @@
 <script setup>
+import {
+    splitDescriptionBlack,
+    splitDescriptionCappuccino,
+} from '@/misc/utils.js';
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/user-theme.js';
 import { Navigation } from 'swiper/modules';
+import SplitType from 'split-type';
+import AOS from 'aos';
 import 'swiper/css';
 
+const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const description = ref();
 const swiper = ref();
+const manifest = ref(null);
+const delayAos = ref(0);
 
 const swiperOption = {
     slidesPerView: 1,
@@ -20,6 +29,25 @@ const swiperOption = {
     },
 };
 
+const splitterText = (target) => {
+    let split = new SplitType(target, {
+        types: 'lines',
+        tagName: 'span',
+    });
+    let lines = split.lines;
+    let delay = 100;
+
+    for (let index = 0; index < lines.length; index++) {
+        let element = target.children[index];
+        delay += 100;
+        themeStore.theme == 'black'
+            ? splitDescriptionBlack(element, index, delay, 1, target)
+            : splitDescriptionCappuccino(element, index, delay, 1, target);
+    }
+
+    delayAos.value = delay + 50;
+};
+
 const initSwiper = () => {
     swiper.value = new Swiper(description.value, swiperOption);
 };
@@ -28,6 +56,16 @@ onMounted(() => {
     if (!swiper.value) {
         initSwiper();
     }
+
+    if(manifest.value != null) {
+        for(let i = 0; i < manifest.value.length; i++){
+            splitterText(manifest.value[i]);
+        }
+    }
+
+    setTimeout(() => {
+        AOS.refresh();
+    }, 10);
 });
 
 watch(theme, () => {
@@ -35,6 +73,12 @@ watch(theme, () => {
     setTimeout(() => {
         initSwiper();
     });
+
+    setTimeout(() => {
+        for(let i = 0; i < manifest.value.length; i++){
+            splitterText(manifest.value[i]);
+        }
+    }, 10);
 });
 </script>
 
@@ -42,33 +86,115 @@ watch(theme, () => {
     <div
         class="relative block w-full h-full lg:hidden"
         :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
-        <!-- Navigation Swiper (Arrow) -->
-        <div
-            class="fr-description-slider-prev absolute left-[2%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out md:left-[4%]"
-            :class="
-                themeStore.theme == 'black'
-                    ? 'bg-fr-yellow text-black'
-                    : 'bg-fr-red text-white'
-            ">
-            <v-icon name="fa-chevron-left" />
-        </div>
-        <div
-            class="fr-description-slider-next absolute right-[2%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out md:right-[4%]"
-            :class="
-                themeStore.theme == 'black'
-                    ? 'bg-fr-yellow text-black'
-                    : 'bg-fr-red text-white'
-            ">
-            <v-icon name="fa-chevron-right" />
-        </div>
 
-        <div class="swiper" ref="description">
+        <!-- === Slide Black Coffee === -->
+        <div
+            v-if="themeStore.theme == 'black'"
+            class="swiper" ref="description">
             <div class="swiper-wrapper">
-                <slot
-                    v-if="themeStore.theme == 'black'"
-                    name="black-desc-slide" />
-                <slot v-else name="cappuccino-desc-slide" />
+                <div v-for="(d, i) in data.black_desc_list" :key="i" class="swiper-slide">
+                    <div class="grid grid-rows-1">
+                        <img
+                            width="auto"
+                            height="auto"
+                            :src="d.black_desc_image"
+                            :alt="d.black_desc_title">
+                        <div class="relative flex flex-col justify-between w-full px-4 py-8 space-y-4">
+                            <div id="navigation-description">
+
+                                <!-- Navigation Swiper (Arrow Left) -->
+                                <div
+                                    class="fr-description-slider-prev absolute left-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    :class="
+                                        themeStore.theme == 'black'
+                                            ? 'bg-fr-yellow text-black'
+                                            : 'bg-fr-red text-white'
+                                    ">
+                                    <v-icon name="fa-chevron-left" />
+                                </div>
+
+                                <!-- Navigation Swiper (Arrow Right) -->
+                                <div
+                                    class="fr-description-slider-next absolute right-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    :class="
+                                        themeStore.theme == 'black'
+                                            ? 'bg-fr-yellow text-black'
+                                            : 'bg-fr-red text-white'
+                                    ">
+                                    <v-icon name="fa-chevron-right" />
+                                </div>
+
+                            </div>
+                            <h2
+                                class="text-shadow text-center text-white text-[40px] font-bold leading-none"
+                                ref="manifest">
+                                {{ d.black_desc_title }}
+                            </h2>
+                            <p
+                                data-aos="fade-down"
+                                data-aos-offset="0"
+                                class="font-medium leading-8 text-center text-white">
+                                {{ d.black_desc_explanation }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- === Slide Cappuccino === -->
+        <div
+            v-if="themeStore.theme == 'cappuccino'"
+            class="swiper" ref="description">
+            <div class="swiper-wrapper">
+                <div v-for="(d, i) in data.cappuccino_desc_list" :key="i" class="swiper-slide">
+                    <div class="grid grid-rows-1">
+                        <img
+                            width="auto"
+                            height="auto"
+                            :src="d.cappuccino_desc_image"
+                            :alt="d.cappuccino_desc_title">
+                        <div class="relative flex flex-col justify-between w-full px-4 py-8 space-y-4">
+                            <div id="navigation-description">
+
+                                <!-- Navigation Swiper (Arrow Left) -->
+                                <div
+                                    class="fr-description-slider-prev absolute left-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    :class="
+                                        themeStore.theme == 'black'
+                                            ? 'bg-fr-yellow text-black'
+                                            : 'bg-fr-red text-white'
+                                    ">
+                                    <v-icon name="fa-chevron-left" />
+                                </div>
+
+                                <!-- Navigation Swiper (Arrow Right) -->
+                                <div
+                                    class="fr-description-slider-next absolute right-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    :class="
+                                        themeStore.theme == 'black'
+                                            ? 'bg-fr-yellow text-black'
+                                            : 'bg-fr-red text-white'
+                                    ">
+                                    <v-icon name="fa-chevron-right" />
+                                </div>
+
+                            </div>
+                            <h2
+                                class="text-shadow text-center text-white text-[40px] font-bold leading-none" ref="manifest">
+                                {{ d.cappuccino_desc_title }}
+                            </h2>
+                            <p
+                                data-aos="fade-down"
+                                data-aos-offset="0"
+                                class="font-medium leading-8 text-center text-black">
+                                {{ d.cappuccino_desc_explanation }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>

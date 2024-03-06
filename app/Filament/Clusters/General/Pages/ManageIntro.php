@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\General\Pages;
 use App\Filament\Clusters\General;
 use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Models\Media;
 use Filament\Forms;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
@@ -33,6 +34,17 @@ class ManageIntro extends SettingsPage
 
     protected static ?string $cluster = General::class;
 
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $black_image = Media::where('id', $data['black_intro_image_id'])->get();
+        $cappuccino_image = Media::where('id', $data['cappuccino_intro_image_id'])->get();
+
+        $data['black_intro_image'] = 'storage/' . $black_image[0]->path;
+        $data['cappuccino_intro_image'] = 'storage/' . $cappuccino_image[0]->path;
+
+        return $data;
+    }
+
     public function form(Form $form): Form
     {
         return $form
@@ -48,7 +60,7 @@ class ManageIntro extends SettingsPage
                         RichEditor::make('black_intro_desc')
                             ->label('Description')
                             ->required(),
-                        CuratorPicker::make('black_intro_image')
+                        CuratorPicker::make('black_intro_image_id')
                             ->label('Image')
                             ->required()
                     ]),
@@ -64,7 +76,7 @@ class ManageIntro extends SettingsPage
                         RichEditor::make('cappuccino_intro_desc')
                             ->label('Description')
                             ->required(),
-                        CuratorPicker::make('cappuccino_intro_image')
+                        CuratorPicker::make('cappuccino_intro_image_id')
                             ->label('Image')
                             ->required()
                     ])

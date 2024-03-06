@@ -147,7 +147,15 @@ window.addEventListener('resize', () => {
                                 </div>
                                 <!-- Image -->
                                 <div class="w-full bg-glow-yellow">
-                                    <slot name="black" />
+                                    <img
+                                        width="auto"
+                                        height="auto"
+                                        :src="data.black_intro_image"
+                                        :alt="data.black_intro_title"
+                                        class="w-full"
+                                        data-aos-offset="0"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="150">
                                 </div>
                             </div>
                             <!-- Description -->
@@ -180,7 +188,15 @@ window.addEventListener('resize', () => {
                                 </div>
                                 <!-- Image -->
                                 <div class="w-full bg-glow-yellow">
-                                    <slot name="cappuccino" />
+                                    <img
+                                        width="auto"
+                                        height="auto"
+                                        :src="data.cappuccino_intro_image"
+                                        :alt="data.cappuccino_intro_title"
+                                        class="w-full"
+                                        data-aos-offset="0"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="150">
                                 </div>
                             </div>
                             <!-- Description -->
@@ -214,7 +230,7 @@ window.addEventListener('resize', () => {
                                             ref="first">
                                             {{ data.cappuccino_intro_title }}
                                         </h1>
-                                        <h1
+                                        <h2
                                             ref="stroke"
                                             data-aos="fade-in"
                                             :data-aos-delay="delayAos"
@@ -223,12 +239,20 @@ window.addEventListener('resize', () => {
                                             data-aos-offset="100"
                                             class="text-stroke absolute -left-1 -right-1 -top-1 text-center text-[45px] font-bold leading-none text-white sm:text-[50px] md:text-left md:text-[60px] lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-[80px] xl:text-[100px]">
                                             {{ data.cappuccino_intro_title }}
-                                        </h1>
+                                        </h2>
                                     </div>
                                 </div>
                                 <!-- Image -->
                                 <div class="w-full">
-                                    <slot name="cappuccino" />
+                                    <img
+                                        width="auto"
+                                        height="auto"
+                                        :src="data.cappuccino_intro_image"
+                                        :alt="data.cappuccino_intro_title"
+                                        class="w-full"
+                                        data-aos-offset="0"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="150">
                                 </div>
                             </div>
                             <!-- Description -->
@@ -259,7 +283,7 @@ window.addEventListener('resize', () => {
                                             ref="second">
                                             {{ data.black_intro_title }}
                                         </h1>
-                                        <h1
+                                        <h2
                                             data-aos="fade-in"
                                             :data-aos-delay="delayAos"
                                             data-aos-duration="1200"
@@ -267,12 +291,20 @@ window.addEventListener('resize', () => {
                                             data-aos-offset="100"
                                             class="text-stroke absolute -left-1 -right-1 -top-1 text-center text-[45px] font-bold leading-none text-white sm:text-[50px] md:text-left md:text-[60px] lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-[80px] xl:text-[100px]">
                                             {{ data.black_intro_title }}
-                                        </h1>
+                                        </h2>
                                     </div>
                                 </div>
                                 <!-- Image -->
                                 <div class="w-full">
-                                    <slot name="black" />
+                                    <img
+                                        width="auto"
+                                        height="auto"
+                                        :src="data.black_intro_image"
+                                        :alt="data.black_intro_title"
+                                        class="w-full"
+                                        data-aos-offset="0"
+                                        data-aos="zoom-in"
+                                        data-aos-delay="150">
                                 </div>
                             </div>
                             <!-- Description -->

@@ -14,6 +14,7 @@ import {
     HomeIntroProduct,
     HomeVideo,
     HomePost,
+    HomePopup,
     ProductList,
     ProductMarketplace,
     ProductDescTitle,
@@ -37,6 +38,8 @@ import {
     FaYoutube,
     FaChevronLeft,
     FaChevronRight,
+    FaCheckCircle,
+    FaTimesCircle
 } from 'oh-vue-icons/icons';
 import '@/misc/plugins';
 import '@/bootstrap';
@@ -54,6 +57,8 @@ addIcons(
     FaYoutube,
     FaChevronLeft,
     FaChevronRight,
+    FaCheckCircle,
+    FaTimesCircle
 );
 
 const app = createApp({});
@@ -75,6 +80,7 @@ app
     .component('HomeIntroProductComponent', HomeIntroProduct)
     .component('HomeVideoComponent', HomeVideo)
     .component('HomePostComponent', HomePost)
+    .component('HomePopupComponent', HomePopup)
 
     /** @register Product Components */
     .component('ProductListComponent', ProductList)

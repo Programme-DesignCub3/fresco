@@ -1,39 +1,70 @@
 <script setup>
 import { useThemeStore } from '@/stores/user-theme.js';
+import { VueRecaptcha } from 'vue-recaptcha';
 import { ref } from 'vue';
 import axios from 'axios';
 
-window.axios.defaults.headers.common = {
-    // 'X-Requested-With': 'XMLHttpRequest',
-    // 'X-CSRF-TOKEN': document
-    //     .querySelector('meta[name="csrf-token"]')
-    //     .getAttribute('content')
-};
-
+const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
-const arrowAnimation = ref(false);
+const errMessage = ref();
 const name = ref('');
 const email = ref('');
 const subject = ref('');
 const message = ref('');
 
+// Recaptcha Credentials
+const siteKey = ref('6LdoQYgpAAAAAJDbf3AD3UNDhkkX-BximObmo9TX');
+const token = ref(null);
+const toast = ref(null);
+const toastMessage = ref(null);
+const sendCooldown = ref(false);
+
+const handleSuccess = (e) => { token.value = e };
+const handleError = () => { sendCooldown.value = true };
+const handleExpired = () => { sendCooldown.value = true };
+
 const sendMessageHandler = async (e) => {
     e.preventDefault();
 
+    if(token.value == null) {
+        toast.value = 'failed';
+        toastMessage.value = 'Please verify that you are not a robot.';
+
+        setTimeout(() => {
+            toast.value = null;
+        }, 5000);
+
+        return 0;
+    }
+
+    sendCooldown.value = true;
+
     await axios
-        .post('https://fresco.democube.id/send-message', {
+        .post('/send-message', {
             name: name.value,
             email: email.value,
             subject: subject.value,
             message: message.value,
-        }, {
-            "Access-Control-Allow-Origin": "*",
+            token: token.value
         })
         .then((response) => {
-            console.log('Message sent successfully:', response.data);
+            name.value = null;
+            email.value = null;
+            subject.value = null;
+            message.value = null;
+            token.value = null;
+
+            toast.value = 'success';
+            toastMessage.value = response.data.message;
+            sendCooldown.value = false;
+            window.grecaptcha.reset();
+
+            setTimeout(() => {
+                toast.value = null;
+            }, 5000);
         })
         .catch((error) => {
-            console.error('Error sending message:', error);
+            errMessage.value = error.response.data.errors;
         });
 };
 </script>
@@ -47,23 +78,26 @@ const sendMessageHandler = async (e) => {
             <!-- Detail Information -->
             <div class="space-y-6">
                 <div class="space-y-3">
-                    <!-- Title (Separate for refresh AOS Animation) -->
-                    <h1
+
+                    <!-- Double element for refresh AOS Animation -->
+                    <h2
                         v-if="themeStore.theme == 'black'"
                         data-aos="flip-down"
                         data-aos-delay="400"
                         data-aos-duration="1000"
                         class="text-[30px] font-bold text-white sm:text-[40px] md:text-[50px]">
                         HUBUNGI KAMI
-                    </h1>
-                    <h1
+                    </h2>
+                    <h2
                         v-else
                         data-aos="flip-down"
                         data-aos-delay="400"
                         data-aos-duration="1000"
                         class="text-[30px] font-bold text-fr-green sm:text-[40px] md:text-[50px]">
                         HUBUNGI KAMI
-                    </h1>
+                    </h2>
+
+                    <!-- Double element for refresh AOS Animation -->
                     <div
                         v-if="themeStore.theme == 'black'"
                         data-aos="fade-right"
@@ -78,9 +112,11 @@ const sendMessageHandler = async (e) => {
                         data-aos-duration="500"
                         data-aos-offset="0"
                         class="h-[4px] w-16 rounded-full bg-fr-red"></div>
+
                 </div>
                 <div class="space-y-6 font-medium">
-                    <!-- Detail (Separate for refresh AOS Animation) -->
+
+                    <!-- Double element for refresh AOS Animation -->
                     <p
                         v-if="themeStore.theme == 'black'"
                         data-aos="fade-down"
@@ -109,6 +145,8 @@ const sendMessageHandler = async (e) => {
                         Kirimkan semua kritik, saran ataupun pertanyaan seputar
                         kopi Fresco dengan menggunakan form kontak disamping.
                     </p>
+
+                    <!-- Double element for refresh AOS Animation -->
                     <div
                         v-if="themeStore.theme == 'black'"
                         data-aos="fade-down"
@@ -146,7 +184,7 @@ const sendMessageHandler = async (e) => {
                                 ? 'text-white'
                                 : 'text-fr-black'
                         ">
-                        <h1
+                        <h3
                             class="font-bold"
                             :class="
                                 themeStore.theme == 'black'
@@ -154,16 +192,19 @@ const sendMessageHandler = async (e) => {
                                     : 'text-fr-black'
                             ">
                             PT SANTOS JAYA ABADI
-                        </h1>
-                        <p>0800-1-726867 (SANTOS)</p>
+                        </h3>
+                        <p>{{ data.phone_alias }} (SANTOS)</p>
                         <p>Senin s/d Jumat 09.00-17.00</p>
-                        <p>Email: santos@kapalapi.co.id</p>
+                        <p>Email: {{ data.email_alias }}</p>
                     </div>
+
                 </div>
             </div>
 
             <!-- Form -->
             <form class="space-y-6" @submit="sendMessageHandler">
+
+                <!-- Name -->
                 <div class="space-y-2">
                     <label
                         class="block font-bold"
@@ -184,15 +225,21 @@ const sendMessageHandler = async (e) => {
                                 : 'bg-white text-fr-black'
                         "
                         type="text"
-                        id="name" />
-                    <div class="pt-px">
+                        id="name"
+                        minlength="3"
+                        maxlength="120"
+                        required />
+                    <!-- Error Message -->
+                    <div v-if="errMessage" class="pt-px">
                         <p
+                            v-if="errMessage.name"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
-                            Nama wajib diisi
+                            {{ errMessage.name[0] }}
                         </p>
                     </div>
                 </div>
 
+                <!-- Email -->
                 <div class="space-y-2">
                     <label
                         class="block font-bold"
@@ -212,16 +259,20 @@ const sendMessageHandler = async (e) => {
                                 ? 'bg-transparent text-white'
                                 : 'bg-white text-fr-black'
                         "
-                        type="text"
-                        id="email" />
-                    <div class="pt-px">
+                        type="email"
+                        id="email"
+                        required />
+                    <!-- Error Message -->
+                    <div v-if="errMessage" class="pt-px">
                         <p
+                            v-if="errMessage.email"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
-                            Email wajib diisi
+                            {{ errMessage.email[0] }}
                         </p>
                     </div>
                 </div>
 
+                <!-- Subject -->
                 <div class="space-y-2">
                     <label
                         class="block font-bold"
@@ -242,15 +293,21 @@ const sendMessageHandler = async (e) => {
                                 : 'bg-white text-fr-black'
                         "
                         type="text"
-                        id="subject" />
-                    <div class="pt-px">
+                        id="subject"
+                        minlength="3"
+                        maxlength="120"
+                        required />
+                    <!-- Error Message -->
+                    <div v-if="errMessage" class="pt-px">
                         <p
+                            v-if="errMessage.subject"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
-                            Subject wajib diisi
+                            {{ errMessage.subject[0] }}
                         </p>
                     </div>
                 </div>
 
+                <!-- Message -->
                 <div class="space-y-2">
                     <label
                         class="block font-bold"
@@ -271,25 +328,69 @@ const sendMessageHandler = async (e) => {
                                 : 'bg-white text-fr-black'
                         "
                         id="message"
-                        rows="6"></textarea>
-                    <div class="pt-px">
+                        rows="6"
+                        maxlength="2000"
+                        required></textarea>
+                    <!-- Error Message -->
+                    <div v-if="errMessage" class="pt-px">
                         <p
+                            v-if="errMessage.message"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
-                            Pesan wajib diisi
+                            {{ errMessage.message[0] }}
                         </p>
                     </div>
                 </div>
 
+                <!-- Recaptcha -->
+                <VueRecaptcha
+                    class="full-width"
+                    :sitekey="siteKey"
+                    :load-recaptcha-script="true"
+                    @verify="handleSuccess"
+                    @error="handleError"
+                    @expired="handleExpired"
+                >
+                </VueRecaptcha>
+
+                <!-- Submit Button -->
                 <button
-                    @mouseenter="arrowAnimation = true"
-                    @mouseleave="arrowAnimation = false"
+                    :disabled="sendCooldown"
+                    :class="sendCooldown && 'cursor-not-allowed opacity-50'"
                     class="px-6 py-2 text-xs font-medium text-white transition-all duration-300 ease-in-out border rounded-lg outline-none border-fr-red bg-fr-red hover:border-fr-darker-red hover:bg-fr-darker-red group-hover:border group-hover:border-white md:px-8 md:text-sm">
-                    <span>KIRIM</span>
-                    <v-icon
-                        class="h-4 w-4 stroke-2 py-[2px]"
-                        :class="arrowAnimation && 'arrow-slide-fade-right'"
-                        name="fa-chevron-right" />
+                    <template v-if="sendCooldown == false">
+                        <span>KIRIM</span>
+                        <v-icon
+                            class="h-4 w-4 stroke-2 py-[2px]"
+                            name="fa-chevron-right" />
+                    </template>
+                    <template v-else>
+                        <svg class="w-5 h-5 mx-3 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </template>
                 </button>
+
+                <!-- Notification Success -->
+                <Transition name="faded" mode="out-in">
+                    <div v-if="toast == 'success'" v-show="toast" class="fixed bg-green-600 flex w-[260px] sm:w-auto gap-2 px-4 py-4 text-white -translate-x-1/2 rounded-lg box-shadow top-24 md:top-48 lg:top-28 left-1/2">
+                        <v-icon
+                            class="w-6 h-6"
+                            name="fa-check-circle" />
+                        <p>{{ toastMessage }}</p>
+                    </div>
+                </Transition>
+
+                <!-- Notification Failed -->
+                <Transition name="faded" mode="out-in">
+                    <div v-if="toast == 'failed'" v-show="toast" class="fixed bg-red-600 flex w-[260px] sm:w-auto gap-2 px-4 py-4 text-white -translate-x-1/2 rounded-lg box-shadow top-24 md:top-48 lg:top-28 left-1/2">
+                        <v-icon
+                            class="w-6 h-6"
+                            name="fa-times-circle" />
+                        <p>{{ toastMessage }}</p>
+                    </div>
+                </Transition>
+
             </form>
         </div>
     </div>
@@ -311,7 +412,28 @@ const sendMessageHandler = async (e) => {
     }
 }
 
+@keyframes faded {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.faded-leave-active {
+    animation: faded 1s reverse;
+}
+
+.faded-enter-active {
+    animation: faded 1s both;
+}
+
 .arrow-slide-fade-right {
     animation: arrow-slide-fade 1.5s ease-in-out infinite;
+}
+
+.box-shadow {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 </style>

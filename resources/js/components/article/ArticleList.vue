@@ -25,16 +25,16 @@ const articles = ref([
 
 <template>
     <div
-        class="bg-cover bg-top bg-no-repeat px-4 py-10 sm:px-0 md:py-20"
+        class="px-4 py-10 bg-top bg-no-repeat bg-cover sm:px-0 md:py-20"
         :class="
             themeStore.theme == 'black' ? 'bg-black bg-article' : 'bg-fr-yellow'
         ">
-        <div class="fr-container mx-auto space-y-8 md:space-y-12">
+        <div class="mx-auto space-y-8 fr-container md:space-y-12">
             <!-- Toolbar -->
             <div
                 class="flex flex-col justify-between gap-y-8 md:flex-row md:gap-y-12">
                 <div class="space-y-6">
-                    <h1
+                    <h2
                         v-if="themeStore.theme == 'black'"
                         data-aos="flip-down"
                         data-aos-delay="400"
@@ -42,8 +42,8 @@ const articles = ref([
                         data-aos-offset="0"
                         class="text-shadow text-[30px] font-bold leading-none text-white sm:text-[40px] md:text-[50px]">
                         ARTIKEL
-                    </h1>
-                    <h1
+                    </h2>
+                    <h2
                         v-else
                         data-aos="flip-down"
                         data-aos-delay="400"
@@ -51,7 +51,7 @@ const articles = ref([
                         data-aos-offset="0"
                         class="text-shadow text-[30px] font-bold leading-none text-fr-green sm:text-[40px] md:text-[50px]">
                         ARTIKEL
-                    </h1>
+                    </h2>
                     <div
                         v-if="themeStore.theme == 'black'"
                         data-aos="fade-right"
@@ -102,7 +102,7 @@ const articles = ref([
 
             <!-- Pagination -->
             <div
-                class="flex justify-center gap-x-3 text-xl font-medium"
+                class="flex justify-center text-xl font-medium gap-x-3"
                 :class="
                     themeStore.theme == 'black' ? 'text-white' : 'text-black'
                 ">
@@ -110,7 +110,7 @@ const articles = ref([
                 <div class="cursor-pointer">&lt;</div>
                 <div class="space-x-3">
                     <a
-                        class="inline-block h-6 w-6 rounded-full bg-fr-red text-center text-white"
+                        class="inline-block w-6 h-6 text-center text-white rounded-full bg-fr-red"
                         href="#"
                         >1</a
                     >
