@@ -15,7 +15,7 @@ const message = ref('');
 // Recaptcha Credentials
 const siteKey = ref('6LdoQYgpAAAAAJDbf3AD3UNDhkkX-BximObmo9TX');
 const token = ref(null);
-const toast = ref(null);
+const toast = ref(false);
 const toastMessage = ref(null);
 const sendCooldown = ref(false);
 
@@ -26,17 +26,6 @@ const handleExpired = () => { sendCooldown.value = true };
 const sendMessageHandler = async (e) => {
     e.preventDefault();
 
-    if(token.value == null) {
-        toast.value = 'failed';
-        toastMessage.value = 'Please verify that you are not a robot.';
-
-        setTimeout(() => {
-            toast.value = null;
-        }, 5000);
-
-        return 0;
-    }
-
     sendCooldown.value = true;
 
     await axios
@@ -45,7 +34,7 @@ const sendMessageHandler = async (e) => {
             email: email.value,
             subject: subject.value,
             message: message.value,
-            token: token.value
+            'g-recaptcha-response': token.value
         })
         .then((response) => {
             name.value = null;
@@ -53,17 +42,18 @@ const sendMessageHandler = async (e) => {
             subject.value = null;
             message.value = null;
             token.value = null;
-
-            toast.value = 'success';
+            toast.value = true;
+            errMessage.value = null;
             toastMessage.value = response.data.message;
             sendCooldown.value = false;
             window.grecaptcha.reset();
 
             setTimeout(() => {
-                toast.value = null;
+                toast.value = false;
             }, 5000);
         })
         .catch((error) => {
+            sendCooldown.value = false;
             errMessage.value = error.response.data.errors;
         });
 };
@@ -159,7 +149,7 @@ const sendMessageHandler = async (e) => {
                                 ? 'text-white'
                                 : 'text-fr-black'
                         ">
-                        <h1
+                        <h2
                             class="font-bold"
                             :class="
                                 themeStore.theme == 'black'
@@ -167,7 +157,7 @@ const sendMessageHandler = async (e) => {
                                     : 'text-fr-black'
                             ">
                             PT SANTOS JAYA ABADI
-                        </h1>
+                        </h2>
                         <p>0800-1-726867 (SANTOS)</p>
                         <p>Senin s/d Jumat 09.00-17.00</p>
                         <p>Email: santos@kapalapi.co.id</p>
@@ -214,7 +204,7 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="name"
-                        >Nama (diperlukan)</label
+                        >Nama <span class="font-medium text-fr-red">*</span></label
                     >
                     <input
                         v-model="name"
@@ -227,10 +217,9 @@ const sendMessageHandler = async (e) => {
                         type="text"
                         id="name"
                         minlength="3"
-                        maxlength="120"
                         required />
                     <!-- Error Message -->
-                    <div v-if="errMessage" class="pt-px">
+                    <div v-if="errMessage">
                         <p
                             v-if="errMessage.name"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
@@ -249,7 +238,7 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="email"
-                        >Email (diperlukan)</label
+                        >Email <span class="font-medium text-fr-red">*</span></label
                     >
                     <input
                         v-model="email"
@@ -263,7 +252,7 @@ const sendMessageHandler = async (e) => {
                         id="email"
                         required />
                     <!-- Error Message -->
-                    <div v-if="errMessage" class="pt-px">
+                    <div v-if="errMessage">
                         <p
                             v-if="errMessage.email"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
@@ -282,7 +271,7 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="subject"
-                        >Subject</label
+                        >Subject <span class="font-medium text-fr-red">*</span></label
                     >
                     <input
                         v-model="subject"
@@ -295,10 +284,9 @@ const sendMessageHandler = async (e) => {
                         type="text"
                         id="subject"
                         minlength="3"
-                        maxlength="120"
                         required />
                     <!-- Error Message -->
-                    <div v-if="errMessage" class="pt-px">
+                    <div v-if="errMessage">
                         <p
                             v-if="errMessage.subject"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
@@ -317,7 +305,7 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="message"
-                        >Pesan Anda</label
+                        >Pesan Anda <span class="font-medium text-fr-red">*</span></label
                     >
                     <textarea
                         v-model="message"
@@ -329,10 +317,9 @@ const sendMessageHandler = async (e) => {
                         "
                         id="message"
                         rows="6"
-                        maxlength="2000"
                         required></textarea>
                     <!-- Error Message -->
-                    <div v-if="errMessage" class="pt-px">
+                    <div v-if="errMessage">
                         <p
                             v-if="errMessage.message"
                             class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
@@ -342,15 +329,25 @@ const sendMessageHandler = async (e) => {
                 </div>
 
                 <!-- Recaptcha -->
-                <VueRecaptcha
-                    class="full-width"
-                    :sitekey="siteKey"
-                    :load-recaptcha-script="true"
-                    @verify="handleSuccess"
-                    @error="handleError"
-                    @expired="handleExpired"
-                >
-                </VueRecaptcha>
+                <div class="space-y-2">
+                    <VueRecaptcha
+                        class="full-width"
+                        :sitekey="siteKey"
+                        :load-recaptcha-script="true"
+                        @verify="handleSuccess"
+                        @error="handleError"
+                        @expired="handleExpired"
+                    >
+                    </VueRecaptcha>
+                    <!-- Error Message -->
+                    <div v-if="errMessage">
+                        <p
+                            v-if="errMessage['g-recaptcha-response']"
+                            class="inline px-2 py-1 text-sm font-bold text-red-500 bg-white rounded-full">
+                            {{ errMessage['g-recaptcha-response'][0] }}
+                        </p>
+                    </div>
+                </div>
 
                 <!-- Submit Button -->
                 <button
@@ -373,24 +370,13 @@ const sendMessageHandler = async (e) => {
 
                 <!-- Notification Success -->
                 <Transition name="faded" mode="out-in">
-                    <div v-if="toast == 'success'" v-show="toast" class="fixed bg-green-600 flex w-[260px] sm:w-auto gap-2 px-4 py-4 text-white -translate-x-1/2 rounded-lg box-shadow top-24 md:top-48 lg:top-28 left-1/2">
+                    <div v-show="toast" class="fixed bg-green-600 flex w-[260px] sm:w-auto gap-2 px-4 py-4 text-white -translate-x-1/2 rounded-lg box-shadow top-24 md:top-48 lg:top-28 left-1/2">
                         <v-icon
                             class="w-6 h-6"
                             name="fa-check-circle" />
                         <p>{{ toastMessage }}</p>
                     </div>
                 </Transition>
-
-                <!-- Notification Failed -->
-                <Transition name="faded" mode="out-in">
-                    <div v-if="toast == 'failed'" v-show="toast" class="fixed bg-red-600 flex w-[260px] sm:w-auto gap-2 px-4 py-4 text-white -translate-x-1/2 rounded-lg box-shadow top-24 md:top-48 lg:top-28 left-1/2">
-                        <v-icon
-                            class="w-6 h-6"
-                            name="fa-times-circle" />
-                        <p>{{ toastMessage }}</p>
-                    </div>
-                </Transition>
-
             </form>
         </div>
     </div>
@@ -435,5 +421,7 @@ const sendMessageHandler = async (e) => {
 
 .box-shadow {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 </style>

@@ -109,6 +109,10 @@
         column-count: 1;
     }
 
+    .article-wrapper a {
+        @apply text-blue-600 underline
+    }
+
     @media (min-width: 1024px) {
         .article-wrapper {
             column-count: 2;

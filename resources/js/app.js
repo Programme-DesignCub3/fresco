@@ -39,6 +39,7 @@ import {
     FaChevronLeft,
     FaChevronRight,
     FaCheckCircle,
+    FaTimes,
     FaTimesCircle
 } from 'oh-vue-icons/icons';
 import '@/misc/plugins';
@@ -58,6 +59,7 @@ addIcons(
     FaChevronLeft,
     FaChevronRight,
     FaCheckCircle,
+    FaTimes,
     FaTimesCircle
 );
 

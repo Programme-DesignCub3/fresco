@@ -36,7 +36,7 @@ class ArticleCategoryResource extends Resource
                 Section::make()
                     ->schema([
                         TextInput::make('name')
-                            ->label('Article Category')
+                            ->label('Category')
                             ->required()
                     ])
             ]);

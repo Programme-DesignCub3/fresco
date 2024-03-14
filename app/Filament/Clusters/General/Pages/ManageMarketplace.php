@@ -33,7 +33,9 @@ class ManageMarketplace extends SettingsPage
         return $form
             ->schema([
                 Section::make('Marketplace')
+                    ->description('Minimize for comfortable viewing')
                     ->collapsible()
+                    ->columns(2)
                     ->schema([
                         TextInput::make('tokopedia_store')
                             ->suffixIcon('heroicon-c-link')

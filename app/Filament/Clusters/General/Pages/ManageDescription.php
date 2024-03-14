@@ -7,6 +7,7 @@ use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
@@ -50,71 +51,89 @@ class ManageDescription extends SettingsPage
     {
         return $form
             ->schema([
-                // Black Coffee
-                Section::make('Black Coffee')
-                    ->description('Minimize for comfortable viewing')
-                    ->collapsible()
+                Grid::make([
+                    'default' => 1,
+                    'sm' => 2,
+                    'md' => 4,
+                    'lg' => 6,
+                    'xl' => 8,
+                    '2xl' => 12,
+                ])
                     ->schema([
-                        Repeater::make('black_desc_list')
-                            ->label('Black Coffee Description List')
-                            ->addActionLabel('Add to Black Coffee Description List')
-                            ->reorderableWithButtons()
-                            ->schema([
-                                TextInput::make('black_desc_title')
-                                    ->label('Title')
-                                    ->required(),
-                                Textarea::make('black_desc_explanation')
-                                    ->label('Explanation')
-                                    ->rows(5)
-                                    ->required(),
-                                Radio::make('black_desc_position')
-                                    ->label('Position')
-                                    ->options([
-                                        'left' => 'Left',
-                                        'right' => 'Right'
-                                    ])
-                                    ->descriptions([
-                                        'left' => 'The left position starts from the image to the text',
-                                        'right' => 'The right position starts from the text to the image'
-                                    ]),
-                                CuratorPicker::make('black_desc_image_id')
-                                    ->label('Image')
-                                    ->required()
+                        // Black Coffee
+                        Section::make('Black Coffee')
+                            ->columnSpan([
+                                '2xl' => 6,
                             ])
-                    ]),
+                            ->description('Minimize for comfortable viewing')
+                            ->collapsible()
+                            ->schema([
+                                Repeater::make('black_desc_list')
+                                    ->label('Black Coffee Description List')
+                                    ->addActionLabel('Add to Black Coffee Description List')
+                                    ->reorderableWithButtons()
+                                    ->schema([
+                                        TextInput::make('black_desc_title')
+                                            ->label('Title')
+                                            ->required(),
+                                        Textarea::make('black_desc_explanation')
+                                            ->label('Explanation')
+                                            ->rows(5)
+                                            ->required(),
+                                        Radio::make('black_desc_position')
+                                            ->label('Position')
+                                            ->options([
+                                                'left' => 'Left',
+                                                'right' => 'Right'
+                                            ])
+                                            ->descriptions([
+                                                'left' => 'The left position starts from the image to the text',
+                                                'right' => 'The right position starts from the text to the image'
+                                            ]),
+                                        CuratorPicker::make('black_desc_image_id')
+                                            ->label('Image')
+                                            ->maxSize(2048)
+                                            ->required()
+                                    ])
+                            ]),
 
-                // Cappuccino
-                Section::make('Cappuccino')
-                    ->description('Minimize for comfortable viewing')
-                    ->collapsible()
-                    ->schema([
-                        Repeater::make('cappuccino_desc_list')
-                            ->label('Cappuccino Coffee Description List')
-                            ->addActionLabel('Add to Cappuccino Coffee Description List')
-                            ->reorderableWithButtons()
-                            ->schema([
-                                TextInput::make('cappuccino_desc_title')
-                                    ->label('Title')
-                                    ->required(),
-                                Textarea::make('cappuccino_desc_explanation')
-                                    ->label('Explanation')
-                                    ->rows(5)
-                                    ->required(),
-                                Radio::make('cappuccino_desc_position')
-                                    ->label('Position')
-                                    ->options([
-                                        'left' => 'Left',
-                                        'right' => 'Right'
-                                    ])
-                                    ->descriptions([
-                                        'left' => 'The left position starts from the image to the text',
-                                        'right' => 'The right position starts from the text to the image'
-                                    ]),
-                                CuratorPicker::make('cappuccino_desc_image_id')
-                                    ->label('Image')
-                                    ->required()
+                        // Cappuccino
+                        Section::make('Cappuccino')
+                            ->columnSpan([
+                                '2xl' => 6,
                             ])
-                    ]),
+                            ->description('Minimize for comfortable viewing')
+                            ->collapsible()
+                            ->schema([
+                                Repeater::make('cappuccino_desc_list')
+                                    ->label('Cappuccino Coffee Description List')
+                                    ->addActionLabel('Add to Cappuccino Coffee Description List')
+                                    ->reorderableWithButtons()
+                                    ->schema([
+                                        TextInput::make('cappuccino_desc_title')
+                                            ->label('Title')
+                                            ->required(),
+                                        Textarea::make('cappuccino_desc_explanation')
+                                            ->label('Explanation')
+                                            ->rows(5)
+                                            ->required(),
+                                        Radio::make('cappuccino_desc_position')
+                                            ->label('Position')
+                                            ->options([
+                                                'left' => 'Left',
+                                                'right' => 'Right'
+                                            ])
+                                            ->descriptions([
+                                                'left' => 'The left position starts from the image to the text',
+                                                'right' => 'The right position starts from the text to the image'
+                                            ]),
+                                        CuratorPicker::make('cappuccino_desc_image_id')
+                                            ->label('Image')
+                                            ->maxSize(2048)
+                                            ->required()
+                                    ])
+                            ]),
+                    ])
             ]);
     }
 }

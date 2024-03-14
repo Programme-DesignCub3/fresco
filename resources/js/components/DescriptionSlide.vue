@@ -21,6 +21,7 @@ const manifest = ref(null);
 const delayAos = ref(0);
 
 const swiperOption = {
+    autoHeight: true,
     slidesPerView: 1,
     modules: [Navigation],
     navigation: {
@@ -80,6 +81,12 @@ watch(theme, () => {
         }
     }, 10);
 });
+
+window.addEventListener('resize', () => {
+    for(let i = 0; i < manifest.value.length; i++){
+        splitterText(manifest.value[i]);
+    }
+});
 </script>
 
 <template>
@@ -126,7 +133,7 @@ watch(theme, () => {
 
                             </div>
                             <h2
-                                class="text-shadow text-center text-white text-[40px] font-bold leading-none"
+                                class="text-center text-white text-[40px] font-bold leading-none"
                                 ref="manifest">
                                 {{ d.black_desc_title }}
                             </h2>
@@ -181,7 +188,7 @@ watch(theme, () => {
 
                             </div>
                             <h2
-                                class="text-shadow text-center text-white text-[40px] font-bold leading-none" ref="manifest">
+                                class="text-center text-white text-[40px] font-bold leading-none" ref="manifest">
                                 {{ d.cappuccino_desc_title }}
                             </h2>
                             <p

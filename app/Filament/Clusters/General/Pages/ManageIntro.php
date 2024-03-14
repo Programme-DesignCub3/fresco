@@ -7,6 +7,7 @@ use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
@@ -49,36 +50,54 @@ class ManageIntro extends SettingsPage
     {
         return $form
             ->schema([
-                // Black Coffee
-                Section::make('Black Coffee')
-                    ->description('Minimize for comfortable viewing')
-                    ->collapsible()
+                Grid::make([
+                    'default' => 1,
+                    'sm' => 2,
+                    'md' => 4,
+                    'lg' => 6,
+                    'xl' => 8,
+                    '2xl' => 12,
+                ])
                     ->schema([
-                        TextInput::make('black_intro_title')
-                            ->label('Title')
-                            ->required(),
-                        RichEditor::make('black_intro_desc')
-                            ->label('Description')
-                            ->required(),
-                        CuratorPicker::make('black_intro_image_id')
-                            ->label('Image')
-                            ->required()
-                    ]),
+                        // Black Coffee
+                        Section::make('Black Coffee')
+                            ->columnSpan([
+                                '2xl' => 6,
+                            ])
+                            ->description('Minimize for comfortable viewing')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('black_intro_title')
+                                    ->label('Title')
+                                    ->required(),
+                                RichEditor::make('black_intro_desc')
+                                    ->label('Description')
+                                    ->required(),
+                                CuratorPicker::make('black_intro_image_id')
+                                    ->label('Image')
+                                    ->maxSize(2048)
+                                    ->required()
+                            ]),
 
-                // Cappuccino
-                Section::make('Cappuccino')
-                    ->description('Minimize for comfortable viewing')
-                    ->collapsible()
-                    ->schema([
-                        TextInput::make('cappuccino_intro_title')
-                            ->label('Title')
-                            ->required(),
-                        RichEditor::make('cappuccino_intro_desc')
-                            ->label('Description')
-                            ->required(),
-                        CuratorPicker::make('cappuccino_intro_image_id')
-                            ->label('Image')
-                            ->required()
+                        // Cappuccino
+                        Section::make('Cappuccino')
+                            ->columnSpan([
+                                '2xl' => 6,
+                            ])
+                            ->description('Minimize for comfortable viewing')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('cappuccino_intro_title')
+                                    ->label('Title')
+                                    ->required(),
+                                RichEditor::make('cappuccino_intro_desc')
+                                    ->label('Description')
+                                    ->required(),
+                                CuratorPicker::make('cappuccino_intro_image_id')
+                                    ->label('Image')
+                                    ->maxSize(2048)
+                                    ->required()
+                            ])
                     ])
             ]);
     }

@@ -59,6 +59,7 @@ class ProductResource extends Resource
                             ->required(),
                         CuratorPicker::make('image')
                             ->label('Image')
+                            ->maxSize(2048)
                             ->required(),
                         Hidden::make('sort')
                     ]),
@@ -68,6 +69,7 @@ class ProductResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultGroup('type')
             ->columns([
                 CuratorColumn::make('image')
                     ->width(80)

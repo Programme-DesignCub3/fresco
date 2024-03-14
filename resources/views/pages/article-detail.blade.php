@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Artikel')
+{{-- Meta --}}
+@section('title', $article['title'])
+@section('meta_url', URL::to('/artikel/' . $article['slug']))
+@section('meta_title', $article['title'])
+@section('meta_description', $article['excerpt'])
+@section('meta_image', $article['image'])
 
 @section('content')
 
@@ -9,94 +14,35 @@
     <header-page-component header="article-detail"></header-page-component>
 
     {{-- Article Detail Section --}}
-    <article-detail-component></article-detail-component>
+    <div
+        class="pt-0 bg-top bg-no-repeat bg-cover bg-fr-yellow sm:pt-10 md:pt-20 dark:bg-black dark:bg-article">
+        <div
+            class="relative mx-auto transition-all duration-700 ease-in-out fr-container">
+            <div class="p-4 transition-all duration-700 ease-in-out bg-fr-red dark:bg-fr-yellow md:p-8 lg:bg-transparent lg:p-0">
+                <img
+                    width="auto"
+                    height="auto"
+                    class="object-cover object-center w-full rounded-xl lg:rounded-none aspect-square"
+                    src="{{ $article['image'] }}"
+                    alt="FresCo" />
+            </div>
+            <div class="w-full h-[250px] transition-all duration-700 ease-in-out bg-fr-red hidden dark:bg-fr-yellow lg:block"></div>
+            <div
+                class="w-full p-4 py-8 space-y-4 bg-white md:p-8 lg:absolute lg:bottom-0 lg:right-0 lg:w-3/4">
+                <article class="space-y-3">
+                    <h1 class="text-[30px] font-bold text-fr-green leading-10">
+                        {{ $article['title'] }}
+                    </h1>
+                    <div class="text-base article-wrapper md:text-lg">
+                        {!! $article['body'] !!}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 
     {{-- Article Slide Section --}}
-    @php
-        $data = [
-            [
-                'image' => '/assets/images/article-1.png',
-                'title' => 'Kopi Bisa Membantu Menghilangkan Komedo, Masa Sih?',
-                'excerpt' => 'Ada cara yang lebih simpel untuk menghilangkan komedo yaitu dengan menggunakan masker kopi. Masa sih?'
-            ],
-            [
-                'image' => '/assets/images/article-2.png',
-                'title' => 'Kekinian, Es Kopi Susu Jadi Idola Anak Muda',
-                'excerpt' => 'Es kopi susu kini bisa dinikmati di kedai-kedai.Saking hitsnya, banyak yang rela mengantri hanya demi segelas es kopi susu Yuk bikin sendiri di rumah'
-            ]
-        ];
-    @endphp
-    <article-slide-component>
-        <template #black-article-slide>
-            @for($i = 1; $i <= 2; $i++)
-                @foreach($data as $key => $d)
-                    <div class="swiper-slide">
-                        <div
-                            class="flex flex-col gap-6 lg:gap-8 lg:flex-row">
-                            <div class="w-full">
-                                <img
-                                    class="object-cover aspect-square"
-                                    src="{{ $d['image'] }}"
-                                    alt="FresCo" />
-                            </div>
-                            <div
-                                class="flex flex-col w-full transition-all duration-700 ease-in-out gap-y-3">
-                                <h1
-                                    class="text-2xl font-bold text-fr-yellow">
-                                    {{ $d['title'] }}
-                                </h1>
-                                <p
-                                    class="font-medium text-white">
-                                    {{ $d['excerpt'] }}
-                                </p>
-                                <div>
-                                    <button
-                                        class="px-6 py-2 text-xs font-medium text-black rounded-lg bg-fr-yellow md:text-sm">
-                                        READ MORE >
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endfor
-        </template>
-
-        <template #cappuccino-article-slide>
-            @for($i = 1; $i <= 2; $i++)
-                @foreach($data as $key => $d)
-                    <div class="swiper-slide">
-                        <div
-                            class="flex flex-col gap-6 lg:gap-8 lg:flex-row">
-                            <div class="w-full">
-                                <img
-                                    class="object-cover aspect-square"
-                                    src="{{ $d['image'] }}"
-                                    alt="FresCo" />
-                            </div>
-                            <div
-                                class="flex flex-col w-full gap-y-3">
-                                <h1
-                                    class="text-2xl font-bold text-fr-yellow">
-                                    {{ $d['title'] }}
-                                </h1>
-                                <p
-                                    class="font-medium text-white">
-                                    {{ $d['excerpt'] }}
-                                </p>
-                                <div>
-                                    <button
-                                        class="px-6 py-2 text-xs font-medium text-white rounded-lg bg-fr-red md:text-sm">
-                                        READ MORE >
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endfor
-        </template>
-    </article-slide-component>
+    <article-slide-component :data="{{ json_encode($other) }}"></article-slide-component>
 </section>
 
 @endsection

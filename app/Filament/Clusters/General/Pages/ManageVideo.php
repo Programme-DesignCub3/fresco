@@ -7,6 +7,7 @@ use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
@@ -47,37 +48,55 @@ class ManageVideo extends SettingsPage
     {
         return $form
             ->schema([
-                // Black Coffee
-                Section::make('Black Coffee')
-                    ->description('Minimize for comfortable viewing')
-                    ->collapsible()
+                Grid::make([
+                    'default' => 1,
+                    'sm' => 2,
+                    'md' => 4,
+                    'lg' => 6,
+                    'xl' => 8,
+                    '2xl' => 12,
+                ])
                     ->schema([
-                        TextInput::make('black_video_url')
-                            ->label('Video URL')
-                            ->required(),
-                        RichEditor::make('black_video_desc')
-                            ->label('Description')
-                            ->required(),
-                        CuratorPicker::make('black_video_collab_id')
-                            ->label('Collaboration Image')
-                            ->required()
-                    ]),
+                        // Black Coffee
+                        Section::make('Black Coffee')
+                            ->columnSpan([
+                                '2xl' => 6,
+                            ])
+                            ->description('Minimize for comfortable viewing')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('black_video_url')
+                                    ->label('Video URL')
+                                    ->required(),
+                                RichEditor::make('black_video_desc')
+                                    ->label('Description')
+                                    ->required(),
+                                CuratorPicker::make('black_video_collab_id')
+                                    ->label('Collaboration Image')
+                                    ->maxSize(2048)
+                                    ->required()
+                            ]),
 
-                // Cappuccino
-                Section::make('Cappuccino')
-                    ->description('Minimize for comfortable viewing')
-                    ->collapsible()
-                    ->schema([
-                        TextInput::make('cappuccino_video_url')
-                            ->label('Video URL')
-                            ->required(),
-                        RichEditor::make('cappuccino_video_desc')
-                            ->label('Description')
-                            ->required(),
-                        CuratorPicker::make('cappuccino_video_collab_id')
-                            ->label('Collaboration Image')
-                            ->required()
-                        ])
+                        // Cappuccino
+                        Section::make('Cappuccino')
+                            ->columnSpan([
+                                '2xl' => 6,
+                            ])
+                            ->description('Minimize for comfortable viewing')
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('cappuccino_video_url')
+                                    ->label('Video URL')
+                                    ->required(),
+                                RichEditor::make('cappuccino_video_desc')
+                                    ->label('Description')
+                                    ->required(),
+                                CuratorPicker::make('cappuccino_video_collab_id')
+                                    ->label('Collaboration Image')
+                                    ->maxSize(2048)
+                                    ->required()
+                                ])
+                    ])
             ]);
     }
 }

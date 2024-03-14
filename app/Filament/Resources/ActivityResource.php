@@ -8,6 +8,7 @@ use App\Models\Activity;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -36,11 +37,34 @@ class ActivityResource extends Resource
             ->schema([
                 Section::make()
                     ->schema([
-                        CuratorPicker::make('image')
-                            ->label('Image')
-                            ->required(),
-                        CuratorPicker::make('image_portrait')
-                            ->label('Image Portrait (Optional)'),
+                        Grid::make([
+                            'default' => 1,
+                            'sm' => 2,
+                            'md' => 4,
+                            'lg' => 6,
+                            'xl' => 8,
+                            '2xl' => 12,
+                        ])->schema([
+                            CuratorPicker::make('image')
+                                ->columnSpan([
+                                    'md' => 2,
+                                    'lg' => 3,
+                                    'xl' => 4,
+                                    '2xl' => 6,
+                                ])
+                                ->maxSize(2048)
+                                ->label('Image')
+                                ->required(),
+                            CuratorPicker::make('image_portrait')
+                                ->columnSpan([
+                                    'md' => 2,
+                                    'lg' => 3,
+                                    'xl' => 4,
+                                    '2xl' => 6,
+                                ])
+                                ->maxSize(2048)
+                                ->label('Image Portrait (Optional)'),
+                        ]),
                         TextInput::make('link')
                             ->label('Link')
                             ->suffixIcon('heroicon-c-link')

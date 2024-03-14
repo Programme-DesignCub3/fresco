@@ -12,7 +12,7 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 <template>
     <header
         v-if="themeStore.theme == undefined || themeStore.theme == null"
-        class="relative z-[9999999] flex h-[100dvh] flex-col">
+        class="relative z-[999999] flex h-[100dvh] flex-col">
         <div class="relative w-full h-full bg-center bg-no-repeat bg-cover bg-menu">
             <div class="p-8 space-y-6 text-center">
                 <img
@@ -22,36 +22,38 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
                 <div class="inline-block px-8 -skew-x-12 bg-fr-red border-4 border-[#ce9638]">
                     <h1 class="text-white font-black text-[50px] text-shadow">TENTUKAN PILIHANMU!</h1>
                 </div>
-                    <div class="absolute left-[380px] -rotate-12 bottom-28">
+                <div class="flex items-end justify-center">
+                    <div>
                         <img
                             class="w-[180px]"
                             src="/assets/images/bubuk-hitam.png"
                             alt="Kopi Bubuk Hitam" />
                     </div>
-                    <div class="absolute left-[600px] -rotate-12 bottom-28">
-                        <img
-                            class="w-[180px]"
-                            src="/assets/images/krim-susu.png"
-                            alt="Kopi Krim Susu" />
-                    </div>
-                    <div class="absolute left-[260px] -rotate-12 bottom-12">
+                    <div>
                         <img
                             class="w-[180px]"
                             src="/assets/images/kopi-gula.png"
                             alt="Kopi + Gula" />
                     </div>
-                    <div class="absolute left-[540px] -rotate-12 bottom-12">
+                    <div>
                         <img
                             class="w-[180px]"
                             src="/assets/images/krim-moka.png"
                             alt="Kopi Krim Moka" />
                     </div>
-                    <div class="absolute right-[320px] bottom-12 -rotate-12">
+                    <div>
+                        <img
+                            class="w-[180px]"
+                            src="/assets/images/krim-susu.png"
+                            alt="Kopi Krim Susu" />
+                    </div>
+                    <div>
                         <img
                             class="w-[180px]"
                             src="/assets/images/cappuccino.png"
                             alt="Cappuccino" />
                     </div>
+                </div>
             </div>
         </div>
 
@@ -116,11 +118,6 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
                             name="fa-chevron-right" />
                     </span>
                 </div>
-                <!-- <h4
-                    class="flex flex-col text-right text-[40px] font-bold leading-10 text-fr-green">
-                    <span>ENAKNYA</span>
-                    <span>MAKIN EPIC</span>
-                </h4> -->
             </button>
         </div>
     </header>

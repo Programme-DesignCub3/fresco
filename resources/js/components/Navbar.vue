@@ -5,10 +5,14 @@ import { ref } from 'vue';
 const { data, type } = defineProps(['data', 'type']);
 const url = window.location;
 const themeStore = useThemeStore();
-const openMenu = ref(false);
 const scroll = ref();
 
 const enableCustomLayout = (theme) => themeStore.setTheme(theme);
+
+const changeThemeHandler = () => {
+    themeStore.setTheme(null);
+    themeStore.setOpenMenu(false);
+}
 
 window.addEventListener('scroll', () => {
     scroll.value = window.scrollY;
@@ -40,7 +44,7 @@ window.addEventListener('scroll', () => {
                 class="absolute left-4 top-4 z-[999] sm:left-0 md:static lg:absolute lg:-top-3">
                 <button
                     v-if="url.pathname == '/'"
-                    @click="themeStore.setTheme(null)">
+                    @click="changeThemeHandler">
                     <img
                         width="auto"
                         height="auto"
@@ -62,7 +66,7 @@ window.addEventListener('scroll', () => {
             <div
                 class="menu cross menu--2 absolute right-4 top-4 z-[999] h-[50px] w-[50px] rounded-full bg-fr-red sm:right-0 md:hidden">
                 <label class="h-[50px] w-[50px] rounded-full">
-                    <input @change="openMenu = !openMenu" type="checkbox" />
+                    <input @change="themeStore.setOpenMenu(!themeStore.openMenu)" type="checkbox" />
                     <svg
                         viewBox="0 0 100 100"
                         xmlns="http://www.w3.org/2000/svg">
@@ -82,8 +86,8 @@ window.addEventListener('scroll', () => {
             <div
                 class="fixed inset-0 items-center justify-center transition-all duration-300 ease-in-out md:static md:block md:bg-transparent"
                 :class="[
-                    openMenu ? 'block' : 'hidden',
-                    openMenu && 'reveal-menu',
+                    themeStore.openMenu ? 'block' : 'hidden',
+                    themeStore.openMenu && 'reveal-menu',
                     themeStore.theme == 'black'
                         ? 'bg-fr-darker-red'
                         : 'bg-fr-yellow',

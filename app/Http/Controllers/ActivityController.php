@@ -18,7 +18,10 @@ class ActivityController extends Controller
         /**
          * Activity Resource
          */
-        $activity = Activity::with('featured_image')->with('featured_image_portrait')->latest()->get();
+        $activity = Activity::with('featured_image')
+                        ->with('featured_image_portrait')
+                        ->latest()
+                        ->get();
 
         for($i = 0; $i < $activity->count(); $i++) {
             $activity[$i]['image'] = 'storage/' . $activity[$i]->featured_image->path;

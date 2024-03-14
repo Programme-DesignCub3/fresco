@@ -6,10 +6,12 @@ use App\Filament\Clusters\Articles;
 use App\Filament\Clusters\Articles\Resources\ArticleResource\Pages;
 use App\Filament\Clusters\Articles\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
+use App\Rules\MaxWord;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Actions\Action;
 use Filament\Forms;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Radio;
@@ -47,40 +49,67 @@ class ArticleResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()
+                Grid::make([
+                    'default' => 1,
+                    'sm' => 2,
+                    'md' => 4,
+                    'lg' => 6,
+                    'xl' => 8,
+                    '2xl' => 12,
+                ])
                     ->schema([
-                        Toggle::make('published')
-                            ->inline(false)
-                            ->label('Publish')
-                            ->onIcon('heroicon-o-signal')
-                            ->offIcon('heroicon-o-signal-slash'),
-                        CuratorPicker::make('image')
-                            ->label('Image')
-                            ->required(),
-                        Radio::make('type')
-                            ->options([
-                                'article' => 'Article',
-                                'promotion' => 'Promotion'
+                        Section::make()
+                            ->columnSpan([
+                                'md' => 3,
+                                'lg' => 4,
+                                'xl' => 6,
+                                '2xl' => 8
                             ])
-                            ->required(),
-                        TextInput::make('title')
-                            ->label('Title')
-                            ->required(),
-                        RichEditor::make('body')
-                            ->label('Body')
-                            ->toolbarButtons([
-                                'bold',
-                                'italic',
-                                'underline',
-                                'strike',
-                                'link',
-                                'orderedList',
-                                'bulletList',
-                                'undo',
-                                'redo'
+                            ->schema([
+                                CuratorPicker::make('image')
+                                    ->label('Image')
+                                    ->maxSize(2048)
+                                    ->required(),
+                                TextInput::make('title')
+                                    ->label('Title')
+                                    ->rules([new MaxWord('Title', 12, 'en')])
+                                    ->required(),
+                                RichEditor::make('body')
+                                    ->label('Body')
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'strike',
+                                        'link',
+                                        'orderedList',
+                                        'bulletList',
+                                        'undo',
+                                        'redo'
+                                    ])
+                                    ->required()
+                            ]),
+                        Section::make()
+                            ->columnSpan([
+                                'md' => 1,
+                                'lg' => 2,
+                                'xl' => 2,
+                                '2xl' => 4
                             ])
-                            ->required()
-                    ])
+                            ->schema([
+                                Toggle::make('published')
+                                    ->inline(false)
+                                    ->label('Publish')
+                                    ->onIcon('heroicon-o-signal')
+                                    ->offIcon('heroicon-o-signal-slash'),
+                                Radio::make('type')
+                                    ->options([
+                                        'article' => 'Article',
+                                        'promotion' => 'Promotion'
+                                    ])
+                                    ->required(),
+                            ]),
+                    ]),
             ]);
     }
 

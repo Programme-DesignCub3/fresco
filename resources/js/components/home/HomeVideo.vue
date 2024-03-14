@@ -82,7 +82,7 @@ const themeStore = useThemeStore();
             </div>
             <!-- Description` -->
             <div
-                class="pt-10 font-medium leading-8 text-center text-white md:text-lg">
+                class="pt-10 font-medium leading-8 text-center text-white md:text-lg lg:text-xl">
                 <p
                     data-aos="fade-up"
                     data-aos-delay="500"

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
+{{-- Meta --}}
 @section('title', 'Produk')
+@section('meta_url', URL::to('/produk'))
+@section('meta_title', 'Produk')
+@section('meta_description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, sit!')
+@section('meta_image', asset('assets/images/desc-2.png'))
 
 @section('content')
 

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
@@ -30,17 +31,19 @@ export default {
                 'fr-black': '#050505',
                 'fr-yellow': '#fdc64b',
                 'fr-red': '#ed1d24',
-                'fr-darker-red': '#bf1f2e',
                 'fr-green': '#006838',
-                'fr-darker-green': '#025930',
+                'fr-darker-yellow': '#edba48',
+                'fr-darker-red': '#bf1f2e',
+                'fr-darker-green': '#055c34',
             },
             colors: {
                 'fr-black': '#050505',
                 'fr-yellow': '#fdc64b',
                 'fr-red': '#ed1d24',
-                'fr-darker-red': '#bf1f2e',
                 'fr-green': '#006838',
-                'fr-darker-green': '#025930',
+                'fr-darker-yellow': '#edba48',
+                'fr-darker-red': '#bf1f2e',
+                'fr-darker-green': '#055c34',
             },
         },
     },

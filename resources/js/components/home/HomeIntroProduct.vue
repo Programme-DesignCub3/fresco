@@ -20,6 +20,7 @@ const swiper = ref();
 const home = ref();
 
 const swiperOption = {
+    autoHeight: true,
     slidesPerView: 1,
     spaceBetween: 100,
     loop: true,
@@ -32,7 +33,7 @@ const swiperOption = {
 
 const initSwiper = () => {
     if (swiper.value) {
-        swiper.value.destroy(true, true);
+        swiper.value = null;
     }
     swiper.value = new Swiper(home.value, swiperOption);
 };
@@ -167,7 +168,7 @@ window.addEventListener('resize', () => {
                                     class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.black_intro_desc"
-                                        class="text-white md:text-lg"></p>
+                                        class="text-white md:text-lg lg:text-xl"></p>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +209,7 @@ window.addEventListener('resize', () => {
                                     class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.cappuccino_intro_desc"
-                                        class="text-white md:text-lg"></p>
+                                        class="text-white md:text-lg lg:text-xl"></p>
                                 </div>
                             </div>
                         </div>
@@ -264,7 +265,7 @@ window.addEventListener('resize', () => {
                                     class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.cappuccino_intro_desc"
-                                        class="text-fr-black md:text-lg"></p>
+                                        class="text-fr-black md:text-lg lg:text-xl"></p>
                                 </div>
                             </div>
                         </div>
@@ -316,7 +317,7 @@ window.addEventListener('resize', () => {
                                     class="flex justify-center font-medium leading-8 text-center">
                                     <p
                                         v-html="data.black_intro_desc"
-                                        class="text-fr-black md:text-lg"></p>
+                                        class="text-fr-black md:text-lg lg:text-xl"></p>
                                 </div>
                             </div>
                         </div>

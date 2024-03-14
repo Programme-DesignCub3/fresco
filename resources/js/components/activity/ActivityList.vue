@@ -12,6 +12,7 @@ const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const activity = ref();
 const swiper = ref();
+const activityLink = ref();
 
 const swiperOption = {
     centeredSlides: true,
@@ -54,17 +55,20 @@ const initSwiper = () => {
 
 onMounted(() => {
     initSwiper();
+    activityLink.value = data[0].link;
 
-    swiper.value.on('init', () => {
-        console.log('ke 1');
-        swiper.value.on('realIndexChange', () => {
-            console.log('ke 2 dan selanjutnya');
-        });
+    swiper.value.on('realIndexChange', () => {
+        activityLink.value = data[swiper.value.realIndex].link;
     });
 });
 
 watch(theme, () => {
     initSwiper();
+    activityLink.value = data[0].link;
+
+    swiper.value.on('realIndexChange', () => {
+        activityLink.value = data[swiper.value.realIndex].link;
+    });
 });
 </script>
 
@@ -140,23 +144,22 @@ watch(theme, () => {
             <!-- Slider -->
             <div class="swiper" ref="activity">
                 <div class="swiper-wrapper">
-                    <template v-for="n in 2">
-                        <div v-for="(d, i) in data" :key="i" class="swiper-slide">
-                            <img
-                                :src="d.image"
-                                width="auto"
-                                height="auto"
-                                alt="FresCo Activity"
-                                class="object-cover object-center mx-auto aspect-square xl:w-[600px] xl:h-[600px]">
-                        </div>
-                    </template>
+                    <div v-for="(d, i) in data" :key="i" class="swiper-slide">
+                        <img
+                            :src="d.image"
+                            width="auto"
+                            height="auto"
+                            alt="FresCo Activity"
+                            class="object-cover object-center mx-auto aspect-square xl:w-[600px] xl:h-[600px]">
+                    </div>
                 </div>
             </div>
 
             <!-- Read More Button -->
             <div class="text-center">
                 <a
-                    href="#"
+                    :href="activityLink"
+                    target="_blank"
                     class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2.5 text-xs font-medium text-white transition-all duration-300 ease-in-out hover:border-fr-darker-red hover:bg-fr-darker-red group-hover:border group-hover:border-white md:px-8 md:text-sm">
                     READ MORE
                     <v-icon

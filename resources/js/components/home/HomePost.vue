@@ -29,17 +29,12 @@ const swiperOption = {
 };
 
 const initSwiper = () => {
-    if (swiper.value) {
-        swiper.value.destroy(true, true);
-    }
     swiper.value = new Swiper(feed.value, swiperOption);
 };
 
 onMounted(() => {
-    if(feed.value != null) {
-        if (!swiper.value) {
-            initSwiper();
-        }
+    if (!swiper.value) {
+        initSwiper();
     }
 });
 
@@ -83,8 +78,8 @@ watch(theme, () => {
                                 : 'bg-fr-yellow'
                         "></div>
 
-                    <!-- Activity Slider -->
-                    <div class="swiper" ref="feed">
+                    <!-- Black Activity Slider -->
+                    <div v-if="themeStore.theme == 'black'" class="swiper" ref="feed">
                         <div class="swiper-wrapper">
                             <div v-for="(d, i) in activity" :key="i" class="swiper-slide">
                                 <a
@@ -108,6 +103,34 @@ watch(theme, () => {
                             </div>
                         </div>
                     </div>
+
+                    <!-- Cappuccino Activity Slider -->
+                    <div v-if="themeStore.theme == 'cappuccino'" class="swiper" ref="feed">
+                        <div class="swiper-wrapper">
+                            <div v-for="(d, i) in activity" :key="i" class="swiper-slide">
+                                <a
+                                    :href="d.link"
+                                    target="_blank">
+                                    <img
+                                        width="auto"
+                                        height="auto"
+                                        v-if="d.image_portrait"
+                                        :src="d.image_portrait"
+                                        class="mx-auto"
+                                        alt="FresCo Activity" />
+                                    <img
+                                        v-else
+                                        width="auto"
+                                        height="auto"
+                                        :src="d.image"
+                                        class="mx-auto"
+                                        alt="FresCo Activity" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
                     <div
                         class="fr-activity-pagination"
                         :class="themeStore.theme"></div>
@@ -187,7 +210,7 @@ watch(theme, () => {
                                     <div>
                                         <a
                                             :href="'artikel/' + d.slug"
-                                            class="px-6 py-2.5 text-sm text-white transition-all duration-700 ease-in-out rounded-lg"
+                                            class="px-6 py-2.5 text-sm font-medium text-white transition-all duration-700 ease-in-out rounded-lg"
                                             :class="
                                                 themeStore.theme == 'black'
                                                     ? 'bg-fr-red hover:border-fr-darker-red hover:bg-fr-darker-red'

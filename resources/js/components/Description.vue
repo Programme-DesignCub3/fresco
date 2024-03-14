@@ -97,7 +97,7 @@ window.addEventListener('resize', () => {
                     :class="d.black_desc_position == 'right' && 'items-end'">
                     <div class="w-full 2xl:w-[600px]">
                         <h2
-                            class="text-shadow text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
+                            class="text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
                             ref="manifest">
                             {{ d.black_desc_title }}
                         </h2>
@@ -110,7 +110,7 @@ window.addEventListener('resize', () => {
                             data-aos="fade-down"
                             data-aos-offset="0"
                             :data-aos-delay="delayAos"
-                            class="font-medium leading-8 text-white">
+                            class="font-medium leading-8 text-white md:text-lg lg:text-xl">
                             {{ d.black_desc_explanation }}
                         </p>
                     </div>
@@ -152,7 +152,7 @@ window.addEventListener('resize', () => {
                     :class="d.cappuccino_desc_position == 'right' && 'items-end'">
                     <div class="w-full 2xl:w-[600px]">
                         <h2
-                            class="text-shadow text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
+                            class="text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
                             ref="manifest">
                             {{ d.cappuccino_desc_title }}
                         </h2>
@@ -165,7 +165,7 @@ window.addEventListener('resize', () => {
                             data-aos="fade-down"
                             data-aos-offset="0"
                             :data-aos-delay="delayAos"
-                            class="font-medium leading-8 text-black">
+                            class="font-medium leading-8 text-black md:text-lg lg:text-xl">
                             {{ d.cappuccino_desc_explanation }}
                         </p>
                     </div>
