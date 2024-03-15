@@ -7,7 +7,7 @@ import { EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 
-const { data } = defineProps(['data'])
+const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const activity = ref();
@@ -74,9 +74,8 @@ watch(theme, () => {
 
 <template>
     <div
-        class="relative py-10 bg-bottom bg-no-repeat bg-cover md:py-20"
+        class="relative bg-cover bg-bottom bg-no-repeat py-10 md:py-20"
         :class="themeStore.theme == 'black' ? 'bg-activity' : 'bg-fr-yellow'">
-
         <!-- Navigation Swiper (Arrow Left) -->
         <div
             class="fr-activity-slider-prev absolute left-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]"
@@ -100,9 +99,8 @@ watch(theme, () => {
         </div>
 
         <!-- Title -->
-        <div class="mx-auto space-y-12 fr-container">
+        <div class="fr-container mx-auto space-y-12">
             <div class="space-y-6">
-
                 <!-- Double element for refresh AOS Animation -->
                 <h2
                     v-if="themeStore.theme == 'black'"
@@ -138,7 +136,6 @@ watch(theme, () => {
                     data-aos-duration="500"
                     data-aos-offset="0"
                     class="ml-4 h-[4px] w-16 rounded-full bg-fr-red sm:ml-0"></div>
-
             </div>
 
             <!-- Slider -->
@@ -150,7 +147,7 @@ watch(theme, () => {
                             width="auto"
                             height="auto"
                             alt="FresCo Activity"
-                            class="object-cover object-center mx-auto aspect-square xl:w-[600px] xl:h-[600px]">
+                            class="mx-auto aspect-square object-cover object-center xl:h-[600px] xl:w-[600px]" />
                     </div>
                 </div>
             </div>
@@ -167,7 +164,6 @@ watch(theme, () => {
                         name="fa-chevron-right" />
                 </a>
             </div>
-
         </div>
     </div>
 </template>

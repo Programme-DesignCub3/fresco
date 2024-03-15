@@ -9,7 +9,7 @@ const themeStore = useThemeStore();
     <!-- Article Header -->
     <div
         v-if="header == 'article'"
-        class="mt-0 bg-bottom bg-no-repeat bg-cover bg-header-article lg:mt-20"
+        class="mt-0 bg-header-article bg-cover bg-bottom bg-no-repeat lg:mt-20"
         :class="themeStore.theme == 'black' ? 'bg-black' : 'bg-fr-yellow'">
         <div
             class="fr-container mx-auto px-4 py-10 md:mt-[164px] md:px-0 md:py-12 lg:mt-0 lg:py-32">
@@ -56,7 +56,7 @@ const themeStore = useThemeStore();
     <!-- Article Detail Header -->
     <div
         v-if="header == 'article-detail'"
-        class="mt-0 bg-black bg-bottom bg-no-repeat bg-cover bg-header-article lg:mt-20">
+        class="mt-0 bg-black bg-header-article bg-cover bg-bottom bg-no-repeat lg:mt-20">
         <div
             class="fr-container mx-auto px-4 py-10 md:mt-[164px] md:px-0 md:py-12 lg:mt-0 lg:py-32">
             <!-- Double element for refresh AOS Animation -->
@@ -102,7 +102,7 @@ const themeStore = useThemeStore();
     <!-- Activity Header -->
     <div
         v-if="header == 'activity'"
-        class="mt-0 bg-black bg-bottom bg-no-repeat bg-cover bg-header-activity lg:mt-20">
+        class="mt-0 bg-black bg-header-activity bg-cover bg-bottom bg-no-repeat lg:mt-20">
         <div
             class="fr-container mx-auto px-4 py-10 md:mt-[164px] md:px-0 md:py-12 lg:mt-0 lg:py-32">
             <!-- Double element for refresh AOS Animation -->
@@ -148,7 +148,7 @@ const themeStore = useThemeStore();
     <!-- Contact Header -->
     <div
         v-if="header == 'contact'"
-        class="mt-0 transition-all duration-700 ease-in-out bg-bottom bg-no-repeat bg-cover bg-header-contact lg:mt-20"
+        class="mt-0 bg-header-contact bg-cover bg-bottom bg-no-repeat transition-all duration-700 ease-in-out lg:mt-20"
         :class="themeStore.theme == 'black' ? 'bg-black' : 'bg-fr-yellow'">
         <div
             class="fr-container mx-auto px-4 py-10 md:mt-[164px] md:px-0 md:py-12 lg:mt-0 lg:py-32">
@@ -191,7 +191,6 @@ const themeStore = useThemeStore();
             </h1>
         </div>
     </div>
-
 </template>
 
 <style scoped>

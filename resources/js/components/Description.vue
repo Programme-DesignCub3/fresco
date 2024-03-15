@@ -35,8 +35,8 @@ const splitterText = (target) => {
 };
 
 onMounted(() => {
-    if(manifest.value != null) {
-        for(let i = 0; i < manifest.value.length; i++){
+    if (manifest.value != null) {
+        for (let i = 0; i < manifest.value.length; i++) {
             splitterText(manifest.value[i]);
         }
     }
@@ -48,14 +48,14 @@ onMounted(() => {
 
 watch(theme, () => {
     setTimeout(() => {
-        for(let i = 0; i < manifest.value.length; i++){
+        for (let i = 0; i < manifest.value.length; i++) {
             splitterText(manifest.value[i]);
         }
     }, 10);
 });
 
 window.addEventListener('resize', () => {
-    for(let i = 0; i < manifest.value.length; i++){
+    for (let i = 0; i < manifest.value.length; i++) {
         splitterText(manifest.value[i]);
     }
 });
@@ -63,7 +63,6 @@ window.addEventListener('resize', () => {
 
 <template>
     <template v-if="themeStore.theme != undefined || themeStore.theme != null">
-
         <!-- === Black Coffee === -->
         <div
             v-if="themeStore.theme == 'black'"
@@ -78,22 +77,19 @@ window.addEventListener('resize', () => {
                             : d.cappuccino_desc_position == 'right' &&
                               'order-last'
                     ">
-                    <div
-                        class="relative w-full bg-fr-black">
-
+                    <div class="relative w-full bg-fr-black">
                         <!-- Image -->
                         <img
                             width="auto"
                             height="auto"
                             :src="d.black_desc_image"
-                            :alt="d.black_desc_title">
-
+                            :alt="d.black_desc_title" />
                     </div>
                 </div>
 
                 <!-- Text -->
                 <div
-                    class="z-20 flex flex-col justify-center w-full h-full px-16 my-auto transition-all duration-700 ease-in-out bg-fr-black"
+                    class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-black px-16 transition-all duration-700 ease-in-out"
                     :class="d.black_desc_position == 'right' && 'items-end'">
                     <div class="w-full 2xl:w-[600px]">
                         <h2
@@ -115,7 +111,6 @@ window.addEventListener('resize', () => {
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -133,23 +128,22 @@ window.addEventListener('resize', () => {
                             : d.cappuccino_desc_position == 'right' &&
                               'order-last'
                     ">
-                    <div
-                        class="relative w-full bg-fr-yellow">
-
+                    <div class="relative w-full bg-fr-yellow">
                         <!-- Image -->
                         <img
                             width="auto"
                             height="auto"
                             :src="d.cappuccino_desc_image"
-                            :alt="d.cappuccino_desc_title">
-
+                            :alt="d.cappuccino_desc_title" />
                     </div>
                 </div>
 
                 <!-- Text -->
                 <div
-                    class="z-20 flex flex-col justify-center w-full h-full px-16 my-auto transition-all duration-700 ease-in-out bg-fr-yellow"
-                    :class="d.cappuccino_desc_position == 'right' && 'items-end'">
+                    class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-yellow px-16 transition-all duration-700 ease-in-out"
+                    :class="
+                        d.cappuccino_desc_position == 'right' && 'items-end'
+                    ">
                     <div class="w-full 2xl:w-[600px]">
                         <h2
                             class="text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
@@ -170,10 +164,8 @@ window.addEventListener('resize', () => {
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </template>
 </template>
 

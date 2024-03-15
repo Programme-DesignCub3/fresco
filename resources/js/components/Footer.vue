@@ -10,8 +10,7 @@ const themeStore = useThemeStore();
         v-if="themeStore.theme != undefined || themeStore.theme != null"
         class="border-t-[5px] border-white bg-fr-black">
         <div
-            class="flex flex-col justify-between gap-12 px-4 py-10 mx-auto fr-container md:flex-row md:px-0 md:py-20">
-
+            class="fr-container mx-auto flex flex-col justify-between gap-12 px-4 py-10 md:flex-row md:px-0 md:py-20">
             <!-- Logo Image -->
             <div class="w-full md:w-2/5">
                 <img
@@ -23,7 +22,6 @@ const themeStore = useThemeStore();
             </div>
 
             <div class="w-full space-y-10 md:w-3/5">
-
                 <!-- Marketplace -->
                 <div class="flex flex-wrap gap-4">
                     <a :href="data.tokopedia_store" target="_blank">
@@ -61,37 +59,52 @@ const themeStore = useThemeStore();
                     <div class="flex flex-wrap gap-4">
                         <div class="space-x-2">
                             <span
-                                class="p-1 rounded-full bg-fr-yellow text-fr-black"
+                                class="rounded-full bg-fr-yellow p-1 text-fr-black"
                                 ><v-icon name="fa-phone-alt"
                             /></span>
-                            <a :href="'tel:' + data.phone_link" class="inline-block text-white">{{ data.phone_alias }}</a>
+                            <a
+                                :href="'tel:' + data.phone_link"
+                                class="inline-block text-white"
+                                >{{ data.phone_alias }}</a
+                            >
                         </div>
                         <div class="space-x-2">
                             <span
-                                class="p-1 rounded-full bg-fr-yellow text-fr-black"
+                                class="rounded-full bg-fr-yellow p-1 text-fr-black"
                                 ><v-icon name="fa-envelope"
                             /></span>
-                            <a :href="'mailto:' + data.email_link" class="inline-block text-white">
+                            <a
+                                :href="'mailto:' + data.email_link"
+                                class="inline-block text-white">
                                 {{ data.email_alias }}
                             </a>
                         </div>
                         <div class="space-x-2">
                             <span
-                                class="p-1 rounded-full bg-fr-yellow text-fr-black"
+                                class="rounded-full bg-fr-yellow p-1 text-fr-black"
                                 ><v-icon name="fa-whatsapp"
                             /></span>
-                            <a :href="data.whatsapp_link" target="_blank" class="inline-block text-white">{{ data.whatsapp_alias }}</a>
+                            <a
+                                :href="data.whatsapp_link"
+                                target="_blank"
+                                class="inline-block text-white"
+                                >{{ data.whatsapp_alias }}</a
+                            >
                         </div>
                         <div class="space-x-2">
                             <span
-                                class="p-1 rounded-full bg-fr-yellow text-fr-black"
+                                class="rounded-full bg-fr-yellow p-1 text-fr-black"
                                 ><v-icon name="fa-line"
                             /></span>
-                            <a :href="data.line_link" target="_blank" class="inline-block text-white">{{ data.line_alias }}</a>
+                            <a
+                                :href="data.line_link"
+                                target="_blank"
+                                class="inline-block text-white"
+                                >{{ data.line_alias }}</a
+                            >
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </footer>

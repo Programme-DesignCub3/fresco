@@ -8,7 +8,7 @@ export const useThemeStore = defineStore('theme', () => {
     onMounted(() => {
         if (localStorage.user_theme == 'black') {
             document.documentElement.classList.add('dark');
-        } else if(localStorage.user_theme == 'cappuccino') {
+        } else if (localStorage.user_theme == 'cappuccino') {
             document.documentElement.classList.remove('dark');
         }
     });
@@ -28,7 +28,7 @@ export const useThemeStore = defineStore('theme', () => {
             document.documentElement.classList.add('dark');
         } else if (user_theme == 'black') {
             document.documentElement.classList.add('dark');
-        } else if(user_theme == 'cappuccino') {
+        } else if (user_theme == 'cappuccino') {
             document.documentElement.classList.remove('dark');
         }
     };

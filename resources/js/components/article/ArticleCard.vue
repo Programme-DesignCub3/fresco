@@ -6,22 +6,20 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
-    <div class="flex flex-col group">
+    <div class="group flex flex-col">
         <div
             class="transition-all duration-300 ease-in-out md:group-hover:scale-110">
-
             <!-- Image -->
-            <div class="object-cover w-full">
+            <div class="w-full object-cover">
                 <img width="auto" height="auto" :src="image" alt="FresCo" />
             </div>
 
             <!-- Body -->
             <div
-                class="p-6 space-y-3 transition-all duration-700 ease-in-out group-hover:bg-fr-red group-hover:transition-all group-hover:duration-300 group-hover:ease-in-out"
+                class="space-y-3 p-6 transition-all duration-700 ease-in-out group-hover:bg-fr-red group-hover:transition-all group-hover:duration-300 group-hover:ease-in-out"
                 :class="
                     themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
                 ">
-
                 <!-- Title -->
                 <h3
                     class="text-xl font-bold group-hover:text-white"
@@ -48,7 +46,7 @@ const themeStore = useThemeStore();
                 <div class="pt-3">
                     <a
                         href="artikel/ini-contoh-artikel"
-                        class="inline px-6 py-2 text-xs font-medium text-white transition-all duration-300 ease-in-out border rounded-lg border-fr-red bg-fr-red group-hover:border md:text-sm"
+                        class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2 text-xs font-medium text-white transition-all duration-300 ease-in-out group-hover:border md:text-sm"
                         :class="
                             themeStore.theme == 'black'
                                 ? 'group-hover:border-fr-yellow group-hover:bg-fr-yellow group-hover:font-medium group-hover:text-black'
@@ -57,7 +55,6 @@ const themeStore = useThemeStore();
                         READ MORE >
                     </a>
                 </div>
-
             </div>
         </div>
     </div>

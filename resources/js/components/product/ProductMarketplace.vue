@@ -10,8 +10,7 @@ const themeStore = useThemeStore();
         class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-20"
         :class="themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-green'">
         <div
-            class="flex flex-col mx-auto fr-container gap-y-3 md:gap-y-5 lg:gap-y-8">
-
+            class="fr-container mx-auto flex flex-col gap-y-3 md:gap-y-5 lg:gap-y-8">
             <!-- Double element for refresh AOS Animation -->
             <h2
                 v-if="themeStore.theme == 'black'"
@@ -73,61 +72,94 @@ const themeStore = useThemeStore();
                 "></div>
 
             <!-- Black Coffee Marketplace -->
-            <div v-if="themeStore.theme == 'black'" class="flex flex-wrap gap-5">
-                <a data-aos="flip-up" data-aos-delay="200" data-aos-duration="500" :href="data.tokopedia_store" target="_blank">
+            <div
+                v-if="themeStore.theme == 'black'"
+                class="flex flex-wrap gap-5">
+                <a
+                    data-aos="flip-up"
+                    data-aos-delay="200"
+                    data-aos-duration="500"
+                    :href="data.tokopedia_store"
+                    target="_blank">
                     <img
                         width="auto"
                         height="auto"
-                        class="box-shadow rounded-2xl w-36 md:w-44 lg:w-52"
+                        class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
                         src="/assets/images/icons/tokopedia.png"
                         alt="Tokopedia" />
                 </a>
-                <a data-aos="flip-up" data-aos-delay="300" data-aos-duration="500" :href="data.shopee_store" target="_blank">
+                <a
+                    data-aos="flip-up"
+                    data-aos-delay="300"
+                    data-aos-duration="500"
+                    :href="data.shopee_store"
+                    target="_blank">
                     <img
                         width="auto"
                         height="auto"
-                        class="box-shadow rounded-2xl w-36 md:w-44 lg:w-52"
+                        class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
                         src="/assets/images/icons/shopee.png"
                         alt="Shopee" />
                 </a>
-                <a data-aos="flip-up" data-aos-delay="400" data-aos-duration="500" :href="data.lazada_store" target="_blank">
+                <a
+                    data-aos="flip-up"
+                    data-aos-delay="400"
+                    data-aos-duration="500"
+                    :href="data.lazada_store"
+                    target="_blank">
                     <img
                         width="auto"
                         height="auto"
-                        class="box-shadow rounded-2xl w-36 md:w-44 lg:w-52"
+                        class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
                         src="/assets/images/icons/lazada.png"
                         alt="Lazada" />
                 </a>
             </div>
 
             <!-- Cappuccino Marketplace -->
-            <div v-if="themeStore.theme == 'cappuccino'" class="flex flex-wrap gap-5">
-                <a data-aos="flip-up" data-aos-delay="200" data-aos-duration="500" :href="data.tokopedia_store" target="_blank">
+            <div
+                v-if="themeStore.theme == 'cappuccino'"
+                class="flex flex-wrap gap-5">
+                <a
+                    data-aos="flip-up"
+                    data-aos-delay="200"
+                    data-aos-duration="500"
+                    :href="data.tokopedia_store"
+                    target="_blank">
                     <img
                         width="auto"
                         height="auto"
-                        class="w-36 rounded-2xl box-shadow md:w-44 lg:w-52"
+                        class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
                         src="/assets/images/icons/tokopedia.png"
                         alt="Tokopedia" />
                 </a>
-                <a data-aos="flip-up" data-aos-delay="300" data-aos-duration="500" :href="data.shopee_store" target="_blank">
+                <a
+                    data-aos="flip-up"
+                    data-aos-delay="300"
+                    data-aos-duration="500"
+                    :href="data.shopee_store"
+                    target="_blank">
                     <img
                         width="auto"
                         height="auto"
-                        class="w-36 rounded-2xl box-shadow md:w-44 lg:w-52"
+                        class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
                         src="/assets/images/icons/shopee.png"
                         alt="Shopee" />
                 </a>
-                <a data-aos="flip-up" data-aos-delay="400" data-aos-duration="500" :href="data.lazada_store" target="_blank">
+                <a
+                    data-aos="flip-up"
+                    data-aos-delay="400"
+                    data-aos-duration="500"
+                    :href="data.lazada_store"
+                    target="_blank">
                     <img
                         width="auto"
                         height="auto"
-                        class="w-36 rounded-2xl box-shadow md:w-44 lg:w-52"
+                        class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
                         src="/assets/images/icons/lazada.png"
                         alt="Lazada" />
                 </a>
             </div>
-
         </div>
     </div>
 </template>

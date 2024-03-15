@@ -25,11 +25,11 @@ const articles = ref([
 
 <template>
     <div
-        class="px-4 py-10 bg-top bg-no-repeat bg-cover sm:px-0 md:py-20"
+        class="bg-cover bg-top bg-no-repeat px-4 py-10 sm:px-0 md:py-20"
         :class="
             themeStore.theme == 'black' ? 'bg-black bg-article' : 'bg-fr-yellow'
         ">
-        <div class="mx-auto space-y-8 fr-container md:space-y-12">
+        <div class="fr-container mx-auto space-y-8 md:space-y-12">
             <!-- Toolbar -->
             <div
                 class="flex flex-col justify-between gap-y-8 md:flex-row md:gap-y-12">
@@ -102,7 +102,7 @@ const articles = ref([
 
             <!-- Pagination -->
             <div
-                class="flex justify-center text-xl font-medium gap-x-3"
+                class="flex justify-center gap-x-3 text-xl font-medium"
                 :class="
                     themeStore.theme == 'black' ? 'text-white' : 'text-black'
                 ">
@@ -110,7 +110,7 @@ const articles = ref([
                 <div class="cursor-pointer">&lt;</div>
                 <div class="space-x-3">
                     <a
-                        class="inline-block w-6 h-6 text-center text-white rounded-full bg-fr-red"
+                        class="inline-block h-6 w-6 rounded-full bg-fr-red text-center text-white"
                         href="#"
                         >1</a
                     >

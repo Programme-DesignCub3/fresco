@@ -8,9 +8,9 @@ const themeStore = useThemeStore();
 <template>
     <div
         v-if="themeStore.theme != undefined || themeStore.theme != null"
-        class="py-10 transition-all duration-700 ease-in-out video-coffee md:py-24"
+        class="video-coffee py-10 transition-all duration-700 ease-in-out md:py-24"
         :class="themeStore.theme">
-        <div class="w-full px-4 mx-auto fr-container md:px-0">
+        <div class="fr-container mx-auto w-full px-4 md:px-0">
             <!-- Video -->
             <div class="w-full pb-10">
                 <iframe
@@ -29,7 +29,7 @@ const themeStore = useThemeStore();
                     allowfullscreen></iframe>
             </div>
             <div
-                class="grid items-center justify-center w-full grid-cols-3 gap-x-3 md:gap-x-6">
+                class="grid w-full grid-cols-3 items-center justify-center gap-x-3 md:gap-x-6">
                 <!-- FresCo Logo -->
                 <div class="grid items-center justify-center md:justify-end">
                     <img
@@ -64,7 +64,7 @@ const themeStore = useThemeStore();
                         data-aos="zoom-out"
                         data-aos-delay="500"
                         data-aos-duration="1000"
-                        class="block w-[220px]">
+                        class="block w-[220px]" />
                 </div>
                 <div
                     v-else
@@ -77,26 +77,24 @@ const themeStore = useThemeStore();
                         data-aos="zoom-out"
                         data-aos-delay="500"
                         data-aos-duration="1000"
-                        class="block w-[220px]">
+                        class="block w-[220px]" />
                 </div>
             </div>
             <!-- Description` -->
             <div
-                class="pt-10 font-medium leading-8 text-center text-white md:text-lg lg:text-xl">
+                class="pt-10 text-center font-medium leading-8 text-white md:text-lg lg:text-xl">
                 <p
                     data-aos="fade-up"
                     data-aos-delay="500"
                     data-aos-offset="0"
                     v-if="themeStore.theme == 'black'"
-                    v-html="data.black_video_desc">
-                </p>
+                    v-html="data.black_video_desc"></p>
                 <p
                     v-else
                     v-html="data.cappuccino_video_desc"
                     data-aos="fade-up"
                     data-aos-delay="500"
-                    data-aos-offset="0">
-                </p>
+                    data-aos-offset="0"></p>
             </div>
         </div>
     </div>

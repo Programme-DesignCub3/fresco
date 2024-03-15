@@ -24,27 +24,27 @@ const swiperOption = {
     breakpoints: {
         1024: {
             slidesPerView: 4,
-            spaceBetween: 0
+            spaceBetween: 0,
         },
         768: {
             slidesPerView: 2,
-            spaceBetween: -300
+            spaceBetween: -300,
         },
         550: {
             slidesPerView: 1,
-            spaceBetween: -200
+            spaceBetween: -200,
         },
         425: {
             slidesPerView: 1,
-            spaceBetween: -160
+            spaceBetween: -160,
         },
         375: {
-            spaceBetween: -140
+            spaceBetween: -140,
         },
         320: {
-            spaceBetween: -80
-        }
-    }
+            spaceBetween: -80,
+        },
+    },
 };
 
 const initSwiper = () => {
@@ -67,11 +67,12 @@ watch(theme, () => {
 
 <template>
     <div
-        class="mt-0 bg-black bg-bottom bg-no-repeat bg-cover bg-product lg:mt-20">
+        class="mt-0 bg-black bg-product bg-cover bg-bottom bg-no-repeat lg:mt-20">
         <div
             class="fr-container mx-auto flex flex-col justify-between gap-y-0 py-10 md:mt-[160px] md:gap-y-6 md:py-14 lg:mt-0 lg:py-20">
-            <div class="pt-[50px] px-4 sm:px-0 md:pt-0" id="product-title-anchor">
-
+            <div
+                class="px-4 pt-[50px] sm:px-0 md:pt-0"
+                id="product-title-anchor">
                 <!-- Double element for refresh AOS Animation -->
                 <h1
                     v-if="themeStore.theme == 'black'"
@@ -125,15 +126,17 @@ watch(theme, () => {
                     data-aos-duration="500"
                     data-aos-offset="0"
                     class="my-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
-
             </div>
 
             <!-- === Grid Layout (Desktop View) === -->
             <div
-                class="hidden px-10 text-white gap-y-10 md:flex md:items-baseline md:justify-between md:px-0">
-
+                class="hidden gap-y-10 px-10 text-white md:flex md:items-baseline md:justify-between md:px-0">
                 <!-- Black Coffee -->
-                <div v-if="themeStore.theme == 'black'" v-for="(d, i) in black" :key="i" class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                <div
+                    v-if="themeStore.theme == 'black'"
+                    v-for="(d, i) in black"
+                    :key="i"
+                    class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                     <img
                         width="auto"
                         height="auto"
@@ -142,20 +145,24 @@ watch(theme, () => {
                         data-aos="fade-up"
                         data-aos-delay="200"
                         data-aos-duration="1000"
-                        class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]">
+                        class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
                     <div
                         data-aos="fade-down"
                         data-aos-delay="200"
                         data-aos-duration="1000"
                         data-aos-offset="20"
-                        class="font-bold text-center">
+                        class="text-center font-bold">
                         <p>Fresco</p>
                         <p>{{ d.product }}</p>
                     </div>
                 </div>
 
                 <!-- Cappuccino -->
-                <div v-if="themeStore.theme == 'cappuccino'" v-for="(d, i) in cappuccino" :key="i" class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                <div
+                    v-if="themeStore.theme == 'cappuccino'"
+                    v-for="(d, i) in cappuccino"
+                    :key="i"
+                    class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                     <img
                         width="auto"
                         height="auto"
@@ -164,13 +171,13 @@ watch(theme, () => {
                         data-aos="fade-up"
                         data-aos-delay="200"
                         data-aos-duration="1000"
-                        class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]">
+                        class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
                     <div
                         data-aos="fade-down"
                         data-aos-delay="200"
                         data-aos-duration="1000"
                         data-aos-offset="20"
-                        class="font-bold text-center">
+                        class="text-center font-bold">
                         <p>Fresco</p>
                         <p>{{ d.product }}</p>
                     </div>
@@ -201,12 +208,16 @@ watch(theme, () => {
                 <!-- Slider Black -->
                 <div
                     v-if="themeStore.theme == 'black'"
-                    class="text-white swiper"
+                    class="swiper text-white"
                     ref="product">
-                    <div class="items-end py-0 swiper-wrapper md:py-6">
+                    <div class="swiper-wrapper items-end py-0 md:py-6">
                         <template v-for="n in 2">
-                            <div v-for="(d, i) in black" :key="i" class="swiper-slide">
-                                <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                            <div
+                                v-for="(d, i) in black"
+                                :key="i"
+                                class="swiper-slide">
+                                <div
+                                    class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                                     <img
                                         width="auto"
                                         height="auto"
@@ -215,13 +226,13 @@ watch(theme, () => {
                                         data-aos="fade-up"
                                         data-aos-delay="200"
                                         data-aos-duration="1000"
-                                        class="w-[200px]">
+                                        class="w-[200px]" />
                                     <div
                                         data-aos="fade-down"
                                         data-aos-delay="200"
                                         data-aos-duration="1000"
                                         data-aos-offset="20"
-                                        class="font-bold text-center">
+                                        class="text-center font-bold">
                                         <p>Fresco</p>
                                         <p>{{ d.product }}</p>
                                     </div>
@@ -234,12 +245,16 @@ watch(theme, () => {
                 <!-- Slider Cappuccino -->
                 <div
                     v-if="themeStore.theme == 'cappuccino'"
-                    class="text-white swiper"
+                    class="swiper text-white"
                     ref="product">
-                    <div class="items-end py-0 swiper-wrapper md:py-6">
+                    <div class="swiper-wrapper items-end py-0 md:py-6">
                         <template v-for="n in 2">
-                            <div v-for="(d, i) in cappuccino" :key="i" class="swiper-slide">
-                                <div class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+                            <div
+                                v-for="(d, i) in cappuccino"
+                                :key="i"
+                                class="swiper-slide">
+                                <div
+                                    class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                                     <img
                                         width="auto"
                                         height="auto"
@@ -248,13 +263,13 @@ watch(theme, () => {
                                         data-aos="fade-up"
                                         data-aos-delay="200"
                                         data-aos-duration="1000"
-                                        class="w-[200px]">
+                                        class="w-[200px]" />
                                     <div
                                         data-aos="fade-down"
                                         data-aos-delay="200"
                                         data-aos-duration="1000"
                                         data-aos-offset="20"
-                                        class="font-bold text-center">
+                                        class="text-center font-bold">
                                         <p>Fresco</p>
                                         <p>{{ d.product }}</p>
                                     </div>

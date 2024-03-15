@@ -58,8 +58,8 @@ onMounted(() => {
         initSwiper();
     }
 
-    if(manifest.value != null) {
-        for(let i = 0; i < manifest.value.length; i++){
+    if (manifest.value != null) {
+        for (let i = 0; i < manifest.value.length; i++) {
             splitterText(manifest.value[i]);
         }
     }
@@ -76,14 +76,14 @@ watch(theme, () => {
     });
 
     setTimeout(() => {
-        for(let i = 0; i < manifest.value.length; i++){
+        for (let i = 0; i < manifest.value.length; i++) {
             splitterText(manifest.value[i]);
         }
     }, 10);
 });
 
 window.addEventListener('resize', () => {
-    for(let i = 0; i < manifest.value.length; i++){
+    for (let i = 0; i < manifest.value.length; i++) {
         splitterText(manifest.value[i]);
     }
 });
@@ -91,27 +91,30 @@ window.addEventListener('resize', () => {
 
 <template>
     <div
-        class="relative block w-full h-full lg:hidden"
+        class="relative block h-full w-full lg:hidden"
         :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
-
         <!-- === Slide Black Coffee === -->
         <div
             v-if="themeStore.theme == 'black'"
-            class="swiper" ref="description">
+            class="swiper"
+            ref="description">
             <div class="swiper-wrapper">
-                <div v-for="(d, i) in data.black_desc_list" :key="i" class="swiper-slide">
+                <div
+                    v-for="(d, i) in data.black_desc_list"
+                    :key="i"
+                    class="swiper-slide">
                     <div class="grid grid-rows-1">
                         <img
                             width="auto"
                             height="auto"
                             :src="d.black_desc_image"
-                            :alt="d.black_desc_title">
-                        <div class="relative flex flex-col justify-between w-full px-4 py-8 space-y-4">
+                            :alt="d.black_desc_title" />
+                        <div
+                            class="relative flex w-full flex-col justify-between space-y-4 px-4 py-8">
                             <div id="navigation-description">
-
                                 <!-- Navigation Swiper (Arrow Left) -->
                                 <div
-                                    class="fr-description-slider-prev absolute left-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    class="fr-description-slider-prev absolute -top-4 left-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                                     :class="
                                         themeStore.theme == 'black'
                                             ? 'bg-fr-yellow text-black'
@@ -122,7 +125,7 @@ window.addEventListener('resize', () => {
 
                                 <!-- Navigation Swiper (Arrow Right) -->
                                 <div
-                                    class="fr-description-slider-next absolute right-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    class="fr-description-slider-next absolute -top-4 right-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                                     :class="
                                         themeStore.theme == 'black'
                                             ? 'bg-fr-yellow text-black'
@@ -130,17 +133,16 @@ window.addEventListener('resize', () => {
                                     ">
                                     <v-icon name="fa-chevron-right" />
                                 </div>
-
                             </div>
                             <h2
-                                class="text-center text-white text-[40px] font-bold leading-none"
+                                class="text-center text-[40px] font-bold leading-none text-white"
                                 ref="manifest">
                                 {{ d.black_desc_title }}
                             </h2>
                             <p
                                 data-aos="fade-down"
                                 data-aos-offset="0"
-                                class="font-medium leading-8 text-center text-white">
+                                class="text-center font-medium leading-8 text-white">
                                 {{ d.black_desc_explanation }}
                             </p>
                         </div>
@@ -152,21 +154,25 @@ window.addEventListener('resize', () => {
         <!-- === Slide Cappuccino === -->
         <div
             v-if="themeStore.theme == 'cappuccino'"
-            class="swiper" ref="description">
+            class="swiper"
+            ref="description">
             <div class="swiper-wrapper">
-                <div v-for="(d, i) in data.cappuccino_desc_list" :key="i" class="swiper-slide">
+                <div
+                    v-for="(d, i) in data.cappuccino_desc_list"
+                    :key="i"
+                    class="swiper-slide">
                     <div class="grid grid-rows-1">
                         <img
                             width="auto"
                             height="auto"
                             :src="d.cappuccino_desc_image"
-                            :alt="d.cappuccino_desc_title">
-                        <div class="relative flex flex-col justify-between w-full px-4 py-8 space-y-4">
+                            :alt="d.cappuccino_desc_title" />
+                        <div
+                            class="relative flex w-full flex-col justify-between space-y-4 px-4 py-8">
                             <div id="navigation-description">
-
                                 <!-- Navigation Swiper (Arrow Left) -->
                                 <div
-                                    class="fr-description-slider-prev absolute left-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    class="fr-description-slider-prev absolute -top-4 left-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                                     :class="
                                         themeStore.theme == 'black'
                                             ? 'bg-fr-yellow text-black'
@@ -177,7 +183,7 @@ window.addEventListener('resize', () => {
 
                                 <!-- Navigation Swiper (Arrow Right) -->
                                 <div
-                                    class="fr-description-slider-next absolute right-0 -top-4 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
+                                    class="fr-description-slider-next absolute -top-4 right-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                                     :class="
                                         themeStore.theme == 'black'
                                             ? 'bg-fr-yellow text-black'
@@ -185,16 +191,16 @@ window.addEventListener('resize', () => {
                                     ">
                                     <v-icon name="fa-chevron-right" />
                                 </div>
-
                             </div>
                             <h2
-                                class="text-center text-white text-[40px] font-bold leading-none" ref="manifest">
+                                class="text-center text-[40px] font-bold leading-none text-white"
+                                ref="manifest">
                                 {{ d.cappuccino_desc_title }}
                             </h2>
                             <p
                                 data-aos="fade-down"
                                 data-aos-offset="0"
-                                class="font-medium leading-8 text-center text-black">
+                                class="text-center font-medium leading-8 text-black">
                                 {{ d.cappuccino_desc_explanation }}
                             </p>
                         </div>
@@ -202,6 +208,5 @@ window.addEventListener('resize', () => {
                 </div>
             </div>
         </div>
-
     </div>
 </template>

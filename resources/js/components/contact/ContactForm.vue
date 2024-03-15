@@ -18,10 +18,19 @@ const token = ref(null);
 const toast = ref(false);
 const toastMessage = ref(null);
 const sendCooldown = ref(false);
+const sendDisabled = ref(false);
 
-const handleSuccess = (e) => { token.value = e };
-const handleError = () => { sendCooldown.value = true };
-const handleExpired = () => { sendCooldown.value = true };
+const handleSuccess = (e) => {
+    token.value = e;
+    sendCooldown.value = false;
+    sendDisabled.value = false;
+};
+const handleError = () => {
+    sendDisabled.value = true;
+};
+const handleExpired = () => {
+    sendDisabled.value = true;
+};
 
 const sendMessageHandler = async (e) => {
     e.preventDefault();
@@ -34,7 +43,7 @@ const sendMessageHandler = async (e) => {
             email: email.value,
             subject: subject.value,
             message: message.value,
-            'g-recaptcha-response': token.value
+            'g-recaptcha-response': token.value,
         })
         .then((response) => {
             name.value = null;
@@ -68,7 +77,6 @@ const sendMessageHandler = async (e) => {
             <!-- Detail Information -->
             <div class="space-y-6">
                 <div class="space-y-3">
-
                     <!-- Double element for refresh AOS Animation -->
                     <h2
                         v-if="themeStore.theme == 'black'"
@@ -102,10 +110,8 @@ const sendMessageHandler = async (e) => {
                         data-aos-duration="500"
                         data-aos-offset="0"
                         class="h-[4px] w-16 rounded-full bg-fr-red"></div>
-
                 </div>
                 <div class="space-y-6 font-medium">
-
                     <!-- Double element for refresh AOS Animation -->
                     <p
                         v-if="themeStore.theme == 'black'"
@@ -187,13 +193,11 @@ const sendMessageHandler = async (e) => {
                         <p>Senin s/d Jumat 09.00-17.00</p>
                         <p>Email: {{ data.email_alias }}</p>
                     </div>
-
                 </div>
             </div>
 
             <!-- Form -->
             <form class="space-y-6" @submit="sendMessageHandler">
-
                 <!-- Name -->
                 <div class="space-y-2">
                     <label
@@ -204,7 +208,8 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="name"
-                        >Nama <span class="font-medium text-fr-red">*</span></label
+                        >Nama
+                        <span class="font-medium text-fr-red">*</span></label
                     >
                     <input
                         v-model="name"
@@ -238,7 +243,8 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="email"
-                        >Email <span class="font-medium text-fr-red">*</span></label
+                        >Email
+                        <span class="font-medium text-fr-red">*</span></label
                     >
                     <input
                         v-model="email"
@@ -271,7 +277,8 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="subject"
-                        >Subject <span class="font-medium text-fr-red">*</span></label
+                        >Subject
+                        <span class="font-medium text-fr-red">*</span></label
                     >
                     <input
                         v-model="subject"
@@ -305,7 +312,8 @@ const sendMessageHandler = async (e) => {
                                 : 'text-fr-black'
                         "
                         for="message"
-                        >Pesan Anda <span class="font-medium text-fr-red">*</span></label
+                        >Pesan Anda
+                        <span class="font-medium text-fr-red">*</span></label
                     >
                     <textarea
                         v-model="message"
@@ -336,8 +344,7 @@ const sendMessageHandler = async (e) => {
                         :load-recaptcha-script="true"
                         @verify="handleSuccess"
                         @error="handleError"
-                        @expired="handleExpired"
-                    >
+                        @expired="handleExpired">
                     </VueRecaptcha>
                     <!-- Error Message -->
                     <div v-if="errMessage">
@@ -351,8 +358,8 @@ const sendMessageHandler = async (e) => {
 
                 <!-- Submit Button -->
                 <button
-                    :disabled="sendCooldown"
-                    :class="sendCooldown && 'cursor-not-allowed opacity-50'"
+                    :disabled="sendCooldown || sendDisabled"
+                    :class="sendCooldown || sendDisabled && 'cursor-not-allowed opacity-50'"
                     class="px-6 py-2 text-xs font-medium text-white transition-all duration-300 ease-in-out border rounded-lg outline-none border-fr-red bg-fr-red hover:border-fr-darker-red hover:bg-fr-darker-red group-hover:border group-hover:border-white md:px-8 md:text-sm">
                     <template v-if="sendCooldown == false">
                         <span>KIRIM</span>
@@ -361,19 +368,32 @@ const sendMessageHandler = async (e) => {
                             name="fa-chevron-right" />
                     </template>
                     <template v-else>
-                        <svg class="w-5 h-5 mx-3 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg
+                            class="w-5 h-5 mx-3 text-white animate-spin"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24">
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
                     </template>
                 </button>
 
                 <!-- Notification Success -->
                 <Transition name="faded" mode="out-in">
-                    <div v-show="toast" class="fixed bg-green-600 flex w-[260px] sm:w-auto gap-2 px-4 py-4 text-white -translate-x-1/2 rounded-lg box-shadow top-24 md:top-48 lg:top-28 left-1/2">
-                        <v-icon
-                            class="w-6 h-6"
-                            name="fa-check-circle" />
+                    <div
+                        v-show="toast"
+                        class="box-shadow fixed left-1/2 top-24 flex w-[260px] -translate-x-1/2 gap-2 rounded-lg bg-green-600 px-4 py-4 text-white sm:w-auto md:top-48 lg:top-28">
+                        <v-icon class="w-6 h-6" name="fa-check-circle" />
                         <p>{{ toastMessage }}</p>
                     </div>
                 </Transition>

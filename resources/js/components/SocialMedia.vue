@@ -13,17 +13,16 @@ const themeStore = useThemeStore();
             themeStore.getTheme().value != null
         "
         class="fixed right-0 top-48 z-[100] mr-4 hidden flex-col space-y-2 transition-all duration-700 ease-in-out md:flex">
-
         <!-- Facebook -->
         <a
-            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
             :href="data.facebook_link ? data.facebook_link : '#'"
             target="_blank">
             <v-icon
-                class="pt-2 h-9 w-9"
+                class="h-9 w-9 pt-2"
                 :class="
                     themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
                 "
@@ -32,14 +31,14 @@ const themeStore = useThemeStore();
 
         <!-- Instagram -->
         <a
-            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
             :href="data.instagram_link ? data.instagram_link : '#'"
             target="_blank">
             <v-icon
-                class="p-1 h-9 w-9"
+                class="h-9 w-9 p-1"
                 :class="
                     themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
                 "
@@ -48,7 +47,7 @@ const themeStore = useThemeStore();
 
         <!-- Twitter -->
         <a
-            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -64,7 +63,7 @@ const themeStore = useThemeStore();
 
         <!-- Tiktok -->
         <a
-            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -80,7 +79,7 @@ const themeStore = useThemeStore();
 
         <!-- Youtube -->
         <a
-            class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
             :class="
                 themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -97,12 +96,13 @@ const themeStore = useThemeStore();
 
     <!-- === WhatsApp Link === -->
     <div class="fixed bottom-32 right-4 z-[99999] md:bottom-4">
-        <a :href="data.whatsapp_link ? data.whatsapp_link : '#'"
-        target="_blank">
+        <a
+            :href="data.whatsapp_link ? data.whatsapp_link : '#'"
+            target="_blank">
             <img
                 width="auto"
                 height="auto"
-                class="w-16 h-16"
+                class="h-16 w-16"
                 src="/assets/images/icons/whatsapp.png"
                 alt="WhatsApp" />
         </a>

@@ -110,7 +110,7 @@
     }
 
     .article-wrapper a {
-        @apply text-blue-600 underline
+        @apply text-blue-600 underline;
     }
 
     @media (min-width: 1024px) {
@@ -137,11 +137,19 @@
 
 /* Custom Styles */
 .swiper-3d .swiper-slide-shadow-left {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)) !important;
+    background-image: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+    ) !important;
 }
 
 .swiper-3d .swiper-slide-shadow-right {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)) !important;
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+    ) !important;
 }
 
 .home-article-gradient {
@@ -156,15 +164,15 @@
 }
 
 .fr-activity-pagination {
-    @apply pt-8 space-x-3 text-center;
+    @apply space-x-3 pt-8 text-center;
 }
 
 .fr-activity-pagination .swiper-pagination-bullet {
-    @apply w-4 h-4 rounded-full cursor-pointer;
+    @apply h-4 w-4 cursor-pointer rounded-full;
 }
 
 .fr-activity-pagination.black .swiper-pagination-bullet {
-    @apply opacity-100 bg-black/60;
+    @apply bg-black/60 opacity-100;
 }
 
 .fr-activity-pagination.black

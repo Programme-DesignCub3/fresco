@@ -8,8 +8,7 @@ const themeStore = useThemeStore();
     <div
         class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-16"
         :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
-        <div class="mx-auto fr-container">
-
+        <div class="fr-container mx-auto">
             <!-- Double element for refresh AOS Animation -->
             <h2
                 v-if="themeStore.theme == 'black'"
@@ -65,9 +64,18 @@ const themeStore = useThemeStore();
             </h2>
 
             <!-- Double element for refresh AOS Animation -->
-            <div v-if="themeStore.theme == 'black'" data-aos="fade-right" data-aos-delay="200" data-aos-duration="500" class="mt-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
-            <div v-if="themeStore.theme == 'cappuccino'" data-aos="fade-right" data-aos-delay="200" data-aos-duration="500" class="mt-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
-
+            <div
+                v-if="themeStore.theme == 'black'"
+                data-aos="fade-right"
+                data-aos-delay="200"
+                data-aos-duration="500"
+                class="mt-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
+            <div
+                v-if="themeStore.theme == 'cappuccino'"
+                data-aos="fade-right"
+                data-aos-delay="200"
+                data-aos-duration="500"
+                class="mt-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
         </div>
     </div>
 </template>

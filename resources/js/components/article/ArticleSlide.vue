@@ -26,7 +26,7 @@ const swiperOption = {
     breakpoints: {
         768: {
             slidesPerView: 2,
-            slidesPerGroup: 2
+            slidesPerGroup: 2,
         },
     },
 };
@@ -61,7 +61,7 @@ watch(theme, () => {
             class="fr-article-slider-next absolute right-[4%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-fr-yellow text-black sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]">
             <v-icon name="fa-chevron-right" />
         </div>
-        <div class="mx-auto space-y-10 fr-container">
+        <div class="fr-container mx-auto space-y-10">
             <h1
                 class="text-shadow text-[40px] font-bold leading-none text-white">
                 Artikel lainnya
@@ -73,31 +73,31 @@ watch(theme, () => {
                 class="swiper"
                 ref="article">
                 <div class="swiper-wrapper">
-                    <div v-for="(d, i) in data" :key="i" class="pb-4 swiper-slide">
-                        <div
-                            class="flex flex-col gap-6 xl:gap-8 xl:flex-row">
+                    <div
+                        v-for="(d, i) in data"
+                        :key="i"
+                        class="swiper-slide pb-4">
+                        <div class="flex flex-col gap-6 xl:flex-row xl:gap-8">
                             <div class="w-full">
                                 <img
                                     width="auto"
                                     height="auto"
-                                    class="object-cover aspect-square"
+                                    class="aspect-square object-cover"
                                     :src="d.image"
                                     :alt="d.title" />
                             </div>
                             <div
-                                class="flex flex-col w-full transition-all duration-700 ease-in-out gap-y-3">
-                                <h2
-                                    class="text-2xl font-bold text-fr-yellow">
+                                class="flex w-full flex-col gap-y-3 transition-all duration-700 ease-in-out">
+                                <h2 class="text-2xl font-bold text-fr-yellow">
                                     {{ d.title }}
                                 </h2>
-                                <p
-                                    class="font-medium text-white md:text-lg">
+                                <p class="font-medium text-white md:text-lg">
                                     {{ d.excerpt }}
                                 </p>
                                 <div>
                                     <a
                                         :href="d.slug"
-                                        class="px-6 py-2.5 text-xs font-medium text-black transition-all duration-300 ease-in-out rounded-lg bg-fr-yellow hover:bg-fr-darker-yellow md:text-sm">
+                                        class="rounded-lg bg-fr-yellow px-6 py-2.5 text-xs font-medium text-black transition-all duration-300 ease-in-out hover:bg-fr-darker-yellow md:text-sm">
                                         READ MORE
                                         <v-icon
                                             class="h-4 w-4 stroke-2 py-[2px]"
@@ -116,31 +116,30 @@ watch(theme, () => {
                 class="swiper"
                 ref="article">
                 <div class="swiper-wrapper">
-                    <div v-for="(d, i) in data" :key="i" class="pb-4 swiper-slide">
-                        <div
-                            class="flex flex-col gap-6 xl:gap-8 xl:flex-row">
+                    <div
+                        v-for="(d, i) in data"
+                        :key="i"
+                        class="swiper-slide pb-4">
+                        <div class="flex flex-col gap-6 xl:flex-row xl:gap-8">
                             <div class="w-full">
                                 <img
                                     width="auto"
                                     height="auto"
-                                    class="object-cover aspect-square"
+                                    class="aspect-square object-cover"
                                     :src="d.image"
                                     :alt="d.title" />
                             </div>
-                            <div
-                                class="flex flex-col w-full gap-y-3">
-                                <h1
-                                    class="text-2xl font-bold text-fr-yellow">
+                            <div class="flex w-full flex-col gap-y-3">
+                                <h1 class="text-2xl font-bold text-fr-yellow">
                                     {{ d.title }}
                                 </h1>
-                                <p
-                                    class="font-medium text-white md:text-lg">
+                                <p class="font-medium text-white md:text-lg">
                                     {{ d.excerpt }}
                                 </p>
                                 <div>
                                     <a
                                         :href="d.slug"
-                                        class="px-6 py-2.5 text-xs font-medium text-white transition-all duration-300 ease-in-out rounded-lg bg-fr-red hover:bg-fr-darker-red md:text-sm">
+                                        class="rounded-lg bg-fr-red px-6 py-2.5 text-xs font-medium text-white transition-all duration-300 ease-in-out hover:bg-fr-darker-red md:text-sm">
                                         READ MORE
                                         <v-icon
                                             class="h-4 w-4 stroke-2 py-[2px]"
@@ -152,7 +151,6 @@ watch(theme, () => {
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>

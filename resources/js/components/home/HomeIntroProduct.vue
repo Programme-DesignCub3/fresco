@@ -60,7 +60,7 @@ const splitterText = (target) => {
 const splitterStroke = () => {
     let strokeSplit = new SplitType(stroke.value, {
         types: 'lines',
-        tagName: 'span'
+        tagName: 'span',
     });
     strokeSplit.lines;
 };
@@ -105,7 +105,7 @@ window.addEventListener('resize', () => {
             themeStore.getTheme().value != undefined &&
             themeStore.getTheme().value != null
         "
-        class="relative py-10 pt-0 pb-10 overflow-x-hidden transition-all duration-700 ease-in-out introduction lg:py-24"
+        class="introduction relative overflow-x-hidden py-10 pb-10 pt-0 transition-all duration-700 ease-in-out lg:py-24"
         :class="themeStore.theme">
         <!-- Navigation Swiper (Arrow) -->
         <div
@@ -127,7 +127,7 @@ window.addEventListener('resize', () => {
             <v-icon name="fa-chevron-right" />
         </div>
 
-        <div class="relative w-full px-4 mx-auto fr-container md:px-0">
+        <div class="fr-container relative mx-auto w-full px-4 md:px-0">
             <div class="swiper" ref="home">
                 <div class="swiper-wrapper">
                     <!-- === Black Theme === -->
@@ -147,7 +147,7 @@ window.addEventListener('resize', () => {
                                     </div>
                                 </div>
                                 <!-- Image -->
-                                <div class="w-full bg-glow-yellow">
+                                <div class="bg-glow-yellow w-full">
                                     <img
                                         width="auto"
                                         height="auto"
@@ -156,7 +156,7 @@ window.addEventListener('resize', () => {
                                         class="w-full"
                                         data-aos-offset="0"
                                         data-aos="zoom-in"
-                                        data-aos-delay="150">
+                                        data-aos-delay="150" />
                                 </div>
                             </div>
                             <!-- Description -->
@@ -165,7 +165,7 @@ window.addEventListener('resize', () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center font-medium leading-8 text-center">
+                                    class="flex justify-center text-center font-medium leading-8">
                                     <p
                                         v-html="data.black_intro_desc"
                                         class="text-white md:text-lg lg:text-xl"></p>
@@ -188,7 +188,7 @@ window.addEventListener('resize', () => {
                                     </div>
                                 </div>
                                 <!-- Image -->
-                                <div class="w-full bg-glow-yellow">
+                                <div class="bg-glow-yellow w-full">
                                     <img
                                         width="auto"
                                         height="auto"
@@ -197,7 +197,7 @@ window.addEventListener('resize', () => {
                                         class="w-full"
                                         data-aos-offset="0"
                                         data-aos="zoom-in"
-                                        data-aos-delay="150">
+                                        data-aos-delay="150" />
                                 </div>
                             </div>
                             <!-- Description -->
@@ -206,7 +206,7 @@ window.addEventListener('resize', () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center font-medium leading-8 text-center">
+                                    class="flex justify-center text-center font-medium leading-8">
                                     <p
                                         v-html="data.cappuccino_intro_desc"
                                         class="text-white md:text-lg lg:text-xl"></p>
@@ -218,7 +218,7 @@ window.addEventListener('resize', () => {
                     <!-- === Cappuccino Theme === -->
                     <template v-if="themeStore.theme == 'cappuccino'">
                         <!-- First Slide -->
-                        <div class="p-2 swiper-slide">
+                        <div class="swiper-slide p-2">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
                                 <div class="mb-10 md:mb-0 md:w-1/4">
@@ -253,7 +253,7 @@ window.addEventListener('resize', () => {
                                         class="w-full"
                                         data-aos-offset="0"
                                         data-aos="zoom-in"
-                                        data-aos-delay="150">
+                                        data-aos-delay="150" />
                                 </div>
                             </div>
                             <!-- Description -->
@@ -262,7 +262,7 @@ window.addEventListener('resize', () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center font-medium leading-8 text-center">
+                                    class="flex justify-center text-center font-medium leading-8">
                                     <p
                                         v-html="data.cappuccino_intro_desc"
                                         class="text-fr-black md:text-lg lg:text-xl"></p>
@@ -271,7 +271,7 @@ window.addEventListener('resize', () => {
                         </div>
 
                         <!-- Second Slide -->
-                        <div class="p-2 swiper-slide">
+                        <div class="swiper-slide p-2">
                             <div
                                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
                                 <div class="mb-10 md:mb-0 md:w-1/4">
@@ -305,7 +305,7 @@ window.addEventListener('resize', () => {
                                         class="w-full"
                                         data-aos-offset="0"
                                         data-aos="zoom-in"
-                                        data-aos-delay="150">
+                                        data-aos-delay="150" />
                                 </div>
                             </div>
                             <!-- Description -->
@@ -314,7 +314,7 @@ window.addEventListener('resize', () => {
                                     data-aos="fade-up"
                                     data-aos-delay="200"
                                     data-aos-offset="0"
-                                    class="flex justify-center font-medium leading-8 text-center">
+                                    class="flex justify-center text-center font-medium leading-8">
                                     <p
                                         v-html="data.black_intro_desc"
                                         class="text-fr-black md:text-lg lg:text-xl"></p>

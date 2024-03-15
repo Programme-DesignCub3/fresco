@@ -13,14 +13,18 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
     <header
         v-if="themeStore.theme == undefined || themeStore.theme == null"
         class="relative z-[999999] flex h-[100dvh] flex-col">
-        <div class="relative w-full h-full bg-center bg-no-repeat bg-cover bg-menu">
-            <div class="p-8 space-y-6 text-center">
+        <div
+            class="relative h-full w-full bg-menu bg-cover bg-center bg-no-repeat">
+            <div class="space-y-6 p-8 text-center">
                 <img
                     class="mx-auto w-[180px]"
                     src="/assets/images/logo.png"
                     alt="FresCo Logo" />
-                <div class="inline-block px-8 -skew-x-12 bg-fr-red border-4 border-[#ce9638]">
-                    <h1 class="text-white font-black text-[50px] text-shadow">TENTUKAN PILIHANMU!</h1>
+                <div
+                    class="inline-block -skew-x-12 border-4 border-[#ce9638] bg-fr-red px-8">
+                    <h1 class="text-shadow text-[50px] font-black text-white">
+                        TENTUKAN PILIHANMU!
+                    </h1>
                 </div>
                 <div class="flex items-end justify-center">
                     <div>
@@ -68,16 +72,17 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
                         blackHover = false;
                     }
                 "
-                class="relative flex justify-end w-1/2 h-[200px] px-8 pt-4 pb-24 transition-all duration-700 ease-in-out outline-none gap-x-8 bg-fr-red hover:w-2/3">
-                <div class="absolute flex items-center justify-center mr-24 gap-x-6">
+                class="relative flex h-[200px] w-1/2 justify-end gap-x-8 bg-fr-red px-8 pb-24 pt-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3">
+                <div
+                    class="absolute mr-24 flex items-center justify-center gap-x-6">
                     <span
-                        class="flex items-center justify-center rounded-full h-9 w-9 bg-fr-yellow">
+                        class="flex h-9 w-9 items-center justify-center rounded-full bg-fr-yellow">
                         <v-icon
                             class="arrow-slide-fade-left"
                             name="fa-chevron-left" />
                     </span>
                     <h4
-                        class="flex flex-col text-[50px] text-white text-left z-[999] text-shadow font-black w-[300px] leading-[1] italic">
+                        class="text-shadow z-[999] flex w-[300px] flex-col text-left text-[50px] font-black italic leading-[1] text-white">
                         ENAKNYA SELALU ASIK
                     </h4>
                 </div>
@@ -99,20 +104,21 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
                         cappuccinoHover = false;
                     }
                 "
-                class="flex w-1/2 h-[200px] px-8 pt-4 pb-24 transition-all duration-700 ease-in-out outline-none group gap-x-8 bg-fr-yellow hover:w-2/3">
+                class="group flex h-[200px] w-1/2 gap-x-8 bg-fr-yellow px-8 pb-24 pt-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3">
                 <img
                     :class="cappuccinoHover && 'float-animate'"
                     class="absolute -top-24 w-[350px]"
                     src="/assets/images/menu-cappuccino.png"
                     alt="Cappuccino Theme" />
                 <div class="w-[350px]"></div>
-                <div class="absolute flex items-center justify-center ml-24 gap-x-6">
+                <div
+                    class="absolute ml-24 flex items-center justify-center gap-x-6">
                     <h4
-                        class="flex flex-col text-[50px] text-white text-right z-[999] text-shadow font-black w-[300px] leading-[1] italic">
+                        class="text-shadow z-[999] flex w-[300px] flex-col text-right text-[50px] font-black italic leading-[1] text-white">
                         ENAKNYA MAKIN EPIK
                     </h4>
                     <span
-                        class="flex items-center justify-center text-white rounded-full h-9 w-9 bg-fr-red">
+                        class="flex h-9 w-9 items-center justify-center rounded-full bg-fr-red text-white">
                         <v-icon
                             class="arrow-slide-fade-right"
                             name="fa-chevron-right" />

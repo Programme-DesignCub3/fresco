@@ -10,8 +10,8 @@ const themeStore = useThemeStore();
     <!-- === Black Theme === -->
     <div v-if="themeStore.theme == 'black'">
         <div
-            class="w-full pt-20 space-y-2 bg-black bg-center bg-no-repeat bg-cover bg-black-home md:space-y-12 md:pt-48 lg:pt-40 2xl:pt-44">
-            <div class="mx-auto fr-container">
+            class="w-full space-y-2 bg-black bg-black-home bg-cover bg-center bg-no-repeat pt-20 md:space-y-12 md:pt-48 lg:pt-40 2xl:pt-44">
+            <div class="fr-container mx-auto">
                 <video
                     autoplay
                     muted
@@ -26,7 +26,7 @@ const themeStore = useThemeStore();
                     Your browser does not support HTML5 video.
                 </video>
             </div>
-            <div class="w-full h-20 shadow-up-black"></div>
+            <div class="shadow-up-black h-20 w-full"></div>
         </div>
         <HomeIntroProduct :data="data" />
     </div>
@@ -34,14 +34,14 @@ const themeStore = useThemeStore();
     <!-- === Cappuccino Theme === -->
     <div v-if="themeStore.theme == 'cappuccino'">
         <div
-            class="relative w-full py-20 space-y-12 overflow-hidden bg-fr-yellow pt-14 md:space-y-20 md:pt-28 lg:pt-20 xl:py-32 2xl:py-24">
+            class="relative w-full space-y-12 overflow-hidden bg-fr-yellow py-20 pt-14 md:space-y-20 md:pt-28 lg:pt-20 xl:py-32 2xl:py-24">
             <img
                 width="auto"
                 height="auto"
-                class="absolute -left-24 top-36 scale-[1.75] sm:scale-[1.5] md:-left-20 md:scale-[1.25] md:top-40 lg:-left-24 lg:scale-[1.2] lg:top-28 xl:top-40 xl:-left-32 2xl:scale-[1.15] 2xl:-left-[120px] 2xl:rotate-[3deg] 2xl:top-20 min-[1950px]:scale-100 min-[1950px]:w-[1800px] min-[1950px]:top-24 min-[1950px]:left-1/2 min-[1950px]:-translate-x-1/2"
+                class="absolute -left-24 top-36 scale-[1.75] sm:scale-[1.5] md:-left-20 md:top-40 md:scale-[1.25] lg:-left-24 lg:top-28 lg:scale-[1.2] xl:-left-32 xl:top-40 2xl:-left-[120px] 2xl:top-20 2xl:rotate-[3deg] 2xl:scale-[1.15] min-[1950px]:left-1/2 min-[1950px]:top-24 min-[1950px]:w-[1800px] min-[1950px]:-translate-x-1/2 min-[1950px]:scale-100"
                 src="/assets/images/bg-cappuccino-home.svg"
                 alt="Background Cappuccino Home" />
-            <div class="mx-auto fr-container">
+            <div class="fr-container mx-auto">
                 <video
                     autoplay
                     muted

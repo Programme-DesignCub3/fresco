@@ -12,7 +12,7 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 const changeThemeHandler = () => {
     themeStore.setTheme(null);
     themeStore.setOpenMenu(false);
-}
+};
 
 window.addEventListener('scroll', () => {
     scroll.value = window.scrollY;
@@ -37,14 +37,11 @@ window.addEventListener('scroll', () => {
                   : 'bg-transparent md:bg-fr-yellow',
         ]">
         <div
-            class="relative flex flex-row justify-end mx-auto fr-container md:flex-col md:gap-4 md:text-center lg:flex-row">
-
+            class="fr-container relative mx-auto flex flex-row justify-end md:flex-col md:gap-4 md:text-center lg:flex-row">
             <!-- Logo Image -->
             <div
                 class="absolute left-4 top-4 z-[999] sm:left-0 md:static lg:absolute lg:-top-3">
-                <button
-                    v-if="url.pathname == '/'"
-                    @click="changeThemeHandler">
+                <button v-if="url.pathname == '/'" @click="changeThemeHandler">
                     <img
                         width="auto"
                         height="auto"
@@ -66,7 +63,9 @@ window.addEventListener('scroll', () => {
             <div
                 class="menu cross menu--2 absolute right-4 top-4 z-[999] h-[50px] w-[50px] rounded-full bg-fr-red sm:right-0 md:hidden">
                 <label class="h-[50px] w-[50px] rounded-full">
-                    <input @change="themeStore.setOpenMenu(!themeStore.openMenu)" type="checkbox" />
+                    <input
+                        @change="themeStore.setOpenMenu(!themeStore.openMenu)"
+                        type="checkbox" />
                     <svg
                         viewBox="0 0 100 100"
                         xmlns="http://www.w3.org/2000/svg">
@@ -145,83 +144,103 @@ window.addEventListener('scroll', () => {
                         >
                     </li>
                 </ul>
-                <div class="px-8 gap-x-1.5 mt-8 flex md:hidden">
+                <div class="mt-8 flex gap-x-1.5 px-8 md:hidden">
                     <!-- Facebook -->
                     <a
-                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
                         :class="
-                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                            themeStore.theme == 'black'
+                                ? 'bg-fr-yellow'
+                                : 'bg-fr-green'
                         "
                         :href="data.facebook_link ? data.facebook_link : '#'"
                         target="_blank">
                         <v-icon
-                            class="pt-2 h-9 w-9"
+                            class="h-9 w-9 pt-2"
                             :class="
-                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                                themeStore.theme == 'black'
+                                    ? 'text-fr-black'
+                                    : 'text-white'
                             "
                             name="fa-facebook-f" />
                     </a>
 
                     <!-- Instagram -->
                     <a
-                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
                         :class="
-                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                            themeStore.theme == 'black'
+                                ? 'bg-fr-yellow'
+                                : 'bg-fr-green'
                         "
                         :href="data.instagram_link ? data.instagram_link : '#'"
                         target="_blank">
                         <v-icon
-                            class="p-1 h-9 w-9"
+                            class="h-9 w-9 p-1"
                             :class="
-                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                                themeStore.theme == 'black'
+                                    ? 'text-fr-black'
+                                    : 'text-white'
                             "
                             name="fa-instagram" />
                     </a>
 
                     <!-- Twitter -->
                     <a
-                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
                         :class="
-                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                            themeStore.theme == 'black'
+                                ? 'bg-fr-yellow'
+                                : 'bg-fr-green'
                         "
                         :href="data.x_link ? data.x_link : '#'"
                         target="_blank">
                         <v-icon
                             class="h-9 w-9 p-1.5"
                             :class="
-                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                                themeStore.theme == 'black'
+                                    ? 'text-fr-black'
+                                    : 'text-white'
                             "
                             name="fa-twitter" />
                     </a>
 
                     <!-- Tiktok -->
                     <a
-                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
                         :class="
-                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                            themeStore.theme == 'black'
+                                ? 'bg-fr-yellow'
+                                : 'bg-fr-green'
                         "
                         :href="data.tiktok_link ? data.tiktok_link : '#'"
                         target="_blank">
                         <v-icon
                             class="h-9 w-9 p-1.5"
                             :class="
-                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                                themeStore.theme == 'black'
+                                    ? 'text-fr-black'
+                                    : 'text-white'
                             "
                             name="fa-tiktok" />
                     </a>
 
                     <!-- Youtube -->
                     <a
-                        class="transition-all duration-100 ease-in-out rounded-lg box-shadow h-9 w-9 hover:scale-110"
+                        class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
                         :class="
-                            themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+                            themeStore.theme == 'black'
+                                ? 'bg-fr-yellow'
+                                : 'bg-fr-green'
                         "
                         :href="data.youtube_link ? data.youtube_link : '#'"
                         target="_blank">
                         <v-icon
                             class="h-9 w-9 p-1.5"
                             :class="
-                                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                                themeStore.theme == 'black'
+                                    ? 'text-fr-black'
+                                    : 'text-white'
                             "
                             name="fa-youtube" />
                     </a>
@@ -235,7 +254,7 @@ window.addEventListener('scroll', () => {
                 class="float-animate fixed bottom-4 right-4 z-[99999] cursor-pointer overflow-hidden rounded-full border-[5px] border-white shadow-lg transition-transform hover:scale-105 md:absolute md:bottom-auto md:right-10 md:top-5 xl:bottom-auto xl:right-24 xl:top-2/4"
                 v-if="themeStore.theme == 'black'">
                 <div
-                    class="flex items-center justify-center w-20 h-20 p-2 bg-fr-yellow lg:h-24 lg:w-24"
+                    class="flex h-20 w-20 items-center justify-center bg-fr-yellow p-2 lg:h-24 lg:w-24"
                     @click="enableCustomLayout('cappuccino')">
                     <img
                         width="auto"
@@ -264,7 +283,6 @@ window.addEventListener('scroll', () => {
                 </div>
             </div>
         </Transition>
-
     </header>
 </template>
 

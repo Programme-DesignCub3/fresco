@@ -20,7 +20,7 @@ const swiperOption = {
     loop: true,
     modules: [Pagination],
     autoplay: {
-        delay: 5000
+        delay: 5000,
     },
     pagination: {
         clickable: true,
@@ -49,15 +49,14 @@ watch(theme, () => {
 <template>
     <div
         v-if="themeStore.theme != undefined || themeStore.theme != null"
-        class="transition-all duration-700 ease-in-out post-feed"
+        class="post-feed transition-all duration-700 ease-in-out"
         :class="themeStore.theme">
-        <div class="w-full px-4 py-10 mx-auto fr-container md:px-0 md:py-24">
+        <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-24">
             <div
                 class="flex flex-col gap-y-10 lg:flex-row lg:gap-x-10 lg:gap-y-0">
                 <!-- === Activities === -->
                 <div
                     class="w-full transition-all duration-700 ease-in-out lg:w-1/2 xl:w-2/5">
-
                     <!-- Title -->
                     <h2
                         class="text-[40px] font-bold leading-none"
@@ -79,12 +78,16 @@ watch(theme, () => {
                         "></div>
 
                     <!-- Black Activity Slider -->
-                    <div v-if="themeStore.theme == 'black'" class="swiper" ref="feed">
+                    <div
+                        v-if="themeStore.theme == 'black'"
+                        class="swiper"
+                        ref="feed">
                         <div class="swiper-wrapper">
-                            <div v-for="(d, i) in activity" :key="i" class="swiper-slide">
-                                <a
-                                    :href="d.link"
-                                    target="_blank">
+                            <div
+                                v-for="(d, i) in activity"
+                                :key="i"
+                                class="swiper-slide">
+                                <a :href="d.link" target="_blank">
                                     <img
                                         width="auto"
                                         height="auto"
@@ -105,12 +108,16 @@ watch(theme, () => {
                     </div>
 
                     <!-- Cappuccino Activity Slider -->
-                    <div v-if="themeStore.theme == 'cappuccino'" class="swiper" ref="feed">
+                    <div
+                        v-if="themeStore.theme == 'cappuccino'"
+                        class="swiper"
+                        ref="feed">
                         <div class="swiper-wrapper">
-                            <div v-for="(d, i) in activity" :key="i" class="swiper-slide">
-                                <a
-                                    :href="d.link"
-                                    target="_blank">
+                            <div
+                                v-for="(d, i) in activity"
+                                :key="i"
+                                class="swiper-slide">
+                                <a :href="d.link" target="_blank">
                                     <img
                                         width="auto"
                                         height="auto"
@@ -137,8 +144,7 @@ watch(theme, () => {
                 </div>
 
                 <!-- === Articles === -->
-                <div class="flex flex-col w-full lg:w-1/2 xl:w-3/5">
-
+                <div class="flex w-full flex-col lg:w-1/2 xl:w-3/5">
                     <!-- Title -->
                     <div>
                         <h2
@@ -160,30 +166,28 @@ watch(theme, () => {
                     </div>
 
                     <!-- List Articles -->
-                    <div class="flex flex-col flex-grow gap-6">
+                    <div class="flex flex-grow flex-col gap-6">
                         <div v-for="(d, i) in article" :key="i">
                             <div
-                                class="flex flex-col p-5 space-x-0 space-y-6 transition-all duration-700 ease-in-out box-shadow sm:flex-row sm:space-x-6 sm:space-y-0 lg:flex-col lg:space-x-0 lg:space-y-6 xl:flex-row xl:space-x-6 xl:space-y-0"
+                                class="box-shadow flex flex-col space-x-0 space-y-6 p-5 transition-all duration-700 ease-in-out sm:flex-row sm:space-x-6 sm:space-y-0 lg:flex-col lg:space-x-0 lg:space-y-6 xl:flex-row xl:space-x-6 xl:space-y-0"
                                 :class="
                                     themeStore.theme == 'black'
                                         ? 'home-article-gradient'
                                         : 'bg-fr-darker-red'
                                 ">
-
                                 <!-- Image -->
                                 <div class="flex-grow">
                                     <img
                                         width="auto"
                                         height="auto"
-                                        class="aspect-square object-cover object-center w-full sm:w-[220px] lg:w-full xl:w-[220px]"
+                                        class="aspect-square w-full object-cover object-center sm:w-[220px] lg:w-full xl:w-[220px]"
                                         :src="d.image"
                                         :alt="d.title" />
                                 </div>
 
                                 <!-- Content -->
                                 <div
-                                    class="flex flex-col w-full gap-y-3 lg:w-full xl:w-3/5 xl:space-y-0">
-
+                                    class="flex w-full flex-col gap-y-3 lg:w-full xl:w-3/5 xl:space-y-0">
                                     <!-- Title -->
                                     <h3
                                         class="text-2xl font-bold"
@@ -203,14 +207,13 @@ watch(theme, () => {
                                             themeStore.theme == 'black'
                                                 ? 'text-black'
                                                 : 'text-white'
-                                        ">
-                                    </p>
+                                        "></p>
 
                                     <!-- Read More Button -->
                                     <div>
                                         <a
                                             :href="'artikel/' + d.slug"
-                                            class="px-6 py-2.5 text-sm font-medium text-white transition-all duration-700 ease-in-out rounded-lg"
+                                            class="rounded-lg px-6 py-2.5 text-sm font-medium text-white transition-all duration-700 ease-in-out"
                                             :class="
                                                 themeStore.theme == 'black'
                                                     ? 'bg-fr-red hover:border-fr-darker-red hover:bg-fr-darker-red'
@@ -222,7 +225,6 @@ watch(theme, () => {
                                                 name="fa-chevron-right" />
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -244,7 +246,6 @@ watch(theme, () => {
                                 name="fa-chevron-right" />
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>

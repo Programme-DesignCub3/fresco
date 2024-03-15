@@ -40,7 +40,7 @@ import {
     FaChevronRight,
     FaCheckCircle,
     FaTimes,
-    FaTimesCircle
+    FaTimesCircle,
 } from 'oh-vue-icons/icons';
 import '@/misc/plugins';
 import '@/bootstrap';
@@ -60,7 +60,7 @@ addIcons(
     FaChevronRight,
     FaCheckCircle,
     FaTimes,
-    FaTimesCircle
+    FaTimesCircle,
 );
 
 const app = createApp({});
