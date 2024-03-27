@@ -1,9 +1,10 @@
 node_modules
 vendor
-package.json
-package-lock.json
-composer.json
-composer.lock
+# package.json
+# package-lock.json
+# composer.json
+# composer.lock
 .env
 .env.example
+storage
 public

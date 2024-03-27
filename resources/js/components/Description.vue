@@ -1,7 +1,7 @@
 <script setup>
 import {
-    splitDescriptionBlack,
-    splitDescriptionCappuccino,
+  splitDescriptionBlack,
+  splitDescriptionCappuccino,
 } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/user-theme.js';
 import { onMounted, watch, ref } from 'vue';
@@ -16,161 +16,157 @@ const manifest = ref(null);
 const delayAos = ref(0);
 
 const splitterText = (target) => {
-    let split = new SplitType(target, {
-        types: 'lines',
-        tagName: 'span',
-    });
-    let lines = split.lines;
-    let delay = 100;
+  let split = new SplitType(target, {
+    types: 'lines',
+    tagName: 'span',
+  });
+  let lines = split.lines;
+  let delay = 100;
 
-    for (let index = 0; index < lines.length; index++) {
-        let element = target.children[index];
-        delay += 100;
-        themeStore.theme == 'black'
-            ? splitDescriptionBlack(element, index, delay, 1, target)
-            : splitDescriptionCappuccino(element, index, delay, 1, target);
-    }
+  for (let index = 0; index < lines.length; index++) {
+    let element = target.children[index];
+    delay += 100;
+    themeStore.theme == 'black'
+      ? splitDescriptionBlack(element, index, delay, 1, target)
+      : splitDescriptionCappuccino(element, index, delay, 1, target);
+  }
 
-    delayAos.value = delay + 50;
+  delayAos.value = delay + 50;
 };
 
 onMounted(() => {
-    if (manifest.value != null) {
-        for (let i = 0; i < manifest.value.length; i++) {
-            splitterText(manifest.value[i]);
-        }
+  if (manifest.value != null) {
+    for (let i = 0; i < manifest.value.length; i++) {
+      splitterText(manifest.value[i]);
     }
+  }
 
-    setTimeout(() => {
-        AOS.refresh();
-    }, 10);
+  setTimeout(() => {
+    AOS.refresh();
+  }, 10);
 });
 
 watch(theme, () => {
-    setTimeout(() => {
-        for (let i = 0; i < manifest.value.length; i++) {
-            splitterText(manifest.value[i]);
-        }
-    }, 10);
+  setTimeout(() => {
+    for (let i = 0; i < manifest.value.length; i++) {
+      splitterText(manifest.value[i]);
+    }
+  }, 10);
 });
 
 window.addEventListener('resize', () => {
-    for (let i = 0; i < manifest.value.length; i++) {
-        splitterText(manifest.value[i]);
-    }
+  for (let i = 0; i < manifest.value.length; i++) {
+    splitterText(manifest.value[i]);
+  }
 });
 </script>
 
 <template>
-    <template v-if="themeStore.theme != undefined || themeStore.theme != null">
-        <!-- === Black Coffee === -->
+  <template v-if="themeStore.theme != undefined || themeStore.theme != null">
+    <!-- === Black Coffee === -->
+    <div
+      v-if="themeStore.theme == 'black'"
+      v-for="(d, i) in data.black_desc_list"
+      :key="i"
+      class="hidden overflow-x-hidden lg:block">
+      <div class="grid grid-cols-2">
         <div
-            v-if="themeStore.theme == 'black'"
-            v-for="(d, i) in data.black_desc_list"
-            :key="i"
-            class="hidden overflow-x-hidden lg:block">
-            <div class="grid grid-cols-2">
-                <div
-                    :class="
-                        themeStore.theme == 'black'
-                            ? d.black_desc_position == 'right' && 'order-last'
-                            : d.cappuccino_desc_position == 'right' &&
-                              'order-last'
-                    ">
-                    <div class="relative w-full bg-fr-black">
-                        <!-- Image -->
-                        <img
-                            width="auto"
-                            height="auto"
-                            :src="d.black_desc_image"
-                            :alt="d.black_desc_title" />
-                    </div>
-                </div>
-
-                <!-- Text -->
-                <div
-                    class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-black px-16 transition-all duration-700 ease-in-out"
-                    :class="d.black_desc_position == 'right' && 'items-end'">
-                    <div class="w-full 2xl:w-[600px]">
-                        <h2
-                            class="text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
-                            ref="manifest">
-                            {{ d.black_desc_title }}
-                        </h2>
-                        <div
-                            data-aos="fade-down"
-                            data-aos-offset="0"
-                            :data-aos-delay="delayAos"
-                            class="my-4 h-[4px] w-[60px] rounded-full bg-fr-red"></div>
-                        <p
-                            data-aos="fade-down"
-                            data-aos-offset="0"
-                            :data-aos-delay="delayAos"
-                            class="font-medium leading-8 text-white md:text-lg lg:text-xl">
-                            {{ d.black_desc_explanation }}
-                        </p>
-                    </div>
-                </div>
-            </div>
+          :class="
+            themeStore.theme == 'black'
+              ? d.black_desc_position == 'right' && 'order-last'
+              : d.cappuccino_desc_position == 'right' && 'order-last'
+          ">
+          <div class="relative w-full bg-fr-black">
+            <!-- Image -->
+            <img
+              width="auto"
+              height="auto"
+              :src="d.black_desc_image"
+              :alt="d.black_desc_title" />
+          </div>
         </div>
 
-        <!-- === Cappuccino === -->
+        <!-- Text -->
         <div
-            v-if="themeStore.theme == 'cappuccino'"
-            v-for="(d, i) in data.cappuccino_desc_list"
-            :key="i"
-            class="hidden overflow-x-hidden lg:block">
-            <div class="grid grid-cols-2">
-                <div
-                    :class="
-                        themeStore.theme == 'black'
-                            ? d.black_desc_position == 'right' && 'order-last'
-                            : d.cappuccino_desc_position == 'right' &&
-                              'order-last'
-                    ">
-                    <div class="relative w-full bg-fr-yellow">
-                        <!-- Image -->
-                        <img
-                            width="auto"
-                            height="auto"
-                            :src="d.cappuccino_desc_image"
-                            :alt="d.cappuccino_desc_title" />
-                    </div>
-                </div>
-
-                <!-- Text -->
-                <div
-                    class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-yellow px-16 transition-all duration-700 ease-in-out"
-                    :class="
-                        d.cappuccino_desc_position == 'right' && 'items-end'
-                    ">
-                    <div class="w-full 2xl:w-[600px]">
-                        <h2
-                            class="text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
-                            ref="manifest">
-                            {{ d.cappuccino_desc_title }}
-                        </h2>
-                        <div
-                            data-aos="fade-down"
-                            data-aos-offset="0"
-                            :data-aos-delay="delayAos"
-                            class="my-4 h-[4px] w-[60px] rounded-full bg-fr-red"></div>
-                        <p
-                            data-aos="fade-down"
-                            data-aos-offset="0"
-                            :data-aos-delay="delayAos"
-                            class="font-medium leading-8 text-black md:text-lg lg:text-xl">
-                            {{ d.cappuccino_desc_explanation }}
-                        </p>
-                    </div>
-                </div>
-            </div>
+          class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-black px-16 transition-all duration-700 ease-in-out"
+          :class="d.black_desc_position == 'right' && 'items-end'">
+          <div class="w-full 2xl:w-[600px]">
+            <h2
+              class="text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
+              ref="manifest">
+              {{ d.black_desc_title }}
+            </h2>
+            <div
+              data-aos="fade-down"
+              data-aos-offset="0"
+              :data-aos-delay="delayAos"
+              class="my-4 h-[4px] w-[60px] rounded-full bg-fr-red"></div>
+            <p
+              data-aos="fade-down"
+              data-aos-offset="0"
+              :data-aos-delay="delayAos"
+              class="font-medium leading-8 text-white md:text-lg lg:text-xl">
+              {{ d.black_desc_explanation }}
+            </p>
+          </div>
         </div>
-    </template>
+      </div>
+    </div>
+
+    <!-- === Cappuccino === -->
+    <div
+      v-if="themeStore.theme == 'cappuccino'"
+      v-for="(d, i) in data.cappuccino_desc_list"
+      :key="i"
+      class="hidden overflow-x-hidden lg:block">
+      <div class="grid grid-cols-2">
+        <div
+          :class="
+            themeStore.theme == 'black'
+              ? d.black_desc_position == 'right' && 'order-last'
+              : d.cappuccino_desc_position == 'right' && 'order-last'
+          ">
+          <div class="relative w-full bg-fr-yellow">
+            <!-- Image -->
+            <img
+              width="auto"
+              height="auto"
+              :src="d.cappuccino_desc_image"
+              :alt="d.cappuccino_desc_title" />
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div
+          class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-yellow px-16 transition-all duration-700 ease-in-out"
+          :class="d.cappuccino_desc_position == 'right' && 'items-end'">
+          <div class="w-full 2xl:w-[600px]">
+            <h2
+              class="text-[40px] font-bold leading-none sm:text-[50px] xl:text-[60px] 2xl:text-[80px]"
+              ref="manifest">
+              {{ d.cappuccino_desc_title }}
+            </h2>
+            <div
+              data-aos="fade-down"
+              data-aos-offset="0"
+              :data-aos-delay="delayAos"
+              class="my-4 h-[4px] w-[60px] rounded-full bg-fr-red"></div>
+            <p
+              data-aos="fade-down"
+              data-aos-offset="0"
+              :data-aos-delay="delayAos"
+              class="font-medium leading-8 text-black md:text-lg lg:text-xl">
+              {{ d.cappuccino_desc_explanation }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 </template>
 
 <style scoped>
 .text-shadow {
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
 }
 </style>
