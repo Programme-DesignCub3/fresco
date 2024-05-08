@@ -6,7 +6,7 @@ import {
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import { Navigation } from 'swiper/modules';
 import SplitType from 'split-type';
 import AOS from 'aos';
@@ -102,6 +102,7 @@ window.addEventListener('resize', () => {
           class="swiper-slide">
           <div class="grid grid-rows-1">
             <img
+              class="aspect-square object-cover object-center"
               width="auto"
               height="auto"
               :src="d.black_desc_image"
@@ -114,7 +115,7 @@ window.addEventListener('resize', () => {
                   class="fr-description-slider-prev absolute -top-4 left-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                   :class="
                     themeStore.theme == 'black'
-                      ? 'bg-fr-yellow text-black'
+                      ? 'bg-fr-yellow text-fr-black'
                       : 'bg-fr-red text-white'
                   ">
                   <v-icon name="fa-chevron-left" />
@@ -125,7 +126,7 @@ window.addEventListener('resize', () => {
                   class="fr-description-slider-next absolute -top-4 right-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                   :class="
                     themeStore.theme == 'black'
-                      ? 'bg-fr-yellow text-black'
+                      ? 'bg-fr-yellow text-fr-black'
                       : 'bg-fr-red text-white'
                   ">
                   <v-icon name="fa-chevron-right" />
@@ -160,6 +161,7 @@ window.addEventListener('resize', () => {
           class="swiper-slide">
           <div class="grid grid-rows-1">
             <img
+              class="aspect-square object-cover object-center"
               width="auto"
               height="auto"
               :src="d.cappuccino_desc_image"
@@ -172,7 +174,7 @@ window.addEventListener('resize', () => {
                   class="fr-description-slider-prev absolute -top-4 left-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                   :class="
                     themeStore.theme == 'black'
-                      ? 'bg-fr-yellow text-black'
+                      ? 'bg-fr-yellow text-fr-black'
                       : 'bg-fr-red text-white'
                   ">
                   <v-icon name="fa-chevron-left" />
@@ -183,7 +185,7 @@ window.addEventListener('resize', () => {
                   class="fr-description-slider-next absolute -top-4 right-0 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
                   :class="
                     themeStore.theme == 'black'
-                      ? 'bg-fr-yellow text-black'
+                      ? 'bg-fr-yellow text-fr-black'
                       : 'bg-fr-red text-white'
                   ">
                   <v-icon name="fa-chevron-right" />
@@ -197,7 +199,7 @@ window.addEventListener('resize', () => {
               <p
                 data-aos="fade-down"
                 data-aos-offset="0"
-                class="text-center font-medium leading-8 text-black">
+                class="text-center font-medium leading-8 text-fr-black">
                 {{ d.cappuccino_desc_explanation }}
               </p>
             </div>

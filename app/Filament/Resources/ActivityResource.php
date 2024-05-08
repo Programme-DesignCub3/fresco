@@ -2,30 +2,29 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ActivityResource\Pages;
-use App\Filament\Resources\ActivityResource\RelationManagers;
+use Filament\Tables;
 use App\Models\Activity;
-use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Awcodes\Curator\Components\Tables\CuratorColumn;
-use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ActivityResource\Pages;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
+use App\Rules\MaxWord;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 
 class ActivityResource extends Resource
 {
-    protected static ?int $navigationSort = 2;
-
     protected static ?string $navigationGroup = 'Content';
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $model = Activity::class;
 
@@ -35,41 +34,70 @@ class ActivityResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()
-                    ->schema([
-                        Grid::make([
-                            'default' => 1,
-                            'sm' => 2,
-                            'md' => 4,
-                            'lg' => 6,
-                            'xl' => 8,
-                            '2xl' => 12,
-                        ])->schema([
-                            CuratorPicker::make('image')
-                                ->columnSpan([
-                                    'md' => 2,
-                                    'lg' => 3,
-                                    'xl' => 4,
-                                    '2xl' => 6,
+                Grid::make([
+                    'default' => 1,
+                    'sm' => 2,
+                    'md' => 4,
+                    'lg' => 6,
+                    'xl' => 8,
+                    '2xl' => 12,
+                ])
+                ->schema([
+                    Section::make()
+                        ->columnSpan([
+                            'md' => 3,
+                            'lg' => 4,
+                            'xl' => 6,
+                            '2xl' => 8
+                        ])
+                        ->schema([
+                            TextInput::make('title')
+                                ->label('Title (Optional)')
+                                ->rules([new MaxWord('Title', 10, 'en')]),
+                            RichEditor::make('description')
+                                ->label('Description (Optional)')
+                                ->toolbarButtons([
+                                    'bold',
+                                    'italic',
+                                    'underline',
+                                    'strike',
+                                    'undo',
+                                    'redo'
+                                ]),
+                            Repeater::make('links')
+                                ->minItems(1)
+                                ->schema([
+                                    TextInput::make('link')
+                                        ->label('Link')
+                                        ->url(true)
+                                        ->prefixIcon('heroicon-c-link')
+                                        ->helperText('Link related to the activity.')
+                                        ->required(),
                                 ])
+                                ->required()
+                        ]),
+                    Section::make()
+                        ->columnSpan([
+                            'md' => 1,
+                            'lg' => 2,
+                            'xl' => 2,
+                            '2xl' => 4
+                        ])
+                        ->schema([
+                            CuratorPicker::make('image')
                                 ->maxSize(2048)
                                 ->label('Image')
+                                ->maxItems(1)
+                                ->acceptedFileTypes(['image/*'])
+                                ->helperText('Maximum 2 MB.')
                                 ->required(),
                             CuratorPicker::make('image_portrait')
-                                ->columnSpan([
-                                    'md' => 2,
-                                    'lg' => 3,
-                                    'xl' => 4,
-                                    '2xl' => 6,
-                                ])
                                 ->maxSize(2048)
-                                ->label('Image Portrait (Optional)'),
-                        ]),
-                        TextInput::make('link')
-                            ->label('Link')
-                            ->suffixIcon('heroicon-c-link')
-                            ->required(),
-                        Hidden::make('sort')
+                                ->acceptedFileTypes(['image/*'])
+                                ->maxItems(1)
+                                ->helperText('Maximum 2 MB.')
+                                ->label('Image Portrait (Optional)')
+                        ])
                     ])
             ]);
     }
@@ -81,14 +109,13 @@ class ActivityResource extends Resource
                 CuratorColumn::make('image')
                     ->label('Image')
                     ->width(120),
-                IconColumn::make('image_portrait')
-                    ->label('Image Portrait')
-                    ->boolean()
-                    ->trueIcon('heroicon-o-check-badge')
-                    ->falseIcon('heroicon-o-x-mark'),
-                TextColumn::make('link')
-                    ->label('Link')
-                    ->limit(60)
+                TextColumn::make('title')
+                    ->label('Title')
+                    ->limit(50),
+                TextColumn::make('description')
+                    ->label('Description')
+                    ->html()
+                    ->limit(50),
             ])
             ->filters([
                 //
@@ -107,10 +134,19 @@ class ActivityResource extends Resource
             ]);
     }
 
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageActivities::route('/'),
+            'index' => Pages\ListActivities::route('/'),
+            'create' => Pages\CreateActivity::route('/create'),
+            'edit' => Pages\EditActivity::route('/{record}/edit'),
         ];
     }
 }

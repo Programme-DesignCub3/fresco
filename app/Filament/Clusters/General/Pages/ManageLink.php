@@ -4,7 +4,6 @@ namespace App\Filament\Clusters\General\Pages;
 
 use App\Filament\Clusters\General;
 use App\Settings\GeneralSettings;
-use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -57,7 +56,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('facebook_alias')
                                             ->label('Alias'),
                                         TextInput::make('facebook_link')
-                                            ->suffixIcon('heroicon-c-link')
+                                            ->prefixIcon('heroicon-c-link')
                                             ->label('Link'),
                                     ]),
                                 Fieldset::make('Instagram')
@@ -66,7 +65,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('instagram_alias')
                                             ->label('Alias'),
                                         TextInput::make('instagram_link')
-                                            ->suffixIcon('heroicon-c-link')
+                                            ->prefixIcon('heroicon-c-link')
                                             ->label('Link'),
                                     ]),
                                 Fieldset::make('X (Twitter)')
@@ -75,7 +74,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('x_alias')
                                             ->label('Alias'),
                                         TextInput::make('x_link')
-                                            ->suffixIcon('heroicon-c-link')
+                                            ->prefixIcon('heroicon-c-link')
                                             ->label('Link'),
                                     ]),
                                 Fieldset::make('Tiktok')
@@ -84,7 +83,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('tiktok_alias')
                                             ->label('Alias'),
                                         TextInput::make('tiktok_link')
-                                            ->suffixIcon('heroicon-c-link')
+                                            ->prefixIcon('heroicon-c-link')
                                             ->label('Link'),
                                     ]),
                                 Fieldset::make('YouTube')
@@ -93,7 +92,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('youtube_alias')
                                             ->label('Alias'),
                                         TextInput::make('youtube_link')
-                                            ->suffixIcon('heroicon-c-link')
+                                            ->prefixIcon('heroicon-c-link')
                                             ->label('Link'),
                                     ])
                             ]),
@@ -112,7 +111,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('line_alias')
                                             ->label('Alias'),
                                         TextInput::make('line_link')
-                                            ->suffixIcon('heroicon-m-user-plus')
+                                            ->prefixIcon('heroicon-m-user-plus')
                                             ->label('Link'),
                                     ]),
                                 Fieldset::make('Email')
@@ -121,7 +120,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('email_alias')
                                             ->label('Alias'),
                                         TextInput::make('email_link')
-                                            ->suffixIcon('heroicon-m-user-plus')
+                                            ->prefixIcon('heroicon-m-user-plus')
                                             ->label('Link'),
                                     ]),
                                 Fieldset::make('Phone')
@@ -130,7 +129,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('phone_alias')
                                             ->label('Alias'),
                                         TextInput::make('phone_link')
-                                            ->suffixIcon('heroicon-m-user-plus')
+                                            ->prefixIcon('heroicon-m-user-plus')
                                             ->label('Link'),
                                     ]),
                                 Fieldset::make('WhatsApp')
@@ -139,7 +138,7 @@ class ManageLink extends SettingsPage
                                         TextInput::make('whatsapp_alias')
                                             ->label('Alias'),
                                         TextInput::make('whatsapp_link')
-                                            ->suffixIcon('heroicon-m-user-plus')
+                                            ->prefixIcon('heroicon-m-user-plus')
                                             ->label('Link'),
                                     ]),
                             ]),

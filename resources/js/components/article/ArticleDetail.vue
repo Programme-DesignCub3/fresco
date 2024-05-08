@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 
 const themeStore = useThemeStore();
 </script>

@@ -2,7 +2,7 @@
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { splitBlack, splitCappuccino } from '@/misc/utils.js';
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import { onMounted, ref, watch } from 'vue';
 import { Navigation } from 'swiper/modules';
 import SplitType from 'split-type';
@@ -26,8 +26,8 @@ const swiperOption = {
   loop: true,
   modules: [Navigation],
   navigation: {
-    nextEl: '.fr-intro-slider-next',
-    prevEl: '.fr-intro-slider-prev',
+    nextEl: '.home-intro-product .next',
+    prevEl: '.home-intro-product .prev',
   },
 };
 
@@ -67,10 +67,8 @@ const splitterStroke = () => {
 
 onMounted(() => {
   initSwiper();
-
   splitterText(first.value);
   splitterText(second.value);
-
   splitterStroke();
 
   setTimeout(() => {
@@ -80,10 +78,8 @@ onMounted(() => {
 
 watch(theme, () => {
   initSwiper();
-
   splitterText(first.value);
   splitterText(second.value);
-
   splitterStroke();
 
   setTimeout(() => {
@@ -94,138 +90,106 @@ watch(theme, () => {
 window.addEventListener('resize', () => {
   splitterText(first.value);
   splitterText(second.value);
-
   splitterStroke();
 });
 </script>
 
 <template>
+  <!-- Home Intro Product -->
   <div
     v-if="
       themeStore.getTheme().value != undefined &&
       themeStore.getTheme().value != null
     "
-    class="introduction relative overflow-x-hidden py-10 pb-10 pt-0 transition-all duration-700 ease-in-out lg:py-24"
+    class="home-intro-product"
     :class="themeStore.theme">
-    <!-- Navigation Swiper (Arrow) -->
-    <div
-      class="fr-intro-slider-prev absolute left-[2%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:left-[4%] md:left-[6%] lg:left-[8%] 2xl:left-[10%]"
-      :class="
-        themeStore.theme == 'black'
-          ? 'border-2 border-white bg-transparent text-white'
-          : 'border-2 border-black text-black'
-      ">
+    <!-- Arrow Slider -->
+    <div class="prev">
       <v-icon name="fa-chevron-left" />
     </div>
-    <div
-      class="fr-intro-slider-next absolute right-[2%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:right-[4%] md:right-[6%] lg:right-[8%] 2xl:right-[10%]"
-      :class="
-        themeStore.theme == 'black'
-          ? 'border-2 border-white bg-transparent text-white'
-          : 'border-2 border-black text-black'
-      ">
+    <div class="next">
       <v-icon name="fa-chevron-right" />
     </div>
-
-    <div class="fr-container relative mx-auto w-full px-4 md:px-0">
+    <!-- Home Intro Wrapper -->
+    <div class="home-intro-product-wrapper">
       <div class="swiper" ref="home">
         <div class="swiper-wrapper">
-          <!-- === Black Theme === -->
+          <!-- Black Theme -->
           <template v-if="themeStore.theme == 'black'">
             <!-- First Slide -->
-            <div class="swiper-slide">
-              <div
-                class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
-                <div class="mb-10 md:mb-0 md:w-1/4">
-                  <!-- Title -->
-                  <div id="black-anchor">
-                    <h1
-                      class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
-                      ref="first">
-                      {{ data.black_intro_title }}
-                    </h1>
-                  </div>
+            <div class="swiper-slide space-y-4 md:space-y-8">
+              <div class="black-slider">
+                <!-- Title (Black) -->
+                <div class="heading-wrapper" id="black-anchor">
+                  <h1 ref="first">
+                    {{ data.black_intro_title }}
+                  </h1>
                 </div>
-                <!-- Image -->
-                <div class="bg-glow-yellow w-full">
+                <!-- Image (Black) -->
+                <div class="image-wrapper">
                   <img
                     width="auto"
                     height="auto"
                     :src="data.black_intro_image"
                     :alt="data.black_intro_title"
-                    class="w-full"
                     data-aos-offset="0"
                     data-aos="zoom-in"
                     data-aos-delay="150" />
                 </div>
               </div>
-              <!-- Description -->
-              <div class="mt-12 overflow-y-hidden">
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                  data-aos-offset="0"
-                  class="flex justify-center text-center font-medium leading-8">
-                  <p
-                    v-html="data.black_intro_desc"
-                    class="text-white md:text-lg lg:text-xl"></p>
-                </div>
+              <!-- Description (Black) -->
+              <div
+                data-aos="fade-up"
+                data-aos-delay="200"
+                data-aos-offset="0"
+                class="desc-wrapper">
+                <p v-html="data.black_intro_desc"></p>
               </div>
             </div>
-
             <!-- Second Slide -->
-            <div class="swiper-slide">
-              <div
-                class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
-                <div class="mb-10 md:mb-0 md:w-1/4">
-                  <!-- Title -->
-                  <div id="black-anchor">
-                    <h1
-                      class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
-                      ref="second">
-                      {{ data.cappuccino_intro_title }}
-                    </h1>
-                  </div>
+            <div class="swiper-slide space-y-4 md:space-y-8">
+              <div class="black-slider">
+                <!-- Title (Black) -->
+                <div class="heading-wrapper" id="black-anchor">
+                  <h1
+                    class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px]"
+                    ref="second">
+                    {{ data.cappuccino_intro_title }}
+                  </h1>
                 </div>
-                <!-- Image -->
-                <div class="bg-glow-yellow w-full">
+                <!-- Image (Black) -->
+                <div class="image-wrapper">
                   <img
                     width="auto"
                     height="auto"
                     :src="data.cappuccino_intro_image"
                     :alt="data.cappuccino_intro_title"
-                    class="w-full"
                     data-aos-offset="0"
                     data-aos="zoom-in"
                     data-aos-delay="150" />
                 </div>
               </div>
-              <!-- Description -->
-              <div class="mt-12 overflow-y-hidden">
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                  data-aos-offset="0"
-                  class="flex justify-center text-center font-medium leading-8">
-                  <p
-                    v-html="data.cappuccino_intro_desc"
-                    class="text-white md:text-lg lg:text-xl"></p>
-                </div>
+              <!-- Description (Black) -->
+              <div
+                data-aos="fade-up"
+                data-aos-delay="200"
+                data-aos-offset="0"
+                class="desc-wrapper">
+                <p v-html="data.cappuccino_intro_desc"></p>
               </div>
             </div>
           </template>
-
-          <!-- === Cappuccino Theme === -->
+          <!-- Cappuccino Theme -->
           <template v-if="themeStore.theme == 'cappuccino'">
             <!-- First Slide -->
             <div class="swiper-slide p-2">
               <div
                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
                 <div class="mb-10 md:mb-0 md:w-1/4">
-                  <!-- Title -->
+                  <!-- Title (Cappuccino) -->
                   <div class="relative" id="cappuccino-anchor">
                     <h1
-                      class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
+                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px]"
                       ref="first">
                       {{ data.cappuccino_intro_title }}
                     </h1>
@@ -236,12 +200,12 @@ window.addEventListener('resize', () => {
                       data-aos-duration="1200"
                       data-aos-anchor="#cappuccino-anchor"
                       data-aos-offset="100"
-                      class="text-stroke absolute -left-1 -right-1 -top-1 text-center text-[45px] font-bold leading-none text-white sm:text-[50px] md:text-left md:text-[60px] lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-[80px] xl:text-[100px]">
+                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px] text-stroke absolute -left-1 -right-1 -top-1 text-white lg:-left-1.5 lg:-right-1.5 lg:-top-1.5">
                       {{ data.cappuccino_intro_title }}
                     </h2>
                   </div>
                 </div>
-                <!-- Image -->
+                <!-- Image (Cappuccino) -->
                 <div class="w-full">
                   <img
                     width="auto"
@@ -254,7 +218,7 @@ window.addEventListener('resize', () => {
                     data-aos-delay="150" />
                 </div>
               </div>
-              <!-- Description -->
+              <!-- Description (Cappuccino) -->
               <div class="mt-12 overflow-y-hidden">
                 <div
                   data-aos="fade-up"
@@ -262,21 +226,19 @@ window.addEventListener('resize', () => {
                   data-aos-offset="0"
                   class="flex justify-center text-center font-medium leading-8">
                   <p
-                    v-html="data.cappuccino_intro_desc"
-                    class="text-fr-black md:text-lg lg:text-xl"></p>
+                    v-html="data.cappuccino_intro_desc"></p>
                 </div>
               </div>
             </div>
-
             <!-- Second Slide -->
             <div class="swiper-slide p-2">
               <div
                 class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
                 <div class="mb-10 md:mb-0 md:w-1/4">
-                  <!-- Title -->
+                  <!-- Title (Cappuccino) -->
                   <div class="relative" id="cappuccino-anchor">
                     <h1
-                      class="text-center text-[45px] font-bold leading-none sm:text-[50px] md:text-left md:text-[60px] lg:text-[80px] xl:text-[100px]"
+                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px]"
                       ref="second">
                       {{ data.black_intro_title }}
                     </h1>
@@ -286,12 +248,12 @@ window.addEventListener('resize', () => {
                       data-aos-duration="1200"
                       data-aos-anchor="#cappuccino-anchor"
                       data-aos-offset="100"
-                      class="text-stroke absolute -left-1 -right-1 -top-1 text-center text-[45px] font-bold leading-none text-white sm:text-[50px] md:text-left md:text-[60px] lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-[80px] xl:text-[100px]">
+                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px] text-stroke absolute -left-1 -right-1 -top-1 text-white lg:-left-1.5 lg:-right-1.5 lg:-top-1.5">
                       {{ data.black_intro_title }}
                     </h2>
                   </div>
                 </div>
-                <!-- Image -->
+                <!-- Image (Cappuccino) -->
                 <div class="w-full">
                   <img
                     width="auto"
@@ -304,7 +266,7 @@ window.addEventListener('resize', () => {
                     data-aos-delay="150" />
                 </div>
               </div>
-              <!-- Description -->
+              <!-- Description (Cappuccino) -->
               <div class="mt-12 overflow-y-hidden">
                 <div
                   data-aos="fade-up"
@@ -312,8 +274,7 @@ window.addEventListener('resize', () => {
                   data-aos-offset="0"
                   class="flex justify-center text-center font-medium leading-8">
                   <p
-                    v-html="data.black_intro_desc"
-                    class="text-fr-black md:text-lg lg:text-xl"></p>
+                    v-html="data.black_intro_desc"></p>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 
 const { title, image, desc } = defineProps(['title', 'image', 'desc']);
 const themeStore = useThemeStore();
@@ -21,14 +21,14 @@ const themeStore = useThemeStore();
         <!-- Title -->
         <h3
           class="text-xl font-bold group-hover:text-white"
-          :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
+          :class="themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'">
           {{ title }}
         </h3>
 
         <!-- Excerpt -->
         <p
           class="font-medium group-hover:text-white"
-          :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
+          :class="themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'">
           {{ desc }}
         </p>
 
@@ -39,7 +39,7 @@ const themeStore = useThemeStore();
             class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2 text-xs font-medium text-white transition-all duration-300 ease-in-out group-hover:border md:text-sm"
             :class="
               themeStore.theme == 'black'
-                ? 'group-hover:border-fr-yellow group-hover:bg-fr-yellow group-hover:font-medium group-hover:text-black'
+                ? 'group-hover:border-fr-yellow group-hover:bg-fr-yellow group-hover:font-medium group-hover:text-fr-black'
                 : 'group-hover:border-fr-green group-hover:bg-fr-green group-hover:font-medium group-hover:text-white'
             ">
             READ MORE >

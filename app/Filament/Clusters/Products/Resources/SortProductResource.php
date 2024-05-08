@@ -4,17 +4,13 @@ namespace App\Filament\Clusters\Products\Resources;
 
 use App\Filament\Clusters\Products;
 use App\Filament\Clusters\Products\Resources\SortProductResource\Pages;
-use App\Filament\Clusters\Products\Resources\SortProductResource\RelationManagers;
 use App\Models\Product;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SortProductResource extends Resource
 {
@@ -23,6 +19,8 @@ class SortProductResource extends Resource
     protected static ?string $navigationLabel = 'Sort Products';
 
     protected static ?string $navigationIcon = 'heroicon-o-arrows-up-down';
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $model = Product::class;
 

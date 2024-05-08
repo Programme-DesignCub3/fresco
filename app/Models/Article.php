@@ -6,6 +6,7 @@ use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\URL;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -13,7 +14,11 @@ class Article extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'content' => 'array',
+    ];
 
     public function featured_image(): BelongsTo
     {

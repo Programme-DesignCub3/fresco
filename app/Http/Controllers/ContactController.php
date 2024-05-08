@@ -12,9 +12,7 @@ class ContactController extends Controller
 {
     public function index(GeneralSettings $generalSettings)
     {
-        /**
-         * Settings Resources
-         */
+        // General Settings
         $general = $generalSettings->toArray();
 
         return view('pages.contact', compact('general'));

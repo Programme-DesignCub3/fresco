@@ -38,16 +38,16 @@ class ManageMarketplace extends SettingsPage
                     ->columns(2)
                     ->schema([
                         TextInput::make('tokopedia_store')
-                            ->suffixIcon('heroicon-c-link')
+                            ->prefixIcon('heroicon-c-link')
                             ->label('Tokopedia'),
                         TextInput::make('shopee_store')
-                            ->suffixIcon('heroicon-c-link')
+                            ->prefixIcon('heroicon-c-link')
                             ->label('Shopee'),
                         TextInput::make('lazada_store')
-                            ->suffixIcon('heroicon-c-link')
+                            ->prefixIcon('heroicon-c-link')
                             ->label('Lazada'),
                         TextInput::make('kapalapi_store')
-                            ->suffixIcon('heroicon-c-link')
+                            ->prefixIcon('heroicon-c-link')
                             ->label('Kapal Api Store'),
                     ])
             ]);

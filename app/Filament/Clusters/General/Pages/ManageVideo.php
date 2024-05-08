@@ -6,11 +6,9 @@ use App\Filament\Clusters\General;
 use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
-use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -38,8 +36,8 @@ class ManageVideo extends SettingsPage
         $black_collab_image = Media::where('id', $data['black_video_collab_id'])->get();
         $cappuccino_collab_image = Media::where('id', $data['cappuccino_video_collab_id'])->get();
 
-        $data['black_video_collab'] = 'storage/' . $black_collab_image[0]->path;
-        $data['cappuccino_video_collab'] = 'storage/' . $cappuccino_collab_image[0]->path;
+        $data['black_video_collab'] = 'storage/' . $black_collab_image->first()->path;
+        $data['cappuccino_video_collab'] = 'storage/' . $cappuccino_collab_image->first()->path;
 
         return $data;
     }
@@ -66,19 +64,35 @@ class ManageVideo extends SettingsPage
                             ->collapsible()
                             ->schema([
                                 TextInput::make('black_video_url')
-                                    ->label('Video URL')
+                                    ->label('Video')
+                                    ->autocomplete(false)
+                                    ->url(true)
+                                    ->helperText('Copy the video URL from YouTube.')
+                                    ->prefixIcon('heroicon-c-link')
                                     ->required(),
                                 RichEditor::make('black_video_desc')
+                                    ->disableToolbarButtons([
+                                        'h2',
+                                        'h3',
+                                        'bulletList',
+                                        'orderedList',
+                                        'attachFiles',
+                                        'codeBlock',
+                                        'blockquote'
+                                    ])
                                     ->label('Description')
                                     ->required(),
                                 CuratorPicker::make('black_video_collab_id')
                                     ->label('Collaboration Image')
                                     ->maxSize(2048)
+                                    ->acceptedFileTypes(['image/*'])
+                                    ->maxItems(1)
+                                    ->helperText('Maximum 2 MB.')
                                     ->required()
                             ]),
 
-                        // Cappuccino
-                        Section::make('Cappuccino')
+                        // Cappuccino Coffee
+                        Section::make('Cappuccino Coffee')
                             ->columnSpan([
                                 '2xl' => 6,
                             ])
@@ -86,14 +100,30 @@ class ManageVideo extends SettingsPage
                             ->collapsible()
                             ->schema([
                                 TextInput::make('cappuccino_video_url')
-                                    ->label('Video URL')
+                                    ->label('Video')
+                                    ->autocomplete(false)
+                                    ->url(true)
+                                    ->helperText('Copy the video URL from YouTube.')
+                                    ->prefixIcon('heroicon-c-link')
                                     ->required(),
                                 RichEditor::make('cappuccino_video_desc')
+                                    ->disableToolbarButtons([
+                                        'h2',
+                                        'h3',
+                                        'bulletList',
+                                        'orderedList',
+                                        'attachFiles',
+                                        'codeBlock',
+                                        'blockquote'
+                                    ])
                                     ->label('Description')
                                     ->required(),
                                 CuratorPicker::make('cappuccino_video_collab_id')
                                     ->label('Collaboration Image')
                                     ->maxSize(2048)
+                                    ->acceptedFileTypes(['image/*'])
+                                    ->maxItems(1)
+                                    ->helperText('Maximum 2 MB.')
                                     ->required()
                                 ])
                     ])

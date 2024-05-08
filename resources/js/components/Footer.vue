@@ -1,107 +1,67 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
+import { ref } from 'vue';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
+const socials = ref([
+    {
+        name: 'facebook',
+        icon: 'fa-facebook-f',
+        alias: data.facebook_alias,
+        link: data.facebook_link
+    },
+    {
+        name: 'instagram',
+        icon: 'fa-instagram',
+        alias: data.instagram_alias,
+        link: data.instagram_link
+    },
+    {
+        name: 'twitter',
+        icon: 'fa-twitter',
+        alias: data.x_alias,
+        link: data.x_link,
+    },
+    {
+        name: 'tiktok',
+        icon: 'fa-tiktok',
+        alias: data.tiktok_alias,
+        link: data.tiktok_link,
+    },
+    {
+        name: 'youtube',
+        icon: 'fa-youtube',
+        alias: data.youtube_alias,
+        link: data.youtube_link
+    }
+])
 </script>
 
 <template>
   <footer
-    v-if="themeStore.theme != undefined || themeStore.theme != null"
-    class="border-t-[5px] border-white bg-fr-black">
-    <div
-      class="fr-container mx-auto flex flex-col justify-between gap-12 px-4 py-10 md:flex-row md:px-0 md:py-20">
-      <!-- Logo Image -->
-      <div class="w-full md:w-2/5">
-        <img
-          width="auto"
-          height="auto"
-          class="w-[160px] max-md:mx-auto sm:w-[200px]"
-          src="/assets/images/logo.png"
-          alt="FresCo Logo" />
-      </div>
-
-      <div class="w-full space-y-10 md:w-3/5">
-        <!-- Marketplace -->
-        <div class="flex flex-wrap gap-4">
-          <a :href="data.tokopedia_store" target="_blank">
-            <img
-              width="auto"
-              height="auto"
-              class="w-32 md:w-36"
-              src="/assets/images/icons/tokopedia.png"
-              alt="Tokopedia" />
-          </a>
-          <a :href="data.shopee_store" target="_blank">
-            <img
-              width="auto"
-              height="auto"
-              class="w-32 md:w-36"
-              src="/assets/images/icons/shopee.png"
-              alt="Shopee" />
-          </a>
-          <a :href="data.kapalapi_store" target="_blank">
-            <img
-              width="auto"
-              height="auto"
-              class="w-32 md:w-36"
-              src="/assets/images/icons/kapal-api-store.png"
-              alt="Kapal Api Store" />
+    :class="themeStore.theme"
+    v-if="themeStore.theme != undefined || themeStore.theme != null">
+    <div class="flex flex-col justify-center items-center gap-y-6">
+        <div class="flex justify-center gap-x-2">
+          <a
+            v-for="social in socials"
+            class="box-shadow h-9 w-9 rounded-lg bg-fr-yellow transition-all duration-100 ease-in-out hover:scale-110"
+            :href="social.link ? social.link : '#'"
+            target="_blank">
+            <v-icon
+              class="text-fr-black"
+              :class="[
+                social.name == 'facebook' && 'h-9 w-9 pt-2',
+                social.name == 'instagram' && 'h-9 w-9 p-1',
+                social.name == 'twitter' && 'h-9 w-9 p-1.5',
+                social.name == 'tiktok' && 'h-9 w-9 p-1.5',
+                social.name == 'youtube' && 'h-9 w-9 p-1.5',
+              ]"
+              :name="social.icon" />
           </a>
         </div>
-
-        <!-- Company Detail -->
-        <div class="space-y-4">
-          <h3 class="space-x-5 font-bold">
-            <span class="text-fr-yellow">PT SANTOS JAYA ABADI</span>
-            <span class="text-white">LAYANAN KONSUMEN</span>
-          </h3>
-          <div class="flex flex-wrap gap-4">
-            <div class="space-x-2">
-              <span class="rounded-full bg-fr-yellow p-1 text-fr-black"
-                ><v-icon name="fa-phone-alt"
-              /></span>
-              <a
-                :href="'tel:' + data.phone_link"
-                class="inline-block text-white"
-                >{{ data.phone_alias }}</a
-              >
-            </div>
-            <div class="space-x-2">
-              <span class="rounded-full bg-fr-yellow p-1 text-fr-black"
-                ><v-icon name="fa-envelope"
-              /></span>
-              <a
-                :href="'mailto:' + data.email_link"
-                class="inline-block text-white">
-                {{ data.email_alias }}
-              </a>
-            </div>
-            <div class="space-x-2">
-              <span class="rounded-full bg-fr-yellow p-1 text-fr-black"
-                ><v-icon name="fa-whatsapp"
-              /></span>
-              <a
-                :href="data.whatsapp_link"
-                target="_blank"
-                class="inline-block text-white"
-                >{{ data.whatsapp_alias }}</a
-              >
-            </div>
-            <div class="space-x-2">
-              <span class="rounded-full bg-fr-yellow p-1 text-fr-black"
-                ><v-icon name="fa-line"
-              /></span>
-              <a
-                :href="data.line_link"
-                target="_blank"
-                class="inline-block text-white"
-                >{{ data.line_alias }}</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+        <p class="text-white font-medium">PT. SANTOS JAYA ABADI (KAPAL API). ALL RIGHTS RESERVED</p>
     </div>
   </footer>
 </template>

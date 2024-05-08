@@ -3,16 +3,13 @@
 namespace App\Filament\Clusters\General\Pages;
 
 use App\Filament\Clusters\General;
+use App\Rules\MaxWord;
 use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
-use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Tabs;
-use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -40,8 +37,8 @@ class ManageIntro extends SettingsPage
         $black_image = Media::where('id', $data['black_intro_image_id'])->get();
         $cappuccino_image = Media::where('id', $data['cappuccino_intro_image_id'])->get();
 
-        $data['black_intro_image'] = 'storage/' . $black_image[0]->path;
-        $data['cappuccino_intro_image'] = 'storage/' . $cappuccino_image[0]->path;
+        $data['black_intro_image'] = 'storage/' . $black_image->first()->path;
+        $data['cappuccino_intro_image'] = 'storage/' . $cappuccino_image->first()->path;
 
         return $data;
     }
@@ -69,18 +66,33 @@ class ManageIntro extends SettingsPage
                             ->schema([
                                 TextInput::make('black_intro_title')
                                     ->label('Title')
+                                    ->rules([new MaxWord('Title', 8, 'en')])
+                                    ->autocomplete(false)
+                                    ->helperText('Maximum 8 words.')
                                     ->required(),
                                 RichEditor::make('black_intro_desc')
+                                    ->disableToolbarButtons([
+                                        'h2',
+                                        'h3',
+                                        'bulletList',
+                                        'orderedList',
+                                        'attachFiles',
+                                        'codeBlock',
+                                        'blockquote'
+                                    ])
                                     ->label('Description')
                                     ->required(),
                                 CuratorPicker::make('black_intro_image_id')
                                     ->label('Image')
                                     ->maxSize(2048)
+                                    ->acceptedFileTypes(['image/*'])
+                                    ->maxItems(1)
+                                    ->helperText('Maximum 2 MB.')
                                     ->required()
                             ]),
 
-                        // Cappuccino
-                        Section::make('Cappuccino')
+                        // Cappuccino Coffee
+                        Section::make('Cappuccino Coffee')
                             ->columnSpan([
                                 '2xl' => 6,
                             ])
@@ -89,13 +101,28 @@ class ManageIntro extends SettingsPage
                             ->schema([
                                 TextInput::make('cappuccino_intro_title')
                                     ->label('Title')
+                                    ->rules([new MaxWord('Title', 8, 'en')])
+                                    ->autocomplete(false)
+                                    ->helperText('Maximum 8 words.')
                                     ->required(),
                                 RichEditor::make('cappuccino_intro_desc')
+                                    ->disableToolbarButtons([
+                                        'h2',
+                                        'h3',
+                                        'bulletList',
+                                        'orderedList',
+                                        'attachFiles',
+                                        'codeBlock',
+                                        'blockquote'
+                                    ])
                                     ->label('Description')
                                     ->required(),
                                 CuratorPicker::make('cappuccino_intro_image_id')
                                     ->label('Image')
                                     ->maxSize(2048)
+                                    ->acceptedFileTypes(['image/*'])
+                                    ->maxItems(1)
+                                    ->helperText('Maximum 2 MB.')
                                     ->required()
                             ])
                     ])

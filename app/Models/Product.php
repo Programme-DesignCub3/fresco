@@ -11,7 +11,11 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'links' => 'array',
+    ];
 
     public function featured_image(): BelongsTo
     {

@@ -10,42 +10,21 @@ class ProductController extends Controller
 {
     public function index(GeneralSettings $generalSettings, Product $product)
     {
-        /**
-         * Settings Resource
-         */
+        // General Settings
         $general = $generalSettings->toArray();
 
-        /**
-         * Product Resource
-         */
+        // Product Resource
+        $black = Product::where('type', 'black')->orderBy('sort')->with('featured_image')->get();
+        $black->transform(function ($bk) {
+            $bk->image = $bk->featured_image->url;
+            return $bk;
+        });
 
-        // === Black Coffee ===
-        $list_product_black = Product::where('type', 'black')
-                                    ->orderBy('sort')
-                                    ->with('featured_image')
-                                    ->get();
-
-        for($i = 0; $i < $list_product_black->count(); $i++) {
-            $list_product_black[$i]['image'] = 'storage/' . $list_product_black[$i]->featured_image->path;
-        }
-
-        $black = collect($list_product_black)
-                ->values()
-                ->toArray();
-
-        // === Cappuccino ===
-        $list_product_cappuccino = Product::where('type', 'cappuccino')
-                                        ->orderBy('sort')
-                                        ->with('featured_image')
-                                        ->get();
-
-        for($i = 0; $i < $list_product_cappuccino->count(); $i++) {
-            $list_product_cappuccino[$i]['image'] = 'storage/' . $list_product_cappuccino[$i]->featured_image->path;
-        }
-
-        $cappuccino = collect($list_product_cappuccino)
-                    ->values()
-                    ->toArray();
+        $cappuccino = Product::where('type', 'cappuccino')->orderBy('sort')->with('featured_image')->get();
+        $cappuccino->transform(function ($cp) {
+            $cp->image = $cp->featured_image->url;
+            return $cp;
+        });
 
         return view('pages.product', compact('general', 'black', 'cappuccino'));
     }

@@ -3,7 +3,7 @@ import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
 import { Pagination } from 'swiper/modules';
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -59,7 +59,9 @@ watch(theme, () => {
           <!-- Title -->
           <h2
             class="text-[40px] font-bold leading-none"
-            :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
+            :class="
+              themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+            ">
             Activities
           </h2>
 
@@ -132,7 +134,7 @@ watch(theme, () => {
             <h2
               class="text-[40px] font-bold leading-none"
               :class="
-                themeStore.theme == 'black' ? 'text-black' : 'text-white'
+                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
               ">
               Articles
             </h2>
@@ -182,18 +184,20 @@ watch(theme, () => {
                     v-html="d.excerpt"
                     class="font-medium"
                     :class="
-                      themeStore.theme == 'black' ? 'text-black' : 'text-white'
+                      themeStore.theme == 'black'
+                        ? 'text-fr-black'
+                        : 'text-white'
                     "></p>
 
                   <!-- Read More Button -->
                   <div>
                     <a
                       :href="'artikel/' + d.slug"
-                      class="rounded-lg px-6 py-2.5 text-sm font-medium text-white transition-all duration-700 ease-in-out"
+                      class="transition-all duration-700 ease-in-out"
                       :class="
                         themeStore.theme == 'black'
-                          ? 'bg-fr-red hover:border-fr-darker-red hover:bg-fr-darker-red'
-                          : 'bg-fr-green hover:border-fr-darker-green hover:bg-fr-darker-green'
+                          ? 'button red'
+                          : 'button green'
                       ">
                       READ MORE
                       <v-icon
@@ -210,11 +214,9 @@ watch(theme, () => {
           <div class="mt-8 text-end">
             <a
               href="/artikel"
-              class="mt-4 inline rounded-lg border px-5 py-2.5 text-sm font-medium text-white transition-all duration-700 ease-in-out group-hover:border group-hover:border-white"
+              class="mt-4 transition-all duration-700 ease-in-out"
               :class="
-                themeStore.theme == 'black'
-                  ? 'border-fr-red bg-fr-red hover:border-fr-darker-red hover:bg-fr-darker-red'
-                  : 'border-fr-green bg-fr-green hover:border-fr-darker-green hover:bg-fr-darker-green'
+                themeStore.theme == 'black' ? 'button red' : 'button green'
               ">
               SEE ALL ARTICLES
               <v-icon

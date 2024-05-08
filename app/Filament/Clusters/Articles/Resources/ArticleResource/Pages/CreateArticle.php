@@ -12,9 +12,19 @@ class CreateArticle extends CreateRecord
 {
     protected static string $resource = ArticleResource::class;
 
+    protected ?string $subheading = 'Create a new article';
+
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['excerpt'] = Str::limit(strip_tags($data['body']), 100);
+        $excerpt = null;
+
+        for($i = 0; $i < count($data['content']); $i++) {
+            if(isset($data['content'][$i]['type']) && $data['content'][$i]['type'] == 'paragraph') {
+                $excerpt .= strip_tags($data['content'][$i]['data']['content']) . ' ';
+            }
+        }
+
+        $data['excerpt'] = Str::words($excerpt, 18, '...');
 
         return $data;
     }

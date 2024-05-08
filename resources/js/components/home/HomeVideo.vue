@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
@@ -45,10 +45,13 @@ const themeStore = useThemeStore();
         <!-- Text (In Collaboration With) -->
         <div class="grid items-center justify-center text-center">
           <p
+            :class="
+              themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+            "
             data-aos="zoom-out"
             data-aos-delay="350"
             data-aos-duration="1000"
-            class="font-medium text-white max-sm:text-[14px]">
+            class="font-medium text-fr-black max-sm:text-[14px]">
             IN COLLABORATION WITH
           </p>
         </div>
@@ -79,9 +82,9 @@ const themeStore = useThemeStore();
         </div>
       </div>
       <!-- Description` -->
-      <div
-        class="pt-10 text-center font-medium leading-8 text-white md:text-lg lg:text-xl">
+      <div class="pt-10 text-center font-medium leading-8">
         <p
+          class="text-fr-black"
           data-aos="fade-up"
           data-aos-delay="500"
           data-aos-offset="0"
@@ -89,6 +92,7 @@ const themeStore = useThemeStore();
           v-html="data.black_video_desc"></p>
         <p
           v-else
+          class="text-white"
           v-html="data.cappuccino_video_desc"
           data-aos="fade-up"
           data-aos-delay="500"

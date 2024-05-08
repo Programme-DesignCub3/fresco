@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ArticleCategoryResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Categories';
+    protected static ?string $navigationGroup = 'Manage';
 
     protected static ?int $navigationSort = 2;
 
@@ -35,7 +35,7 @@ class ArticleCategoryResource extends Resource
             ->schema([
                 Section::make()
                     ->schema([
-                        TextInput::make('name')
+                        TextInput::make('category')
                             ->label('Category')
                             ->required()
                     ])
@@ -46,7 +46,7 @@ class ArticleCategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('category')
                     ->label('Category')
             ])
             ->filters([

@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import HomeIntroProduct from '@/components/home/HomeIntroProduct.vue';
 
 const { data } = defineProps(['data']);
@@ -7,10 +7,11 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
-  <!-- === Black Theme === -->
+  <!-- Black Theme -->
   <div v-if="themeStore.theme == 'black'">
-    <div
-      class="w-full space-y-2 bg-black bg-black-home bg-cover bg-center bg-no-repeat pt-20 md:space-y-12 md:pt-48 lg:pt-40 2xl:pt-44">
+    <!-- Home Intro Video -->
+    <div class="home-intro-video" :class="themeStore.theme">
+      <!-- Video -->
       <div class="fr-container mx-auto">
         <video
           autoplay
@@ -28,19 +29,21 @@ const themeStore = useThemeStore();
       </div>
       <div class="shadow-up-black h-20 w-full"></div>
     </div>
+    <!-- Home Intro Product Component -->
     <HomeIntroProduct :data="data" />
   </div>
 
-  <!-- === Cappuccino Theme === -->
+  <!-- Cappuccino Theme -->
   <div v-if="themeStore.theme == 'cappuccino'">
-    <div
-      class="relative w-full space-y-12 overflow-hidden bg-fr-yellow py-20 pt-14 md:space-y-20 md:pt-28 lg:pt-20 xl:py-32 2xl:py-24">
+    <!-- Home Intro Video -->
+    <div class="home-intro-video" :class="themeStore.theme">
+      <!-- Background Image -->
       <img
         width="auto"
         height="auto"
-        class="absolute -left-24 top-36 scale-[1.75] sm:scale-[1.5] md:-left-20 md:top-40 md:scale-[1.25] lg:-left-24 lg:top-28 lg:scale-[1.2] xl:-left-32 xl:top-40 2xl:-left-[120px] 2xl:top-20 2xl:rotate-[3deg] 2xl:scale-[1.15] min-[1950px]:left-1/2 min-[1950px]:top-24 min-[1950px]:w-[1800px] min-[1950px]:-translate-x-1/2 min-[1950px]:scale-100"
         src="/assets/images/bg-cappuccino-home.svg"
         alt="Background Cappuccino Home" />
+      <!-- Video -->
       <div class="fr-container mx-auto">
         <video
           autoplay
@@ -55,25 +58,12 @@ const themeStore = useThemeStore();
         </video>
       </div>
     </div>
+    <!-- Home Intro Product Component -->
     <HomeIntroProduct :data="data" />
   </div>
 </template>
 
 <style scoped>
-.right-enter-active {
-  animation: wipe-in-right 2.5s cubic-bezier(0.25, 1, 0.3, 1) both;
-}
-
-.right-leave-from {
-  opacity: 0;
-}
-.left-enter-active {
-  animation: wipe-in-left 2.5s cubic-bezier(0.25, 1, 0.3, 1) both;
-}
-.left-leave-from {
-  opacity: 0;
-}
-
 .shadow-up-black {
   background: rgb(5, 5, 5);
   background: linear-gradient(
@@ -98,23 +88,5 @@ const themeStore = useThemeStore();
     rgba(253, 198, 75, 0.3) 75%,
     rgba(253, 198, 75, 0) 95%
   );
-}
-
-@keyframes wipe-in-right {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes wipe-in-left {
-  from {
-    clip-path: inset(0 0 0 100%);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
@@ -75,7 +75,7 @@ const themeStore = useThemeStore();
   </div>
 
   <!-- === WhatsApp Link === -->
-  <div class="fixed bottom-32 right-4 z-[99999] md:bottom-4">
+  <div class="fixed bottom-32 right-4 z-[99] md:bottom-4">
     <a :href="data.whatsapp_link ? data.whatsapp_link : '#'" target="_blank">
       <img
         width="auto"

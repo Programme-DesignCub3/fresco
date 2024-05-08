@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
@@ -8,13 +8,13 @@ const themeStore = useThemeStore();
 <template>
   <div
     class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-20"
-    :class="themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-green'">
+    :class="themeStore.theme == 'black' ? 'bg-radial-red' : 'bg-radial-green'">
     <div
       class="fr-container mx-auto flex flex-col gap-y-3 md:gap-y-5 lg:gap-y-8">
       <!-- Double element for refresh AOS Animation -->
       <h2
         v-if="themeStore.theme == 'black'"
-        class="flex flex-col text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px] xl:text-[80px]">
+        class="flex justify-center gap-x-4 text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px]">
         <span
           data-aos="fade-right"
           data-aos-delay="200"
@@ -32,7 +32,7 @@ const themeStore = useThemeStore();
       </h2>
       <h2
         v-if="themeStore.theme == 'cappuccino'"
-        class="flex flex-col text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px] xl:text-[80px]">
+        class="flex justify-center gap-x-4 text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px]">
         <span
           data-aos="fade-right"
           data-aos-delay="200"
@@ -49,30 +49,8 @@ const themeStore = useThemeStore();
         >
       </h2>
 
-      <!-- Double element for refresh AOS Animation -->
-      <div
-        v-if="themeStore.theme == 'black'"
-        data-aos="fade-right"
-        data-aos-delay="200"
-        data-aos-duration="500"
-        data-aos-offset="0"
-        class="my-6 h-[4px] w-16 rounded-full transition-all duration-700 ease-in-out"
-        :class="
-          themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-red'
-        "></div>
-      <div
-        v-if="themeStore.theme == 'cappuccino'"
-        data-aos="fade-right"
-        data-aos-delay="200"
-        data-aos-duration="500"
-        data-aos-offset="0"
-        class="my-6 h-[4px] w-16 rounded-full transition-all duration-700 ease-in-out"
-        :class="
-          themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-red'
-        "></div>
-
       <!-- Black Coffee Marketplace -->
-      <div v-if="themeStore.theme == 'black'" class="flex flex-wrap gap-5">
+      <div v-if="themeStore.theme == 'black'" class="flex justify-center gap-5">
         <a
           data-aos="flip-up"
           data-aos-delay="200"
@@ -111,11 +89,26 @@ const themeStore = useThemeStore();
             class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
             src="/assets/images/icons/lazada.png"
             alt="Lazada" />
+        </a>
+        <a
+          data-aos="flip-up"
+          data-aos-delay="400"
+          data-aos-duration="500"
+          :href="data.kapalapi_store"
+          target="_blank">
+          <img
+            width="auto"
+            height="auto"
+            class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
+            src="/assets/images/icons/kapal-api-store.png"
+            alt="Kapal Api Store" />
         </a>
       </div>
 
       <!-- Cappuccino Marketplace -->
-      <div v-if="themeStore.theme == 'cappuccino'" class="flex flex-wrap gap-5">
+      <div
+        v-if="themeStore.theme == 'cappuccino'"
+        class="flex justify-center gap-5">
         <a
           data-aos="flip-up"
           data-aos-delay="200"
@@ -154,6 +147,19 @@ const themeStore = useThemeStore();
             class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
             src="/assets/images/icons/lazada.png"
             alt="Lazada" />
+        </a>
+        <a
+          data-aos="flip-up"
+          data-aos-delay="400"
+          data-aos-duration="500"
+          :href="data.kapalapi_store"
+          target="_blank">
+          <img
+            width="auto"
+            height="auto"
+            class="box-shadow w-36 rounded-2xl md:w-44 lg:w-52"
+            src="/assets/images/icons/kapal-api-store.png"
+            alt="Kapal Api Store" />
         </a>
       </div>
     </div>

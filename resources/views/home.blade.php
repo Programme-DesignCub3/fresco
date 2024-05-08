@@ -36,9 +36,9 @@
       :article="{{ json_encode($article) }}"></home-post-component>
 
     {{-- Home Popup Section --}}
-    @if ($pinned != null)
+    {{--
       <home-popup-component
-        :data="{{ json_encode($pinned) }}"></home-popup-component>
-    @endif
+      :data="{{ json_encode($pinned) }}"></home-popup-component>
+    --}}
   </section>
 @endsection

@@ -1,43 +1,88 @@
 @extends('layouts.app')
 
 {{-- Meta --}}
-@section('title', $article['title'])
-@section('meta_url', URL::to('/artikel/' . $article['slug']))
-@section('meta_title', $article['title'])
-@section('meta_description', $article['excerpt'])
-@section('meta_image', $article['image'])
+@section('title', $article->title)
+@section('meta_url', URL::to('/artikel/' . $article->slug))
+@section('meta_title', $article->title)
+@section('meta_description', $article->excerpt)
+@section('meta_image', $article->featured_image->url)
 
 @section('content')
-  <section>
-    {{-- Article Header Section --}}
-    <header-page-component header="article-detail"></header-page-component>
-
-    {{-- Article Detail Section --}}
+  <section id="detail-article">
     <div
-      class="bg-fr-yellow bg-cover bg-top bg-no-repeat pt-0 sm:pt-10 md:pt-20 dark:bg-black dark:bg-article">
-      <div
-        class="fr-container relative mx-auto transition-all duration-700 ease-in-out">
+      class="bg-fr-yellow bg-cover bg-top bg-no-repeat pt-0 md:pt-48 dark:bg-fr-black dark:bg-article">
+      <div class="fr-container mx-auto">
         <div
-          class="bg-fr-red p-4 transition-all duration-700 ease-in-out md:p-8 lg:bg-transparent lg:p-0 dark:bg-fr-yellow">
-          <img
-            width="auto"
-            height="auto"
-            class="aspect-square w-full rounded-xl object-cover object-center lg:rounded-none"
-            src="{{ $article['image'] }}"
-            alt="FresCo" />
-        </div>
-        <div
-          class="hidden h-[250px] w-full bg-fr-red transition-all duration-700 ease-in-out lg:block dark:bg-fr-yellow"></div>
-        <div
-          class="w-full space-y-4 bg-white p-4 py-8 md:p-8 lg:absolute lg:bottom-0 lg:right-0 lg:w-3/4">
-          <article class="space-y-3">
-            <h1 class="text-[30px] font-bold leading-10 text-fr-green">
-              {{ $article['title'] }}
-            </h1>
-            <div class="article-wrapper text-base md:text-lg">
-              {!! $article['body'] !!}
+          class="flex w-full flex-col bg-white px-4 pb-10 pt-24 sm:pt-4 md:px-8 md:pb-16 md:pt-8 lg:px-16 lg:pb-24 lg:pt-16">
+          <div class="space-y-6 md:space-y-10">
+            <img
+              width="auto"
+              height="auto"
+              class="aspect-video w-full object-cover object-center"
+              src="{{ $article->featured_image->url }}"
+              alt="FresCo" />
+            <article class="space-y-3">
+              <h1 class="text-3xl font-bold text-fr-green md:text-4xl">
+                {{ $article->title }}
+              </h1>
+              <div class="space-y-3 text-base md:text-lg">
+                @foreach ($article->content as $c)
+                  @switch($c['type'])
+                    @case('paragraph')
+                      <div>
+                        {!! $c['data']['content'] !!}
+                      </div>
+
+                      @break
+                    @case('image')
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: {{ array_key_exists('data', $c) && array_key_exists('image_align', $c['data']) ? $c['data']['image_align'] : 'center' }};
+                        ">
+                        <x-curator-glider
+                          style="width: {{ array_key_exists('data', $c) && array_key_exists('image_width', $c['data']) ? $c['data']['image_width'] . '%' : 'auto' }}"
+                          class="max-w-full"
+                          :media="$c['data']['content']"></x-curator-glider>
+                      </div>
+
+                      @break
+                    @case('video')
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: {{ array_key_exists('data', $c) && array_key_exists('video_align', $c['data']) ? $c['data']['video_align'] : 'center' }};
+                        ">
+                        <iframe
+                          style="
+                            width: {{ array_key_exists('data', $c) && array_key_exists('video_width', $c['data']) ? $c['data']['video_width'] . '%' : 'auto' }};
+                          "
+                          class="aspect-video"
+                          src="https://www.youtube.com/embed/{{ $c['data']['content'] }}"
+                          title="Vertical Tiki Taka Timnas STY Hancurkan Raksasa Asia ( Australia, Yordania dan Korea!)"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerpolicy="strict-origin-when-cross-origin"
+                          allowfullscreen></iframe>
+                      </div>
+
+                      @break
+                  @endswitch
+                @endforeach
+              </div>
+            </article>
+          </div>
+          <div class="mt-6 space-y-6 md:mt-10 md:space-y-10">
+            <div class="sharethis-inline-share-buttons"></div>
+            <div class="text-white">
+              <a href="{{ URL::to('/artikel') }}" class="button red">
+                <span class="flex items-center">
+                  <i class="fa-solid fa-chevron-left mr-2 text-[11px]"></i>
+                  BACK
+                </span>
+              </a>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </div>

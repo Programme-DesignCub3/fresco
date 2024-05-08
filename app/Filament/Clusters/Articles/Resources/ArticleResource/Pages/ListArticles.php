@@ -10,6 +10,8 @@ class ListArticles extends ListRecords
 {
     protected static string $resource = ArticleResource::class;
 
+    protected ?string $subheading = 'Displaying all articles';
+
     protected function getHeaderActions(): array
     {
         return [

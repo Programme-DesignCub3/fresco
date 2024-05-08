@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import { VueRecaptcha } from 'vue-recaptcha';
 import { ref } from 'vue';
 import axios from 'axios';

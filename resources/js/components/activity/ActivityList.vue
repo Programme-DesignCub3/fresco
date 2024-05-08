@@ -2,7 +2,7 @@
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -75,13 +75,13 @@ watch(theme, () => {
 <template>
   <div
     class="relative bg-cover bg-bottom bg-no-repeat py-10 md:py-20"
-    :class="themeStore.theme == 'black' ? 'bg-activity' : 'bg-fr-yellow'">
+    :class="themeStore.theme == 'black' ? 'bg-activity bg-fr-black' : 'bg-fr-yellow'">
     <!-- Navigation Swiper (Arrow Left) -->
     <div
       class="fr-activity-slider-prev absolute left-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]"
       :class="
         themeStore.theme == 'black'
-          ? 'bg-fr-yellow text-black'
+          ? 'bg-fr-yellow text-fr-black'
           : 'bg-fr-red text-white'
       ">
       <v-icon name="fa-chevron-left" />
@@ -92,7 +92,7 @@ watch(theme, () => {
       class="fr-activity-slider-next absolute right-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]"
       :class="
         themeStore.theme == 'black'
-          ? 'bg-fr-yellow text-black'
+          ? 'bg-fr-yellow text-fr-black'
           : 'bg-fr-red text-white'
       ">
       <v-icon name="fa-chevron-right" />
@@ -157,7 +157,7 @@ watch(theme, () => {
         <a
           :href="activityLink"
           target="_blank"
-          class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2.5 text-xs font-medium text-white transition-all duration-300 ease-in-out hover:border-fr-darker-red hover:bg-fr-darker-red group-hover:border group-hover:border-white md:px-8 md:text-sm">
+          class="button red">
           READ MORE
           <v-icon class="h-4 w-4 stroke-2 py-[2px]" name="fa-chevron-right" />
         </a>

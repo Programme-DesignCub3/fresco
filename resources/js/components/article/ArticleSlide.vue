@@ -2,7 +2,7 @@
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -54,11 +54,11 @@ watch(theme, () => {
     class="relative px-4 py-10 transition-all duration-700 ease-in-out sm:px-0"
     :class="themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-green'">
     <div
-      class="fr-article-slider-prev absolute left-[4%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-fr-yellow text-black sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]">
+      class="fr-article-slider-prev absolute left-[4%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-fr-yellow text-fr-black sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]">
       <v-icon name="fa-chevron-left" />
     </div>
     <div
-      class="fr-article-slider-next absolute right-[4%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-fr-yellow text-black sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]">
+      class="fr-article-slider-next absolute right-[4%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-fr-yellow text-fr-black sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]">
       <v-icon name="fa-chevron-right" />
     </div>
     <div class="fr-container mx-auto space-y-10">
@@ -90,7 +90,7 @@ watch(theme, () => {
                 <div>
                   <a
                     :href="d.slug"
-                    class="rounded-lg bg-fr-yellow px-6 py-2.5 text-xs font-medium text-black transition-all duration-300 ease-in-out hover:bg-fr-darker-yellow md:text-sm">
+                    class="rounded-lg bg-fr-yellow px-6 py-2.5 text-xs font-medium text-fr-black transition-all duration-300 ease-in-out hover:bg-fr-darker-yellow md:text-sm">
                     READ MORE
                     <v-icon
                       class="h-4 w-4 stroke-2 py-[2px]"

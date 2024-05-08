@@ -10,25 +10,16 @@ class ActivityController extends Controller
 {
     public function index(GeneralSettings $generalSettings)
     {
-        /**
-         * Settings Resource
-         */
+        // General Settings
         $general = $generalSettings->toArray();
 
-        /**
-         * Activity Resource
-         */
-        $activity = Activity::with('featured_image')
-                        ->with('featured_image_portrait')
-                        ->latest()
-                        ->get();
-
-        for($i = 0; $i < $activity->count(); $i++) {
-            $activity[$i]['image'] = 'storage/' . $activity[$i]->featured_image->path;
-            if($activity[$i]['image_portrait'] != null) {
-                $activity[$i]['image_portrait'] = 'storage/' . $activity[$i]->featured_image_portrait->path;
-            }
-        }
+        // Activity Resource
+        $activity = Activity::orderBy('sort')->with('featured_image')->with('featured_image_portrait')->latest()->get();
+        $activity->transform(function ($act) {
+            $act->image = $act->featured_image->url;
+            $act->image_portrait = $act->featured_image_portrait->url ?? null;
+            return $act;
+        });
 
         return view('pages.activity', compact('general', 'activity'));
     }

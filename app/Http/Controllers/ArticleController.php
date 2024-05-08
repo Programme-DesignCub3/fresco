@@ -4,73 +4,59 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Settings\GeneralSettings;
+use App\Traits\HasID;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 
 class ArticleController extends Controller
 {
+    use HasID;
+
     public function index(GeneralSettings $generalSettings)
     {
-        /**
-         * Settings Resource
-         */
+        // General Settings
         $general = $generalSettings->toArray();
 
-        /**
-         * Article Resource
-         */
+        // Article Resource
         if(request('search')) {
-            $article = Article::where('title', 'like', '%' . request('search') . '%')
-                            ->where('published', true)
-                            ->with('featured_image')
-                            ->paginate(6)
-                            ->withQueryString();
+            $article = Article::where('title', 'like', '%' . request('search') . '%')->where('published', true)->with('featured_image')->paginate(6)->withQueryString();
         } else {
-            $article = Article::where('published', true)
-                            ->with('featured_image')
-                            ->latest()
-                            ->paginate(6);
+            if(Article::where('pin', true)->exists()) {
+                $article = Article::where('published', true)->orderBy('pin', 'desc')->with('featured_image')->latest()->paginate(6);
+            } else {
+                $article = Article::where('published', true)->with('featured_image')->latest()->paginate(6);
+            }
         }
 
-        for($i = 0; $i < $article->count(); $i++) {
-            $article[$i]['image'] = URL::to('/') . '/storage/' . $article[$i]->featured_image->path;
-        }
+        $article->transform(function ($art) {
+            $art->image = $art->featured_image->url;
+            return $art;
+        });
 
         return view('pages.article', compact('general', 'article'));
     }
 
     public function detail(GeneralSettings $generalSettings, $slug)
     {
-        /**
-         * Settings Resource
-         */
+        // General Settings
         $general = $generalSettings->toArray();
 
-        /**
-         * Article Detail Resource
-         */
-        if(Article::where('slug', $slug)->doesntExist()) {
-            abort(404);
-        }
+        // Article Detail
+        (Article::where('slug', $slug)->doesntExist()) && abort(404);
+        $article = Article::where('slug', $slug)->with('featured_image')->first();
+        $article['content'] = collect($article['content'])->map(function ($arc) {
+            if ($arc['type'] == 'video') {
+                $arc['data']['content'] = $this->getID($arc['data']['content']);
+            }
 
-        $article = Article::where('slug', $slug)
-                        ->with('featured_image')
-                        ->first();
-        $article['image'] = URL::to('/') . '/storage/' . $article->featured_image->path;
+            return $arc;
+        })->toArray();
 
-        /**
-         * Other Articles
-         */
-        $other = Article::where('published', true)
-                        ->where('slug', '!=', $slug)
-                        ->with('featured_image')
-                        ->latest()
-                        ->take(4)
-                        ->get();
-
-        for($i = 0; $i < $other->count(); $i++) {
-            $other[$i]['image'] = URL::to('/') . '/storage/' . $other[$i]->featured_image->path;
-        }
+        // Other Articles
+        $other = Article::where('published', true)->where('slug', '!=', $slug)->with('featured_image')->latest()->take(4)->get();
+        $other->transform(function ($o) {
+            $o->image = $o->featured_image->url;
+            return $o;
+        });
 
         return view('pages.article-detail', compact('general', 'article', 'other'));
     }

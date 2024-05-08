@@ -4,17 +4,11 @@ namespace App\Filament\Clusters\Articles\Resources;
 
 use App\Filament\Clusters\Articles;
 use App\Filament\Clusters\Articles\Resources\ArticleResource\Pages;
-use App\Filament\Clusters\Articles\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
 use App\Rules\MaxWord;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
-use Filament\Actions\Action;
-use Filament\Forms;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Group;
-use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -23,13 +17,15 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\CheckboxColumn;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Filters\Filter;
+use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
 
 class ArticleResource extends Resource
 {
@@ -37,11 +33,11 @@ class ArticleResource extends Resource
 
     protected static ?string $slug = 'all-articles';
 
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
     protected static ?int $navigationSort = 1;
 
     protected static ?string $model = Article::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $cluster = Articles::class;
 
@@ -57,59 +53,137 @@ class ArticleResource extends Resource
                     'xl' => 8,
                     '2xl' => 12,
                 ])
-                    ->schema([
-                        Section::make()
-                            ->columnSpan([
-                                'md' => 3,
-                                'lg' => 4,
-                                'xl' => 6,
-                                '2xl' => 8
-                            ])
-                            ->schema([
-                                CuratorPicker::make('image')
-                                    ->label('Image')
-                                    ->maxSize(2048)
-                                    ->required(),
-                                TextInput::make('title')
-                                    ->label('Title')
-                                    ->rules([new MaxWord('Title', 12, 'en')])
-                                    ->required(),
-                                RichEditor::make('body')
-                                    ->label('Body')
-                                    ->toolbarButtons([
-                                        'bold',
-                                        'italic',
-                                        'underline',
-                                        'strike',
-                                        'link',
-                                        'orderedList',
-                                        'bulletList',
-                                        'undo',
-                                        'redo'
-                                    ])
-                                    ->required()
-                            ]),
-                        Section::make()
-                            ->columnSpan([
-                                'md' => 1,
-                                'lg' => 2,
-                                'xl' => 2,
-                                '2xl' => 4
-                            ])
-                            ->schema([
-                                Toggle::make('published')
-                                    ->inline(false)
-                                    ->label('Publish')
-                                    ->onIcon('heroicon-o-signal')
-                                    ->offIcon('heroicon-o-signal-slash'),
-                                Radio::make('type')
-                                    ->options([
-                                        'article' => 'Article',
-                                        'promotion' => 'Promotion'
-                                    ])
-                                    ->required(),
-                            ]),
-                    ]),
+                ->schema([
+                    Section::make()
+                        ->columnSpan([
+                            'md' => 3,
+                            'lg' => 4,
+                            'xl' => 6,
+                            '2xl' => 8
+                        ])
+                        ->schema([
+                            TextInput::make('title')
+                                ->label('Title')
+                                ->autocomplete(false)
+                                ->rules([new MaxWord('Title', 14, 'en')])
+                                ->helperText('Maximum 14 words.')
+                                ->required(),
+                            Builder::make('content')
+                                ->blocks([
+                                    Block::make('paragraph')
+                                        ->icon('heroicon-m-bars-3-bottom-left')
+                                        ->schema([
+                                            RichEditor::make('content')
+                                                ->label('Paragraph')
+                                                ->disableToolbarButtons([
+                                                    'blockquote',
+                                                    'codeBlock',
+                                                    'attachFiles'
+                                                ])
+                                                ->required()
+                                        ]),
+                                    Block::make('image')
+                                        ->icon('heroicon-o-photo')
+                                        ->schema([
+                                            CuratorPicker::make('content')
+                                                ->label('Image')
+                                                ->maxSize(2048)
+                                                ->maxItems(1)
+                                                ->acceptedFileTypes(['image/*'])
+                                                ->helperText('Maximum 2 MB.')
+                                                ->required(),
+                                            Select::make('image_width')
+                                                ->label('Image Width')
+                                                ->default('auto')
+                                                ->options([
+                                                    'auto' => 'Auto',
+                                                    '100' => '100%',
+                                                    '80' => '80%',
+                                                    '50' => '50%',
+                                                ]),
+                                            Select::make('image_align')
+                                                ->label('Image Align')
+                                                ->default('center')
+                                                ->options([
+                                                    'flex-start' => 'Left',
+                                                    'center' => 'Center',
+                                                    'flex-end' => 'Right',
+                                                ])
+                                        ]),
+                                    Block::make('video')
+                                        ->icon('heroicon-s-play')
+                                        ->schema([
+                                            TextInput::make('content')
+                                                ->label('Video')
+                                                ->url(true)
+                                                ->prefixIcon('heroicon-c-link')
+                                                ->helperText('Copy the video URL from YouTube.')
+                                                ->required(),
+                                            Select::make('video_width')
+                                                ->label('Video Width')
+                                                ->default('80')
+                                                ->options([
+                                                    'auto' => 'Auto',
+                                                    '100' => '100%',
+                                                    '80' => '80%',
+                                                    '50' => '50%',
+                                                ]),
+                                            Select::make('video_align')
+                                                ->label('Video Align')
+                                                ->default('center')
+                                                ->options([
+                                                    'flex-start' => 'Left',
+                                                    'center' => 'Center',
+                                                    'flex-end' => 'Right',
+                                                ])
+                                        ]),
+                                ])
+                                ->label('Content')
+                                ->blockNumbers(false)
+                                ->reorderableWithButtons()
+                                ->deletable(function($state) {
+                                    $blocks = $state ?? [];
+                                    $count = 0;
+                                    foreach ($blocks as $block) {
+                                        if (isset($block['type']) && $block['type'] === 'paragraph') {
+                                            $count++;
+                                        }
+                                    }
+                                    return ($count > 1) ? true : false;
+                                })
+                                ->default([
+                                        [
+                                        'type' => 'paragraph',
+                                        'data' => [
+                                            'content' => null
+                                        ]
+                                    ]
+                                ])
+                                ->required()
+                        ]),
+                    Section::make()
+                        ->columnSpan([
+                            'md' => 1,
+                            'lg' => 2,
+                            'xl' => 2,
+                            '2xl' => 4
+                        ])
+                        ->schema([
+                            Toggle::make('published')
+                                ->inline(false)
+                                ->label('Publish')
+                                ->onIcon('heroicon-o-signal')
+                                ->offIcon('heroicon-o-signal-slash')
+                                ->helperText('Toggle to publish or unpublish this article.'),
+                            CuratorPicker::make('image')
+                                ->label('Featured Image')
+                                ->maxSize(2048)
+                                ->maxItems(1)
+                                ->acceptedFileTypes(['image/*'])
+                                ->helperText('Maximum 2 MB.')
+                                ->required(),
+                        ]),
+                ]),
             ]);
     }
 
@@ -118,56 +192,42 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 CuratorColumn::make('image')
-                ->width(80),
-                TextColumn::make('type')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'article' => 'primary',
-                        'promotion' => 'warning'
-                    }),
+                    ->width(80),
                 TextColumn::make('title')
-                    ->limit(30)
-                    ->toggleable(),
+                    ->limit(50),
                 CheckboxColumn::make('pin')
+                    ->sortable()
                     ->beforeStateUpdated(function($record, $state) {
                         $check = Article::where('pin', 1);
-
-                        if($check->count() >= 1) {
-                            $check->update(['pin' => null]);
-                        }
+                        ($check->count() >= 1) && $check->update(['pin' => 0]);
                     })
                     ->afterStateUpdated(function ($record, $state) {
-                        if($record['published'] == 0) {
-                            $record->update(['published' => 1]);
-                        }
-
+                        ($record['published'] == 0) && $record->update(['published' => 1]);
                         $record->pin = $state;
                         $record->save();
                     }),
                 ToggleColumn::make('published')
+                    ->sortable()
                     ->onIcon('heroicon-o-signal')
                     ->offIcon('heroicon-o-signal-slash')
                     ->afterStateUpdated(function ($record, $state) {
-                        if($record['pin'] == 1) {
-                            $record->update(['pin' => 0]);
-                        }
+                        ($record['pin'] == 1) && $record->update(['pin' => 0]);
                     })
             ])
-            ->defaultSort('created_at', 'desc')
             ->filters([
-                SelectFilter::make('type')
-                    ->options([
-                        'article' => 'Article',
-                        'promotion' => 'Promotion',
-                    ]),
+                Filter::make('pin')
+                    ->label('Pinned')
+                    ->query(fn (EloquentBuilder $query): EloquentBuilder => $query->where('pin', true)),
                 SelectFilter::make('published')
                     ->options([
-                        0 => 'Draft',
+                        0 => 'Unpublished',
                         1 => 'Published',
                     ]),
             ])
+            ->defaultSort('created_at', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

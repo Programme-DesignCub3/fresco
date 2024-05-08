@@ -53,12 +53,12 @@
             <button
               type="button"
               id="searchclear"
-              class="absolute right-3 hidden translate-y-2.5 text-black dark:text-white">
+              class="absolute right-3 hidden translate-y-2.5 text-fr-black dark:text-white">
               <i class="fa-solid fa-xmark"></i>
             </button>
             <button
               type="submit"
-              class="absolute left-3 translate-y-2.5 text-black dark:text-white">
+              class="absolute left-3 translate-y-2.5 text-fr-black dark:text-white">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
@@ -75,30 +75,30 @@
                       width="auto"
                       height="auto"
                       class="aspect-square object-cover object-center transition-all duration-700 ease-in-out group-hover:scale-110 sm:h-[384px] sm:w-[384px]"
-                      src="{{ $a['image'] }}"
-                      alt="FresCo" />
+                      src="{{ $a->featured_image->url }}"
+                      alt="{{ $a->title }}" />
                   </div>
                   <div
-                    class="flex h-auto flex-col justify-between space-y-3 bg-fr-green p-6 transition-all duration-700 ease-in-out group-hover:bg-fr-red group-hover:transition-all group-hover:duration-300 group-hover:ease-in-out sm:h-[300px] lg:h-[320px] xl:h-[300px] dark:bg-fr-yellow">
+                    class="group-hover:bg-radial-red dark:group-hover:bg-radial-red flex h-auto flex-col justify-between bg-fr-green p-6 sm:h-[250px] lg:h-[280px] dark:bg-fr-yellow">
                     <div class="space-y-3">
                       <h3
-                        class="text-xl font-bold text-white group-hover:text-white dark:text-black">
-                        {{ $a['title'] }}
+                        class="text-xl font-bold text-white group-hover:text-white dark:text-fr-black">
+                        {{ $a->title }}
                       </h3>
                       <p
-                        class="font-medium text-white group-hover:text-white dark:text-black">
-                        {{ $a['excerpt'] }}
+                        class="font-medium text-white group-hover:text-white dark:text-fr-black">
+                        {{ $a->excerpt }}
                       </p>
                     </div>
-                    <div class="pt-3">
-                      <a
-                        href="artikel/{{ $a['slug'] }}"
-                        class="inline rounded-lg border border-fr-red bg-fr-red px-6 py-2.5 text-xs font-medium text-white transition-all duration-300 ease-in-out group-hover:border group-hover:border-fr-green group-hover:bg-fr-green group-hover:font-medium group-hover:text-white group-hover:hover:border-fr-darker-green group-hover:hover:bg-fr-darker-green md:text-sm dark:group-hover:border-fr-yellow dark:group-hover:bg-fr-yellow dark:group-hover:font-medium dark:group-hover:text-black dark:group-hover:hover:border-fr-darker-yellow dark:group-hover:hover:bg-fr-darker-yellow">
+                    <a
+                      href="artikel/{{ $a->slug }}"
+                      class="button red group-hover:yellow flex max-w-[150px] items-center">
+                      <span class="flex items-center">
                         READ MORE
                         <i
-                          class="fa-solid fa-chevron-right stroke-2 ps-1 text-[10px]"></i>
-                      </a>
-                    </div>
+                          class="fa-solid fa-chevron-right ml-2 text-[11px]"></i>
+                      </span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@
         @else
           <div class="flex h-[200px] items-center justify-center">
             <p
-              class="text-center text-lg font-medium text-black dark:text-white">
+              class="text-center text-lg font-medium text-fr-black dark:text-white">
               Artikel tidak ditemukan
             </p>
           </div>
@@ -125,6 +125,9 @@
     $(document).ready(() => {
       if ($('#searchbar').val() != '') {
         $('#searchclear').removeClass('hidden');
+        $('#searchclear').on('click', () => {
+          window.location.href = '/artikel';
+        });
       }
 
       $(document).on('input', '#searchbar', function () {

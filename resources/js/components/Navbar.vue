@@ -1,14 +1,15 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
+import { useNavStore } from '@/stores/nav-store.js';
 import { ref } from 'vue';
 
 const { data, type } = defineProps(['data', 'type']);
 const url = window.location;
 const themeStore = useThemeStore();
+const navStore = useNavStore();
 const scroll = ref();
 
 const enableCustomLayout = (theme) => themeStore.setTheme(theme);
-
 const changeThemeHandler = () => {
   themeStore.setTheme(null);
   themeStore.setOpenMenu(false);
@@ -20,48 +21,44 @@ window.addEventListener('scroll', () => {
 </script>
 
 <template>
+  <!-- Navigation -->
   <header
     v-if="themeStore.theme != undefined || themeStore.theme != null"
-    class="navigation fixed z-[9999] transition-all duration-700 ease-in-out"
+    class="navigation"
     id="navigation-sticky"
     :class="[
       themeStore.theme,
       url.pathname == '/'
         ? scroll > 20
           ? themeStore.theme == 'black'
-            ? 'bg-transparent md:bg-black'
-            : 'bg-transparent md:bg-fr-yellow'
+            ? 'nav-black'
+            : 'nav-cappuccino'
           : 'bg-transparent'
         : themeStore.theme == 'black'
-          ? 'bg-transparent md:bg-black'
-          : 'bg-transparent md:bg-fr-yellow',
+          ? 'nav-black'
+          : 'nav-cappuccino',
     ]">
-    <div
-      class="fr-container relative mx-auto flex flex-row justify-end md:flex-col md:gap-4 md:text-center lg:flex-row">
+    <!-- Navigation Wrapper -->
+    <div class="navigation-wrapper">
       <!-- Logo Image -->
-      <div
-        class="absolute left-4 top-4 z-[999] sm:left-0 md:static lg:absolute lg:-top-3">
+      <div class="nav-logo">
         <button v-if="url.pathname == '/'" @click="changeThemeHandler">
           <img
             width="auto"
             height="auto"
-            class="w-[140px] md:w-[160px] lg:w-auto"
             src="/assets/images/logo.png"
-            alt="FresCo Logo" />
+            alt="FresCo" />
         </button>
         <a v-else href="/">
           <img
             width="auto"
             height="auto"
-            class="w-[130px] md:mx-auto md:w-[160px] lg:w-auto"
             src="/assets/images/logo.png"
-            alt="FresCo Logo" />
+            alt="FresCo" />
         </a>
       </div>
-
       <!-- Navbar Toggler (Mobile) -->
-      <div
-        class="menu cross menu--2 absolute right-4 top-4 z-[999] h-[50px] w-[50px] rounded-full bg-fr-red sm:right-0 md:hidden">
+      <div class="nav-toggle menu cross menu--2">
         <label class="h-[50px] w-[50px] rounded-full">
           <input
             @change="themeStore.setOpenMenu(!themeStore.openMenu)"
@@ -78,69 +75,21 @@ window.addEventListener('scroll', () => {
           </svg>
         </label>
       </div>
-
-      <!-- Nav List -->
-      <div
-        class="fixed inset-0 items-center justify-center transition-all duration-300 ease-in-out md:static md:block md:bg-transparent"
-        :class="[
-          themeStore.openMenu ? 'block' : 'hidden',
-          themeStore.openMenu && 'reveal-menu',
-          themeStore.theme == 'black' ? 'bg-fr-darker-red' : 'bg-fr-yellow',
-        ]">
-        <ul
-          class="flex flex-col items-center gap-8 px-8 pb-2 pt-36 md:flex-row md:items-start md:gap-4 md:px-0 md:pt-0">
-          <li class="nav-item" :class="url.pathname == '/' && 'nav-active'">
-            <a
-              class="block h-full text-start text-[24px] md:h-[40px] md:text-center md:text-[16px]"
-              href="/"
-              >BERANDA</a
-            >
-          </li>
+      <!-- Nav List & (Navigation Mobile) -->
+      <div class="nav-list-wrapper" :class="themeStore.openMenu && 'opened'">
+        <ul class="nav-list">
           <li
+            v-for="item in navStore.nav"
             class="nav-item"
-            :class="url.pathname == '/produk' && 'nav-active'">
-            <a
-              class="block text-start text-[24px] md:text-center md:text-[16px]"
-              href="/produk"
-              >ENAKNYA NGOPI FRESCO</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            :class="
-              url.pathname == '/artikel' || url.pathname.startsWith('/artikel/')
-                ? 'nav-active'
-                : ''
-            ">
-            <a
-              class="block text-start text-[24px] md:text-center md:text-[16px]"
-              href="/artikel"
-              >ENAKIN TIAP MOMEN</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            :class="url.pathname == '/aktivitas' && 'nav-active'">
-            <a
-              class="block text-start text-[24px] md:text-center md:text-[16px]"
-              href="/aktivitas"
-              >SERBA-SERBI FRESCO</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            :class="url.pathname == '/hubungi' && 'nav-active'">
-            <a
-              class="block text-start text-[24px] md:h-[40px] md:text-center md:text-[16px]"
-              href="/hubungi"
-              >HUBUNGI FRESCO</a
-            >
+            :class="url.pathname == item.link && 'nav-active'">
+            <a class="nav-link longer" :href="item.link">{{ item.name }}</a>
           </li>
         </ul>
-        <div class="mt-8 flex gap-x-1.5 px-8 md:hidden">
+        <!-- Social Media -->
+        <div class="nav-socmed-list">
           <!-- Facebook -->
           <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="nav-socmed-item"
             :class="
               themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -153,10 +102,9 @@ window.addEventListener('scroll', () => {
               "
               name="fa-facebook-f" />
           </a>
-
           <!-- Instagram -->
           <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="nav-socmed-item"
             :class="
               themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -169,10 +117,9 @@ window.addEventListener('scroll', () => {
               "
               name="fa-instagram" />
           </a>
-
           <!-- Twitter -->
           <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="nav-socmed-item"
             :class="
               themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -185,10 +132,9 @@ window.addEventListener('scroll', () => {
               "
               name="fa-twitter" />
           </a>
-
           <!-- Tiktok -->
           <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="nav-socmed-item"
             :class="
               themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -201,10 +147,9 @@ window.addEventListener('scroll', () => {
               "
               name="fa-tiktok" />
           </a>
-
-          <!-- Youtube -->
+          <!-- YouTube -->
           <a
-            class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+            class="nav-socmed-item"
             :class="
               themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
             "
@@ -221,14 +166,13 @@ window.addEventListener('scroll', () => {
       </div>
     </div>
 
-    <!-- Theme Changer to Cappuccino -->
+    <!-- Theme Changer -->
+    <!-- (Cappuccino) -->
     <Transition name="slide" mode="out-in">
       <div
-        class="float-animate fixed bottom-4 right-4 z-[99999] cursor-pointer overflow-hidden rounded-full border-[5px] border-white shadow-lg transition-transform hover:scale-105 md:absolute md:bottom-auto md:right-10 md:top-5 xl:bottom-auto xl:right-24 xl:top-2/4"
+        class="float-animate theme-changer"
         v-if="themeStore.theme == 'black'">
-        <div
-          class="flex h-20 w-20 items-center justify-center bg-fr-yellow p-2 lg:h-24 lg:w-24"
-          @click="enableCustomLayout('cappuccino')">
+        <div class="is-cappuccino" @click="enableCustomLayout('cappuccino')">
           <img
             width="auto"
             height="auto"
@@ -238,15 +182,12 @@ window.addEventListener('scroll', () => {
         </div>
       </div>
     </Transition>
-
-    <!-- Theme Changer to Black Coffee -->
+    <!-- (Black) -->
     <Transition name="slide" mode="out-in">
       <div
-        class="float-animate fixed bottom-4 right-4 z-[99999] cursor-pointer overflow-hidden rounded-full border-[5px] border-white shadow-lg transition-transform hover:scale-105 md:absolute md:bottom-auto md:right-10 md:top-5 xl:bottom-auto xl:right-24 xl:top-2/4"
+        class="float-animate theme-changer"
         v-if="themeStore.theme == 'cappuccino'">
-        <div
-          class="flex h-20 w-20 items-center justify-center bg-[#3b2314] p-3 lg:h-24 lg:w-24"
-          @click="enableCustomLayout('black')">
+        <div class="is-black" @click="enableCustomLayout('black')">
           <img
             width="auto"
             height="auto"
@@ -260,40 +201,6 @@ window.addEventListener('scroll', () => {
 </template>
 
 <style scoped lang="scss">
-@keyframes revealMenu {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-top {
-  0% {
-    -webkit-transform: translateY(-1000px);
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes float-animation {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
 circle {
   fill: #fff3;
   opacity: 0;
@@ -365,36 +272,51 @@ path {
 
 .float-animate {
   animation: none;
+  @media screen and (min-width: 768px) {
+    animation: float-animation 3s ease-in-out infinite;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
 }
 
 .slide-leave-active {
   animation: none;
+  @media screen and (min-width: 768px) {
+    animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse;
+    display: none;
+  }
 }
 
 .slide-enter-active {
   animation: none;
-}
-
-.reveal-menu {
-  animation: revealMenu 0.5s ease-in-out forwards;
-}
-
-@media (min-width: 768px) {
-  .float-animate {
-    animation: float-animation 3s ease-in-out infinite;
-  }
-
-  .float-animate:hover {
-    animation-play-state: paused;
-  }
-
-  .slide-leave-active {
-    animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse;
-    display: none;
-  }
-
-  .slide-enter-active {
+  @media screen and (min-width: 768px) {
     animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+}
+
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 </style>

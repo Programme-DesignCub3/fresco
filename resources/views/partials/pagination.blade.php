@@ -1,6 +1,6 @@
 @if ($article->hasPages())
   <ul
-    class="flex items-center justify-center text-lg font-medium text-black gap-x-3 dark:text-white">
+    class="flex items-center justify-center gap-x-3 text-lg font-medium text-fr-black dark:text-white">
     {{-- First Page Link --}}
     @if ($article->onFirstPage())
       <li class="disabled"><span>&lt;&lt;</span></li>
@@ -20,7 +20,7 @@
       @if ($i >= $article->currentPage() - 2 && $i <= $article->currentPage() + 2)
         @if ($i == $article->currentPage())
           <li
-            class="inline-flex items-center justify-center w-8 h-8 text-center text-white rounded-full bg-fr-red">
+            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-fr-red text-center text-white">
             <span>{{ $i }}</span>
           </li>
         @else

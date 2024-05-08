@@ -3,13 +3,14 @@
 namespace App\Filament\Clusters\General\Pages;
 
 use App\Filament\Clusters\General;
+use App\Rules\MaxWord;
 use App\Settings\GeneralSettings;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Models\Media;
-use Filament\Forms;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -37,11 +38,11 @@ class ManageDescription extends SettingsPage
     protected function mutateFormDataBeforeSave(array $data): array
     {
         for($i = 0; $i < count($data['black_desc_list']); $i++) {
-            $data['black_desc_list'][$i]['black_desc_image'] = 'storage/' . Media::where('id', $data['black_desc_list'][$i]['black_desc_image_id'])->get()[0]->path;
+            $data['black_desc_list'][$i]['black_desc_image'] = 'storage/' . Media::where('id', $data['black_desc_list'][$i]['black_desc_image_id'])->first()->path;
         }
 
         for($i = 0; $i < count($data['cappuccino_desc_list']); $i++) {
-            $data['cappuccino_desc_list'][$i]['cappuccino_desc_image'] = 'storage/' . Media::where('id', $data['cappuccino_desc_list'][$i]['cappuccino_desc_image_id'])->get()[0]->path;
+            $data['cappuccino_desc_list'][$i]['cappuccino_desc_image'] = 'storage/' . Media::where('id', $data['cappuccino_desc_list'][$i]['cappuccino_desc_image_id'])->first()->path;
         }
 
         return $data;
@@ -70,17 +71,30 @@ class ManageDescription extends SettingsPage
                             ->schema([
                                 Repeater::make('black_desc_list')
                                     ->label('Black Coffee Description List')
-                                    ->addActionLabel('Add to Black Coffee Description List')
+                                    ->addActionLabel('Add to black coffee description list')
                                     ->reorderableWithButtons()
+                                    ->required()
                                     ->schema([
                                         TextInput::make('black_desc_title')
                                             ->label('Title')
+                                            ->rules([new MaxWord('Title', 8, 'en')])
+                                            ->helperText('Maximum 8 words.')
+                                            ->autocomplete(false)
                                             ->required(),
-                                        Textarea::make('black_desc_explanation')
+                                        RichEditor::make('black_desc_explanation')
+                                            ->disableToolbarButtons([
+                                                'h2',
+                                                'h3',
+                                                'bulletList',
+                                                'orderedList',
+                                                'attachFiles',
+                                                'codeBlock',
+                                                'blockquote'
+                                            ])
                                             ->label('Explanation')
-                                            ->rows(5)
                                             ->required(),
                                         Radio::make('black_desc_position')
+                                            ->required()
                                             ->label('Position')
                                             ->options([
                                                 'left' => 'Left',
@@ -93,12 +107,15 @@ class ManageDescription extends SettingsPage
                                         CuratorPicker::make('black_desc_image_id')
                                             ->label('Image')
                                             ->maxSize(2048)
+                                            ->acceptedFileTypes(['image/*'])
+                                            ->maxItems(1)
+                                            ->helperText('Maximum 2 MB.')
                                             ->required()
                                     ])
                             ]),
 
-                        // Cappuccino
-                        Section::make('Cappuccino')
+                        // Cappuccino Coffee
+                        Section::make('Cappuccino Coffee')
                             ->columnSpan([
                                 '2xl' => 6,
                             ])
@@ -107,17 +124,30 @@ class ManageDescription extends SettingsPage
                             ->schema([
                                 Repeater::make('cappuccino_desc_list')
                                     ->label('Cappuccino Coffee Description List')
-                                    ->addActionLabel('Add to Cappuccino Coffee Description List')
+                                    ->addActionLabel('Add to cappuccino coffee description list')
                                     ->reorderableWithButtons()
+                                    ->required()
                                     ->schema([
                                         TextInput::make('cappuccino_desc_title')
                                             ->label('Title')
+                                            ->rules([new MaxWord('Title', 8, 'en')])
+                                            ->helperText('Maximum 8 words.')
+                                            ->autocomplete(false)
                                             ->required(),
-                                        Textarea::make('cappuccino_desc_explanation')
+                                        RichEditor::make('cappuccino_desc_explanation')
+                                            ->disableToolbarButtons([
+                                                'h2',
+                                                'h3',
+                                                'bulletList',
+                                                'orderedList',
+                                                'attachFiles',
+                                                'codeBlock',
+                                                'blockquote'
+                                            ])
                                             ->label('Explanation')
-                                            ->rows(5)
                                             ->required(),
                                         Radio::make('cappuccino_desc_position')
+                                            ->required()
                                             ->label('Position')
                                             ->options([
                                                 'left' => 'Left',
@@ -130,6 +160,9 @@ class ManageDescription extends SettingsPage
                                         CuratorPicker::make('cappuccino_desc_image_id')
                                             ->label('Image')
                                             ->maxSize(2048)
+                                            ->acceptedFileTypes(['image/*'])
+                                            ->maxItems(1)
+                                            ->helperText('Maximum 2 MB.')
                                             ->required()
                                     ])
                             ]),

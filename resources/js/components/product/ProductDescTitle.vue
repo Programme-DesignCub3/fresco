@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 
 const themeStore = useThemeStore();
 </script>
@@ -12,7 +12,7 @@ const themeStore = useThemeStore();
       <!-- Double element for refresh AOS Animation -->
       <h2
         v-if="themeStore.theme == 'black'"
-        class="flex flex-col text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px] xl:text-[80px]">
+        class="flex flex-col text-4xl font-bold leading-none md:text-6xl lg:text-[80px]">
         <span
           data-aos="fade-right"
           data-aos-delay="200"
@@ -32,7 +32,7 @@ const themeStore = useThemeStore();
       </h2>
       <h2
         v-if="themeStore.theme == 'cappuccino'"
-        class="flex flex-col text-[40px] font-bold leading-none md:text-[50px] lg:text-[60px] xl:text-[80px]">
+        class="flex flex-col text-4xl font-bold leading-none md:text-6xl lg:text-[80px]">
         <span
           data-aos="fade-right"
           data-aos-delay="200"

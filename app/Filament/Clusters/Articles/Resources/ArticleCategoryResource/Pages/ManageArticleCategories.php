@@ -10,7 +10,7 @@ class ManageArticleCategories extends ManageRecords
 {
     protected static string $resource = ArticleCategoryResource::class;
 
-    protected ?string $subheading = 'Controls article categories';
+    protected ?string $subheading = 'Displaying all article categories';
 
     protected function getHeaderActions(): array
     {

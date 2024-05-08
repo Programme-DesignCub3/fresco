@@ -1,5 +1,5 @@
 <script setup>
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 
 const { header } = defineProps(['header']);
 const themeStore = useThemeStore();
@@ -161,14 +161,14 @@ const themeStore = useThemeStore();
           data-aos-delay="200"
           data-aos-duration="1000"
           class="text-white"
-          >KENALI KAMI</span
+          >KAMI SIAP</span
         >
         <span
           data-aos="fade-down"
           data-aos-delay="200"
           data-aos-duration="1000"
           class="text-fr-yellow"
-          >LEBIH DEKAT</span
+          >MEMBANTU</span
         >
       </h1>
       <h1

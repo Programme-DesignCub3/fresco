@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import ArticleCard from '@/components/article/ArticleCard.vue';
 
 const themeStore = useThemeStore();
@@ -73,13 +73,15 @@ const articles = ref([
             :class="
               themeStore.theme == 'black'
                 ? 'text-white placeholder:text-white'
-                : 'bg-white text-black placeholder:text-black'
+                : 'bg-white text-fr-black placeholder:text-fr-black'
             "
             type="text"
             placeholder="Search Keywords...." />
           <button
             class="absolute left-3 translate-y-2.5"
-            :class="themeStore.theme == 'black' ? 'text-white' : 'text-black'">
+            :class="
+              themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'
+            ">
             <v-icon name="fa-search" />
           </button>
         </div>
@@ -99,7 +101,7 @@ const articles = ref([
       <!-- Pagination -->
       <div
         class="flex justify-center gap-x-3 text-xl font-medium"
-        :class="themeStore.theme == 'black' ? 'text-white' : 'text-black'">
+        :class="themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'">
         <div class="cursor-pointer">&lt;&lt;</div>
         <div class="cursor-pointer">&lt;</div>
         <div class="space-x-3">

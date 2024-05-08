@@ -3,8 +3,11 @@
 namespace App\Filament\Widgets;
 
 use App\Filament\Resources\MessageResource;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -44,6 +47,7 @@ class MessageOverview extends BaseWidget
     {
         return $table
             ->query(MessageResource::getEloquentQuery())
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('name')
                     ->label('Name'),
@@ -58,7 +62,20 @@ class MessageOverview extends BaseWidget
                     ->label('Sent on')
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->label('Name'),
+                        TextInput::make('email')
+                            ->label('Email'),
+                        TextInput::make('subject')
+                            ->label('Subject'),
+                        Textarea::make('message')
+                            ->rows(5)
+                            ->label('Message'),
+                        DateTimePicker::make('created_at')
+                            ->label('Sent on')
+                    ]),
             ]);
     }
 }

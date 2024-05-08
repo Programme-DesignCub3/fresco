@@ -2,7 +2,7 @@
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
-import { useThemeStore } from '@/stores/user-theme.js';
+import { useThemeStore } from '@/stores/theme-store.js';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 
@@ -189,7 +189,7 @@ watch(theme, () => {
           :class="
             themeStore.theme == 'black'
               ? 'bg-fr-red text-white'
-              : 'bg-fr-yellow text-black'
+              : 'bg-fr-yellow text-fr-black'
           ">
           <v-icon name="fa-chevron-left" />
         </div>
@@ -198,7 +198,7 @@ watch(theme, () => {
           :class="
             themeStore.theme == 'black'
               ? 'bg-fr-red text-white'
-              : 'bg-fr-yellow text-black'
+              : 'bg-fr-yellow text-fr-black'
           ">
           <v-icon name="fa-chevron-right" />
         </div>
