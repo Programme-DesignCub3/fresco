@@ -26,11 +26,11 @@ const swiperOption = {
     scale: 0.9,
     depth: 150,
     modifier: 1,
-    slideShadows: true,
+    slideShadows: false,
   },
   navigation: {
-    nextEl: '.fr-activity-slider-next',
-    prevEl: '.fr-activity-slider-prev',
+    nextEl: '.activity-list .next',
+    prevEl: '.activity-list .prev',
   },
   breakpoints: {
     768: {
@@ -55,134 +55,69 @@ const initSwiper = () => {
 
 onMounted(() => {
   initSwiper();
-  activityLink.value = data[0].link;
+  activityLink.value = data[0].links[0].link;
 
   swiper.value.on('realIndexChange', () => {
-    activityLink.value = data[swiper.value.realIndex].link;
+    activityLink.value = data[swiper.value.realIndex].links[0].link;
   });
 });
 
 watch(theme, () => {
   initSwiper();
-  activityLink.value = data[0].link;
+  activityLink.value = data[0].links[0].link;
 
   swiper.value.on('realIndexChange', () => {
-    activityLink.value = data[swiper.value.realIndex].link;
+    activityLink.value = data[swiper.value.realIndex].links[0].link;
   });
 });
 </script>
 
 <template>
-  <div
-    class="relative bg-cover bg-bottom bg-no-repeat py-10 md:py-20"
-    :class="themeStore.theme == 'black' ? 'bg-activity bg-fr-black' : 'bg-fr-yellow'">
-    <!-- Navigation Swiper (Arrow Left) -->
-    <div
-      class="fr-activity-slider-prev absolute left-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]"
-      :class="
-        themeStore.theme == 'black'
-          ? 'bg-fr-yellow text-fr-black'
-          : 'bg-fr-red text-white'
-      ">
+  <!-- Activity List -->
+  <div class="activity-list" :class="themeStore.theme">
+    <!-- Arrow Slider -->
+    <div class="prev">
       <v-icon name="fa-chevron-left" />
     </div>
-
-    <!-- Navigation Swiper (Arrow Right) -->
-    <div
-      class="fr-activity-slider-next absolute right-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]"
-      :class="
-        themeStore.theme == 'black'
-          ? 'bg-fr-yellow text-fr-black'
-          : 'bg-fr-red text-white'
-      ">
+    <div class="next">
       <v-icon name="fa-chevron-right" />
     </div>
-
-    <!-- Title -->
-    <div class="fr-container mx-auto space-y-12">
-      <div class="space-y-6">
-        <!-- Double element for refresh AOS Animation -->
-        <h2
-          v-if="themeStore.theme == 'black'"
-          data-aos="flip-down"
-          data-aos-delay="400"
-          data-aos-duration="1000"
-          data-aos-offset="0"
-          class="text-shadow px-4 text-[30px] font-bold leading-none text-white sm:px-0 sm:text-[40px] md:text-[50px]">
-          AKTIVITAS
-        </h2>
-        <h2
-          v-else
-          data-aos="flip-down"
-          data-aos-delay="400"
-          data-aos-duration="1000"
-          data-aos-offset="0"
-          class="text-shadow px-4 text-[30px] font-bold leading-none text-fr-green sm:px-0 sm:text-[40px] md:text-[50px]">
-          AKTIVITAS
-        </h2>
-
-        <!-- Double element for refresh AOS Animation -->
-        <div
-          v-if="themeStore.theme == 'black'"
-          data-aos="fade-right"
-          data-aos-delay="200"
-          data-aos-duration="500"
-          data-aos-offset="0"
-          class="ml-4 h-[4px] w-16 rounded-full bg-fr-red sm:ml-0"></div>
-        <div
-          v-else
-          data-aos="fade-right"
-          data-aos-delay="200"
-          data-aos-duration="500"
-          data-aos-offset="0"
-          class="ml-4 h-[4px] w-16 rounded-full bg-fr-red sm:ml-0"></div>
-      </div>
-
+    <!-- Activity List Wrapper -->
+    <div class="activity-list-wrapper">
+      <!-- Page Title -->
+      <h2
+        data-aos="flip-down"
+        data-aos-delay="400"
+        data-aos-duration="1000"
+        data-aos-offset="0"
+        class="page-title-center"
+        :class="themeStore.theme">
+        AKTIVITAS
+      </h2>
       <!-- Slider -->
       <div class="swiper" ref="activity">
         <div class="swiper-wrapper">
           <div v-for="(d, i) in data" :key="i" class="swiper-slide">
-            <img
-              :src="d.image"
-              width="auto"
-              height="auto"
-              alt="FresCo Activity"
-              class="mx-auto aspect-square object-cover object-center xl:h-[600px] xl:w-[600px]" />
+            <div class="activity-list-slide">
+              <img
+                :src="d.image"
+                :alt="d.title ? d.title : 'FresCo Activity'"
+                width="auto"
+                height="auto" />
+              <div class="activity-list-slide-detail">
+                <h3>{{ d.title }}</h3>
+                <p v-html="d.description"></p>
+                <a :href="activityLink" target="_blank" class="button red mt-5">
+                  READ MORE
+                  <v-icon
+                    class="h-4 w-4 stroke-2 py-[2px]"
+                    name="fa-chevron-right" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Read More Button -->
-      <div class="text-center">
-        <a
-          :href="activityLink"
-          target="_blank"
-          class="button red">
-          READ MORE
-          <v-icon class="h-4 w-4 stroke-2 py-[2px]" name="fa-chevron-right" />
-        </a>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-@keyframes arrow-slide-fade {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(50%);
-  }
-}
-
-.arrow-slide-fade-right {
-  animation: arrow-slide-fade 1.5s ease-in-out infinite;
-}
-</style>

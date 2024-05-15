@@ -1,81 +1,81 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme-store.js';
+import { ref } from 'vue';
 
 const { data } = defineProps(['data']);
+const scrollBottom = ref(false);
 const themeStore = useThemeStore();
+const socials = ref([
+  {
+    name: 'facebook',
+    icon: 'fa-facebook-f',
+    alias: data.facebook_alias,
+    link: data.facebook_link,
+  },
+  {
+    name: 'instagram',
+    icon: 'fa-instagram',
+    alias: data.instagram_alias,
+    link: data.instagram_link,
+  },
+  {
+    name: 'twitter',
+    icon: 'fa-twitter',
+    alias: data.x_alias,
+    link: data.x_link,
+  },
+  {
+    name: 'tiktok',
+    icon: 'fa-tiktok',
+    alias: data.tiktok_alias,
+    link: data.tiktok_link,
+  },
+  {
+    name: 'youtube',
+    icon: 'fa-youtube',
+    alias: data.youtube_alias,
+    link: data.youtube_link,
+  },
+]);
+
+window.addEventListener('scroll', () => {
+  if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+    scrollBottom.value = true;
+  } else {
+    scrollBottom.value = false;
+  }
+});
 </script>
 
 <template>
-  <!-- === Social Media Link === -->
   <div
     v-if="
       themeStore.getTheme().value != undefined ||
       themeStore.getTheme().value != null
     "
-    class="fixed right-0 top-48 z-[100] mr-4 hidden flex-col space-y-2 transition-all duration-700 ease-in-out md:flex">
-    <!-- Facebook -->
+    class="social-media-list"
+    :class="scrollBottom && '-right-10'">
+    <!-- Social Media -->
     <a
-      class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
+      v-for="social in socials"
       :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'"
-      :href="data.facebook_link ? data.facebook_link : '#'"
+      :href="social.link ? social.link : '#'"
       target="_blank">
       <v-icon
         class="h-9 w-9 pt-2"
-        :class="themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'"
-        name="fa-facebook-f" />
-    </a>
-
-    <!-- Instagram -->
-    <a
-      class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
-      :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'"
-      :href="data.instagram_link ? data.instagram_link : '#'"
-      target="_blank">
-      <v-icon
-        class="h-9 w-9 p-1"
-        :class="themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'"
-        name="fa-instagram" />
-    </a>
-
-    <!-- Twitter -->
-    <a
-      class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
-      :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'"
-      :href="data.x_link ? data.x_link : '#'"
-      target="_blank">
-      <v-icon
-        class="h-9 w-9 p-1.5"
-        :class="themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'"
-        name="fa-twitter" />
-    </a>
-
-    <!-- Tiktok -->
-    <a
-      class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
-      :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'"
-      :href="data.tiktok_link ? data.tiktok_link : '#'"
-      target="_blank">
-      <v-icon
-        class="h-9 w-9 p-1.5"
-        :class="themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'"
-        name="fa-tiktok" />
-    </a>
-
-    <!-- Youtube -->
-    <a
-      class="box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110"
-      :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'"
-      :href="data.youtube_link ? data.youtube_link : '#'"
-      target="_blank">
-      <v-icon
-        class="h-9 w-9 p-1.5"
-        :class="themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'"
-        name="fa-youtube" />
+        :class="[
+          themeStore.theme == 'black' ? 'text-fr-black' : 'text-white',
+          social.name == 'facebook' && 'h-9 w-9 pt-2',
+          social.name == 'instagram' && 'h-9 w-9 p-1',
+          social.name == 'twitter' && 'h-9 w-9 p-1.5',
+          social.name == 'tiktok' && 'h-9 w-9 p-1.5',
+          social.name == 'youtube' && 'h-9 w-9 p-1.5',
+        ]"
+        :name="social.icon" />
     </a>
   </div>
-
-  <!-- === WhatsApp Link === -->
-  <div class="fixed bottom-32 right-4 z-[99] md:bottom-4">
+  <!-- WhatsApp -->
+  <div class="social-media-whatsapp">
     <a :href="data.whatsapp_link ? data.whatsapp_link : '#'" target="_blank">
       <img
         width="auto"
@@ -86,9 +86,3 @@ const themeStore = useThemeStore();
     </a>
   </div>
 </template>
-
-<style scoped>
-.box-shadow {
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-}
-</style>

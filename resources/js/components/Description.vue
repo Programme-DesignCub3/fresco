@@ -93,7 +93,7 @@ window.addEventListener('resize', () => {
           :class="d.black_desc_position == 'right' && 'items-end'">
           <div class="w-full space-y-4 2xl:w-[600px]">
             <h2
-              class="text-4xl font-bold leading-none md:text-6xl lg:text-[80px]"
+              class="text-[40px] font-bold leading-none md:text-5xl lg:text-6xl"
               ref="manifest">
               {{ d.black_desc_title }}
             </h2>
@@ -139,7 +139,7 @@ window.addEventListener('resize', () => {
           :class="d.cappuccino_desc_position == 'right' && 'items-end'">
           <div class="w-full space-y-4 2xl:w-[600px]">
             <h2
-              class="text-4xl font-bold leading-none md:text-6xl lg:text-[80px]"
+              class="text-[40px] font-bold leading-none md:text-5xl lg:text-6xl"
               ref="manifest">
               {{ d.cappuccino_desc_title }}
             </h2>

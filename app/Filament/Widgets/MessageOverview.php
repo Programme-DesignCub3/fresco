@@ -50,11 +50,14 @@ class MessageOverview extends BaseWidget
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('name')
-                    ->label('Name'),
+                    ->label('Name')
+                    ->limit(30),
                 TextColumn::make('email')
-                    ->label('Email'),
+                    ->label('Email')
+                    ->limit(30),
                 TextColumn::make('subject')
-                    ->label('Subject'),
+                    ->label('Subject')
+                    ->limit(30),
                 TextColumn::make('message')
                     ->label('Message')
                     ->limit(30),

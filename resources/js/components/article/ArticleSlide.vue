@@ -20,8 +20,8 @@ const swiperOption = {
   slidesPerGroup: 1,
   modules: [Navigation],
   navigation: {
-    nextEl: '.fr-article-slider-next',
-    prevEl: '.fr-article-slider-prev',
+    nextEl: '.article-slide .next',
+    prevEl: '.article-slide .prev',
   },
   breakpoints: {
     768: {
@@ -50,83 +50,47 @@ watch(theme, () => {
 </script>
 
 <template>
-  <div
-    class="relative px-4 py-10 transition-all duration-700 ease-in-out sm:px-0"
-    :class="themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-green'">
-    <div
-      class="fr-article-slider-prev absolute left-[4%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-fr-yellow text-fr-black sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]">
+  <!-- Article Slide -->
+  <div class="article-slide" :class="themeStore.theme">
+    <!-- Arrow Slider -->
+    <div class="prev">
       <v-icon name="fa-chevron-left" />
     </div>
-    <div
-      class="fr-article-slider-next absolute right-[4%] top-1/2 z-40 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-fr-yellow text-fr-black sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]">
+    <div class="next">
       <v-icon name="fa-chevron-right" />
     </div>
-    <div class="fr-container mx-auto space-y-10">
-      <h1 class="text-shadow text-[40px] font-bold leading-none text-white">
-        Artikel lainnya
-      </h1>
-
-      <!-- Slide Black Coffee -->
-      <div v-if="themeStore.theme == 'black'" class="swiper" ref="article">
+    <!-- Article Slide Wrapper -->
+    <div class="article-slide-wrapper">
+      <!-- Section Title -->
+      <h1>Artikel lainnya</h1>
+      <!-- Slider -->
+      <div class="swiper" ref="article">
         <div class="swiper-wrapper">
-          <div v-for="(d, i) in data" :key="i" class="swiper-slide pb-4">
-            <div class="flex flex-col gap-6 xl:flex-row xl:gap-8">
+          <div v-for="(d, i) in data" :key="i" class="swiper-slide">
+            <div class="article-slide-content">
               <div class="w-full">
                 <img
                   width="auto"
                   height="auto"
-                  class="aspect-square object-cover"
+                  class="aspect-square object-cover object-center"
                   :src="d.image"
                   :alt="d.title" />
               </div>
               <div
                 class="flex w-full flex-col gap-y-3 transition-all duration-700 ease-in-out">
-                <h2 class="text-2xl font-bold text-fr-yellow">
-                  {{ d.title }}
-                </h2>
-                <p class="font-medium text-white md:text-lg">
-                  {{ d.excerpt }}
-                </p>
-                <div>
-                  <a
-                    :href="d.slug"
-                    class="rounded-lg bg-fr-yellow px-6 py-2.5 text-xs font-medium text-fr-black transition-all duration-300 ease-in-out hover:bg-fr-darker-yellow md:text-sm">
-                    READ MORE
-                    <v-icon
-                      class="h-4 w-4 stroke-2 py-[2px]"
-                      name="fa-chevron-right" />
-                  </a>
+                <div class="space-y-1">
+                  <h2 class="text-xl font-semibold text-fr-yellow">
+                    {{ d.title }}
+                  </h2>
+                  <p class="text-white">
+                    {{ d.excerpt }}
+                  </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide Cappuccino -->
-      <div v-if="themeStore.theme == 'cappuccino'" class="swiper" ref="article">
-        <div class="swiper-wrapper">
-          <div v-for="(d, i) in data" :key="i" class="swiper-slide pb-4">
-            <div class="flex flex-col gap-6 xl:flex-row xl:gap-8">
-              <div class="w-full">
-                <img
-                  width="auto"
-                  height="auto"
-                  class="aspect-square object-cover"
-                  :src="d.image"
-                  :alt="d.title" />
-              </div>
-              <div class="flex w-full flex-col gap-y-3">
-                <h1 class="text-2xl font-bold text-fr-yellow">
-                  {{ d.title }}
-                </h1>
-                <p class="font-medium text-white md:text-lg">
-                  {{ d.excerpt }}
-                </p>
                 <div>
                   <a
                     :href="d.slug"
-                    class="rounded-lg bg-fr-red px-6 py-2.5 text-xs font-medium text-white transition-all duration-300 ease-in-out hover:bg-fr-darker-red md:text-sm">
+                    class="button"
+                    :class="themeStore.theme == 'black' ? 'yellow' : 'red'">
                     READ MORE
                     <v-icon
                       class="h-4 w-4 stroke-2 py-[2px]"

@@ -10,7 +10,7 @@
 @section('content')
   <section id="detail-article">
     <div
-      class="bg-fr-yellow bg-cover bg-top bg-no-repeat pt-0 md:pt-48 dark:bg-fr-black dark:bg-article">
+      class="bg-fr-yellow bg-cover bg-top bg-no-repeat pt-0 transition-all duration-700 ease-in-out md:pt-48 dark:bg-fr-black dark:bg-article">
       <div class="fr-container mx-auto">
         <div
           class="flex w-full flex-col bg-white px-4 pb-10 pt-24 sm:pt-4 md:px-8 md:pb-16 md:pt-8 lg:px-16 lg:pb-24 lg:pt-16">
@@ -20,12 +20,12 @@
               height="auto"
               class="aspect-video w-full object-cover object-center"
               src="{{ $article->featured_image->url }}"
-              alt="FresCo" />
+              alt="{{ $article->title }}" />
             <article class="space-y-3">
               <h1 class="text-3xl font-bold text-fr-green md:text-4xl">
                 {{ $article->title }}
               </h1>
-              <div class="space-y-3 text-base md:text-lg">
+              <div class="space-y-6 text-base md:text-lg">
                 @foreach ($article->content as $c)
                   @switch($c['type'])
                     @case('paragraph')
@@ -59,7 +59,6 @@
                           "
                           class="aspect-video"
                           src="https://www.youtube.com/embed/{{ $c['data']['content'] }}"
-                          title="Vertical Tiki Taka Timnas STY Hancurkan Raksasa Asia ( Australia, Yordania dan Korea!)"
                           frameborder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           referrerpolicy="strict-origin-when-cross-origin"
@@ -74,19 +73,16 @@
           </div>
           <div class="mt-6 space-y-6 md:mt-10 md:space-y-10">
             <div class="sharethis-inline-share-buttons"></div>
-            <div class="text-white">
-              <a href="{{ URL::to('/artikel') }}" class="button red">
-                <span class="flex items-center">
-                  <i class="fa-solid fa-chevron-left mr-2 text-[11px]"></i>
-                  BACK
-                </span>
-              </a>
-            </div>
+            <a href="{{ URL::to('/artikel') }}" class="button red">
+              <span class="flex items-center">
+                <i class="fa-solid fa-chevron-left mr-2 text-[11px]"></i>
+                BACK
+              </span>
+            </a>
           </div>
         </div>
       </div>
     </div>
-
     {{-- Article Slide Section --}}
     <article-slide-component
       :data="{{ json_encode($other) }}"></article-slide-component>

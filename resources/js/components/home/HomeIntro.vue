@@ -19,7 +19,7 @@ const themeStore = useThemeStore();
           loop
           playsinline
           id="black-coffee"
-          class="z-40 px-4 pt-6 sm:px-0 md:pt-0"
+          class="z-40 px-4 sm:px-0 md:pt-0"
           poster="/assets/images/placeholder-video.webp">
           <source
             src="/assets/videos/black-coffee-video.mp4"
@@ -37,12 +37,6 @@ const themeStore = useThemeStore();
   <div v-if="themeStore.theme == 'cappuccino'">
     <!-- Home Intro Video -->
     <div class="home-intro-video" :class="themeStore.theme">
-      <!-- Background Image -->
-      <img
-        width="auto"
-        height="auto"
-        src="/assets/images/bg-cappuccino-home.svg"
-        alt="Background Cappuccino Home" />
       <!-- Video -->
       <div class="fr-container mx-auto">
         <video
@@ -51,7 +45,7 @@ const themeStore = useThemeStore();
           loop
           playsinline
           id="cappuccino-coffee"
-          class="relative z-40 px-4 sm:px-0"
+          class="z-40 px-4 sm:px-0"
           poster="/assets/images/placeholder-video.webp">
           <source src="/assets/videos/cappuccino-video.mp4" type="video/mp4" />
           Your browser does not support HTML5 video.

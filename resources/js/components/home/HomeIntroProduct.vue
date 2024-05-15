@@ -51,7 +51,7 @@ const splitterText = (target) => {
     delay += 100;
     themeStore.theme == 'black'
       ? splitBlack(element, index, delay, 1, '#black-anchor')
-      : splitCappuccino(element, index, delay, 2, '#cappuccino-anchor');
+      : splitCappuccino(element, index, delay, 1, '#cappuccino-anchor');
   }
 
   delayAos.value = delay + 100;
@@ -117,13 +117,18 @@ window.addEventListener('resize', () => {
           <!-- Black Theme -->
           <template v-if="themeStore.theme == 'black'">
             <!-- First Slide -->
-            <div class="swiper-slide space-y-4 md:space-y-8">
+            <div class="swiper-slide">
               <div class="black-slider">
                 <!-- Title (Black) -->
                 <div class="heading-wrapper" id="black-anchor">
-                  <h1 ref="first">
-                    {{ data.black_intro_title }}
-                  </h1>
+                  <h1 ref="first">{{ data.black_intro_title }}</h1>
+                  <!-- Description (Black) -->
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    data-aos-offset="0">
+                    <p v-html="data.black_intro_desc"></p>
+                  </div>
                 </div>
                 <!-- Image (Black) -->
                 <div class="image-wrapper">
@@ -137,25 +142,22 @@ window.addEventListener('resize', () => {
                     data-aos-delay="150" />
                 </div>
               </div>
-              <!-- Description (Black) -->
-              <div
-                data-aos="fade-up"
-                data-aos-delay="200"
-                data-aos-offset="0"
-                class="desc-wrapper">
-                <p v-html="data.black_intro_desc"></p>
-              </div>
             </div>
             <!-- Second Slide -->
-            <div class="swiper-slide space-y-4 md:space-y-8">
+            <div class="swiper-slide">
               <div class="black-slider">
                 <!-- Title (Black) -->
                 <div class="heading-wrapper" id="black-anchor">
-                  <h1
-                    class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px]"
-                    ref="second">
+                  <h1 ref="second">
                     {{ data.cappuccino_intro_title }}
                   </h1>
+                  <!-- Description (Black) -->
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    data-aos-offset="0">
+                    <p v-html="data.cappuccino_intro_desc"></p>
+                  </div>
                 </div>
                 <!-- Image (Black) -->
                 <div class="image-wrapper">
@@ -169,112 +171,84 @@ window.addEventListener('resize', () => {
                     data-aos-delay="150" />
                 </div>
               </div>
-              <!-- Description (Black) -->
-              <div
-                data-aos="fade-up"
-                data-aos-delay="200"
-                data-aos-offset="0"
-                class="desc-wrapper">
-                <p v-html="data.cappuccino_intro_desc"></p>
-              </div>
             </div>
           </template>
+
           <!-- Cappuccino Theme -->
           <template v-if="themeStore.theme == 'cappuccino'">
             <!-- First Slide -->
-            <div class="swiper-slide p-2">
-              <div
-                class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
-                <div class="mb-10 md:mb-0 md:w-1/4">
-                  <!-- Title (Cappuccino) -->
-                  <div class="relative" id="cappuccino-anchor">
-                    <h1
-                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px]"
-                      ref="first">
-                      {{ data.cappuccino_intro_title }}
-                    </h1>
+            <div class="swiper-slide">
+              <div class="cappuccino-slider">
+                <!-- Title (Cappuccino) -->
+                <div class="heading-wrapper" id="cappuccino-anchor">
+                  <div class="relative">
+                    <h1 ref="first">{{ data.cappuccino_intro_title }}</h1>
                     <h2
                       ref="stroke"
                       data-aos="fade-in"
                       :data-aos-delay="delayAos"
                       data-aos-duration="1200"
                       data-aos-anchor="#cappuccino-anchor"
-                      data-aos-offset="100"
-                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px] text-stroke absolute -left-1 -right-1 -top-1 text-white lg:-left-1.5 lg:-right-1.5 lg:-top-1.5">
+                      data-aos-offset="100">
                       {{ data.cappuccino_intro_title }}
                     </h2>
                   </div>
+                  <!-- Description (Cappuccino) -->
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    data-aos-offset="0">
+                    <p v-html="data.cappuccino_intro_desc"></p>
+                  </div>
                 </div>
                 <!-- Image (Cappuccino) -->
-                <div class="w-full">
+                <div class="image-wrapper">
                   <img
                     width="auto"
                     height="auto"
                     :src="data.cappuccino_intro_image"
                     :alt="data.cappuccino_intro_title"
-                    class="w-full"
                     data-aos-offset="0"
                     data-aos="zoom-in"
                     data-aos-delay="150" />
                 </div>
               </div>
-              <!-- Description (Cappuccino) -->
-              <div class="mt-12 overflow-y-hidden">
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                  data-aos-offset="0"
-                  class="flex justify-center text-center font-medium leading-8">
-                  <p
-                    v-html="data.cappuccino_intro_desc"></p>
-                </div>
-              </div>
             </div>
             <!-- Second Slide -->
-            <div class="swiper-slide p-2">
-              <div
-                class="flex flex-col md:relative md:flex-row md:items-center md:gap-x-52">
-                <div class="mb-10 md:mb-0 md:w-1/4">
-                  <!-- Title (Cappuccino) -->
-                  <div class="relative" id="cappuccino-anchor">
-                    <h1
-                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px]"
-                      ref="second">
-                      {{ data.black_intro_title }}
-                    </h1>
+            <div class="swiper-slide">
+              <div class="cappuccino-slider">
+                <!-- Title (Cappuccino) -->
+                <div class="heading-wrapper" id="cappuccino-anchor">
+                  <div class="relative">
+                    <h1 ref="second">{{ data.black_intro_title }}</h1>
                     <h2
+                      ref="stroke"
                       data-aos="fade-in"
                       :data-aos-delay="delayAos"
                       data-aos-duration="1200"
                       data-aos-anchor="#cappuccino-anchor"
-                      data-aos-offset="100"
-                      class="text-center text-4xl font-bold leading-none md:text-left md:text-6xl lg:text-[80px] text-stroke absolute -left-1 -right-1 -top-1 text-white lg:-left-1.5 lg:-right-1.5 lg:-top-1.5">
+                      data-aos-offset="100">
                       {{ data.black_intro_title }}
                     </h2>
                   </div>
+                  <!-- Description (Cappuccino) -->
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    data-aos-offset="0">
+                    <p v-html="data.black_intro_desc"></p>
+                  </div>
                 </div>
                 <!-- Image (Cappuccino) -->
-                <div class="w-full">
+                <div class="image-wrapper">
                   <img
                     width="auto"
                     height="auto"
                     :src="data.black_intro_image"
                     :alt="data.black_intro_title"
-                    class="w-full"
                     data-aos-offset="0"
                     data-aos="zoom-in"
                     data-aos-delay="150" />
-                </div>
-              </div>
-              <!-- Description (Cappuccino) -->
-              <div class="mt-12 overflow-y-hidden">
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                  data-aos-offset="0"
-                  class="flex justify-center text-center font-medium leading-8">
-                  <p
-                    v-html="data.black_intro_desc"></p>
                 </div>
               </div>
             </div>
@@ -284,19 +258,3 @@ window.addEventListener('resize', () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.bg-glow-yellow {
-  background: rgb(253, 198, 75);
-  background: radial-gradient(
-    circle,
-    rgba(253, 198, 75, 1) 5%,
-    rgba(0, 212, 255, 0) 45%
-  );
-}
-
-.text-stroke {
-  -webkit-text-stroke: 1px white;
-  -webkit-text-fill-color: transparent;
-}
-</style>

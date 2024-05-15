@@ -9,10 +9,9 @@ const themeStore = useThemeStore();
     class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-16"
     :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
     <div class="fr-container mx-auto">
-      <!-- Double element for refresh AOS Animation -->
+      <!-- Section Title -->
       <h2
-        v-if="themeStore.theme == 'black'"
-        class="flex flex-col text-4xl font-bold leading-none md:text-6xl lg:text-[80px]">
+        class="flex flex-col text-[40px] font-bold leading-none md:text-5xl lg:text-6xl">
         <span
           data-aos="fade-right"
           data-aos-delay="200"
@@ -30,27 +29,6 @@ const themeStore = useThemeStore();
           >KOPI FRESCO</span
         >
       </h2>
-      <h2
-        v-if="themeStore.theme == 'cappuccino'"
-        class="flex flex-col text-4xl font-bold leading-none md:text-6xl lg:text-[80px]">
-        <span
-          data-aos="fade-right"
-          data-aos-delay="200"
-          data-aos-duration="500"
-          :class="themeStore.theme == 'black' ? 'text-white' : 'text-fr-green'"
-          >KELEBIHAN</span
-        >
-        <span
-          data-aos="fade-right"
-          data-aos-delay="400"
-          data-aos-duration="500"
-          :class="
-            themeStore.theme == 'black' ? 'text-fr-yellow' : 'text-fr-red'
-          "
-          >KOPI FRESCO</span
-        >
-      </h2>
-
       <!-- Double element for refresh AOS Animation -->
       <div
         v-if="themeStore.theme == 'black'"

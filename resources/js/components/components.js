@@ -21,9 +21,6 @@ import ProductMarketplace from '@/components/product/ProductMarketplace.vue';
 import ProductDescTitle from '@/components/product/ProductDescTitle.vue';
 
 /** @import Article Components */
-import ArticleList from '@/components/article/ArticleList.vue';
-import ArticleDetail from '@/components/article/ArticleDetail.vue';
-import ArticleCard from '@/components/article/ArticleCard.vue';
 import ArticleSlide from '@/components/article/ArticleSlide.vue';
 
 /** @import Activity Components */
@@ -31,6 +28,9 @@ import ActivityList from '@/components/activity/ActivityList.vue';
 
 /** @import Contact Components */
 import ContactForm from '@/components/contact/ContactForm.vue';
+
+/** @import Icon Components */
+import Loading from '@/assets/Loading.vue';
 
 export {
   Menu,
@@ -49,10 +49,8 @@ export {
   ProductList,
   ProductMarketplace,
   ProductDescTitle,
-  ArticleList,
-  ArticleDetail,
-  ArticleCard,
   ArticleSlide,
   ActivityList,
   ContactForm,
+  Loading,
 };

@@ -18,12 +18,10 @@ import {
   ProductList,
   ProductMarketplace,
   ProductDescTitle,
-  ArticleList,
-  ArticleDetail,
-  ArticleCard,
   ArticleSlide,
   ActivityList,
   ContactForm,
+  Loading,
 } from '@/components/components';
 import {
   FaPhoneAlt,
@@ -90,16 +88,16 @@ app
   .component('ProductDescTitleComponent', ProductDescTitle)
 
   /** @register Article Components */
-  .component('ArticleListComponent', ArticleList)
-  .component('ArticleDetailComponent', ArticleDetail)
-  .component('ArticleCardComponent', ArticleCard)
   .component('ArticleSlideComponent', ArticleSlide)
 
   /** @register Activity Components */
   .component('ActivityListComponent', ActivityList)
 
   /** @register Contact Components */
-  .component('ContactFormComponent', ContactForm);
+  .component('ContactFormComponent', ContactForm)
+
+  /** @register Icon Components */
+  .component('LoadingComponent', Loading);
 
 app.use(pinia);
 app.component('v-icon', OhVueIcon);
