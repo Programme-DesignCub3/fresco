@@ -98,11 +98,6 @@ class PromotionResource extends Resource
                             '2xl' => 4
                         ])
                         ->schema([
-                            Toggle::make('published')
-                                ->inline(false)
-                                ->label('Publish')
-                                ->onIcon('heroicon-o-signal')
-                                ->offIcon('heroicon-o-signal-slash'),
                             CuratorPicker::make('image')
                                 ->maxSize(2048)
                                 ->label('Image')
@@ -136,28 +131,15 @@ class PromotionResource extends Resource
                         ($check->count() >= 1) && $check->update(['pin' => 0]);
                     })
                     ->afterStateUpdated(function ($record, $state) {
-                        ($record['published'] == 0) && $record->update(['published' => 1]);
                         $record->pin = $state;
                         $record->save();
                     }),
-                ToggleColumn::make('published')
-                    ->sortable()
-                    ->onIcon('heroicon-o-signal')
-                    ->offIcon('heroicon-o-signal-slash')
-                    ->afterStateUpdated(function ($record, $state) {
-                        ($record['pin'] == 1) && $record->update(['pin' => 0]);
-                    })
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
                 Filter::make('pin')
                     ->label('Pinned')
-                    ->query(fn (EloquentBuilder $query): EloquentBuilder => $query->where('pin', true)),
-                SelectFilter::make('published')
-                    ->options([
-                        0 => 'Unpublished',
-                        1 => 'Published',
-                    ]),
+                    ->query(fn (EloquentBuilder $query): EloquentBuilder => $query->where('pin', true))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

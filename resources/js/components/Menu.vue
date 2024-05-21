@@ -12,7 +12,7 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 <template>
   <header
     v-if="themeStore.theme == undefined || themeStore.theme == null"
-    class="relative z-[999] flex h-dvh flex-col">
+    class="relative z-[999999999] flex h-dvh flex-col">
     <div class="bg-radial-darker-red relative h-full max-h-[75%] w-full py-8">
       <div
         class="absolute bottom-[27%] h-12 w-full bg-gradient-to-t from-[#470610] to-transparent"></div>

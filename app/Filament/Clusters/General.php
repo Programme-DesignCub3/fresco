@@ -6,7 +6,7 @@ use Filament\Clusters\Cluster;
 
 class General extends Cluster
 {
-    protected static ?string $navigationGroup = 'Configuration';
+    protected static ?string $navigationGroup = 'Settings';
 
     protected static ?string $navigationIcon = 'heroicon-c-adjustments-horizontal';
 }

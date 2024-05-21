@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->json('links');
-            $table->boolean('published');
             $table->boolean('pin')->nullable();
             $table->timestamps();
         });

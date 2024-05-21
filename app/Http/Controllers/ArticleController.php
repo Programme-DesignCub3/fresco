@@ -28,7 +28,7 @@ class ArticleController extends Controller
         }
 
         $article->transform(function ($art) {
-            $art->image = $art->featured_image->url;
+            $art->image = $art->featured_image->url ?? null;
             return $art;
         });
 
@@ -54,7 +54,7 @@ class ArticleController extends Controller
         // Other Articles
         $other = Article::where('published', true)->where('slug', '!=', $slug)->with('featured_image')->latest()->take(4)->get();
         $other->transform(function ($o) {
-            $o->image = $o->featured_image->url;
+            $o->image = $o->featured_image->url ?? null;
             return $o;
         });
 

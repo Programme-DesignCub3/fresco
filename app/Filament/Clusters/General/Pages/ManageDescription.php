@@ -12,6 +12,8 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -21,9 +23,7 @@ class ManageDescription extends SettingsPage
 {
     protected ?string $heading = 'Description';
 
-    protected ?string $subheading = 'Controls description section';
-
-    protected static ?int $navigationSort = 3;
+    protected ?string $subheading = 'Manage description section';
 
     protected static ?string $navigationGroup = 'Content';
 
@@ -52,120 +52,118 @@ class ManageDescription extends SettingsPage
     {
         return $form
             ->schema([
-                Grid::make([
-                    'default' => 1,
-                    'sm' => 2,
-                    'md' => 4,
-                    'lg' => 6,
-                    'xl' => 8,
-                    '2xl' => 12,
-                ])
+                // Description Section
+                Section::make('Description Section')
+                    ->description('Minimize for comfortable viewing')
+                    ->icon('heroicon-m-rectangle-stack')
+                    ->collapsible()
                     ->schema([
-                        // Black Coffee
-                        Section::make('Black Coffee')
-                            ->columnSpan([
-                                '2xl' => 6,
-                            ])
-                            ->description('Minimize for comfortable viewing')
-                            ->collapsible()
-                            ->schema([
-                                Repeater::make('black_desc_list')
-                                    ->label('Black Coffee Description List')
-                                    ->addActionLabel('Add to black coffee description list')
-                                    ->reorderableWithButtons()
-                                    ->required()
+                        Grid::make([
+                            'default' => 1,
+                            'sm' => 2
+                        ])
+                        ->schema([
+                            Tabs::make('Theme')
+                                ->tabs([
+                                    // Description Section (Black)
+                                    Tab::make('Black Coffee Theme')
+                                        ->schema([
+                                            Repeater::make('black_desc_list')
+                                            ->label('Black Coffee Description List')
+                                            ->addActionLabel('Add to black coffee description list')
+                                            ->reorderableWithButtons()
+                                            ->required()
+                                            ->schema([
+                                                TextInput::make('black_desc_title')
+                                                    ->label('Title')
+                                                    ->rules([new MaxWord('Title', 8, 'en')])
+                                                    ->helperText('Maximum 8 words.')
+                                                    ->autocomplete(false)
+                                                    ->required(),
+                                                RichEditor::make('black_desc_explanation')
+                                                    ->disableToolbarButtons([
+                                                        'h2',
+                                                        'h3',
+                                                        'bulletList',
+                                                        'orderedList',
+                                                        'attachFiles',
+                                                        'codeBlock',
+                                                        'blockquote'
+                                                    ])
+                                                    ->label('Explanation')
+                                                    ->required(),
+                                                Radio::make('black_desc_position')
+                                                    ->required()
+                                                    ->label('Position')
+                                                    ->options([
+                                                        'left' => 'Left',
+                                                        'right' => 'Right'
+                                                    ])
+                                                    ->descriptions([
+                                                        'left' => 'The left position starts from the image to the text',
+                                                        'right' => 'The right position starts from the text to the image'
+                                                    ]),
+                                                CuratorPicker::make('black_desc_image_id')
+                                                    ->label('Image')
+                                                    ->maxSize(2048)
+                                                    ->acceptedFileTypes(['image/*'])
+                                                    ->maxItems(1)
+                                                    ->helperText('Maximum 2 MB.')
+                                                    ->required()
+                                            ])
+                                        ])
+                                ]),
+                        Tabs::make('Theme')
+                            ->tabs([
+                                // Description Section (Cappuccino)
+                                Tab::make('Cappuccino Theme')
                                     ->schema([
-                                        TextInput::make('black_desc_title')
-                                            ->label('Title')
-                                            ->rules([new MaxWord('Title', 8, 'en')])
-                                            ->helperText('Maximum 8 words.')
-                                            ->autocomplete(false)
-                                            ->required(),
-                                        RichEditor::make('black_desc_explanation')
-                                            ->disableToolbarButtons([
-                                                'h2',
-                                                'h3',
-                                                'bulletList',
-                                                'orderedList',
-                                                'attachFiles',
-                                                'codeBlock',
-                                                'blockquote'
-                                            ])
-                                            ->label('Explanation')
-                                            ->required(),
-                                        Radio::make('black_desc_position')
+                                        Repeater::make('cappuccino_desc_list')
+                                            ->label('Cappuccino Coffee Description List')
+                                            ->addActionLabel('Add to cappuccino coffee description list')
+                                            ->reorderableWithButtons()
                                             ->required()
-                                            ->label('Position')
-                                            ->options([
-                                                'left' => 'Left',
-                                                'right' => 'Right'
+                                            ->schema([
+                                                TextInput::make('cappuccino_desc_title')
+                                                    ->label('Title')
+                                                    ->rules([new MaxWord('Title', 8, 'en')])
+                                                    ->helperText('Maximum 8 words.')
+                                                    ->autocomplete(false)
+                                                    ->required(),
+                                                RichEditor::make('cappuccino_desc_explanation')
+                                                    ->disableToolbarButtons([
+                                                        'h2',
+                                                        'h3',
+                                                        'bulletList',
+                                                        'orderedList',
+                                                        'attachFiles',
+                                                        'codeBlock',
+                                                        'blockquote'
+                                                    ])
+                                                    ->label('Explanation')
+                                                    ->required(),
+                                                Radio::make('cappuccino_desc_position')
+                                                    ->required()
+                                                    ->label('Position')
+                                                    ->options([
+                                                        'left' => 'Left',
+                                                        'right' => 'Right'
+                                                    ])
+                                                    ->descriptions([
+                                                        'left' => 'The left position starts from the image to the text',
+                                                        'right' => 'The right position starts from the text to the image'
+                                                    ]),
+                                                CuratorPicker::make('cappuccino_desc_image_id')
+                                                    ->label('Image')
+                                                    ->maxSize(2048)
+                                                    ->acceptedFileTypes(['image/*'])
+                                                    ->maxItems(1)
+                                                    ->helperText('Maximum 2 MB.')
+                                                    ->required()
                                             ])
-                                            ->descriptions([
-                                                'left' => 'The left position starts from the image to the text',
-                                                'right' => 'The right position starts from the text to the image'
-                                            ]),
-                                        CuratorPicker::make('black_desc_image_id')
-                                            ->label('Image')
-                                            ->maxSize(2048)
-                                            ->acceptedFileTypes(['image/*'])
-                                            ->maxItems(1)
-                                            ->helperText('Maximum 2 MB.')
-                                            ->required()
                                     ])
-                            ]),
-
-                        // Cappuccino Coffee
-                        Section::make('Cappuccino Coffee')
-                            ->columnSpan([
-                                '2xl' => 6,
                             ])
-                            ->description('Minimize for comfortable viewing')
-                            ->collapsible()
-                            ->schema([
-                                Repeater::make('cappuccino_desc_list')
-                                    ->label('Cappuccino Coffee Description List')
-                                    ->addActionLabel('Add to cappuccino coffee description list')
-                                    ->reorderableWithButtons()
-                                    ->required()
-                                    ->schema([
-                                        TextInput::make('cappuccino_desc_title')
-                                            ->label('Title')
-                                            ->rules([new MaxWord('Title', 8, 'en')])
-                                            ->helperText('Maximum 8 words.')
-                                            ->autocomplete(false)
-                                            ->required(),
-                                        RichEditor::make('cappuccino_desc_explanation')
-                                            ->disableToolbarButtons([
-                                                'h2',
-                                                'h3',
-                                                'bulletList',
-                                                'orderedList',
-                                                'attachFiles',
-                                                'codeBlock',
-                                                'blockquote'
-                                            ])
-                                            ->label('Explanation')
-                                            ->required(),
-                                        Radio::make('cappuccino_desc_position')
-                                            ->required()
-                                            ->label('Position')
-                                            ->options([
-                                                'left' => 'Left',
-                                                'right' => 'Right'
-                                            ])
-                                            ->descriptions([
-                                                'left' => 'The left position starts from the image to the text',
-                                                'right' => 'The right position starts from the text to the image'
-                                            ]),
-                                        CuratorPicker::make('cappuccino_desc_image_id')
-                                            ->label('Image')
-                                            ->maxSize(2048)
-                                            ->acceptedFileTypes(['image/*'])
-                                            ->maxItems(1)
-                                            ->helperText('Maximum 2 MB.')
-                                            ->required()
-                                    ])
-                            ]),
+                        ])
                     ])
             ]);
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Articles\Resources\ArticleResource\Pages;
+namespace App\Filament\Resources\ArticleResource\Pages;
 
-use App\Filament\Clusters\Articles\Resources\ArticleResource;
+use App\Filament\Resources\ArticleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Str;

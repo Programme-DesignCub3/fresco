@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Articles\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Clusters\Articles;
-use App\Filament\Clusters\Articles\Resources\ArticleResource\Pages;
+use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
 use App\Rules\MaxWord;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
@@ -29,17 +28,15 @@ use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
 
 class ArticleResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Manage';
+    protected static ?string $navigationGroup = 'Content';
 
-    protected static ?string $slug = 'all-articles';
+    protected static ?string $slug = 'articles';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?int $navigationSort = 1;
 
     protected static ?string $model = Article::class;
-
-    protected static ?string $cluster = Articles::class;
 
     public static function form(Form $form): Form
     {
@@ -212,7 +209,10 @@ class ArticleResource extends Resource
                     ->offIcon('heroicon-o-signal-slash')
                     ->afterStateUpdated(function ($record, $state) {
                         ($record['pin'] == 1) && $record->update(['pin' => 0]);
-                    })
+                    }),
+                TextColumn::make('created_at')
+                    ->label('Created')
+                    ->sortable(),
             ])
             ->filters([
                 Filter::make('pin')

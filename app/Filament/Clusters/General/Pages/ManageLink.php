@@ -15,7 +15,7 @@ class ManageLink extends SettingsPage
 {
     protected ?string $heading = 'Contact';
 
-    protected ?string $subheading = 'Controls all link & contact';
+    protected ?string $subheading = 'Manage all link & contact';
 
     protected static ?int $navigationSort = 4;
 
@@ -33,114 +33,99 @@ class ManageLink extends SettingsPage
     {
         return $form
             ->schema([
-                Grid::make([
-                    'default' => 1,
-                    'sm' => 2,
-                    'md' => 4,
-                    'lg' => 6,
-                    'xl' => 8,
-                    '2xl' => 12,
-                ])
+                // Link
+                Section::make('Link')
+                    ->description('Minimize for comfortable viewing')
+                    ->icon('heroicon-c-link')
+                    ->collapsible()
                     ->schema([
-                        // Link
-                        Section::make('Link')
-                            ->columnSpan([
-                                '2xl' => 6
-                            ])
-                            ->description('Minimize for comfortable viewing')
-                            ->collapsible()
+                        Fieldset::make('Facebook')
+                            ->columns(2)
                             ->schema([
-                                Fieldset::make('Facebook')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('facebook_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('facebook_link')
-                                            ->prefixIcon('heroicon-c-link')
-                                            ->label('Link'),
-                                    ]),
-                                Fieldset::make('Instagram')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('instagram_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('instagram_link')
-                                            ->prefixIcon('heroicon-c-link')
-                                            ->label('Link'),
-                                    ]),
-                                Fieldset::make('X (Twitter)')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('x_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('x_link')
-                                            ->prefixIcon('heroicon-c-link')
-                                            ->label('Link'),
-                                    ]),
-                                Fieldset::make('Tiktok')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('tiktok_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('tiktok_link')
-                                            ->prefixIcon('heroicon-c-link')
-                                            ->label('Link'),
-                                    ]),
-                                Fieldset::make('YouTube')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('youtube_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('youtube_link')
-                                            ->prefixIcon('heroicon-c-link')
-                                            ->label('Link'),
-                                    ])
+                                TextInput::make('facebook_alias')
+                                    ->label('Alias'),
+                                TextInput::make('facebook_link')
+                                    ->prefixIcon('heroicon-c-link')
+                                    ->label('Link'),
                             ]),
-
-                        // Contact
-                        Section::make('Contact')
-                            ->columnSpan([
-                                '2xl' => 6
-                            ])
-                            ->description('Minimize for comfortable viewing')
-                            ->collapsible()
+                        Fieldset::make('Instagram')
+                            ->columns(2)
                             ->schema([
-                                Fieldset::make('Line')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('line_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('line_link')
-                                            ->prefixIcon('heroicon-m-user-plus')
-                                            ->label('Link'),
-                                    ]),
-                                Fieldset::make('Email')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('email_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('email_link')
-                                            ->prefixIcon('heroicon-m-user-plus')
-                                            ->label('Link'),
-                                    ]),
-                                Fieldset::make('Phone')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('phone_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('phone_link')
-                                            ->prefixIcon('heroicon-m-user-plus')
-                                            ->label('Link'),
-                                    ]),
-                                Fieldset::make('WhatsApp')
-                                    ->columns(1)
-                                    ->schema([
-                                        TextInput::make('whatsapp_alias')
-                                            ->label('Alias'),
-                                        TextInput::make('whatsapp_link')
-                                            ->prefixIcon('heroicon-m-user-plus')
-                                            ->label('Link'),
-                                    ]),
+                                TextInput::make('instagram_alias')
+                                    ->label('Alias'),
+                                TextInput::make('instagram_link')
+                                    ->prefixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('X (Twitter)')
+                            ->columns(2)
+                            ->schema([
+                                TextInput::make('x_alias')
+                                    ->label('Alias'),
+                                TextInput::make('x_link')
+                                    ->prefixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('Tiktok')
+                            ->columns(2)
+                            ->schema([
+                                TextInput::make('tiktok_alias')
+                                    ->label('Alias'),
+                                TextInput::make('tiktok_link')
+                                    ->prefixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('YouTube')
+                            ->columns(2)
+                            ->schema([
+                                TextInput::make('youtube_alias')
+                                    ->label('Alias'),
+                                TextInput::make('youtube_link')
+                                    ->prefixIcon('heroicon-c-link')
+                                    ->label('Link'),
+                            ])
+                    ]),
+                // Contact
+                Section::make('Contact')
+                    ->description('Minimize for comfortable viewing')
+                    ->icon('heroicon-m-user-plus')
+                    ->collapsible()
+                    ->schema([
+                        Fieldset::make('Line')
+                            ->columns(2)
+                            ->schema([
+                                TextInput::make('line_alias')
+                                    ->label('Alias'),
+                                TextInput::make('line_link')
+                                    ->prefixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('Email')
+                            ->columns(2)
+                            ->schema([
+                                TextInput::make('email_alias')
+                                    ->label('Alias'),
+                                TextInput::make('email_link')
+                                    ->prefixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('Phone')
+                            ->columns(2)
+                            ->schema([
+                                TextInput::make('phone_alias')
+                                    ->label('Alias'),
+                                TextInput::make('phone_link')
+                                    ->prefixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
+                            ]),
+                        Fieldset::make('WhatsApp')
+                            ->columns(2)
+                            ->schema([
+                                TextInput::make('whatsapp_alias')
+                                    ->label('Alias'),
+                                TextInput::make('whatsapp_link')
+                                    ->prefixIcon('heroicon-m-user-plus')
+                                    ->label('Link'),
                             ]),
                     ])
             ]);

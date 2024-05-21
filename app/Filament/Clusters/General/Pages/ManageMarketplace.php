@@ -14,7 +14,7 @@ class ManageMarketplace extends SettingsPage
 {
     protected ?string $heading = 'Marketplace';
 
-    protected ?string $subheading = 'Controls online marketplace';
+    protected ?string $subheading = 'Manage online marketplace';
 
     protected static ?int $navigationSort = 5;
 
@@ -32,8 +32,10 @@ class ManageMarketplace extends SettingsPage
     {
         return $form
             ->schema([
+                // Marketplace
                 Section::make('Marketplace')
                     ->description('Minimize for comfortable viewing')
+                    ->icon('heroicon-o-globe-alt')
                     ->collapsible()
                     ->columns(2)
                     ->schema([

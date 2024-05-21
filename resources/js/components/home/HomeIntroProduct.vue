@@ -15,6 +15,7 @@ const { theme } = storeToRefs(themeStore);
 const first = ref(null);
 const second = ref(null);
 const stroke = ref(null);
+const stroke2 = ref(null);
 const delayAos = ref(0);
 const swiper = ref();
 const home = ref();
@@ -57,8 +58,8 @@ const splitterText = (target) => {
   delayAos.value = delay + 100;
 };
 
-const splitterStroke = () => {
-  let strokeSplit = new SplitType(stroke.value, {
+const splitterStroke = (target) => {
+  let strokeSplit = new SplitType(target, {
     types: 'lines',
     tagName: 'span',
   });
@@ -69,7 +70,8 @@ onMounted(() => {
   initSwiper();
   splitterText(first.value);
   splitterText(second.value);
-  splitterStroke();
+  splitterStroke(stroke.value);
+  splitterStroke(stroke2.value);
 
   setTimeout(() => {
     AOS.refresh();
@@ -80,7 +82,8 @@ watch(theme, () => {
   initSwiper();
   splitterText(first.value);
   splitterText(second.value);
-  splitterStroke();
+  splitterStroke(stroke.value);
+  splitterStroke(stroke2.value);
 
   setTimeout(() => {
     AOS.refresh();
@@ -90,7 +93,8 @@ watch(theme, () => {
 window.addEventListener('resize', () => {
   splitterText(first.value);
   splitterText(second.value);
-  splitterStroke();
+  splitterStroke(stroke.value);
+  splitterStroke(stroke2.value);
 });
 </script>
 
@@ -124,10 +128,11 @@ window.addEventListener('resize', () => {
                   <h1 ref="first">{{ data.black_intro_title }}</h1>
                   <!-- Description (Black) -->
                   <div
+                    class="description-wrapper"
                     data-aos="fade-up"
                     data-aos-delay="200"
-                    data-aos-offset="0">
-                    <p v-html="data.black_intro_desc"></p>
+                    data-aos-offset="0"
+                    v-html="data.black_intro_desc">
                   </div>
                 </div>
                 <!-- Image (Black) -->
@@ -148,15 +153,14 @@ window.addEventListener('resize', () => {
               <div class="black-slider">
                 <!-- Title (Black) -->
                 <div class="heading-wrapper" id="black-anchor">
-                  <h1 ref="second">
-                    {{ data.cappuccino_intro_title }}
-                  </h1>
+                  <h1 ref="second">{{ data.cappuccino_intro_title }}</h1>
                   <!-- Description (Black) -->
                   <div
+                    class="description-wrapper"
                     data-aos="fade-up"
                     data-aos-delay="200"
-                    data-aos-offset="0">
-                    <p v-html="data.cappuccino_intro_desc"></p>
+                    data-aos-offset="0"
+                    v-html="data.cappuccino_intro_desc">
                   </div>
                 </div>
                 <!-- Image (Black) -->
@@ -195,10 +199,11 @@ window.addEventListener('resize', () => {
                   </div>
                   <!-- Description (Cappuccino) -->
                   <div
+                    class="description-wrapper"
                     data-aos="fade-up"
                     data-aos-delay="200"
-                    data-aos-offset="0">
-                    <p v-html="data.cappuccino_intro_desc"></p>
+                    data-aos-offset="0"
+                    v-html="data.cappuccino_intro_desc">
                   </div>
                 </div>
                 <!-- Image (Cappuccino) -->
@@ -222,7 +227,7 @@ window.addEventListener('resize', () => {
                   <div class="relative">
                     <h1 ref="second">{{ data.black_intro_title }}</h1>
                     <h2
-                      ref="stroke"
+                      ref="stroke2"
                       data-aos="fade-in"
                       :data-aos-delay="delayAos"
                       data-aos-duration="1200"
@@ -233,10 +238,11 @@ window.addEventListener('resize', () => {
                   </div>
                   <!-- Description (Cappuccino) -->
                   <div
+                    class="description-wrapper"
                     data-aos="fade-up"
                     data-aos-delay="200"
-                    data-aos-offset="0">
-                    <p v-html="data.black_intro_desc"></p>
+                    data-aos-offset="0"
+                    v-html="data.black_intro_desc">
                   </div>
                 </div>
                 <!-- Image (Cappuccino) -->

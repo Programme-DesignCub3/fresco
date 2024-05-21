@@ -16,13 +16,13 @@ class ProductController extends Controller
         // Product Resource
         $black = Product::where('type', 'black')->orderBy('sort')->with('featured_image')->get();
         $black->transform(function ($bk) {
-            $bk->image = $bk->featured_image->url;
+            $bk->image = $bk->featured_image->url ?? null;
             return $bk;
         });
 
         $cappuccino = Product::where('type', 'cappuccino')->orderBy('sort')->with('featured_image')->get();
         $cappuccino->transform(function ($cp) {
-            $cp->image = $cp->featured_image->url;
+            $cp->image = $cp->featured_image->url ?? null;
             return $cp;
         });
 

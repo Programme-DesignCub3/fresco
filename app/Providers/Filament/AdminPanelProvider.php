@@ -60,8 +60,8 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->navigationGroups([
-                'Configuration',
                 'Content',
+                'Settings',
                 'Feedback'
             ])
             ->plugins([

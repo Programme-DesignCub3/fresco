@@ -17,6 +17,7 @@ use App\Filament\Resources\ActivityResource\Pages;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use App\Rules\MaxWord;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 
@@ -53,6 +54,7 @@ class ActivityResource extends Resource
                         ->schema([
                             TextInput::make('title')
                                 ->label('Title (Optional)')
+                                ->helperText('Max 10 words.')
                                 ->rules([new MaxWord('Title', 10, 'en')]),
                             RichEditor::make('description')
                                 ->label('Description (Optional)')
@@ -84,6 +86,22 @@ class ActivityResource extends Resource
                             '2xl' => 4
                         ])
                         ->schema([
+                            Grid::make([
+                                'default' => 1,
+                                'sm' => 2,
+                            ])
+                            ->schema([
+                                DatePicker::make('start_date')
+                                    ->label('Start Period')
+                                    ->helperText('The activity will be visible from this date.')
+                                    ->columns()
+                                    ->required(),
+                                DatePicker::make('end_date')
+                                    ->label('End Period')
+                                    ->helperText('The activity will be visible until this date.')
+                                    ->columns()
+                                    ->required(),
+                            ]),
                             CuratorPicker::make('image')
                                 ->maxSize(2048)
                                 ->label('Image')
@@ -96,7 +114,7 @@ class ActivityResource extends Resource
                                 ->acceptedFileTypes(['image/*'])
                                 ->maxItems(1)
                                 ->helperText('Maximum 2 MB.')
-                                ->label('Image Portrait (Optional)')
+                                ->label('Image Portrait (Optional)'),
                         ])
                     ])
             ]);
@@ -111,17 +129,20 @@ class ActivityResource extends Resource
                     ->width(120),
                 TextColumn::make('title')
                     ->label('Title')
+                    ->placeholder('No title')
                     ->limit(50),
                 TextColumn::make('description')
                     ->label('Description')
+                    ->placeholder('No description')
                     ->html()
-                    ->limit(50),
+                    ->limit(50)
             ])
             ->filters([
                 //
             ])
             ->reorderable('sort')
             ->defaultSort('sort')
+            ->paginated(false)
             ->modifyQueryUsing(fn (Builder $query) => $query->orderBy('sort'))
             ->actions([
                 Tables\Actions\EditAction::make(),

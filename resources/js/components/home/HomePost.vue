@@ -53,12 +53,12 @@ watch(theme, () => {
     :class="themeStore.theme">
     <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-24">
       <div class="flex flex-col gap-y-10 lg:flex-row lg:gap-x-10 lg:gap-y-0">
-        <!-- === Activities === -->
+        <!-- Activities -->
         <div
           class="w-full transition-all duration-700 ease-in-out lg:w-1/2 xl:w-2/5">
           <!-- Title -->
           <h2
-            class="text-[40px] font-bold leading-none"
+            class="text-4xl font-bold leading-none"
             :class="
               themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
             ">
@@ -132,7 +132,7 @@ watch(theme, () => {
           <!-- Title -->
           <div>
             <h2
-              class="text-[40px] font-bold leading-none"
+              class="text-4xl font-bold leading-none"
               :class="
                 themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
               ">
@@ -144,15 +144,14 @@ watch(theme, () => {
                 themeStore.theme == 'black' ? 'bg-fr-red' : 'bg-fr-yellow'
               "></div>
           </div>
-
           <!-- List Articles -->
-          <div class="flex flex-grow flex-col gap-6">
+          <div class="flex flex-col gap-6">
             <div v-for="(d, i) in article" :key="i">
               <div
                 class="box-shadow flex flex-col space-x-0 space-y-6 p-5 transition-all duration-700 ease-in-out sm:flex-row sm:space-x-6 sm:space-y-0 lg:flex-col lg:space-x-0 lg:space-y-6 xl:flex-row xl:space-x-6 xl:space-y-0"
                 :class="
                   themeStore.theme == 'black'
-                    ? 'home-article-gradient'
+                    ? 'bg-diagonal-yellow'
                     : 'bg-fr-darker-red'
                 ">
                 <!-- Image -->
@@ -166,29 +165,28 @@ watch(theme, () => {
                 </div>
 
                 <!-- Content -->
-                <div
-                  class="flex w-full flex-col gap-y-3 lg:w-full xl:w-3/5 xl:space-y-0">
-                  <!-- Title -->
-                  <h3
-                    class="text-2xl font-bold"
-                    :class="
-                      themeStore.theme == 'black'
-                        ? 'text-fr-red'
-                        : 'text-fr-yellow'
-                    ">
-                    {{ d.title }}
-                  </h3>
-
-                  <!-- Excerpt -->
-                  <p
-                    v-html="d.excerpt"
-                    class="font-medium"
-                    :class="
-                      themeStore.theme == 'black'
-                        ? 'text-fr-black'
-                        : 'text-white'
-                    "></p>
-
+                <div class="flex w-full flex-col gap-y-5 lg:w-full xl:w-3/5">
+                  <div class="space-y-1">
+                    <!-- Title -->
+                    <h3
+                      class="text-xl font-semibold"
+                      :class="
+                        themeStore.theme == 'black'
+                          ? 'text-fr-red'
+                          : 'text-fr-yellow'
+                      ">
+                      {{ d.title }}
+                    </h3>
+                    <!-- Excerpt -->
+                    <p
+                      v-html="d.excerpt"
+                      class="font-medium"
+                      :class="
+                        themeStore.theme == 'black'
+                          ? 'text-fr-black'
+                          : 'text-white'
+                      "></p>
+                  </div>
                   <!-- Read More Button -->
                   <div>
                     <a
@@ -209,12 +207,11 @@ watch(theme, () => {
               </div>
             </div>
           </div>
-
           <!-- See All Button -->
-          <div class="mt-8 text-end">
+          <div class="mt-6 text-end">
             <a
               href="/artikel"
-              class="mt-4 transition-all duration-700 ease-in-out"
+              class="transition-all duration-700 ease-in-out"
               :class="
                 themeStore.theme == 'black' ? 'button red' : 'button green'
               ">
