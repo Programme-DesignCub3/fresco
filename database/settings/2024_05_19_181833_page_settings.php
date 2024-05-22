@@ -22,22 +22,22 @@ return new class extends SettingsMigration
             'pages' => [
                 'product' => [
                     'title' => 'BERAGAM PILIHAN RASA, UNTUK MENEMANI AKTIVITASMU',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ],
                 'article' => [
                     'title' => 'ENAKIN TIAP MOMEN, ENAKNYA NGOPI FRESCO',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ],
                 'activity' => [
                     'title' => 'IKUTAN BERAGAM AKTIVITAS MENANGKAN HADIAH MENARIK',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ],
                 'contact' => [
                     'title' => 'KAMI SIAP MEMBANTU',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ]
             ]
@@ -59,22 +59,22 @@ return new class extends SettingsMigration
             'pages' => [
                 'product' => [
                     'title' => 'BERAGAM PILIHAN RASA, UNTUK MENEMANI AKTIVITASMU',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ],
                 'article' => [
                     'title' => 'ENAKIN TIAP MOMEN, ENAKNYA NGOPI FRESCO',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ],
                 'activity' => [
                     'title' => 'IKUTAN BERAGAM AKTIVITAS MENANGKAN HADIAH MENARIK',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ],
                 'contact' => [
                     'title' => 'KAMI SIAP MEMBANTU',
-                    'position' => 'left',
+                    'position' => 'text-left',
                     'background' => ''
                 ]
             ]

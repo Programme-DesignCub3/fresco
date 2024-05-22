@@ -45,9 +45,3 @@ const themeStore = useThemeStore();
     </div>
   </div>
 </template>
-
-<style scoped>
-.text-shadow {
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
-}
-</style>

@@ -10,7 +10,9 @@
 @section('content')
   <section id="activity">
     {{-- Activity Header Section --}}
-    <header-page-component header="activity"></header-page-component>
+    <header-page-component
+        header="activity"
+        :data="{{ json_encode($pages) }}"></header-page-component>
 
     {{-- Activity List Section --}}
     <activity-list-component

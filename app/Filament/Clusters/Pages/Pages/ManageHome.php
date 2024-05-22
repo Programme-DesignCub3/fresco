@@ -43,9 +43,13 @@ class ManageHome extends SettingsPage
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $black_image = Media::where('id', $data['black_intro_image_id'])->first();
-        $black_collab = Media::where('id', $data['black_video_collab'][0]['type'] == 'image' && $data['black_video_collab'][0]['data']['image_id'])->first();
+        if($data['black_video_collab'][0]['type'] == 'image') {
+            $black_collab = Media::where('id', $data['black_video_collab'][0]['data']['image_id'])->first();
+        }
         $cappuccino_image = Media::where('id', $data['cappuccino_intro_image_id'])->first();
-        $cappuccino_collab = Media::where('id', $data['cappuccino_video_collab'][0]['type'] == 'image' && $data['cappuccino_video_collab'][0]['data']['image_id'])->first();
+        if($data['cappuccino_video_collab'][0]['type'] == 'image') {
+            $cappuccino_collab = Media::where('id', $data['cappuccino_video_collab'][0]['data']['image_id'])->first();
+        }
 
         $data['black_intro_image'] = 'storage/' . $black_image->path;
         ($data['black_video_collab'][0]['type'] == 'image') && $data['black_video_collab'][0]['data']['image'] = 'storage/' . $black_collab->path;

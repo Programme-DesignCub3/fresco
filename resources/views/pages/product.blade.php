@@ -11,6 +11,7 @@
   <section id="product">
     {{-- Product List Section --}}
     <product-list-component
+      :data="{{ json_encode($pages) }}"
       :black="{{ json_encode($black) }}"
       :cappuccino="{{ json_encode($cappuccino) }}"></product-list-component>
 

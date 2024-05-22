@@ -75,9 +75,9 @@ class ManageContact extends SettingsPage
                                             Radio::make('cn_black_banner_position')
                                                 ->label('Position')
                                                 ->options([
-                                                    'left' => 'Left',
-                                                    'center' => 'Center',
-                                                    'right' => 'Right'
+                                                    'text-left' => 'Left',
+                                                    'text-center' => 'Center',
+                                                    'text-right' => 'Right'
                                                 ])
                                                 ->required(),
                                             CuratorPicker::make('cn_black_banner_image_id')
@@ -103,9 +103,9 @@ class ManageContact extends SettingsPage
                                             Radio::make('cn_cappuccino_banner_position')
                                                 ->label('Position')
                                                 ->options([
-                                                    'left' => 'Left',
-                                                    'center' => 'Center',
-                                                    'right' => 'Right'
+                                                    'text-left' => 'Left',
+                                                    'text-center' => 'Center',
+                                                    'text-right' => 'Right'
                                                 ])
                                                 ->required(),
                                             CuratorPicker::make('cn_cappuccino_banner_image_id')

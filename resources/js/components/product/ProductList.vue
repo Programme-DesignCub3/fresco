@@ -2,15 +2,23 @@
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
+import { splitBlack, splitCappuccino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
+import SplitType from 'split-type';
 
-const { black, cappuccino } = defineProps(['black', 'cappuccino']);
+const { data, black, cappuccino } = defineProps([
+  'data',
+  'black',
+  'cappuccino',
+]);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const product = ref();
 const swiper = ref();
+const blackTitle = ref();
+const cappuccinoTitle = ref();
 
 const swiperOption = {
   spaceBetween: -60,
@@ -47,11 +55,31 @@ const swiperOption = {
   },
 };
 
+const splitterText = (target) => {
+  let split = new SplitType(target, {
+    types: 'lines',
+    tagName: 'span',
+  });
+  let lines = split.lines;
+  let delay = 100;
+
+  for (let index = 0; index < lines.length; index++) {
+    let element = target.children[index];
+    delay += 100;
+    themeStore.theme == 'black'
+      ? splitBlack(element, index, delay, 1, '#product-title-anchor')
+      : splitCappuccino(element, index, delay, 1, '#product-title-anchor');
+  }
+};
+
 const initSwiper = () => {
   swiper.value = new Swiper(product.value, swiperOption);
 };
 
 onMounted(() => {
+  splitterText(blackTitle.value);
+  splitterText(cappuccinoTitle.value);
+
   if (!swiper.value) {
     initSwiper();
   }
@@ -61,30 +89,35 @@ watch(theme, () => {
   swiper.value = null;
   setTimeout(() => {
     initSwiper();
+    splitterText(blackTitle.value);
+    splitterText(cappuccinoTitle.value);
   });
+});
+
+window.addEventListener('resize', () => {
+  splitterText(blackTitle.value);
+  splitterText(cappuccinoTitle.value);
 });
 </script>
 
 <template>
   <!-- Product List -->
-  <div class="product-list">
+  <div
+    class="product-list"
+    :style="{
+      'background-image':
+        themeStore.theme == 'black'
+          ? `url(/${data.pd_black_banner_image})`
+          : `url(/${data.pd_cappuccino_banner_image})`,
+    }"
+    :class="themeStore.theme">
     <div class="product-list-wrapper">
       <div class="px-4 pt-[50px] sm:px-0 md:pt-0" id="product-title-anchor">
-        <h1>
-          <span
-            data-aos="fade-right"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-            class="text-white"
-            >BERAGAM PILIHAN RASA,</span
-          >
-          <span
-            data-aos="fade-right"
-            data-aos-delay="400"
-            data-aos-duration="1000"
-            class="text-fr-yellow"
-            >UNTUK MENEMANI AKTIVITASMU</span
-          >
+        <h1 v-if="themeStore.theme == 'black'" ref="blackTitle">
+          {{ data.pd_black_banner_title }}
+        </h1>
+        <h1 v-else ref="cappuccinoTitle">
+          {{ data.pd_cappuccino_banner_title }}
         </h1>
         <div
           data-aos="fade-right"
@@ -99,7 +132,7 @@ watch(theme, () => {
         <div
           v-for="(d, i) in themeStore.theme == 'black' ? black : cappuccino"
           :key="i"
-          class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
+          class="flex flex-col items-center justify-between space-y-4 md:transition-all md:duration-300 md:ease-in-out md:hover:scale-110">
           <img
             width="auto"
             height="auto"
@@ -114,8 +147,11 @@ watch(theme, () => {
             data-aos-delay="200"
             data-aos-duration="1000"
             data-aos-offset="20"
+            :class="
+              themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'
+            "
             class="text-center font-medium">
-            <p>Fresco</p>
+            <p>FresCo</p>
             <p>{{ d.product }}</p>
           </div>
         </div>
@@ -181,7 +217,7 @@ watch(theme, () => {
         <!-- Slider Cappuccino -->
         <div
           v-if="themeStore.theme == 'cappuccino'"
-          class="swiper text-white"
+          class="swiper text-fr-black"
           ref="product">
           <div class="swiper-wrapper items-end py-0 md:py-6">
             <template v-for="n in 2">

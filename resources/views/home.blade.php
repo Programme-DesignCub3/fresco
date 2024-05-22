@@ -11,7 +11,7 @@
   <section id="home">
     {{-- Home Introduction Section --}}
     <home-intro-component
-      :data="{{ json_encode($general) }}"></home-intro-component>
+      :data="{{ json_encode($pages) }}"></home-intro-component>
 
     {{-- Home Product Section --}}
     <product-slide-component
@@ -20,7 +20,7 @@
 
     {{-- Home Video Section --}}
     <home-video-component
-      :data="{{ json_encode($general) }}"></home-video-component>
+      :data="{{ json_encode($pages) }}"></home-video-component>
 
     {{-- Home Description Section --}}
     <description-component

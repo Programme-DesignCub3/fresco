@@ -6,7 +6,7 @@ const show = ref(true);
 
 const closePopup = () => {
   show.value = false;
-  document.body.style = 'overflow: auto';
+  document.body.style = 'overflow-y: auto';
 };
 
 onMounted(() => {
@@ -44,7 +44,7 @@ onMounted(() => {
         BELI SEKARANG
       </a>
       <button
-        class="absolute left-1/2 -translate-x-1/2 -bottom-28 flex h-8 w-8 items-center justify-center border-white bg-fr-black md:translate-x-0 md:left-auto md:-right-10 md:-top-10 rounded-full border"
+        class="absolute -bottom-28 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border border-white bg-fr-black md:-right-10 md:-top-10 md:left-auto md:translate-x-0"
         @click="closePopup">
         <v-icon class="text-white" name="fa-times" />
       </button>

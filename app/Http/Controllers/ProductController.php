@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Settings\GeneralSettings;
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(GeneralSettings $generalSettings, Product $product)
+    public function index(GeneralSettings $generalSettings, PageSettings $pageSettings, Product $product)
     {
-        // General Settings
+        // Settings
         $general = $generalSettings->toArray();
+        $pages = $pageSettings->toArray();
 
         // Product Resource
         $black = Product::where('type', 'black')->orderBy('sort')->with('featured_image')->get();
@@ -26,6 +28,6 @@ class ProductController extends Controller
             return $cp;
         });
 
-        return view('pages.product', compact('general', 'black', 'cappuccino'));
+        return view('pages.product', compact('general', 'pages', 'black', 'cappuccino'));
     }
 }

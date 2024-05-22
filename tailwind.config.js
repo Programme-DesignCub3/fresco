@@ -10,19 +10,19 @@ export default {
     extend: {
       backgroundImage: {
         'header-article':
-          "url('http://fresco.test/assets/images/header-article.webp')",
+          "url('https://fresco.democube.id/assets/images/header-article.webp')",
         'header-activity':
-          "url('http://fresco.test/assets/images/header-activity.webp')",
+          "url('https://fresco.democube.id/assets/images/header-activity.webp')",
         'header-contact':
-          "url('http://fresco.test/assets/images/header-contact.webp')",
-        menu: "url('http://fresco.test/assets/images/bg-menu.webp')",
+          "url('https://fresco.democube.id/assets/images/header-contact.webp')",
+        menu: "url('https://fresco.democube.id/assets/images/bg-menu.webp')",
         'black-home':
-          "url('http://fresco.test/assets/images/bg-black-home.webp')",
+          "url('https://fresco.democube.id/assets/images/bg-black-home.webp')",
         'cappuccino-home':
-          "url('http://fresco.test/assets/images/bg-cappuccino-home.webp')",
-        product: "url('http://fresco.test/assets/images/bg-product.webp')",
-        article: "url('http://fresco.test/assets/images/bg-article.webp')",
-        activity: "url('http://fresco.test/assets/images/bg-activity.webp')",
+          "url('https://fresco.democube.id/assets/images/bg-cappuccino-home.webp')",
+        product: "url('https://fresco.democube.id/assets/images/bg-product.webp')",
+        article: "url('https://fresco.democube.id/assets/images/bg-article.webp')",
+        activity: "url('https://fresco.democube.id/assets/images/bg-activity.webp')",
       },
       backgroundColor: {
         'fr-black': '#050505',

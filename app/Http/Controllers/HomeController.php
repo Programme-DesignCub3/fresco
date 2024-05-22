@@ -25,7 +25,9 @@ class HomeController extends Controller
 
         // Pinned Promotion
         $promotion = Promo::where('pin', true)->first();
-        $promotion['image'] = $promotion->featured_image->url ?? null;
+        if($promotion) {
+            $promotion['image'] = $promotion->featured_image->url ?? null;
+        }
 
         // Product Resource
         $black = Product::where('type', 'black')->orderBy('sort')->with('featured_image')->get();
@@ -60,6 +62,6 @@ class HomeController extends Controller
             return $art;
         });
 
-        return view('home', compact('general', 'promotion', 'black', 'cappuccino', 'activity', 'article'));
+        return view('home', compact('general', 'pages', 'promotion', 'black', 'cappuccino', 'activity', 'article'));
     }
 }

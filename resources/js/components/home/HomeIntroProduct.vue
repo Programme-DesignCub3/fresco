@@ -132,8 +132,7 @@ window.addEventListener('resize', () => {
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"
-                    v-html="data.black_intro_desc">
-                  </div>
+                    v-html="data.black_intro_desc"></div>
                 </div>
                 <!-- Image (Black) -->
                 <div class="image-wrapper">
@@ -160,8 +159,7 @@ window.addEventListener('resize', () => {
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"
-                    v-html="data.cappuccino_intro_desc">
-                  </div>
+                    v-html="data.cappuccino_intro_desc"></div>
                 </div>
                 <!-- Image (Black) -->
                 <div class="image-wrapper">
@@ -203,8 +201,7 @@ window.addEventListener('resize', () => {
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"
-                    v-html="data.cappuccino_intro_desc">
-                  </div>
+                    v-html="data.cappuccino_intro_desc"></div>
                 </div>
                 <!-- Image (Cappuccino) -->
                 <div class="image-wrapper">
@@ -242,8 +239,7 @@ window.addEventListener('resize', () => {
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"
-                    v-html="data.black_intro_desc">
-                  </div>
+                    v-html="data.black_intro_desc"></div>
                 </div>
                 <!-- Image (Cappuccino) -->
                 <div class="image-wrapper">

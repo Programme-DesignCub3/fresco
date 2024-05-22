@@ -75,9 +75,9 @@ class ManageArticle extends SettingsPage
                                             Radio::make('ar_black_banner_position')
                                                 ->label('Position')
                                                 ->options([
-                                                    'left' => 'Left',
-                                                    'center' => 'Center',
-                                                    'right' => 'Right'
+                                                    'text-left' => 'Left',
+                                                    'text-center' => 'Center',
+                                                    'text-right' => 'Right'
                                                 ])
                                                 ->required(),
                                             CuratorPicker::make('ar_black_banner_image_id')
@@ -103,9 +103,9 @@ class ManageArticle extends SettingsPage
                                             Radio::make('ar_cappuccino_banner_position')
                                                 ->label('Position')
                                                 ->options([
-                                                    'left' => 'Left',
-                                                    'center' => 'Center',
-                                                    'right' => 'Right'
+                                                    'text-left' => 'Left',
+                                                    'text-center' => 'Center',
+                                                    'text-right' => 'Right'
                                                 ])
                                                 ->required(),
                                             CuratorPicker::make('ar_cappuccino_banner_image_id')

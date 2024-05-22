@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use App\Settings\GeneralSettings;
+use App\Settings\PageSettings;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
-    public function index(GeneralSettings $generalSettings)
+    public function index(GeneralSettings $generalSettings, PageSettings $pageSettings)
     {
-        // General Settings
+        // Settings
         $general = $generalSettings->toArray();
-
-        $first = Activity::where('start_date', '<=', Carbon::now()->toDateString())->where('end_date', '>=', Carbon::now()->toDateString())->orderBy('sort')->with('featured_image')->with('featured_image_portrait')->latest()->get();
+        $pages = $pageSettings->toArray();
 
         // Activity Resource
         $activity = Activity::where('start_date', '<=', Carbon::now()->toDateString())->where('end_date', '>=', Carbon::now()->toDateString())->orderBy('sort')->with('featured_image')->with('featured_image_portrait')->latest()->get();
@@ -24,6 +24,6 @@ class ActivityController extends Controller
             return $act;
         });
 
-        return view('pages.activity', compact('general', 'activity'));
+        return view('pages.activity', compact('general', 'pages', 'activity'));
     }
 }

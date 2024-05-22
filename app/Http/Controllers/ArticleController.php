@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Settings\GeneralSettings;
+use App\Settings\PageSettings;
 use App\Traits\HasID;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,11 @@ class ArticleController extends Controller
 {
     use HasID;
 
-    public function index(GeneralSettings $generalSettings)
+    public function index(GeneralSettings $generalSettings, PageSettings $pageSettings)
     {
-        // General Settings
+        // Settings
         $general = $generalSettings->toArray();
+        $pages = $pageSettings->toArray();
 
         // Article Resource
         if(request('search')) {
@@ -32,12 +34,12 @@ class ArticleController extends Controller
             return $art;
         });
 
-        return view('pages.article', compact('general', 'article'));
+        return view('pages.article', compact('general', 'pages', 'article'));
     }
 
     public function detail(GeneralSettings $generalSettings, $slug)
     {
-        // General Settings
+        // Settings
         $general = $generalSettings->toArray();
 
         // Article Detail

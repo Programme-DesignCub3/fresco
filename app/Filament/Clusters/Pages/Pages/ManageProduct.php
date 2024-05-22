@@ -75,9 +75,9 @@ class ManageProduct extends SettingsPage
                                             Radio::make('pd_black_banner_position')
                                                 ->label('Position')
                                                 ->options([
-                                                    'left' => 'Left',
-                                                    'center' => 'Center',
-                                                    'right' => 'Right'
+                                                    'text-left' => 'Left',
+                                                    'text-center' => 'Center',
+                                                    'text-right' => 'Right'
                                                 ])
                                                 ->required(),
                                             CuratorPicker::make('pd_black_banner_image_id')
@@ -103,9 +103,9 @@ class ManageProduct extends SettingsPage
                                             Radio::make('pd_cappuccino_banner_position')
                                                 ->label('Position')
                                                 ->options([
-                                                    'left' => 'Left',
-                                                    'center' => 'Center',
-                                                    'right' => 'Right'
+                                                    'text-left' => 'Left',
+                                                    'text-center' => 'Center',
+                                                    'text-right' => 'Right'
                                                 ])
                                                 ->required(),
                                             CuratorPicker::make('pd_cappuccino_banner_image_id')

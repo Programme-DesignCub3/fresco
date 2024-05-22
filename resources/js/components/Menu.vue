@@ -69,13 +69,13 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
             <v-icon class="arrow-slide-fade-right" name="fa-chevron-right" />
           </span>
           <h4
-            class="text-shadow z-[999] flex w-[200px] flex-col text-left text-5xl font-black leading-none text-white">
+            class="text-shadow z-[999] flex w-[200px] flex-col text-left text-5xl font-black leading-none text-white mr-[260px]">
             CARI TAHU ENAKNYA
           </h4>
         </div>
         <img
           :class="cappuccinoHover && 'float-animatee'"
-          class="w-[220px]"
+          class="absolute top-1/2 -translate-y-2/3 w-[250px]"
           src="/assets/images/menu-black.png"
           alt="Cappuccino Theme" />
       </button>
@@ -93,12 +93,12 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
         class="flex w-1/2 items-center gap-x-12 bg-fr-yellow p-8 outline-none transition-all duration-700 ease-in-out hover:w-2/3">
         <img
           :class="cappuccinoHover && 'float-animatee'"
-          class="w-[220px]"
+          class="absolute top-1/2 -translate-y-2/3 w-[140px]"
           src="/assets/images/menu-cappuccino.png"
           alt="Cappuccino Theme" />
         <div class="flex items-center justify-center gap-x-6">
           <h4
-            class="text-shadow z-[999] flex w-[270px] flex-col text-right text-5xl font-black leading-none text-white">
+            class="text-shadow z-[999] flex w-[270px] flex-col text-right text-5xl font-black leading-none text-white ml-[260px]">
             BANYAK CARA NIKMATINNYA
           </h4>
           <span

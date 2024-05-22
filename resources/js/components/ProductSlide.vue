@@ -117,7 +117,10 @@ watch(theme, () => {
                   <p>Fresco</p>
                   <p>{{ d.product }}</p>
                   <div class="pt-4">
-                    <a :href="d.link" target="_blank" class="button green">
+                    <a
+                      :href="d.links[0].link"
+                      target="_blank"
+                      class="button green">
                       TEMUKAN PRODUK
                       <v-icon
                         class="h-4 w-4 stroke-2 py-[2px]"
@@ -151,7 +154,10 @@ watch(theme, () => {
                   <p>Fresco</p>
                   <p>{{ d.product }}</p>
                   <div class="pt-4">
-                    <a :href="d.link" target="_blank" class="button yellow">
+                    <a
+                      :href="d.links[0].link"
+                      target="_blank"
+                      class="button yellow">
                       BELI SEKARANG
                       <v-icon
                         class="h-4 w-4 stroke-2 py-[2px]"

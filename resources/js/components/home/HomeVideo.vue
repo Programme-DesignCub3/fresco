@@ -29,7 +29,13 @@ const themeStore = useThemeStore();
           allowfullscreen></iframe>
       </div>
       <div
-        class="grid w-full grid-cols-3 items-center justify-center gap-x-3 md:gap-x-6">
+        :class="
+          data.black_video_collab[0].type == 'text' ||
+          data.cappuccino_video_collab[0].type == 'text'
+            ? 'grid-flow-col'
+            : 'grid-cols-3'
+        "
+        class="grid w-full items-center justify-center gap-x-3 md:gap-x-10">
         <!-- FresCo Logo -->
         <div class="grid items-center justify-center md:justify-end">
           <img
@@ -51,13 +57,21 @@ const themeStore = useThemeStore();
             data-aos="zoom-out"
             data-aos-delay="350"
             data-aos-duration="1000"
-            class="font-medium text-fr-black max-sm:text-[14px]">
+            class="font-medium text-fr-black">
             IN COLLABORATION WITH
+            {{
+              themeStore.theme == 'black'
+                ? data.black_video_collab[0].data.text
+                : data.cappuccino_video_collab[0].data.text
+            }}
           </p>
         </div>
         <!-- Collaboration Logo -->
         <div
-          v-if="themeStore.theme == 'black'"
+          v-if="
+            themeStore.theme == 'black' &&
+            data.black_video_collab[0].type == 'image'
+          "
           class="grid items-center justify-center md:justify-start">
           <img
             width="auto"
@@ -69,11 +83,16 @@ const themeStore = useThemeStore();
             data-aos-duration="1000"
             class="block w-[220px]" />
         </div>
-        <div v-else class="grid items-center justify-center md:justify-start">
+        <div
+          v-if="
+            themeStore.theme == 'cappuccino' &&
+            data.cappuccino_video_collab[0].type == 'image'
+          "
+          class="grid items-center justify-center md:justify-start">
           <img
             width="auto"
             height="auto"
-            :src="data.cappuccino_video_collab"
+            :src="data.cappuccino_video_collab[0].data.image"
             alt="Collaboration"
             data-aos="zoom-out"
             data-aos-delay="500"
@@ -83,20 +102,20 @@ const themeStore = useThemeStore();
       </div>
       <!-- Description` -->
       <div class="pt-10 text-center font-medium leading-8">
-        <p
+        <div
           class="text-fr-black"
           data-aos="fade-up"
           data-aos-delay="500"
           data-aos-offset="0"
           v-if="themeStore.theme == 'black'"
-          v-html="data.black_video_desc"></p>
-        <p
+          v-html="data.black_video_desc"></div>
+        <div
           v-else
           class="text-white"
           v-html="data.cappuccino_video_desc"
           data-aos="fade-up"
           data-aos-delay="500"
-          data-aos-offset="0"></p>
+          data-aos-offset="0"></div>
       </div>
     </div>
   </div>

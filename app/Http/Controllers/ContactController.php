@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Rules\MinWord;
 use App\Settings\GeneralSettings;
+use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
-    public function index(GeneralSettings $generalSettings)
+    public function index(GeneralSettings $generalSettings, PageSettings $pageSettings)
     {
-        // General Settings
+        // Settings
         $general = $generalSettings->toArray();
+        $pages = $pageSettings->toArray();
 
-        return view('pages.contact', compact('general'));
+        return view('pages.contact', compact('general', 'pages'));
     }
 
     public function sendMessage(Request $request)

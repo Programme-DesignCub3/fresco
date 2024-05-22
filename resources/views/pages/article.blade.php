@@ -10,7 +10,9 @@
 @section('content')
   <section id="article">
     {{-- Article Header Section --}}
-    <header-page-component header="article"></header-page-component>
+    <header-page-component
+        header="article"
+        :data="{{ json_encode($pages) }}"></header-page-component>
 
     {{-- Article List Section --}}
     <div

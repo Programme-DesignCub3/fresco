@@ -142,11 +142,15 @@
   }
 
   .home-intro-video.black {
-    @apply bg-black bg-black-home bg-cover bg-center bg-no-repeat;
+    @apply relative bg-black;
   }
 
-  .home-intro-video.black .home-intro-shadow-up {
-    @apply shadow-up-black h-20 w-full;
+  .home-intro-video.black img {
+    @apply absolute left-0 top-0 -translate-y-[700px] brightness-90;
+  }
+
+  .home-intro-video.black .home-intro-video-gradient {
+    @apply absolute left-0 top-0 h-28 w-full bg-gradient-to-b from-fr-black/65 to-transparent;
   }
 
   .home-intro-video.cappuccino {
@@ -158,7 +162,7 @@
   }
 
   .home-intro-video-wrapper video {
-    @apply z-40 px-4 sm:px-0;
+    @apply relative z-40 px-4 sm:px-0;
   }
 
   /* HomeIntroProduct Component */
@@ -270,7 +274,7 @@
     .cappuccino-slider
     .heading-wrapper
     h2 {
-    @apply text-white-stroke absolute -left-1 -right-1 -top-1 text-center text-[40px] font-bold text-white leading-none md:text-5xl lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-6xl;
+    @apply text-white-stroke absolute -left-1 -right-1 -top-1 text-center text-[40px] font-bold leading-none text-white md:text-5xl lg:-left-1.5 lg:-right-1.5 lg:-top-1.5 lg:text-6xl;
   }
 
   .home-intro-product.cappuccino
@@ -299,15 +303,15 @@
   /* ProductList Component */
 
   .product-list {
-    @apply bg-black bg-product bg-cover bg-bottom bg-no-repeat lg:mt-[170px] xl:mt-24;
+    @apply bg-black bg-cover bg-bottom bg-no-repeat md:mt-[170px] xl:mt-24;
   }
 
   .product-list .product-list-wrapper {
-    @apply fr-container mx-auto flex flex-col justify-between gap-y-0 py-10 md:mt-[160px] md:gap-y-6 md:py-14 lg:mt-0 lg:py-20;
+    @apply fr-container mx-auto flex flex-col justify-between gap-y-0 py-10 md:gap-y-6 md:py-14 lg:mt-0 lg:py-20;
   }
 
   .product-list .product-list-wrapper h1 {
-    @apply text-shadow flex flex-col text-[40px] font-bold leading-none md:text-5xl lg:text-6xl;
+    @apply text-shadow text-[40px] font-bold leading-none md:text-5xl lg:text-6xl;
   }
 
   /* ArticleSlide Component */
@@ -687,33 +691,7 @@
   }
 
   .text-shadow {
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
-  }
-
-  .shadow-up-black {
-    background: rgb(5, 5, 5);
-    background: linear-gradient(
-      0deg,
-      rgba(5, 5, 5, 1) 10%,
-      rgba(5, 5, 5, 0.9) 20%,
-      rgba(5, 5, 5, 0.8) 30%,
-      rgba(5, 5, 5, 0.6) 55%,
-      rgba(5, 5, 5, 0.3) 75%,
-      rgba(5, 5, 5, 0) 95%
-    );
-  }
-
-  .shadow-up-cappuccino {
-    background: rgb(253, 198, 75);
-    background: linear-gradient(
-      0deg,
-      rgba(253, 198, 75, 1) 10%,
-      rgba(253, 198, 75, 0.9) 20%,
-      rgba(253, 198, 75, 0.8) 30%,
-      rgba(253, 198, 75, 0.6) 55%,
-      rgba(253, 198, 75, 0.3) 75%,
-      rgba(253, 198, 75, 0) 95%
-    );
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
   }
 }
 
