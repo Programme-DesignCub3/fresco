@@ -3,8 +3,6 @@ import { useThemeStore } from '@/stores/theme-store.js';
 import { ref } from 'vue';
 
 const themeStore = useThemeStore();
-const blackHover = ref(false);
-const cappuccinoHover = ref(false);
 
 const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 </script>
@@ -28,23 +26,23 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
         </h1>
         <div class="relative flex items-end justify-center">
           <img
-            class="reflect-product w-[180px]"
+            class="reflect-image-product w-[180px]"
             src="/assets/images/bubuk-hitam.png"
             alt="Kopi Bubuk Hitam" />
           <img
-            class="reflect-product w-[180px]"
+            class="reflect-image-product w-[180px]"
             src="/assets/images/kopi-gula.png"
             alt="Kopi + Gula" />
           <img
-            class="reflect-product w-[180px]"
+            class="reflect-image-product w-[180px]"
             src="/assets/images/krim-moka.png"
             alt="Kopi Krim Moka" />
           <img
-            class="reflect-product w-[180px]"
+            class="reflect-image-product w-[180px]"
             src="/assets/images/krim-susu.png"
             alt="Kopi Krim Susu" />
           <img
-            class="reflect-product w-[180px]"
+            class="reflect-image-product w-[180px]"
             src="/assets/images/cappuccino.png"
             alt="Cappuccino" />
         </div>
@@ -54,12 +52,10 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
     <div class="relative flex h-full max-h-[25%] w-full">
       <!-- Black Coffee Theme -->
       <button
-        @mouseenter="cappuccinoHover = true"
-        @mouseleave="cappuccinoHover = false"
         @click="
           () => {
             enableCustomLayout('black');
-            cappuccinoHover = false;
+            blackHover = false;
           }
         "
         class="flex w-1/2 items-center justify-end gap-x-12 bg-fr-red p-8 outline-none transition-all duration-700 ease-in-out hover:w-2/3">
@@ -69,21 +65,18 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
             <v-icon class="arrow-slide-fade-right" name="fa-chevron-right" />
           </span>
           <h4
-            class="text-shadow z-[999] flex w-[200px] flex-col text-left text-5xl font-black leading-none text-white mr-[260px]">
+            class="text-shadow z-[999] mr-[260px] flex w-[200px] flex-col text-left text-5xl font-black leading-none text-white">
             CARI TAHU ENAKNYA
           </h4>
         </div>
         <img
-          :class="cappuccinoHover && 'float-animatee'"
-          class="absolute top-1/2 -translate-y-2/3 w-[250px]"
+          class="absolute top-1/2 w-[250px] -translate-y-2/3"
           src="/assets/images/menu-black.png"
           alt="Cappuccino Theme" />
       </button>
 
       <!-- Cappuccino Theme -->
       <button
-        @mouseenter="cappuccinoHover = true"
-        @mouseleave="cappuccinoHover = false"
         @click="
           () => {
             enableCustomLayout('cappuccino');
@@ -92,13 +85,12 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
         "
         class="flex w-1/2 items-center gap-x-12 bg-fr-yellow p-8 outline-none transition-all duration-700 ease-in-out hover:w-2/3">
         <img
-          :class="cappuccinoHover && 'float-animatee'"
-          class="absolute top-1/2 -translate-y-2/3 w-[140px]"
+          class="absolute top-1/2 w-[140px] -translate-y-2/3"
           src="/assets/images/menu-cappuccino.png"
           alt="Cappuccino Theme" />
         <div class="flex items-center justify-center gap-x-6">
           <h4
-            class="text-shadow z-[999] flex w-[270px] flex-col text-right text-5xl font-black leading-none text-white ml-[260px]">
+            class="text-shadow z-[999] ml-[260px] flex w-[270px] flex-col text-right text-5xl font-black leading-none text-white">
             BANYAK CARA NIKMATINNYA
           </h4>
           <span
@@ -112,11 +104,6 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 </template>
 
 <style scoped>
-.reflect-product {
-  -webkit-box-reflect: below 2px
-    linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
-}
-
 @keyframes float-animation {
   0% {
     transform: translateY(0);

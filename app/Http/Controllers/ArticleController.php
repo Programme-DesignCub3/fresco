@@ -16,17 +16,25 @@ class ArticleController extends Controller
     {
         // Settings
         $general = $generalSettings->toArray();
+        $pageSettings->originalValues->transform(function($value, $key) use ($pageSettings){
+            // Transform ar_cappuccino_banner_title to breakline
+            if ($key == 'ar_cappuccino_banner_title') {
+                $pageSettings->ar_cappuccino_banner_title = nl2br($value);
+            }
+            // Transform ar_black_banner_title to breakline
+            if ($key == 'ar_black_banner_title') {
+                $pageSettings->ar_black_banner_title = nl2br($value);
+            }
+
+            return $pageSettings;
+        });
         $pages = $pageSettings->toArray();
 
         // Article Resource
         if(request('search')) {
             $article = Article::where('title', 'like', '%' . request('search') . '%')->where('published', true)->with('featured_image')->paginate(6)->withQueryString();
         } else {
-            if(Article::where('pin', true)->exists()) {
-                $article = Article::where('published', true)->orderBy('pin', 'desc')->with('featured_image')->latest()->paginate(6);
-            } else {
-                $article = Article::where('published', true)->with('featured_image')->latest()->paginate(6);
-            }
+            $article = Article::where('published', true)->with('featured_image')->latest()->paginate(6);
         }
 
         $article->transform(function ($art) {
@@ -46,12 +54,14 @@ class ArticleController extends Controller
         (Article::where('slug', $slug)->doesntExist()) && abort(404);
         $article = Article::where('slug', $slug)->with('featured_image')->first();
         $article['content'] = collect($article['content'])->map(function ($arc) {
-            if ($arc['type'] == 'video') {
+            if (array_key_exists('type', $arc) && $arc['type'] == 'video') {
                 $arc['data']['content'] = $this->getID($arc['data']['content']);
+            } else if (!array_key_exists('type', $arc)) {
+                return null;
             }
 
             return $arc;
-        })->toArray();
+        })->filter()->toArray();
 
         // Other Articles
         $other = Article::where('published', true)->where('slug', '!=', $slug)->with('featured_image')->latest()->take(4)->get();

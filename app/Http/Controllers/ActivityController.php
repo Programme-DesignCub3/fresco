@@ -14,6 +14,18 @@ class ActivityController extends Controller
     {
         // Settings
         $general = $generalSettings->toArray();
+        $pageSettings->originalValues->transform(function($value, $key) use ($pageSettings){
+            // Transform ac_cappuccino_banner_title to breakline
+            if ($key == 'ac_cappuccino_banner_title') {
+                $pageSettings->ac_cappuccino_banner_title = nl2br($value);
+            }
+            // Transform ac_black_banner_title to breakline
+            if ($key == 'ac_black_banner_title') {
+                $pageSettings->ac_black_banner_title = nl2br($value);
+            }
+
+            return $pageSettings;
+        });
         $pages = $pageSettings->toArray();
 
         // Activity Resource

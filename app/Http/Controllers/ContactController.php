@@ -15,6 +15,18 @@ class ContactController extends Controller
     {
         // Settings
         $general = $generalSettings->toArray();
+        $pageSettings->originalValues->transform(function($value, $key) use ($pageSettings){
+            // Transform cn_cappuccino_banner_title to breakline
+            if ($key == 'cn_cappuccino_banner_title') {
+                $pageSettings->cn_cappuccino_banner_title = nl2br($value);
+            }
+            // Transform cn_black_banner_title to breakline
+            if ($key == 'cn_black_banner_title') {
+                $pageSettings->cn_black_banner_title = nl2br($value);
+            }
+
+            return $pageSettings;
+        });
         $pages = $pageSettings->toArray();
 
         return view('pages.contact', compact('general', 'pages'));

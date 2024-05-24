@@ -110,21 +110,40 @@ window.addEventListener('resize', () => {
           ? `url(/${data.pd_black_banner_image})`
           : `url(/${data.pd_cappuccino_banner_image})`,
     }"
-    :class="themeStore.theme">
+    :class="[
+      themeStore.theme,
+      themeStore.theme == 'black'
+        ? `bg-fr-black ${data.pd_black_banner_position}`
+        : `bg-fr-yellow ${data.pd_cappuccino_banner_position}`,
+    ]">
     <div class="product-list-wrapper">
       <div class="px-4 pt-[50px] sm:px-0 md:pt-0" id="product-title-anchor">
-        <h1 v-if="themeStore.theme == 'black'" ref="blackTitle">
-          {{ data.pd_black_banner_title }}
-        </h1>
-        <h1 v-else ref="cappuccinoTitle">
-          {{ data.pd_cappuccino_banner_title }}
-        </h1>
+        <h1
+          v-if="themeStore.theme == 'black'"
+          ref="blackTitle"
+          v-html="data.pd_black_banner_title"></h1>
+        <h1
+          v-else
+          ref="cappuccinoTitle"
+          v-html="data.pd_cappuccino_banner_title"></h1>
         <div
           data-aos="fade-right"
           data-aos-delay="200"
           data-aos-duration="500"
           data-aos-offset="0"
-          class="my-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
+          class="my-6 h-[4px] w-16 rounded-full bg-fr-red"
+          :class="[
+            themeStore.theme == 'black'
+              ? data.pd_black_banner_position == 'text-left' && 'mr-auto'
+              : data.pd_cappuccino_banner_position == 'text-left' && 'mr-auto',
+            themeStore.theme == 'black'
+              ? data.pd_black_banner_position == 'text-center' && 'mx-auto'
+              : data.pd_cappuccino_banner_position == 'text-center' &&
+                'mx-auto',
+            themeStore.theme == 'black'
+              ? data.pd_black_banner_position == 'text-right' && 'ml-auto'
+              : data.pd_cappuccino_banner_position == 'text-right' && 'ml-auto',
+          ]"></div>
       </div>
       <!-- Grid Layout (Desktop View) -->
       <div
@@ -206,7 +225,7 @@ window.addEventListener('resize', () => {
                     data-aos-duration="1000"
                     data-aos-offset="20"
                     class="text-center font-bold">
-                    <p>Fresco</p>
+                    <p>FresCo</p>
                     <p>{{ d.product }}</p>
                   </div>
                 </div>
@@ -239,7 +258,7 @@ window.addEventListener('resize', () => {
                     data-aos-duration="1000"
                     data-aos-offset="20"
                     class="text-center font-bold">
-                    <p>Fresco</p>
+                    <p>FresCo</p>
                     <p>{{ d.product }}</p>
                   </div>
                 </div>

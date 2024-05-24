@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('excerpt');
             $table->json('content')->nullable()->default(null);
             $table->boolean('published');
-            $table->boolean('pin')->nullable();
             $table->timestamps();
         });
     }

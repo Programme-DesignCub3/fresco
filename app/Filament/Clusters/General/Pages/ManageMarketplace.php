@@ -16,7 +16,7 @@ class ManageMarketplace extends SettingsPage
 
     protected ?string $subheading = 'Manage online marketplace';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationGroup = 'Link';
 

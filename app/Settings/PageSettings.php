@@ -2,6 +2,7 @@
 
 namespace App\Settings;
 
+use Nl2brCast;
 use Spatie\LaravelSettings\Settings;
 
 class PageSettings extends Settings

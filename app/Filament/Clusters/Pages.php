@@ -10,5 +10,7 @@ class Pages extends Cluster
 
     protected static ?string $navigationGroup = 'Settings';
 
+    protected static ?string $slug = 'pages-settings';
+
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 }

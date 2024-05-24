@@ -146,7 +146,7 @@
   }
 
   .home-intro-video.black img {
-    @apply absolute left-0 top-0 -translate-y-[700px] brightness-90;
+    @apply absolute left-0 top-0 w-full -translate-y-[700px] brightness-90;
   }
 
   .home-intro-video.black .home-intro-video-gradient {
@@ -230,7 +230,7 @@
     .black-slider
     .heading-wrapper
     .description-wrapper {
-    @apply text-center text-white lg:text-left;
+    @apply text-center font-medium leading-8 text-white lg:text-left;
   }
 
   .home-intro-product.black
@@ -282,7 +282,7 @@
     .cappuccino-slider
     .heading-wrapper
     .description-wrapper {
-    @apply flex justify-center text-center;
+    @apply flex justify-center text-center font-medium;
   }
 
   .home-intro-product.cappuccino
@@ -586,12 +586,23 @@
   }
 
   .bg-radial-red {
-    background: rgb(223, 33, 44);
+    background: rgb(235, 36, 41);
+    background: -moz-radial-gradient(
+      circle,
+      rgba(235, 36, 41, 1) 0%,
+      rgba(190, 30, 45, 1) 100%
+    );
+    background: -webkit-radial-gradient(
+      circle,
+      rgba(235, 36, 41, 1) 0%,
+      rgba(190, 30, 45, 1) 100%
+    );
     background: radial-gradient(
       circle,
-      rgba(223, 33, 44, 1) 50%,
-      rgba(196, 31, 45, 1) 100%
+      rgba(235, 36, 41, 1) 0%,
+      rgba(190, 30, 45, 1) 100%
     );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eb2429",endColorstr="#be1e2d",GradientType=1);
   }
 
   .bg-radial-green {
@@ -691,7 +702,7 @@
   }
 
   .text-shadow {
-    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
   }
 }
 

@@ -11,8 +11,8 @@
   <section id="contact">
     {{-- Contact Header Section --}}
     <header-page-component
-        header="contact"
-        :data="{{ json_encode($pages) }}"></header-page-component>
+      header="contact"
+      :data="{{ json_encode($pages) }}"></header-page-component>
 
     {{-- Contact Form Section --}}
     <contact-form-component

@@ -78,11 +78,32 @@ window.addEventListener('scroll', () => {
       <!-- Nav List & (Navigation Mobile) -->
       <div class="nav-list-wrapper" :class="themeStore.openMenu && 'opened'">
         <ul class="nav-list">
+          <li class="nav-item" :class="url.pathname == '/' && 'nav-active'">
+            <a class="nav-link longer" href="/">BERANDA</a>
+          </li>
           <li
-            v-for="item in navStore.nav"
             class="nav-item"
-            :class="url.pathname == item.link && 'nav-active'">
-            <a class="nav-link longer" :href="item.link">{{ item.name }}</a>
+            :class="url.pathname == '/produk' && 'nav-active'">
+            <a class="nav-link longer" href="/produk">ENAKNYA NGOPI FRESCO</a>
+          </li>
+          <li
+            class="nav-item"
+            :class="
+              url.pathname == '/artikel' || url.pathname.startsWith('/artikel/')
+                ? 'nav-active'
+                : ''
+            ">
+            <a class="nav-link longer" href="/artikel">ENAKIN TIAP MOMEN</a>
+          </li>
+          <li
+            class="nav-item"
+            :class="url.pathname == '/aktivitas' && 'nav-active'">
+            <a class="nav-link longer" href="/aktivitas">SERBA-SERBI FRESCO</a>
+          </li>
+          <li
+            class="nav-item"
+            :class="url.pathname == '/hubungi' && 'nav-active'">
+            <a class="nav-link longer" href="/hubungi">HUBUNGI FRESCO</a>
           </li>
         </ul>
         <!-- Social Media -->

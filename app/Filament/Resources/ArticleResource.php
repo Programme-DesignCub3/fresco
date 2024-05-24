@@ -192,32 +192,15 @@ class ArticleResource extends Resource
                     ->width(80),
                 TextColumn::make('title')
                     ->limit(50),
-                CheckboxColumn::make('pin')
-                    ->sortable()
-                    ->beforeStateUpdated(function($record, $state) {
-                        $check = Article::where('pin', 1);
-                        ($check->count() >= 1) && $check->update(['pin' => 0]);
-                    })
-                    ->afterStateUpdated(function ($record, $state) {
-                        ($record['published'] == 0) && $record->update(['published' => 1]);
-                        $record->pin = $state;
-                        $record->save();
-                    }),
                 ToggleColumn::make('published')
                     ->sortable()
                     ->onIcon('heroicon-o-signal')
-                    ->offIcon('heroicon-o-signal-slash')
-                    ->afterStateUpdated(function ($record, $state) {
-                        ($record['pin'] == 1) && $record->update(['pin' => 0]);
-                    }),
+                    ->offIcon('heroicon-o-signal-slash'),
                 TextColumn::make('created_at')
                     ->label('Created')
                     ->sortable(),
             ])
             ->filters([
-                Filter::make('pin')
-                    ->label('Pinned')
-                    ->query(fn (EloquentBuilder $query): EloquentBuilder => $query->where('pin', true)),
                 SelectFilter::make('published')
                     ->options([
                         0 => 'Unpublished',

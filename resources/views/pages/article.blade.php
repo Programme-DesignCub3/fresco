@@ -11,8 +11,8 @@
   <section id="article">
     {{-- Article Header Section --}}
     <header-page-component
-        header="article"
-        :data="{{ json_encode($pages) }}"></header-page-component>
+      header="article"
+      :data="{{ json_encode($pages) }}"></header-page-component>
 
     {{-- Article List Section --}}
     <div
@@ -86,7 +86,7 @@
                     </h3>
                     {{-- Excerpt --}}
                     <p
-                      class="text-white group-hover:text-white dark:text-fr-black">
+                      class="font-medium text-white group-hover:text-white dark:text-fr-black">
                       {{ $a->excerpt }}
                     </p>
                   </div>

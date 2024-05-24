@@ -114,7 +114,7 @@ watch(theme, () => {
                 <div
                   data-aos="fade-down"
                   class="text-center font-medium text-white">
-                  <p>Fresco</p>
+                  <p>FresCo</p>
                   <p>{{ d.product }}</p>
                   <div class="pt-4">
                     <a
@@ -151,7 +151,7 @@ watch(theme, () => {
                 <div
                   data-aos="fade-down"
                   class="text-center font-bold text-white">
-                  <p>Fresco</p>
+                  <p>FresCo</p>
                   <p>{{ d.product }}</p>
                   <div class="pt-4">
                     <a

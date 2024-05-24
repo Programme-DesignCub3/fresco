@@ -13,6 +13,18 @@ class ProductController extends Controller
     {
         // Settings
         $general = $generalSettings->toArray();
+        $pageSettings->originalValues->transform(function($value, $key) use ($pageSettings){
+            // Transform pd_cappuccino_banner_title to breakline
+            if ($key == 'pd_cappuccino_banner_title') {
+                $pageSettings->pd_cappuccino_banner_title = nl2br($value);
+            }
+            // Transform pd_black_banner_title to breakline
+            if ($key == 'pd_black_banner_title') {
+                $pageSettings->pd_black_banner_title = nl2br($value);
+            }
+
+            return $pageSettings;
+        });
         $pages = $pageSettings->toArray();
 
         // Product Resource

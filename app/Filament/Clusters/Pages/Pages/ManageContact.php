@@ -13,6 +13,7 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -27,7 +28,7 @@ class ManageContact extends SettingsPage
 
     protected static ?string $navigationLabel = 'Contact';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
@@ -66,7 +67,7 @@ class ManageContact extends SettingsPage
                                     // Heading Banner (Black Coffee)
                                     Tab::make('Black Coffee Theme')
                                         ->schema([
-                                            TextInput::make('cn_black_banner_title')
+                                            Textarea::make('cn_black_banner_title')
                                                 ->label('Title')
                                                 ->rules([new MaxWord('Title', 8, 'en')])
                                                 ->autocomplete(false)
@@ -94,7 +95,7 @@ class ManageContact extends SettingsPage
                                     // Heading Banner (Cappuccino)
                                     Tab::make('Cappuccino Theme')
                                         ->schema([
-                                            TextInput::make('cn_cappuccino_banner_title')
+                                            Textarea::make('cn_cappuccino_banner_title')
                                                 ->label('Title')
                                                 ->rules([new MaxWord('Title', 8, 'en')])
                                                 ->autocomplete(false)

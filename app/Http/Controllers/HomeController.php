@@ -9,6 +9,7 @@ use App\Models\Promo;
 use App\Settings\GeneralSettings;
 use App\Settings\PageSettings;
 use App\Traits\HasID;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -43,7 +44,7 @@ class HomeController extends Controller
         });
 
         // Activity Resource
-        $activity = Activity::orderBy('sort')->with('featured_image')->with('featured_image_portrait')->limit(3)->get();
+        $activity = Activity::where('start_date', '<=', Carbon::now()->toDateString())->where('end_date', '>=', Carbon::now()->toDateString())->orderBy('sort')->with('featured_image')->with('featured_image_portrait')->latest()->limit(3)->get();
         $activity->transform(function ($act) {
             $act->image = $act->featured_image->url ?? null;
             $act->image_portrait = $act->featured_image_portrait->url ?? null;
@@ -51,12 +52,7 @@ class HomeController extends Controller
         });
 
         // Article Resource
-        if(Article::where('pin', true)->exists()) {
-            $article = Article::where('published', true)->orderBy('pin', 'desc')->with('featured_image')->latest()->limit(3)->get();
-        } else {
-            $article = Article::where('published', true)->with('featured_image')->latest()->limit(3)->get();
-        }
-
+        $article = Article::where('published', true)->with('featured_image')->latest()->limit(3)->get();
         $article->transform(function ($art) {
             $art->image = $art->featured_image->url ?? null;
             return $art;

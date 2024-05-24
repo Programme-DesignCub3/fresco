@@ -140,10 +140,8 @@ class ActivityResource extends Resource
             ->filters([
                 //
             ])
-            ->reorderable('sort')
-            ->defaultSort('sort')
             ->paginated(false)
-            ->modifyQueryUsing(fn (Builder $query) => $query->orderBy('sort'))
+            ->defaultSort('created_at', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
