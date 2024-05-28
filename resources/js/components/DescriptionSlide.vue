@@ -93,7 +93,7 @@ window.addEventListener('resize', () => {
   <div
     class="relative block h-full w-full lg:hidden"
     :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
-    <!-- === Slide Black Coffee === -->
+    <!-- Black Coffee -->
     <div v-if="themeStore.theme == 'black'" class="swiper" ref="description">
       <div class="swiper-wrapper">
         <div
@@ -101,6 +101,7 @@ window.addEventListener('resize', () => {
           :key="i"
           class="swiper-slide">
           <div class="grid grid-rows-1">
+            <!-- Image -->
             <img
               class="aspect-square object-cover object-center"
               width="auto"
@@ -149,7 +150,7 @@ window.addEventListener('resize', () => {
       </div>
     </div>
 
-    <!-- === Slide Cappuccino === -->
+    <!-- Cappuccino -->
     <div
       v-if="themeStore.theme == 'cappuccino'"
       class="swiper"

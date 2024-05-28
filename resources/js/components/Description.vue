@@ -79,14 +79,13 @@ window.addEventListener('resize', () => {
             class="relative w-full">
             <!-- Image -->
             <img
-              class="aspect-square object-cover object-center"
+              class="aspect-square object-cover object-center w-full"
               width="auto"
               height="auto"
               :src="themeStore.theme == 'black' ? d.black_desc_image : d.cappuccino_desc_image"
               :alt="themeStore.theme == 'black' ? d.black_desc_title : d.cappuccino_desc_title" />
           </div>
         </div>
-        <!-- Text -->
         <div
           class="z-20 my-auto flex h-full w-full flex-col justify-center px-16 transition-all duration-700 ease-in-out"
           :class="[
@@ -95,11 +94,13 @@ window.addEventListener('resize', () => {
             d.cappuccino_desc_position == 'right' && 'items-end'
           ]">
           <div class="w-full space-y-4 2xl:w-[600px]">
+            <!-- Title -->
             <h2
               class="text-[40px] font-bold leading-none md:text-5xl lg:text-6xl"
               ref="manifest">
               {{ themeStore.theme == 'black' ? d.black_desc_title : d.cappuccino_desc_title }}
             </h2>
+            <!-- Description -->
             <p
               data-aos="fade-down"
               data-aos-offset="0"

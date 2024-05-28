@@ -25,9 +25,7 @@
 }
 
 @layer components {
-  /* ================= General Component ================= */
-
-  /* DescriptionSlide Component */
+  /* Description Component */
 
   /* Footer Component */
 
@@ -188,8 +186,6 @@
   .social-media-whatsapp {
     @apply fixed bottom-32 right-4 z-[99] md:bottom-4;
   }
-
-  /* ================= Pages Component ================= */
 
   /* HomeIntro Component */
 
