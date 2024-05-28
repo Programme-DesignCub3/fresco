@@ -31,56 +31,21 @@ const themeStore = useThemeStore();
       <!--  Marketplace -->
       <div class="flex flex-wrap justify-center gap-5">
         <a
+          v-for="(d, i) in data.marketplaces"
           data-aos="zoom-in"
-          data-aos-delay="200"
           data-aos-duration="500"
-          :href="data.tokopedia_store"
+          :data-aos-delay="200 + i * 100"
+          :href="d.marketplace_url"
           target="_blank">
-          <img
-            width="auto"
-            height="auto"
-            class="box-shadow w-36 rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 md:w-44 lg:w-52"
-            src="/assets/images/icons/tokopedia.png"
-            alt="Tokopedia" />
-        </a>
-        <a
-          data-aos="zoom-in"
-          data-aos-delay="300"
-          data-aos-duration="500"
-          :href="data.shopee_store"
-          target="_blank">
-          <img
-            width="auto"
-            height="auto"
-            class="box-shadow w-36 rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 md:w-44 lg:w-52"
-            src="/assets/images/icons/shopee.png"
-            alt="Shopee" />
-        </a>
-        <a
-          data-aos="zoom-in"
-          data-aos-delay="400"
-          data-aos-duration="500"
-          :href="data.lazada_store"
-          target="_blank">
-          <img
-            width="auto"
-            height="auto"
-            class="box-shadow w-36 rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 md:w-44 lg:w-52"
-            src="/assets/images/icons/lazada.png"
-            alt="Lazada" />
-        </a>
-        <a
-          data-aos="zoom-in"
-          data-aos-delay="400"
-          data-aos-duration="500"
-          :href="data.kapalapi_store"
-          target="_blank">
-          <img
-            width="auto"
-            height="auto"
-            class="box-shadow w-36 rounded-2xl transition-all duration-300 ease-in-out hover:scale-105 md:w-44 lg:w-52"
-            src="/assets/images/icons/kapal-api-store.png"
-            alt="Kapal Api Store" />
+          <div
+            class="box-shadow flex h-[80px] w-[220px] items-center justify-center rounded-2xl bg-white transition-all duration-300 ease-in-out hover:scale-105">
+            <img
+              width="auto"
+              height="auto"
+              class="w-40"
+              :src="d.marketplace_image"
+              :alt="d.marketplace_name" />
+          </div>
         </a>
       </div>
     </div>

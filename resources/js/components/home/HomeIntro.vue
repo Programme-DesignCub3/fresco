@@ -28,7 +28,7 @@ const themeStore = useThemeStore();
           loop
           playsinline
           id="black-coffee"
-          poster="/assets/images/placeholder-video.webp">
+          poster="/assets/images/placeholder-black-coffee.webp">
           <source
             src="/assets/videos/black-coffee-video.mp4"
             type="video/mp4" />
@@ -52,7 +52,7 @@ const themeStore = useThemeStore();
           loop
           playsinline
           id="cappuccino-coffee"
-          poster="/assets/images/placeholder-video.webp">
+          poster="/assets/images/placeholder-cappuccino-coffee.webp">
           <source src="/assets/videos/cappuccino-video.mp4" type="video/mp4" />
           Your browser does not support HTML5 video.
         </video>

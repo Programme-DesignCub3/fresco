@@ -9,10 +9,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        article:
-          "url('https://fresco.democube.id/assets/images/bg-article.webp')",
-        activity:
-          "url('https://fresco.democube.id/assets/images/bg-activity.webp')",
+        article: "url('https://fresco.democube.id/assets/images/bg-article.webp')",
+        activity: "url('https://fresco.democube.id/assets/images/bg-activity.webp')",
       },
       backgroundColor: {
         'fr-black': '#050505',

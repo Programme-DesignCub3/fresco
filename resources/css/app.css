@@ -25,6 +25,44 @@
 }
 
 @layer components {
+  /* ================= General Component ================= */
+
+  /* DescriptionSlide Component */
+
+  /* Footer Component */
+
+  footer {
+    @apply pb-24 pt-14 transition-all duration-700 ease-in-out;
+  }
+
+  footer.black {
+    @apply bg-fr-black;
+  }
+
+  footer.cappuccino {
+    @apply bg-radial-red;
+  }
+
+  footer .footer-wrapper {
+    @apply flex flex-col items-center justify-center gap-y-6 px-4;
+  }
+
+  footer .footer-wrapper .footer-list {
+    @apply flex justify-center gap-x-2;
+  }
+
+  footer .footer-wrapper .footer-list a {
+    @apply box-shadow h-9 w-9 rounded-lg bg-fr-yellow transition-all duration-100 ease-in-out hover:scale-110;
+  }
+
+  footer .footer-wrapper p {
+    @apply text-center font-medium text-white;
+  }
+
+  /* HeaderPage Component */
+
+  /* Menu Component */
+
   /* Navbar Component */
 
   .navigation {
@@ -134,6 +172,24 @@
   .navigation .theme-changer .is-cappuccino {
     @apply flex h-20 w-20 items-center justify-center bg-fr-yellow p-2 xl:h-24 xl:w-24;
   }
+
+  /* ProductSlide Component */
+
+  /* SocialMedia Component */
+
+  .social-media-list {
+    @apply fixed right-4 top-48 z-[100] hidden flex-col space-y-2 transition-all duration-700 ease-in-out md:flex;
+  }
+
+  .social-media-list a {
+    @apply box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110;
+  }
+
+  .social-media-whatsapp {
+    @apply fixed bottom-32 right-4 z-[99] md:bottom-4;
+  }
+
+  /* ================= Pages Component ================= */
 
   /* HomeIntro Component */
 
@@ -524,50 +580,6 @@
 
   .post-feed.cappuccino {
     @apply bg-radial-red;
-  }
-
-  /* Social Media Component */
-
-  .social-media-list {
-    @apply fixed right-4 top-48 z-[100] hidden flex-col space-y-2 transition-all duration-700 ease-in-out md:flex;
-  }
-
-  .social-media-list a {
-    @apply box-shadow h-9 w-9 rounded-lg transition-all duration-100 ease-in-out hover:scale-110;
-  }
-
-  .social-media-whatsapp {
-    @apply fixed bottom-32 right-4 z-[99] md:bottom-4;
-  }
-
-  /* Footer Component */
-
-  footer {
-    @apply pb-24 pt-14 transition-all duration-700 ease-in-out;
-  }
-
-  footer.black {
-    @apply bg-fr-black;
-  }
-
-  footer.cappuccino {
-    @apply bg-radial-red;
-  }
-
-  footer .footer-wrapper {
-    @apply flex flex-col items-center justify-center gap-y-6 px-4;
-  }
-
-  footer .footer-wrapper .footer-list {
-    @apply flex justify-center gap-x-2;
-  }
-
-  footer .footer-wrapper .footer-list a {
-    @apply box-shadow h-9 w-9 rounded-lg bg-fr-yellow transition-all duration-100 ease-in-out hover:scale-110;
-  }
-
-  footer .footer-wrapper p {
-    @apply text-center font-medium text-white;
   }
 }
 

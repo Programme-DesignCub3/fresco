@@ -4,8 +4,8 @@
 @section('title', 'Hubungi')
 @section('meta_url', URL::to('/hubungi'))
 @section('meta_title', 'Hubungi')
-@section('meta_description', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, sit!')
-@section('meta_image', asset('assets/images/desc-2.png'))
+@section('meta_description', 'Kopi Kapal Api FresCo, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
+@section('meta_image', asset('assets/images/meta-image.png'))
 
 @section('content')
   <section id="contact">

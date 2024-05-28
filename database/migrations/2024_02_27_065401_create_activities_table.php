@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->json('links');
-            $table->integer('sort')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

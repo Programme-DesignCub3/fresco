@@ -44,7 +44,7 @@ class HomeController extends Controller
         });
 
         // Activity Resource
-        $activity = Activity::where('start_date', '<=', Carbon::now()->toDateString())->where('end_date', '>=', Carbon::now()->toDateString())->orderBy('sort')->with('featured_image')->with('featured_image_portrait')->latest()->limit(3)->get();
+        $activity = Activity::where('start_date', '<=', Carbon::now()->toDateString())->where('end_date', '>=', Carbon::now()->toDateString())->with('featured_image')->with('featured_image_portrait')->latest()->limit(3)->get();
         $activity->transform(function ($act) {
             $act->image = $act->featured_image->url ?? null;
             $act->image_portrait = $act->featured_image_portrait->url ?? null;

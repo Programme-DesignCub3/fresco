@@ -63,10 +63,8 @@ window.addEventListener('resize', () => {
 
 <template>
   <template v-if="themeStore.theme != undefined || themeStore.theme != null">
-    <!-- Black Coffee -->
     <div
-      v-if="themeStore.theme == 'black'"
-      v-for="(d, i) in data.black_desc_list"
+      v-for="(d, i) in themeStore.theme == 'black' ? data.black_desc_list : data.cappuccino_desc_list"
       :key="i"
       class="hidden overflow-x-hidden lg:block">
       <div class="grid grid-cols-2">
@@ -76,79 +74,39 @@ window.addEventListener('resize', () => {
               ? d.black_desc_position == 'right' && 'order-last'
               : d.cappuccino_desc_position == 'right' && 'order-last'
           ">
-          <div class="relative w-full bg-fr-black">
+          <div
+            :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'"
+            class="relative w-full">
             <!-- Image -->
             <img
               class="aspect-square object-cover object-center"
               width="auto"
               height="auto"
-              :src="d.black_desc_image"
-              :alt="d.black_desc_title" />
+              :src="themeStore.theme == 'black' ? d.black_desc_image : d.cappuccino_desc_image"
+              :alt="themeStore.theme == 'black' ? d.black_desc_title : d.cappuccino_desc_title" />
           </div>
         </div>
-
         <!-- Text -->
         <div
-          class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-black px-16 transition-all duration-700 ease-in-out"
-          :class="d.black_desc_position == 'right' && 'items-end'">
+          class="z-20 my-auto flex h-full w-full flex-col justify-center px-16 transition-all duration-700 ease-in-out"
+          :class="[
+            themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow',
+            d.black_desc_position == 'right' && 'items-end',
+            d.cappuccino_desc_position == 'right' && 'items-end'
+          ]">
           <div class="w-full space-y-4 2xl:w-[600px]">
             <h2
               class="text-[40px] font-bold leading-none md:text-5xl lg:text-6xl"
               ref="manifest">
-              {{ d.black_desc_title }}
+              {{ themeStore.theme == 'black' ? d.black_desc_title : d.cappuccino_desc_title }}
             </h2>
             <p
               data-aos="fade-down"
               data-aos-offset="0"
               :data-aos-delay="delayAos"
-              class="font-medium leading-8 text-white">
-              {{ d.black_desc_explanation }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cappuccino -->
-    <div
-      v-if="themeStore.theme == 'cappuccino'"
-      v-for="(d, i) in data.cappuccino_desc_list"
-      :key="i"
-      class="hidden overflow-x-hidden lg:block">
-      <div class="grid grid-cols-2">
-        <div
-          :class="
-            themeStore.theme == 'black'
-              ? d.black_desc_position == 'right' && 'order-last'
-              : d.cappuccino_desc_position == 'right' && 'order-last'
-          ">
-          <div class="relative w-full bg-fr-yellow">
-            <!-- Image -->
-            <img
-              class="aspect-square object-cover object-center"
-              width="auto"
-              height="auto"
-              :src="d.cappuccino_desc_image"
-              :alt="d.cappuccino_desc_title" />
-          </div>
-        </div>
-
-        <!-- Text -->
-        <div
-          class="z-20 my-auto flex h-full w-full flex-col justify-center bg-fr-yellow px-16 transition-all duration-700 ease-in-out"
-          :class="d.cappuccino_desc_position == 'right' && 'items-end'">
-          <div class="w-full space-y-4 2xl:w-[600px]">
-            <h2
-              class="text-[40px] font-bold leading-none md:text-5xl lg:text-6xl"
-              ref="manifest">
-              {{ d.cappuccino_desc_title }}
-            </h2>
-            <p
-              data-aos="fade-down"
-              data-aos-offset="0"
-              :data-aos-delay="delayAos"
-              class="font-medium leading-8 text-fr-black">
-              {{ d.cappuccino_desc_explanation }}
+              :class="themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'"
+              class="font-medium leading-8">
+              {{ themeStore.theme == 'black' ? d.black_desc_explanation : d.cappuccino_desc_explanation }}
             </p>
           </div>
         </div>
@@ -156,9 +114,3 @@ window.addEventListener('resize', () => {
     </div>
   </template>
 </template>
-
-<style scoped>
-.text-shadow {
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
-}
-</style>

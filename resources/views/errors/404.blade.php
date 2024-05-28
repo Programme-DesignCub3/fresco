@@ -27,11 +27,7 @@
           </p>
         </div>
         <div class="mt-6">
-          <a
-            href="/"
-            class="rounded-lg bg-fr-red px-6 py-2.5 font-medium text-white transition-all duration-300 hover:bg-fr-darker-red">
-            Halaman Utama
-          </a>
+          <a href="/" class="button red">Halaman Utama</a>
         </div>
       </div>
     </div>

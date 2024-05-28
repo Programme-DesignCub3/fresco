@@ -1,13 +1,43 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme-store.js';
-import { useNavStore } from '@/stores/nav-store.js';
 import { ref } from 'vue';
 
 const { data, type } = defineProps(['data', 'type']);
 const url = window.location;
 const themeStore = useThemeStore();
-const navStore = useNavStore();
 const scroll = ref();
+const socials = ref([
+  {
+    name: 'facebook',
+    icon: 'fa-facebook-f',
+    alias: data.facebook_alias,
+    link: data.facebook_link,
+  },
+  {
+    name: 'instagram',
+    icon: 'fa-instagram',
+    alias: data.instagram_alias,
+    link: data.instagram_link,
+  },
+  {
+    name: 'twitter',
+    icon: 'fa-twitter',
+    alias: data.x_alias,
+    link: data.x_link,
+  },
+  {
+    name: 'tiktok',
+    icon: 'fa-tiktok',
+    alias: data.tiktok_alias,
+    link: data.tiktok_link,
+  },
+  {
+    name: 'youtube',
+    icon: 'fa-youtube',
+    alias: data.youtube_alias,
+    link: data.youtube_link,
+  },
+]);
 
 const enableCustomLayout = (theme) => themeStore.setTheme(theme);
 const changeThemeHandler = () => {
@@ -108,80 +138,23 @@ window.addEventListener('scroll', () => {
         </ul>
         <!-- Social Media -->
         <div class="nav-socmed-list">
-          <!-- Facebook -->
           <a
+            v-for="social in socials"
             class="nav-socmed-item"
-            :class="
-              themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
-            "
-            :href="data.facebook_link ? data.facebook_link : '#'"
+            :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'"
+            :href="social.link ? social.link : '#'"
             target="_blank">
             <v-icon
               class="h-9 w-9 pt-2"
               :class="
-                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
+                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white',
+                social.name == 'facebook' && 'h-9 w-9 pt-2',
+                social.name == 'instagram' && 'h-9 w-9 p-1',
+                social.name == 'twitter' && 'h-9 w-9 p-1.5',
+                social.name == 'tiktok' && 'h-9 w-9 p-1.5',
+                social.name == 'youtube' && 'h-9 w-9 p-1.5'
               "
-              name="fa-facebook-f" />
-          </a>
-          <!-- Instagram -->
-          <a
-            class="nav-socmed-item"
-            :class="
-              themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
-            "
-            :href="data.instagram_link ? data.instagram_link : '#'"
-            target="_blank">
-            <v-icon
-              class="h-9 w-9 p-1"
-              :class="
-                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
-              "
-              name="fa-instagram" />
-          </a>
-          <!-- Twitter -->
-          <a
-            class="nav-socmed-item"
-            :class="
-              themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
-            "
-            :href="data.x_link ? data.x_link : '#'"
-            target="_blank">
-            <v-icon
-              class="h-9 w-9 p-1.5"
-              :class="
-                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
-              "
-              name="fa-twitter" />
-          </a>
-          <!-- Tiktok -->
-          <a
-            class="nav-socmed-item"
-            :class="
-              themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
-            "
-            :href="data.tiktok_link ? data.tiktok_link : '#'"
-            target="_blank">
-            <v-icon
-              class="h-9 w-9 p-1.5"
-              :class="
-                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
-              "
-              name="fa-tiktok" />
-          </a>
-          <!-- YouTube -->
-          <a
-            class="nav-socmed-item"
-            :class="
-              themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
-            "
-            :href="data.youtube_link ? data.youtube_link : '#'"
-            target="_blank">
-            <v-icon
-              class="h-9 w-9 p-1.5"
-              :class="
-                themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
-              "
-              name="fa-youtube" />
+              :name="social.icon" />
           </a>
         </div>
       </div>

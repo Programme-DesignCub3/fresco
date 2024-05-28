@@ -6,6 +6,36 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
+        // Default Value
+        $default = [
+            'marketplaces' => [
+                [
+                    'marketplace_name' => 'Tokopedia',
+                    'marketplace_url' => 'https://www.tokopedia.com/kapalapistore/etalase/fresco',
+                    'marketplace_image_id' => '',
+                    'marketplace_image' => ''
+                ],
+                [
+                    'marketplace_name' => 'Shopee',
+                    'marketplace_url' => 'https://shopee.co.id/mall/search?keyword=fresco&shop=24114453',
+                    'marketplace_image_id' => '',
+                    'marketplace_image' => ''
+                ],
+                [
+                    'marketplace_name' => 'Lazada',
+                    'marketplace_url' => 'https://www.lazada.co.id/kapal-api-store/?q=All-Products&shop_category_ids=1363364&from=wangpu&sc=KVUG&spm=a2o4j.8553159.cutImages_2346226926.1',
+                    'marketplace_image_id' => '',
+                    'marketplace_image' => ''
+                ],
+                [
+                    'marketplace_name' => 'Kapal Api Store',
+                    'marketplace_url' => 'https://www.kapalapistore.com/brand/fresco',
+                    'marketplace_image_id' => '',
+                    'marketplace_image' => ''
+                ],
+            ]
+        ];
+
         // Black Coffee Theme (Default Value)
         $black_coffee_default = [
             'description' => [
@@ -65,10 +95,7 @@ return new class extends SettingsMigration
         $this->migrator->add('general.cappuccino_desc_list', $cappuccino_coffee_default['description']);
 
         // Marketplace Link
-        $this->migrator->add('general.tokopedia_store', 'https://www.tokopedia.com/kapalapistore/etalase/fresco');
-        $this->migrator->add('general.shopee_store', 'https://shopee.co.id/mall/search?keyword=fresco&shop=24114453');
-        $this->migrator->add('general.lazada_store', 'https://www.lazada.co.id/kapal-api-store/?q=All-Products&shop_category_ids=1363364&from=wangpu&sc=KVUG&spm=a2o4j.8553159.cutImages_2346226926.1');
-        $this->migrator->add('general.kapalapi_store', 'https://www.kapalapistore.com/brand/fresco');
+        $this->migrator->add('general.marketplaces', $default['marketplaces']);
 
         // Social Media Link
         $this->migrator->add('general.facebook_alias', 'Kopi Fresco');

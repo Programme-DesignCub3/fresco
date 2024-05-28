@@ -11,10 +11,7 @@ class GeneralSettings extends Settings
     public array $cappuccino_desc_list;
 
     // Marketplace Link
-    public string $tokopedia_store;
-    public string $shopee_store;
-    public string $lazada_store;
-    public string $kapalapi_store;
+    public array $marketplaces;
 
     // Social Media Link
     public string $facebook_alias;

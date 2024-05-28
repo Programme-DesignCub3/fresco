@@ -15,6 +15,7 @@ import {
   HomeVideo,
   HomePost,
   HomePopup,
+  HomeCurator,
   ProductList,
   ProductMarketplace,
   ProductDescTitle,
@@ -81,6 +82,7 @@ app
   .component('HomeVideoComponent', HomeVideo)
   .component('HomePostComponent', HomePost)
   .component('HomePopupComponent', HomePopup)
+  .component('HomeCuratorComponent', HomeCurator)
 
   /** @register Product Components */
   .component('ProductListComponent', ProductList)
