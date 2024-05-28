@@ -7,6 +7,7 @@ use App\Rules\MinWord;
 use App\Settings\GeneralSettings;
 use App\Settings\PageSettings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
@@ -64,17 +65,11 @@ class ContactController extends Controller
                 'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
                 'response' => $request->get('g-recaptcha-response')
             ];
-            $options = [
-                'http' => [
-                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method'  => 'POST',
-                    'content' => http_build_query($data)
-                ]
-            ];
-            $context  = stream_context_create($options);
-            $result = file_get_contents($url, false, $context);
-            $resultJson = json_decode($result);
-            if ($resultJson->success != true) {
+
+            $respone = Http::asForm()->post($url, $data);
+            $responeJson = json_decode($respone->body());
+
+            if ($responeJson->success != true) {
                 return response()->json([
                     'status' => false,
                     'errors' => ['recaptcha' => 'reCaptcha Error!']
