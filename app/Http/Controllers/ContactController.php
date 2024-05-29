@@ -66,10 +66,10 @@ class ContactController extends Controller
                 'response' => $request->get('g-recaptcha-response')
             ];
 
-            $respone = Http::asForm()->post($url, $data);
-            $responeJson = json_decode($respone->body());
+            $response = Http::asForm()->post($url, $data);
+            $responseJson = json_decode($response->body());
 
-            if ($responeJson->success != true) {
+            if ($responseJson->success != true) {
                 return response()->json([
                     'status' => false,
                     'errors' => ['recaptcha' => 'reCaptcha Error!']
