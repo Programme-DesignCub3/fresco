@@ -76,7 +76,7 @@ watch(theme, () => {
           <div v-if="themeStore.theme == 'black'" class="swiper" ref="feed">
             <div class="swiper-wrapper">
               <div v-for="(d, i) in activity" :key="i" class="swiper-slide">
-                <a :href="d.link" target="_blank">
+                <a :href="d.link ? d.link : '#'" target="_blank">
                   <img
                     width="auto"
                     height="auto"
@@ -103,7 +103,7 @@ watch(theme, () => {
             ref="feed">
             <div class="swiper-wrapper">
               <div v-for="(d, i) in activity" :key="i" class="swiper-slide">
-                <a :href="d.link" target="_blank">
+                <a :href="d.link ? d.link : '#'" target="_blank">
                   <img
                     width="auto"
                     height="auto"
@@ -190,13 +190,13 @@ watch(theme, () => {
                   <!-- Read More Button -->
                   <div>
                     <a
-                      :href="'artikel/' + d.slug"
-                      class="transition-all duration-700 ease-in-out"
                       :class="
                         themeStore.theme == 'black'
                           ? 'button red'
                           : 'button green'
-                      ">
+                      "
+                      :href="'artikel/' + d.slug"
+                      class="transition-all duration-700 ease-in-out">
                       READ MORE
                       <v-icon
                         class="h-4 w-4 stroke-2 py-[2px]"

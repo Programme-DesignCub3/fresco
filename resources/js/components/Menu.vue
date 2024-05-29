@@ -1,7 +1,7 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme-store.js';
-import { ref } from 'vue';
 
+const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
 
 const enableCustomLayout = (theme) => themeStore.setTheme(theme);
@@ -26,25 +26,21 @@ const enableCustomLayout = (theme) => themeStore.setTheme(theme);
         </h1>
         <div class="relative flex items-end justify-center">
           <img
-            class="reflect-image-product w-[180px]"
-            src="/assets/images/bubuk-hitam.png"
-            alt="Kopi Bubuk Hitam" />
-          <img
-            class="reflect-image-product w-[180px]"
-            src="/assets/images/kopi-gula.png"
-            alt="Kopi + Gula" />
-          <img
-            class="reflect-image-product w-[180px]"
-            src="/assets/images/krim-moka.png"
-            alt="Kopi Krim Moka" />
-          <img
-            class="reflect-image-product w-[180px]"
-            src="/assets/images/krim-susu.png"
-            alt="Kopi Krim Susu" />
-          <img
-            class="reflect-image-product w-[180px]"
-            src="/assets/images/cappuccino.png"
-            alt="Cappuccino" />
+            v-for="d in data"
+            width="auto"
+            height="auto"
+            class="w-[180px]"
+            :src="d.image"
+            :alt="d.product" />
+          <div class="product-reflect">
+            <img
+              v-for="d in data"
+              width="auto"
+              height="auto"
+              class="w-[180px]"
+              :src="d.image"
+              :alt="d.product" />
+          </div>
         </div>
       </div>
     </div>

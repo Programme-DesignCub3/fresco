@@ -8,7 +8,7 @@ const themeStore = useThemeStore();
 <template>
   <div
     v-if="themeStore.theme != undefined || themeStore.theme != null"
-    class="video-coffee py-10 transition-all duration-700 ease-in-out overflow-hidden md:py-24"
+    class="video-coffee overflow-hidden py-10 transition-all duration-700 ease-in-out md:py-24"
     :class="themeStore.theme">
     <div class="fr-container mx-auto w-full px-4 md:px-0">
       <!-- Video -->

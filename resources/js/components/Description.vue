@@ -64,7 +64,9 @@ window.addEventListener('resize', () => {
 <template>
   <template v-if="themeStore.theme != undefined || themeStore.theme != null">
     <div
-      v-for="(d, i) in themeStore.theme == 'black' ? data.black_desc_list : data.cappuccino_desc_list"
+      v-for="(d, i) in themeStore.theme == 'black'
+        ? data.black_desc_list
+        : data.cappuccino_desc_list"
       :key="i"
       class="hidden overflow-x-hidden lg:block">
       <div class="grid grid-cols-2">
@@ -75,15 +77,25 @@ window.addEventListener('resize', () => {
               : d.cappuccino_desc_position == 'right' && 'order-last'
           ">
           <div
-            :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'"
+            :class="
+              themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'
+            "
             class="relative w-full">
             <!-- Image -->
             <img
-              class="aspect-square object-cover object-center w-full"
+              class="aspect-square w-full object-cover object-center"
               width="auto"
               height="auto"
-              :src="themeStore.theme == 'black' ? d.black_desc_image : d.cappuccino_desc_image"
-              :alt="themeStore.theme == 'black' ? d.black_desc_title : d.cappuccino_desc_title" />
+              :src="
+                themeStore.theme == 'black'
+                  ? d.black_desc_image
+                  : d.cappuccino_desc_image
+              "
+              :alt="
+                themeStore.theme == 'black'
+                  ? d.black_desc_title
+                  : d.cappuccino_desc_title
+              " />
           </div>
         </div>
         <div
@@ -91,23 +103,33 @@ window.addEventListener('resize', () => {
           :class="[
             themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow',
             d.black_desc_position == 'right' && 'items-end',
-            d.cappuccino_desc_position == 'right' && 'items-end'
+            d.cappuccino_desc_position == 'right' && 'items-end',
           ]">
           <div class="w-full space-y-4 2xl:w-[600px]">
             <!-- Title -->
             <h2
               class="text-[40px] font-bold leading-none md:text-5xl lg:text-6xl"
               ref="manifest">
-              {{ themeStore.theme == 'black' ? d.black_desc_title : d.cappuccino_desc_title }}
+              {{
+                themeStore.theme == 'black'
+                  ? d.black_desc_title
+                  : d.cappuccino_desc_title
+              }}
             </h2>
             <!-- Description -->
             <p
               data-aos="fade-down"
               data-aos-offset="0"
               :data-aos-delay="delayAos"
-              :class="themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'"
+              :class="
+                themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'
+              "
               class="font-medium leading-8">
-              {{ themeStore.theme == 'black' ? d.black_desc_explanation : d.cappuccino_desc_explanation }}
+              {{
+                themeStore.theme == 'black'
+                  ? d.black_desc_explanation
+                  : d.cappuccino_desc_explanation
+              }}
             </p>
           </div>
         </div>

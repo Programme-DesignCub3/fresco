@@ -1,6 +1,6 @@
 {{-- Theme Menu (Choice) --}}
 @if (request()->path() == '/')
-  <menu-component></menu-component>
+  <menu-component :data="{{ json_encode($black) }}"></menu-component>
 @endif
 
 {{-- Partials --}}

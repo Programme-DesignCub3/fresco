@@ -104,13 +104,24 @@ watch(theme, () => {
             <div v-for="(d, i) in black" class="swiper-slide" :key="i">
               <div
                 class="flex flex-col items-center justify-between space-y-12">
-                <img
-                  width="auto"
-                  height="auto"
-                  :src="d.image"
-                  :alt="d.product"
-                  data-aos="fade-up"
-                  class="reflect-image-product w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
+                <div class="relative">
+                  <img
+                    width="auto"
+                    height="auto"
+                    :src="d.image"
+                    :alt="d.product"
+                    data-aos="fade-up"
+                    class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
+                  <div class="product-reflect">
+                    <img
+                      width="auto"
+                      height="auto"
+                      :src="d.image"
+                      :alt="d.product"
+                      data-aos="fade-up"
+                      class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
+                  </div>
+                </div>
                 <div
                   data-aos="fade-down"
                   class="text-center font-medium text-white">
@@ -141,13 +152,24 @@ watch(theme, () => {
             <div v-for="(d, i) in cappuccino" class="swiper-slide" :key="i">
               <div
                 class="flex flex-col items-center justify-between space-y-12">
-                <img
-                  width="auto"
-                  height="auto"
-                  :src="d.image"
-                  :alt="d.product"
-                  data-aos="fade-up"
-                  class="reflect-image-product w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
+                <div class="relative">
+                  <img
+                    width="auto"
+                    height="auto"
+                    :src="d.image"
+                    :alt="d.product"
+                    data-aos="fade-up"
+                    class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
+                  <div class="product-reflect">
+                    <img
+                      width="auto"
+                      height="auto"
+                      :src="d.image"
+                      :alt="d.product"
+                      data-aos="fade-up"
+                      class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
+                  </div>
+                </div>
                 <div
                   data-aos="fade-down"
                   class="text-center font-bold text-white">
