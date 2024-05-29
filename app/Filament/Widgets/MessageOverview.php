@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Filament\Resources\MessageResource;
+use App\Models\Message;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
@@ -10,13 +11,17 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\TableWidget as BaseWidget;
 
 class MessageOverview extends BaseWidget
 {
     protected int | string | array $columnSpan = 'full';
+
+    protected static ?string $heading = 'Unread Messages';
 
     public function form(Form $form): Form
     {
@@ -46,7 +51,7 @@ class MessageOverview extends BaseWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(MessageResource::getEloquentQuery())
+            ->query(Message::where('read', false))
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('name')
@@ -62,10 +67,23 @@ class MessageOverview extends BaseWidget
                     ->label('Message')
                     ->limit(30),
                 TextColumn::make('created_at')
-                    ->label('Sent on')
+                    ->label('Sent on'),
+                IconColumn::make('read')
+                    ->label('Read')
+                    ->boolean()
+                    ->trueIcon('heroicon-s-envelope-open')
+                    ->trueColor('info')
+                    ->falseIcon('heroicon-s-envelope')
+                    ->falseColor('warning')
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
+                    ->mutateRecordDataUsing(function (array $data): array {
+                        if($data['read'] === true) return $data;
+                        Message::where('id', $data['id'])->update(['read' => true]);
+
+                        return $data;
+                    })
                     ->form([
                         TextInput::make('name')
                             ->label('Name'),

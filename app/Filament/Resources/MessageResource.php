@@ -11,7 +11,9 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -44,7 +46,7 @@ class MessageResource extends Resource
                             ->content(fn (Message $record): string => $record->message),
                         Placeholder::make('created_at')
                             ->label('Sent on')
-                            ->content(fn (Message $record): string => $record->created_at),
+                            ->content(fn (Message $record): string => $record->created_at)
                     ])
             ]);
     }
@@ -66,13 +68,30 @@ class MessageResource extends Resource
                     ->label('Message')
                     ->limit(30),
                 TextColumn::make('created_at')
-                    ->label('Sent on')
+                    ->label('Sent on'),
+                IconColumn::make('read')
+                    ->label('Read')
+                    ->boolean()
+                    ->trueIcon('heroicon-s-envelope-open')
+                    ->trueColor('info')
+                    ->falseIcon('heroicon-s-envelope')
+                    ->falseColor('warning')
             ])
             ->filters([
-                //
+                SelectFilter::make('read')
+                    ->options([
+                        '1' => 'Read',
+                        '0' => 'Unread',
+                    ])
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->mutateRecordDataUsing(function (array $data): array {
+                        if($data['read'] === true) return $data;
+                        Message::where('id', $data['id'])->update(['read' => true]);
+
+                        return $data;
+                    }),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

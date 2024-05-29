@@ -41,6 +41,16 @@ class PromotionResource extends Resource
 
     protected static ?string $model = Promo::class;
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::count() >= 0 ? 'warning' : '';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
