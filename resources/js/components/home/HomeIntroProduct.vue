@@ -122,13 +122,13 @@ window.addEventListener('resize', () => {
           <template v-if="themeStore.theme == 'black'">
             <!-- First Slide -->
             <div class="swiper-slide">
-              <div class="black-slider">
+              <div class="black-slider" :class="data.black_intro_layout">
                 <!-- Title (Black) -->
                 <div class="heading-wrapper" id="black-anchor">
                   <h1 ref="first">{{ data.black_intro_title }}</h1>
                   <!-- Description (Black) -->
                   <div
-                    class="description-wrapper"
+                    class="description-wrapper home-intro-body"
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"
@@ -149,13 +149,13 @@ window.addEventListener('resize', () => {
             </div>
             <!-- Second Slide -->
             <div class="swiper-slide">
-              <div class="black-slider">
+              <div class="black-slider" :class="data.black_intro_layout">
                 <!-- Title (Black) -->
                 <div class="heading-wrapper" id="black-anchor">
                   <h1 ref="second">{{ data.cappuccino_intro_title }}</h1>
                   <!-- Description (Black) -->
                   <div
-                    class="description-wrapper"
+                    class="description-wrapper home-intro-body"
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"
@@ -180,7 +180,9 @@ window.addEventListener('resize', () => {
           <template v-if="themeStore.theme == 'cappuccino'">
             <!-- First Slide -->
             <div class="swiper-slide">
-              <div class="cappuccino-slider">
+              <div
+                class="cappuccino-slider"
+                :class="data.cappuccino_intro_layout">
                 <!-- Title (Cappuccino) -->
                 <div class="heading-wrapper" id="cappuccino-anchor">
                   <div class="relative">
@@ -197,7 +199,7 @@ window.addEventListener('resize', () => {
                   </div>
                   <!-- Description (Cappuccino) -->
                   <div
-                    class="description-wrapper"
+                    class="description-wrapper home-intro-body"
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"
@@ -218,7 +220,9 @@ window.addEventListener('resize', () => {
             </div>
             <!-- Second Slide -->
             <div class="swiper-slide">
-              <div class="cappuccino-slider">
+              <div
+                class="cappuccino-slider"
+                :class="data.cappuccino_intro_layout">
                 <!-- Title (Cappuccino) -->
                 <div class="heading-wrapper" id="cappuccino-anchor">
                   <div class="relative">
@@ -235,7 +239,7 @@ window.addEventListener('resize', () => {
                   </div>
                   <!-- Description (Cappuccino) -->
                   <div
-                    class="description-wrapper"
+                    class="description-wrapper home-intro-body"
                     data-aos="fade-up"
                     data-aos-delay="200"
                     data-aos-offset="0"

@@ -7,7 +7,6 @@ import {
   SocialMedia,
   ProductSlide,
   Description,
-  DescriptionSlide,
   HeaderPage,
   Footer,
   HomeIntro,
@@ -72,7 +71,6 @@ app
   .component('SocialMediaComponent', SocialMedia)
   .component('ProductSlideComponent', ProductSlide)
   .component('DescriptionComponent', Description)
-  .component('DescriptionSlideComponent', DescriptionSlide)
   .component('HeaderPageComponent', HeaderPage)
   .component('FooterComponent', Footer)
 

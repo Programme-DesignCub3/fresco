@@ -18,8 +18,8 @@ const swiperOption = {
   loop: true,
   modules: [Navigation],
   navigation: {
-    nextEl: '.fr-product-slider-next',
-    prevEl: '.fr-product-slider-prev',
+    nextEl: '.product-slide-next',
+    prevEl: '.product-slide-prev',
   },
   breakpoints: {
     1024: {
@@ -61,8 +61,7 @@ watch(theme, () => {
   swiper.value = null;
   setTimeout(() => {
     initSwiper();
-  }),
-    10;
+  }, 10);
 });
 </script>
 
@@ -72,11 +71,11 @@ watch(theme, () => {
       themeStore.getTheme().value != undefined &&
       themeStore.getTheme().value != null
     "
-    class="product-coffee relative px-0 py-10 transition-all duration-700 ease-in-out md:px-10 md:py-16"
+    class="relative px-0 py-10 transition-all duration-700 ease-in-out md:px-10 md:py-16"
     :class="themeStore.theme == 'black' ? 'bg-radial-red' : 'bg-radial-green'">
-    <!-- Navigation Swiper (Arrow Left) -->
+    <!-- Navigation (Previous Arrow) -->
     <div
-      class="fr-product-slider-prev absolute left-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:left-[6%] md:left-[8%] lg:left-[10%] 2xl:left-[12%]"
+      class="product-slide-prev"
       :class="
         themeStore.theme == 'black'
           ? 'bg-fr-yellow text-fr-black'
@@ -84,10 +83,9 @@ watch(theme, () => {
       ">
       <v-icon name="fa-chevron-left" />
     </div>
-
-    <!-- Navigation Swiper (Arrow Right) -->
+    <!-- Navigation (Next Arrow) -->
     <div
-      class="fr-product-slider-next absolute right-[4%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full sm:right-[6%] md:right-[8%] lg:right-[10%] 2xl:right-[12%]"
+      class="product-slide-next"
       :class="
         themeStore.theme == 'black'
           ? 'bg-fr-yellow text-fr-black'
@@ -95,9 +93,8 @@ watch(theme, () => {
       ">
       <v-icon name="fa-chevron-right" />
     </div>
-
     <div class="fr-container mx-auto w-full space-y-16 text-center">
-      <!-- === Slide Black Coffee === -->
+      <!-- Black Coffee -->
       <div v-if="themeStore.theme == 'black'" class="swiper" ref="product">
         <div class="swiper-wrapper items-end py-4 md:py-8">
           <template v-for="n in 2">
@@ -144,8 +141,7 @@ watch(theme, () => {
           </template>
         </div>
       </div>
-
-      <!-- === Slide Cappuccino === -->
+      <!-- Cappuccino -->
       <div v-if="themeStore.theme == 'cappuccino'" class="swiper" ref="product">
         <div class="swiper-wrapper items-end py-4 md:py-8">
           <template v-for="n in 2">
@@ -172,7 +168,7 @@ watch(theme, () => {
                 </div>
                 <div
                   data-aos="fade-down"
-                  class="text-center font-bold text-white">
+                  class="text-center font-medium text-white">
                   <p>FresCo</p>
                   <p>{{ d.product }}</p>
                   <div class="pt-4">

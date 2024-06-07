@@ -103,7 +103,7 @@ const themeStore = useThemeStore();
       <!-- Description` -->
       <div class="pt-10 text-center font-medium leading-8">
         <div
-          class="text-fr-black"
+          class="home-video-body text-fr-black"
           data-aos="fade-up"
           data-aos-delay="500"
           data-aos-offset="0"
@@ -111,7 +111,7 @@ const themeStore = useThemeStore();
           v-html="data.black_video_desc"></div>
         <div
           v-else
-          class="text-white"
+          class="home-video-body text-white"
           v-html="data.cappuccino_video_desc"
           data-aos="fade-up"
           data-aos-delay="500"

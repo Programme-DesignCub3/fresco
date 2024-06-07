@@ -75,7 +75,7 @@ window.addEventListener('scroll', () => {
     </a>
   </div>
   <!-- WhatsApp -->
-  <div class="social-media-whatsapp">
+  <div class="fixed bottom-32 right-4 z-[99] md:bottom-4">
     <a :href="data.whatsapp_link ? data.whatsapp_link : '#'" target="_blank">
       <img
         width="auto"

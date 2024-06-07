@@ -25,7 +25,7 @@
               <h1 class="text-3xl font-bold text-fr-green md:text-4xl">
                 {{ $article->title }}
               </h1>
-              <div class="space-y-6 leading-8">
+              <div class="article-body space-y-6 leading-8">
                 @foreach ($article->content as $c)
                   @switch($c['type'])
                     @case('paragraph')

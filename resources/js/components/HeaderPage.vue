@@ -50,7 +50,7 @@ window.addEventListener('resize', () => {
   <!-- Article Header -->
   <div
     v-if="header == 'article'"
-    class="bg-header-article mt-0 bg-cover bg-bottom bg-no-repeat md:mt-[170px] xl:mt-24"
+    class="header-page-wrapper"
     :class="
       themeStore.theme == 'black'
         ? `bg-fr-black ${data.ar_black_banner_position}`
@@ -62,17 +62,14 @@ window.addEventListener('resize', () => {
           ? `url(/${data.ar_black_banner_image})`
           : `url(/${data.ar_cappuccino_banner_image})`,
     }">
-    <div
-      class="fr-container mx-auto px-4 py-10 sm:px-0 md:mt-0 md:py-16 lg:py-24">
+    <div class="header-page-title-wrapper">
       <h1
         ref="blackTitle"
         v-if="themeStore.theme == 'black'"
-        class="text-shadow pt-14 text-[40px] font-bold leading-none md:pt-0 md:text-5xl lg:text-6xl"
         v-html="data.ar_black_banner_title"></h1>
       <h1
         ref="cappuccinoTitle"
         v-if="themeStore.theme == 'cappuccino'"
-        class="text-shadow pt-14 text-[40px] font-bold leading-none md:pt-0 md:text-5xl lg:text-6xl"
         v-html="data.ar_cappuccino_banner_title"></h1>
     </div>
   </div>
@@ -80,7 +77,7 @@ window.addEventListener('resize', () => {
   <!-- Activity Header -->
   <div
     v-if="header == 'activity'"
-    class="bg-header-article mt-0 bg-cover bg-bottom bg-no-repeat md:mt-[170px] xl:mt-24"
+    class="header-page-wrapper"
     :class="
       themeStore.theme == 'black'
         ? `bg-fr-black ${data.ac_black_banner_position}`
@@ -92,17 +89,14 @@ window.addEventListener('resize', () => {
           ? `url(/${data.ac_black_banner_image})`
           : `url(/${data.ac_cappuccino_banner_image})`,
     }">
-    <div
-      class="fr-container mx-auto px-4 py-10 sm:px-0 md:mt-0 md:py-16 lg:py-24">
+    <div class="header-page-title-wrapper">
       <h1
         ref="blackTitle"
         v-if="themeStore.theme == 'black'"
-        class="text-shadow pt-14 text-[40px] font-bold leading-none md:pt-0 md:text-5xl lg:text-6xl"
         v-html="data.ac_black_banner_title"></h1>
       <h1
         ref="cappuccinoTitle"
         v-if="themeStore.theme == 'cappuccino'"
-        class="text-shadow pt-14 text-[40px] font-bold leading-none md:pt-0 md:text-5xl lg:text-6xl"
         v-html="data.ac_cappuccino_banner_title"></h1>
     </div>
   </div>
@@ -110,7 +104,7 @@ window.addEventListener('resize', () => {
   <!-- Contact Header -->
   <div
     v-if="header == 'contact'"
-    class="bg-header-article mt-0 bg-cover bg-bottom bg-no-repeat md:mt-[170px] xl:mt-24"
+    class="header-page-wrapper"
     :class="
       themeStore.theme == 'black'
         ? `bg-fr-black ${data.cn_black_banner_position}`
@@ -122,17 +116,14 @@ window.addEventListener('resize', () => {
           ? `url(/${data.cn_black_banner_image})`
           : `url(/${data.cn_cappuccino_banner_image})`,
     }">
-    <div
-      class="fr-container mx-auto px-4 py-10 sm:px-0 md:mt-0 md:py-16 lg:py-24">
+    <div class="header-page-title-wrapper">
       <h1
         ref="blackTitle"
         v-if="themeStore.theme == 'black'"
-        class="text-shadow pt-14 text-[40px] font-bold leading-none md:pt-0 md:text-5xl lg:text-6xl"
         v-html="data.cn_black_banner_title"></h1>
       <h1
         ref="cappuccinoTitle"
         v-if="themeStore.theme == 'cappuccino'"
-        class="text-shadow pt-14 text-[40px] font-bold leading-none md:pt-0 md:text-5xl lg:text-6xl"
         v-html="data.cn_cappuccino_banner_title"></h1>
     </div>
   </div>

@@ -40,13 +40,15 @@ const socials = ref([
 
 <template>
   <footer
-    :class="themeStore.theme"
-    v-if="themeStore.theme != undefined || themeStore.theme != null">
-    <div class="footer-wrapper">
+    v-if="themeStore.theme != undefined || themeStore.theme != null"
+    class="pb-24 pt-14 transition-all duration-700 ease-in-out"
+    :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-radial-red'">
+    <div class="flex flex-col items-center justify-center gap-y-6 px-4">
       <div class="footer-list">
         <!-- Social Media -->
         <a
           v-for="social in socials"
+          class="footer-item"
           :href="social.link ? social.link : '#'"
           target="_blank">
           <v-icon
@@ -61,7 +63,9 @@ const socials = ref([
             :name="social.icon" />
         </a>
       </div>
-      <p>PT. SANTOS JAYA ABADI (KAPAL API GROUP). ALL RIGHTS RESERVED</p>
+      <p class="text-center font-medium text-white">
+        PT. SANTOS JAYA ABADI (KAPAL API GROUP). ALL RIGHTS RESERVED
+      </p>
     </div>
   </footer>
 </template>

@@ -5,7 +5,6 @@ import SocialMedia from '@/components/SocialMedia.vue';
 import Footer from '@/components/Footer.vue';
 import ProductSlide from '@/components/ProductSlide.vue';
 import Description from '@/components/Description.vue';
-import DescriptionSlide from '@/components/DescriptionSlide.vue';
 import HeaderPage from '@/components/HeaderPage.vue';
 
 /** @import Home Components */
@@ -39,7 +38,6 @@ export {
   SocialMedia,
   ProductSlide,
   Description,
-  DescriptionSlide,
   HeaderPage,
   Footer,
   HomeIntro,

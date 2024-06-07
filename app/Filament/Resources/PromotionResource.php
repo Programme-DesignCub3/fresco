@@ -85,7 +85,8 @@ class PromotionResource extends Resource
                                     'orderedList',
                                     'attachFiles',
                                     'codeBlock',
-                                    'blockquote'
+                                    'blockquote',
+                                    'link'
                                 ])
                                 ->required(),
                             Repeater::make('links')

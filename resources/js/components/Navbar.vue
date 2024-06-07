@@ -51,7 +51,6 @@ window.addEventListener('scroll', () => {
 </script>
 
 <template>
-  <!-- Navigation -->
   <header
     v-if="themeStore.theme != undefined || themeStore.theme != null"
     class="navigation"

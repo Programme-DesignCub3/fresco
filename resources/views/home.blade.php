@@ -26,10 +26,6 @@
     <description-component
       :data="{{ json_encode($general) }}"></description-component>
 
-    {{-- Home Description Section (Mobile) --}}
-    <description-slide-component
-      :data="{{ json_encode($general) }}"></description-slide-component>
-
     {{-- Home Post Section --}}
     <home-post-component
       :activity="{{ json_encode($activity) }}"

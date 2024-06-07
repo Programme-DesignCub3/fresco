@@ -3,17 +3,32 @@ import {
   splitDescriptionBlack,
   splitDescriptionCappuccino,
 } from '@/misc/utils.js';
+import { Swiper } from 'swiper';
+import { Navigation } from 'swiper/modules';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { onMounted, watch, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import SplitType from 'split-type';
 import AOS from 'aos';
+import 'swiper/css';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
+const description = ref();
+const swiper = ref();
 const manifest = ref(null);
 const delayAos = ref(0);
+
+const swiperOption = {
+  autoHeight: true,
+  slidesPerView: 1,
+  modules: [Navigation],
+  navigation: {
+    nextEl: '.description-next',
+    prevEl: '.description-prev',
+  },
+};
 
 const splitterText = (target) => {
   let split = new SplitType(target, {
@@ -34,7 +49,15 @@ const splitterText = (target) => {
   delayAos.value = delay + 50;
 };
 
+const initSwiper = () => {
+  swiper.value = new Swiper(description.value, swiperOption);
+};
+
 onMounted(() => {
+  if (!swiper.value) {
+    initSwiper();
+  }
+
   if (manifest.value != null) {
     for (let i = 0; i < manifest.value.length; i++) {
       splitterText(manifest.value[i]);
@@ -47,7 +70,9 @@ onMounted(() => {
 });
 
 watch(theme, () => {
+  swiper.value = null;
   setTimeout(() => {
+    initSwiper();
     for (let i = 0; i < manifest.value.length; i++) {
       splitterText(manifest.value[i]);
     }
@@ -55,14 +80,17 @@ watch(theme, () => {
 });
 
 window.addEventListener('resize', () => {
-  for (let i = 0; i < manifest.value.length; i++) {
-    splitterText(manifest.value[i]);
+  if (manifest.value != null) {
+    for (let i = 0; i < manifest.value.length; i++) {
+      splitterText(manifest.value[i]);
+    }
   }
 });
 </script>
 
 <template>
   <template v-if="themeStore.theme != undefined || themeStore.theme != null">
+    <!-- (Desktop) -->
     <div
       v-for="(d, i) in themeStore.theme == 'black'
         ? data.black_desc_list
@@ -117,20 +145,110 @@ window.addEventListener('resize', () => {
               }}
             </h2>
             <!-- Description -->
-            <p
+            <div
               data-aos="fade-down"
               data-aos-offset="0"
               :data-aos-delay="delayAos"
               :class="
                 themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'
               "
-              class="font-medium leading-8">
-              {{
+              class="description-body font-medium leading-8"
+              v-html="
                 themeStore.theme == 'black'
                   ? d.black_desc_explanation
                   : d.cappuccino_desc_explanation
-              }}
-            </p>
+              "></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- (Mobile) -->
+    <div
+      class="relative block h-full w-full lg:hidden"
+      :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
+      <!-- Navigation (Previous Arrow) -->
+      <div
+        class="description-prev"
+        :class="
+          themeStore.theme == 'black'
+            ? 'bg-fr-yellow text-fr-black'
+            : 'bg-fr-red text-white'
+        ">
+        <v-icon name="fa-chevron-left" />
+      </div>
+      <!-- Navigation Swiper (Next Arrow) -->
+      <div
+        class="description-next"
+        :class="
+          themeStore.theme == 'black'
+            ? 'bg-fr-yellow text-fr-black'
+            : 'bg-fr-red text-white'
+        ">
+        <v-icon name="fa-chevron-right" />
+      </div>
+      <!-- Black Coffee -->
+      <div v-if="themeStore.theme == 'black'" class="swiper" ref="description">
+        <div class="swiper-wrapper">
+          <div
+            v-for="(d, i) in data.black_desc_list"
+            :key="i"
+            class="swiper-slide">
+            <div class="grid grid-rows-1">
+              <img
+                class="aspect-square w-full object-cover object-center"
+                width="auto"
+                height="auto"
+                :src="d.black_desc_image"
+                :alt="d.black_desc_title" />
+              <div
+                class="flex w-full flex-col justify-between space-y-4 px-4 py-8">
+                <h2
+                  class="text-center text-[40px] font-bold leading-none text-white"
+                  ref="manifest">
+                  {{ d.black_desc_title }}
+                </h2>
+                <div
+                  data-aos="fade-down"
+                  data-aos-offset="0"
+                  class="description-body text-center font-medium leading-8 text-white"
+                  v-html="d.black_desc_explanation"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Cappuccino -->
+      <div
+        v-if="themeStore.theme == 'cappuccino'"
+        class="swiper"
+        ref="description">
+        <div class="swiper-wrapper">
+          <div
+            v-for="(d, i) in data.cappuccino_desc_list"
+            :key="i"
+            class="swiper-slide">
+            <div class="grid grid-rows-1">
+              <img
+                class="aspect-square object-cover object-center"
+                width="auto"
+                height="auto"
+                :src="d.cappuccino_desc_image"
+                :alt="d.cappuccino_desc_title" />
+              <div
+                class="flex w-full flex-col justify-between space-y-4 px-4 py-8">
+                <h2
+                  class="text-center text-[40px] font-bold leading-none text-white"
+                  ref="manifest">
+                  {{ d.cappuccino_desc_title }}
+                </h2>
+                <div
+                  data-aos="fade-down"
+                  data-aos-offset="0"
+                  class="text-center font-medium leading-8 text-fr-black"
+                  v-html="d.cappuccino_desc_explanation"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -71,7 +71,7 @@
                   <img
                     width="auto"
                     height="auto"
-                    class="aspect-square object-cover object-center transition-all duration-700 ease-in-out group-hover:scale-110"
+                    class="aspect-square w-full object-cover object-center transition-all duration-700 ease-in-out group-hover:scale-110"
                     src="{{ $a->featured_image->url }}"
                     alt="{{ $a->title }}" />
                 </div>
