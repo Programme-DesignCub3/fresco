@@ -127,7 +127,7 @@ watch(theme, () => {
             blackHover = false;
           }
         "
-        class="flex w-1/2 items-center justify-end gap-x-12 bg-fr-red p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 xl:p-8">
+        class="flex w-1/2 items-start justify-end gap-x-12 bg-fr-red p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 sm:items-center xl:p-8">
         <div
           class="flex flex-col items-end justify-center gap-3 md:flex-row md:items-center md:gap-6">
           <span
@@ -153,7 +153,7 @@ watch(theme, () => {
             cappuccinoHover = false;
           }
         "
-        class="flex w-1/2 items-center justify-start gap-x-12 bg-fr-yellow p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 xl:p-8">
+        class="flex w-1/2 items-start justify-start gap-x-12 bg-fr-yellow p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 sm:items-center xl:p-8">
         <img
           class="absolute top-1/2 hidden w-[110px] -translate-y-2/3 lg:block xl:w-[140px]"
           src="/assets/images/menu-cappuccino.png"

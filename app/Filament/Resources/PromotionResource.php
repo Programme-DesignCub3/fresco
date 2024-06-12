@@ -153,7 +153,8 @@ class PromotionResource extends Resource
                     ->query(fn (EloquentBuilder $query): EloquentBuilder => $query->where('pin', true))
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->color('warning'),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

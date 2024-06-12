@@ -71,7 +71,7 @@ watch(theme, () => {
       themeStore.getTheme().value != undefined &&
       themeStore.getTheme().value != null
     "
-    class="relative px-0 py-10 transition-all duration-700 ease-in-out md:px-10 md:py-16"
+    class="product-slide relative px-0 py-10 transition-all duration-700 ease-in-out md:px-10 md:py-16"
     :class="themeStore.theme == 'black' ? 'bg-radial-red' : 'bg-radial-green'">
     <!-- Navigation (Previous Arrow) -->
     <div
@@ -128,7 +128,7 @@ watch(theme, () => {
                     <a
                       :href="d.links[0].link"
                       target="_blank"
-                      class="button green">
+                      class="button green opacity-0 md:opacity-100">
                       TEMUKAN PRODUK
                       <v-icon
                         class="h-4 w-4 stroke-2 py-[2px]"
@@ -175,7 +175,7 @@ watch(theme, () => {
                     <a
                       :href="d.links[0].link"
                       target="_blank"
-                      class="button yellow">
+                      class="button yellow opacity-0 md:opacity-100">
                       BELI SEKARANG
                       <v-icon
                         class="h-4 w-4 stroke-2 py-[2px]"

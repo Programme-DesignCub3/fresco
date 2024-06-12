@@ -151,7 +151,8 @@ class ActivityResource extends Resource
             ->paginated(false)
             ->defaultSort('created_at', 'desc')
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->color('warning'),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
