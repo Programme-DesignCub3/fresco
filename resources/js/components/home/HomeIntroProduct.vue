@@ -110,6 +110,8 @@ window.addEventListener('resize', () => {
     class="home-intro-product"
     @mouseenter="idleWrapper = true"
     @mouseleave="idleWrapper = false"
+    @touchstart="idleWrapper = true"
+    @touchend="idleWrapper = false"
     :class="themeStore.theme">
     <!-- Arrow Slider -->
     <div

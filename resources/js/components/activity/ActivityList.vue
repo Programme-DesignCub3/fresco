@@ -80,6 +80,8 @@ watch(theme, () => {
   <div
     @mouseenter="idleWrapper = true"
     @mouseleave="idleWrapper = false"
+    @touchstart="idleWrapper = true"
+    @touchend="idleWrapper = false"
     class="activity-list"
     :class="themeStore.theme">
     <!-- Arrow Slider -->

@@ -167,6 +167,8 @@ window.addEventListener('resize', () => {
     <div
       @mouseenter="idleWrapper = true"
       @mouseleave="idleWrapper = false"
+      @touchstart="idleWrapper = true"
+      @touchend="idleWrapper = false"
       class="relative block h-full w-full lg:hidden"
       :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
       <!-- Arrow Slider -->

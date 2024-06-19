@@ -58,6 +58,8 @@ watch(theme, () => {
     v-if="themeStore.theme != undefined || themeStore.theme != null"
     @mouseenter="idleWrapper = true"
     @mouseleave="idleWrapper = false"
+    @touchstart="idleWrapper = true"
+    @touchend="idleWrapper = false"
     class="home-post"
     :class="themeStore.theme">
     <!-- Arrow Slider -->

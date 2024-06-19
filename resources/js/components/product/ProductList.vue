@@ -108,6 +108,8 @@ window.addEventListener('resize', () => {
     class="product-list"
     @mouseenter="idleWrapper = true"
     @mouseleave="idleWrapper = false"
+    @touchstart="idleWrapper = true"
+    @touchend="idleWrapper = false"
     :style="{
       'background-image':
         themeStore.theme == 'black'
