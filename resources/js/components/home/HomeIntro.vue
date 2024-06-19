@@ -9,7 +9,6 @@ const themeStore = useThemeStore();
 <template>
   <!-- Black Theme -->
   <div v-if="themeStore.theme == 'black'">
-    <!-- Home Intro Video -->
     <div class="home-intro-video" :class="themeStore.theme">
       <div class="home-intro-video-wrapper">
         <img
@@ -18,10 +17,11 @@ const themeStore = useThemeStore();
           data-aos-duration="2000"
           width="auto"
           height="auto"
+          class="absolute left-0 top-0 h-auto w-full -translate-y-[500px] object-cover object-bottom brightness-75 md:h-[320px]"
           src="/assets/images/black-bg-home.webp"
           alt="Black Coffee Home Background" />
-        <div class="home-intro-video-gradient"></div>
-        <!-- Video -->
+        <div
+          class="absolute left-0 top-0 h-28 w-full bg-gradient-to-b from-fr-black/75 to-transparent"></div>
         <video
           autoplay
           muted
@@ -36,16 +36,13 @@ const themeStore = useThemeStore();
         </video>
       </div>
     </div>
-    <!-- Home Intro Product Component -->
     <HomeIntroProduct :data="data" />
   </div>
 
   <!-- Cappuccino Theme -->
   <div v-if="themeStore.theme == 'cappuccino'">
-    <!-- Home Intro Video -->
     <div class="home-intro-video" :class="themeStore.theme">
       <div class="home-intro-video-wrapper">
-        <!-- Video -->
         <video
           autoplay
           muted
@@ -58,7 +55,6 @@ const themeStore = useThemeStore();
         </video>
       </div>
     </div>
-    <!-- Home Intro Product Component -->
     <HomeIntroProduct :data="data" />
   </div>
 </template>

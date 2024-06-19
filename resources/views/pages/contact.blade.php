@@ -4,7 +4,7 @@
 @section('title', 'Hubungi')
 @section('meta_url', URL::to('/hubungi'))
 @section('meta_title', 'Hubungi')
-@section('meta_description', 'Kopi Kapal Api FresCo, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
+@section('meta_description', 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
 @section('meta_image', asset('assets/images/meta-image.png'))
 
 @section('content')
@@ -20,7 +20,7 @@
   </section>
 @endsection
 
-@push('scripts')
+@push('bottom-scripts')
   <script>
     if (localStorage.getItem('user_theme') == null) {
       localStorage.setItem('user_theme', 'black');

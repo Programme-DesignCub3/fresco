@@ -62,7 +62,9 @@ window.addEventListener('resize', () => {
           ? `url(/${data.ar_black_banner_image})`
           : `url(/${data.ar_cappuccino_banner_image})`,
     }">
-    <div class="header-page-title-wrapper">
+    <div
+      class="header-page-title-wrapper"
+      :class="themeStore.theme == 'black' && 'text-shadow'">
       <h1
         ref="blackTitle"
         v-if="themeStore.theme == 'black'"
@@ -89,7 +91,9 @@ window.addEventListener('resize', () => {
           ? `url(/${data.ac_black_banner_image})`
           : `url(/${data.ac_cappuccino_banner_image})`,
     }">
-    <div class="header-page-title-wrapper">
+    <div
+      class="header-page-title-wrapper"
+      :class="themeStore.theme == 'black' && 'text-shadow'">
       <h1
         ref="blackTitle"
         v-if="themeStore.theme == 'black'"
@@ -116,7 +120,9 @@ window.addEventListener('resize', () => {
           ? `url(/${data.cn_black_banner_image})`
           : `url(/${data.cn_cappuccino_banner_image})`,
     }">
-    <div class="header-page-title-wrapper">
+    <div
+      class="header-page-title-wrapper"
+      :class="themeStore.theme == 'black' && 'text-shadow'">
       <h1
         ref="blackTitle"
         v-if="themeStore.theme == 'black'"

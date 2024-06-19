@@ -6,12 +6,12 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
+  <!-- Home Video -->
   <div
     v-if="themeStore.theme != undefined || themeStore.theme != null"
-    class="video-coffee overflow-hidden py-10 transition-all duration-700 ease-in-out md:py-24"
+    class="home-video"
     :class="themeStore.theme">
     <div class="fr-container mx-auto w-full px-4 md:px-0">
-      <!-- Video -->
       <div class="w-full pb-10">
         <iframe
           v-if="themeStore.theme == 'black'"
@@ -36,29 +36,16 @@ const themeStore = useThemeStore();
             : 'grid-cols-3'
         "
         class="grid w-full items-center justify-center gap-x-3 md:gap-x-10">
-        <!-- FresCo Logo -->
-        <div class="grid items-center justify-center md:justify-end">
-          <img
-            width="auto"
-            height="auto"
-            data-aos="zoom-out"
-            data-aos-delay="200"
-            data-aos-duration="1000"
-            class="block w-[220px]"
-            src="/assets/images/logo.png"
-            alt="FresCo" />
-        </div>
-        <!-- Text (In Collaboration With) -->
         <div class="grid items-center justify-center text-center">
           <p
             :class="
               themeStore.theme == 'black' ? 'text-fr-black' : 'text-white'
             "
+            data-aos-offset="0"
             data-aos="zoom-out"
-            data-aos-delay="350"
             data-aos-duration="1000"
-            class="font-medium text-fr-black">
-            IN COLLABORATION WITH
+            class="font-semibold text-fr-black">
+            Fresco in collaboration with
             {{
               themeStore.theme == 'black'
                 ? data.black_video_collab[0].data.text
@@ -66,7 +53,6 @@ const themeStore = useThemeStore();
             }}
           </p>
         </div>
-        <!-- Collaboration Logo -->
         <div
           v-if="
             themeStore.theme == 'black' &&
@@ -100,14 +86,13 @@ const themeStore = useThemeStore();
             class="block w-[220px]" />
         </div>
       </div>
-      <!-- Description` -->
-      <div class="pt-10 text-center font-medium leading-8">
+      <div class="pt-3 text-center leading-8">
         <div
+          v-if="themeStore.theme == 'black'"
           class="home-video-body text-fr-black"
           data-aos="fade-up"
           data-aos-delay="500"
           data-aos-offset="0"
-          v-if="themeStore.theme == 'black'"
           v-html="data.black_video_desc"></div>
         <div
           v-else

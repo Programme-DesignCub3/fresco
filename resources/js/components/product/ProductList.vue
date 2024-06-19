@@ -3,16 +3,22 @@ import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
 import { splitBlack, splitCappuccino } from '@/misc/utils.js';
+import { useProductStore } from '@/stores/product-store';
 import { useThemeStore } from '@/stores/theme-store.js';
+import { useIdle } from '@vueuse/core';
 import { Navigation } from 'swiper/modules';
-import 'swiper/css';
+import ProductPopup from '@/components/product/ProductPopup.vue';
 import SplitType from 'split-type';
+import 'swiper/css';
 
 const { data, black, cappuccino } = defineProps([
   'data',
   'black',
   'cappuccino',
 ]);
+const { idle } = useIdle(1000);
+const idleWrapper = ref(false);
+const productStore = useProductStore();
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const product = ref();
@@ -30,17 +36,8 @@ const swiperOption = {
     prevEl: '.fr-product-slider-prev',
   },
   breakpoints: {
-    1024: {
-      slidesPerView: 4,
-      spaceBetween: 0,
-    },
-    768: {
+    640: {
       slidesPerView: 2,
-      spaceBetween: -300,
-    },
-    550: {
-      slidesPerView: 1,
-      spaceBetween: -200,
     },
     425: {
       slidesPerView: 1,
@@ -76,6 +73,10 @@ const initSwiper = () => {
   swiper.value = new Swiper(product.value, swiperOption);
 };
 
+const showPopup = (data) => {
+  productStore.setPopUp(data);
+};
+
 onMounted(() => {
   splitterText(blackTitle.value);
   splitterText(cappuccinoTitle.value);
@@ -101,9 +102,12 @@ window.addEventListener('resize', () => {
 </script>
 
 <template>
+  <ProductPopup />
   <!-- Product List -->
   <div
     class="product-list"
+    @mouseenter="idleWrapper = true"
+    @mouseleave="idleWrapper = false"
     :style="{
       'background-image':
         themeStore.theme == 'black'
@@ -117,8 +121,11 @@ window.addEventListener('resize', () => {
         : `bg-fr-yellow ${data.pd_cappuccino_banner_position}`,
     ]">
     <div class="product-list-wrapper">
-      <div class="px-4 pt-[50px] sm:px-0 md:pt-0" id="product-title-anchor">
+      <div
+        class="fr-container mx-auto w-full px-4 pt-[50px] md:px-0 md:pt-0"
+        id="product-title-anchor">
         <h1
+          :class="themeStore.theme == 'black' && 'text-shadow'"
           v-if="themeStore.theme == 'black'"
           ref="blackTitle"
           v-html="data.pd_black_banner_title"></h1>
@@ -131,7 +138,7 @@ window.addEventListener('resize', () => {
           data-aos-delay="200"
           data-aos-duration="500"
           data-aos-offset="0"
-          class="my-6 h-[4px] w-16 rounded-full bg-fr-red"
+          class="my-6 h-1.5 w-16 rounded-full bg-fr-red"
           :class="[
             themeStore.theme == 'black'
               ? data.pd_black_banner_position == 'text-left' && 'mr-auto'
@@ -147,11 +154,12 @@ window.addEventListener('resize', () => {
       </div>
       <!-- Grid Layout (Desktop View) -->
       <div
-        class="hidden gap-y-10 px-10 text-white md:flex md:items-baseline md:justify-between md:px-0">
+        class="fr-container mx-auto hidden w-full gap-y-10 px-10 text-white md:flex md:items-baseline md:justify-between md:px-0">
         <div
           v-for="(d, i) in themeStore.theme == 'black' ? black : cappuccino"
           :key="i"
-          class="flex flex-col items-center justify-between space-y-4 md:transition-all md:duration-300 md:ease-in-out md:hover:scale-110">
+          @click="showPopup(d)"
+          class="flex cursor-pointer flex-col items-center justify-between space-y-4 md:transition-all md:duration-300 md:ease-in-out md:hover:scale-110">
           <img
             width="auto"
             height="auto"
@@ -170,7 +178,7 @@ window.addEventListener('resize', () => {
               themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'
             "
             class="text-center font-medium">
-            <p>FresCo</p>
+            <p>Fresco</p>
             <p>{{ d.product }}</p>
           </div>
         </div>
@@ -179,20 +187,30 @@ window.addEventListener('resize', () => {
       <div class="relative block w-full md:hidden">
         <div
           class="fr-product-slider-prev absolute left-[2%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
-          :class="
+          :class="[
             themeStore.theme == 'black'
               ? 'bg-fr-red text-white'
-              : 'bg-fr-yellow text-fr-black'
-          ">
+              : 'bg-fr-yellow text-fr-black',
+            idleWrapper
+              ? idle && idleWrapper
+                ? 'opacity-0'
+                : 'opacity-100'
+              : 'opacity-0',
+          ]">
           <v-icon name="fa-chevron-left" />
         </div>
         <div
           class="fr-product-slider-next absolute right-[2%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
-          :class="
+          :class="[
             themeStore.theme == 'black'
               ? 'bg-fr-red text-white'
-              : 'bg-fr-yellow text-fr-black'
-          ">
+              : 'bg-fr-yellow text-fr-black',
+            idleWrapper
+              ? idle && idleWrapper
+                ? 'opacity-0'
+                : 'opacity-100'
+              : 'opacity-0',
+          ]">
           <v-icon name="fa-chevron-right" />
         </div>
         <!-- Slider Black -->
@@ -207,6 +225,7 @@ window.addEventListener('resize', () => {
                   ? black
                   : cappuccino"
                 :key="i"
+                @click="showPopup(d)"
                 class="swiper-slide">
                 <div
                   class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
@@ -225,7 +244,7 @@ window.addEventListener('resize', () => {
                     data-aos-duration="1000"
                     data-aos-offset="20"
                     class="text-center font-bold">
-                    <p>FresCo</p>
+                    <p>Fresco</p>
                     <p>{{ d.product }}</p>
                   </div>
                 </div>
@@ -240,7 +259,11 @@ window.addEventListener('resize', () => {
           ref="product">
           <div class="swiper-wrapper items-end py-0 md:py-6">
             <template v-for="n in 2">
-              <div v-for="(d, i) in cappuccino" :key="i" class="swiper-slide">
+              <div
+                v-for="(d, i) in cappuccino"
+                :key="i"
+                @click="showPopup(d)"
+                class="swiper-slide">
                 <div
                   class="flex flex-col items-center justify-between space-y-4 md:transition md:hover:scale-[1.1]">
                   <img
@@ -258,7 +281,7 @@ window.addEventListener('resize', () => {
                     data-aos-duration="1000"
                     data-aos-offset="20"
                     class="text-center font-bold">
-                    <p>FresCo</p>
+                    <p>Fresco</p>
                     <p>{{ d.product }}</p>
                   </div>
                 </div>

@@ -7,7 +7,7 @@
     <link rel="canonical" href="{{ url('/') }}" />
     <link rel="stylesheet" href="{{ asset('fonts/fonts.css') }}" />
     @include('partials.favicon')
-    <title>FresCo - Halaman Tidak Ditemukan</title>
+    <title>Fresco - Halaman Tidak Ditemukan</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>

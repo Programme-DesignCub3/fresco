@@ -4,7 +4,7 @@
 @section('title', 'Produk')
 @section('meta_url', URL::to('/produk'))
 @section('meta_title', 'Produk')
-@section('meta_description', 'Kopi Kapal Api FresCo, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
+@section('meta_description', 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
 @section('meta_image', asset('assets/images/meta-image.png'))
 
 @section('content')
@@ -23,16 +23,12 @@
     <product-desc-title-component></product-desc-title-component>
 
     {{-- Product Description Section --}}
-    <description-component
-      :data="{{ json_encode($general) }}"></description-component>
-
-    {{-- Product Description Section (Mobile) --}}
-    <description-slide-component
-      :data="{{ json_encode($general) }}"></description-slide-component>
+    <product-description-component
+      :data="{{ json_encode($general) }}"></product-description-component>
   </section>
 @endsection
 
-@push('scripts')
+@push('bottom-scripts')
   <script>
     if (localStorage.getItem('user_theme') == null) {
       localStorage.setItem('user_theme', 'black');

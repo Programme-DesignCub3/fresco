@@ -14,10 +14,6 @@ const swiperOption = {
   slidesPerView: 1,
   centeredSlides: true,
   loop: true,
-  autoplay: {
-    delay: 2000,
-    disableOnInteraction: false,
-  },
   breakpoints: {
     768: {
       slidesPerView: 3,
@@ -62,9 +58,11 @@ watch(theme, () => {
         class="absolute bottom-[20%] h-12 w-full bg-gradient-to-b from-[#470610] to-transparent"></div>
       <div class="flex flex-col items-center justify-center gap-5 md:gap-6">
         <img
+          width="auto"
+          height="auto"
           class="mx-auto w-[140px] md:w-[160px] xl:w-[180px]"
           src="/assets/images/logo.png"
-          alt="FresCo Logo" />
+          alt="Fresco Logo" />
         <h1
           class="text-shadow px-3 text-center text-4xl font-black tracking-wide text-white md:px-0 md:text-5xl xl:text-6xl">
           TEMUKAN RASA PILIHANMU!
@@ -117,7 +115,6 @@ watch(theme, () => {
         </div>
       </div>
     </div>
-
     <div class="relative flex h-full max-h-[25%] w-full">
       <!-- Black Coffee Theme -->
       <button
@@ -127,7 +124,7 @@ watch(theme, () => {
             blackHover = false;
           }
         "
-        class="flex w-1/2 items-start justify-end gap-x-12 bg-fr-red p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 sm:items-center xl:p-8">
+        class="flex w-1/2 items-start justify-end gap-x-12 bg-fr-red p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 md:items-center xl:p-8">
         <div
           class="flex flex-col items-end justify-center gap-3 md:flex-row md:items-center md:gap-6">
           <span
@@ -140,11 +137,12 @@ watch(theme, () => {
           </h4>
         </div>
         <img
+          width="auto"
+          height="auto"
           class="absolute top-1/2 hidden w-[220px] -translate-y-2/3 lg:block xl:w-[250px]"
           src="/assets/images/menu-black.png"
           alt="Black Coffee Theme" />
       </button>
-
       <!-- Cappuccino Theme -->
       <button
         @click="
@@ -153,8 +151,10 @@ watch(theme, () => {
             cappuccinoHover = false;
           }
         "
-        class="flex w-1/2 items-start justify-start gap-x-12 bg-fr-yellow p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 sm:items-center xl:p-8">
+        class="flex w-1/2 items-start justify-start gap-x-12 bg-fr-yellow p-4 outline-none transition-all duration-700 ease-in-out hover:w-2/3 md:items-center xl:p-8">
         <img
+          width="auto"
+          height="auto"
           class="absolute top-1/2 hidden w-[110px] -translate-y-2/3 lg:block xl:w-[140px]"
           src="/assets/images/menu-cappuccino.png"
           alt="Cappuccino Theme" />

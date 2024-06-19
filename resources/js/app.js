@@ -6,7 +6,6 @@ import {
   Navbar,
   SocialMedia,
   ProductSlide,
-  Description,
   HeaderPage,
   Footer,
   HomeIntro,
@@ -18,6 +17,8 @@ import {
   ProductList,
   ProductMarketplace,
   ProductDescTitle,
+  ProductDescription,
+  ProductPopup,
   ArticleSlide,
   ActivityList,
   ContactForm,
@@ -39,6 +40,7 @@ import {
   FaCheckCircle,
   FaTimes,
   FaTimesCircle,
+  FaShoppingCart,
 } from 'oh-vue-icons/icons';
 import '@/misc/plugins';
 import '@/bootstrap';
@@ -59,6 +61,7 @@ addIcons(
   FaCheckCircle,
   FaTimes,
   FaTimesCircle,
+  FaShoppingCart,
 );
 
 const app = createApp({});
@@ -70,7 +73,6 @@ app
   .component('NavbarComponent', Navbar)
   .component('SocialMediaComponent', SocialMedia)
   .component('ProductSlideComponent', ProductSlide)
-  .component('DescriptionComponent', Description)
   .component('HeaderPageComponent', HeaderPage)
   .component('FooterComponent', Footer)
 
@@ -86,6 +88,8 @@ app
   .component('ProductListComponent', ProductList)
   .component('ProductMarketplaceComponent', ProductMarketplace)
   .component('ProductDescTitleComponent', ProductDescTitle)
+  .component('ProductDescriptionComponent', ProductDescription)
+  .component('ProductPopupComponent', ProductPopup)
 
   /** @register Article Components */
   .component('ArticleSlideComponent', ArticleSlide)

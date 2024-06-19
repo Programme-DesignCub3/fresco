@@ -81,13 +81,24 @@
         </div>
       </div>
     </div>
+
     {{-- Article Slide Section --}}
     <article-slide-component
       :data="{{ json_encode($other) }}"></article-slide-component>
   </section>
 @endsection
 
-@push('scripts')
+@push('top-scripts')
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script
+    type="text/javascript"
+    src="https://platform-api.sharethis.com/js/sharethis.js#property=661f4daadf3789001968c543&product=inline-share-buttons&source=platform"
+    async="async"></script>
+@endpush
+
+@push('bottom-scripts')
   <script>
     if (localStorage.getItem('user_theme') == null) {
       localStorage.setItem('user_theme', 'black');

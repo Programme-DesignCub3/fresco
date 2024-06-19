@@ -6,6 +6,7 @@ import {
 import { Swiper } from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { useThemeStore } from '@/stores/theme-store.js';
+import { useIdle } from '@vueuse/core';
 import { onMounted, watch, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import SplitType from 'split-type';
@@ -13,6 +14,8 @@ import AOS from 'aos';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
+const { idle } = useIdle(1000);
+const idleWrapper = ref(false);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const description = ref();
@@ -21,7 +24,7 @@ const manifest = ref(null);
 const delayAos = ref(0);
 
 const swiperOption = {
-  autoHeight: true,
+  autoHeight: false,
   slidesPerView: 1,
   modules: [Navigation],
   navigation: {
@@ -109,9 +112,8 @@ window.addEventListener('resize', () => {
               themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'
             "
             class="relative w-full">
-            <!-- Image -->
             <img
-              class="aspect-square w-full object-cover object-center"
+              class="aspect-video w-full object-cover object-top"
               width="auto"
               height="auto"
               :src="
@@ -134,9 +136,8 @@ window.addEventListener('resize', () => {
             d.cappuccino_desc_position == 'right' && 'items-end',
           ]">
           <div class="w-full space-y-4 2xl:w-[600px]">
-            <!-- Title -->
             <h2
-              class="text-[40px] font-bold leading-none md:text-5xl lg:text-6xl"
+              class="text-4xl font-bold leading-none xl:text-6xl"
               ref="manifest">
               {{
                 themeStore.theme == 'black'
@@ -144,7 +145,6 @@ window.addEventListener('resize', () => {
                   : d.cappuccino_desc_title
               }}
             </h2>
-            <!-- Description -->
             <div
               data-aos="fade-down"
               data-aos-offset="0"
@@ -165,26 +165,37 @@ window.addEventListener('resize', () => {
 
     <!-- (Mobile) -->
     <div
+      @mouseenter="idleWrapper = true"
+      @mouseleave="idleWrapper = false"
       class="relative block h-full w-full lg:hidden"
       :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
-      <!-- Navigation (Previous Arrow) -->
+      <!-- Arrow Slider -->
       <div
         class="description-prev"
-        :class="
+        :class="[
           themeStore.theme == 'black'
             ? 'bg-fr-yellow text-fr-black'
-            : 'bg-fr-red text-white'
-        ">
+            : 'bg-fr-red text-white',
+          idleWrapper
+            ? idle && idleWrapper
+              ? 'opacity-0'
+              : 'opacity-100'
+            : 'opacity-0',
+        ]">
         <v-icon name="fa-chevron-left" />
       </div>
-      <!-- Navigation Swiper (Next Arrow) -->
       <div
         class="description-next"
-        :class="
+        :class="[
           themeStore.theme == 'black'
             ? 'bg-fr-yellow text-fr-black'
-            : 'bg-fr-red text-white'
-        ">
+            : 'bg-fr-red text-white',
+          idleWrapper
+            ? idle && idleWrapper
+              ? 'opacity-0'
+              : 'opacity-100'
+            : 'opacity-0',
+        ]">
         <v-icon name="fa-chevron-right" />
       </div>
       <!-- Black Coffee -->
@@ -196,7 +207,7 @@ window.addEventListener('resize', () => {
             class="swiper-slide">
             <div class="grid grid-rows-1">
               <img
-                class="aspect-square w-full object-cover object-center"
+                class="aspect-video w-full object-cover object-center"
                 width="auto"
                 height="auto"
                 :src="d.black_desc_image"
@@ -230,7 +241,7 @@ window.addEventListener('resize', () => {
             class="swiper-slide">
             <div class="grid grid-rows-1">
               <img
-                class="aspect-square object-cover object-center"
+                class="aspect-video object-cover object-center"
                 width="auto"
                 height="auto"
                 :src="d.cappuccino_desc_image"

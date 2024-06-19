@@ -6,10 +6,9 @@ const themeStore = useThemeStore();
 
 <template>
   <div
-    class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-16"
+    class="px-4 py-10 transition-all duration-700 ease-in-out md:px-0 md:py-16"
     :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
     <div class="fr-container mx-auto">
-      <!-- Section Title -->
       <h2
         class="flex flex-col text-[40px] font-bold leading-none md:text-5xl lg:text-6xl">
         <span
@@ -29,19 +28,11 @@ const themeStore = useThemeStore();
           >KOPI FRESCO</span
         >
       </h2>
-      <!-- Double element for refresh AOS Animation -->
       <div
-        v-if="themeStore.theme == 'black'"
         data-aos="fade-right"
         data-aos-delay="200"
         data-aos-duration="500"
-        class="mt-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
-      <div
-        v-if="themeStore.theme == 'cappuccino'"
-        data-aos="fade-right"
-        data-aos-delay="200"
-        data-aos-duration="500"
-        class="mt-6 h-[4px] w-16 rounded-full bg-fr-red"></div>
+        class="my-6 h-1.5 w-16 rounded-full bg-fr-red"></div>
     </div>
   </div>
 </template>

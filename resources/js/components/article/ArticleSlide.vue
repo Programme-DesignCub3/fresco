@@ -2,12 +2,14 @@
 import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
-import { useThemeStore } from '@/stores/theme-store.js';
 import { Navigation } from 'swiper/modules';
+import { useThemeStore } from '@/stores/theme-store.js';
+import { useIdle } from '@vueuse/core';
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
 
 const { data } = defineProps(['data']);
+const { idle } = useIdle(1000);
+const idleWrapper = ref(false);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const article = ref();
@@ -15,18 +17,19 @@ const swiper = ref();
 
 const swiperOption = {
   autoHeight: true,
-  spaceBetween: 30,
+  spaceBetween: 20,
   slidesPerView: 1,
-  slidesPerGroup: 1,
   modules: [Navigation],
   navigation: {
     nextEl: '.article-slide .next',
     prevEl: '.article-slide .prev',
   },
   breakpoints: {
-    768: {
+    1024: {
+      slidesPerView: 3,
+    },
+    640: {
       slidesPerView: 2,
-      slidesPerGroup: 2,
     },
   },
 };
@@ -50,53 +53,71 @@ watch(theme, () => {
 </script>
 
 <template>
-  <!-- Article Slide -->
-  <div class="article-slide" :class="themeStore.theme">
+  <div
+    v-if="themeStore.theme != undefined || themeStore.theme != null"
+    @mouseenter="idleWrapper = true"
+    @mouseleave="idleWrapper = false"
+    class="article-slide"
+    :class="themeStore.theme">
     <!-- Arrow Slider -->
-    <div class="prev">
+    <div
+      class="prev"
+      :class="
+        idleWrapper
+          ? idle && idleWrapper
+            ? 'opacity-0'
+            : 'opacity-100'
+          : 'opacity-0'
+      ">
       <v-icon name="fa-chevron-left" />
     </div>
-    <div class="next">
+    <div
+      class="next"
+      :class="
+        idleWrapper
+          ? idle && idleWrapper
+            ? 'opacity-0'
+            : 'opacity-100'
+          : 'opacity-0'
+      ">
       <v-icon name="fa-chevron-right" />
     </div>
-    <!-- Article Slide Wrapper -->
-    <div class="article-slide-wrapper">
-      <!-- Section Title -->
-      <h1>Artikel lainnya</h1>
-      <!-- Slider -->
-      <div class="swiper" ref="article">
-        <div class="swiper-wrapper">
-          <div v-for="(d, i) in data" :key="i" class="swiper-slide">
-            <div class="article-slide-content">
-              <div class="w-full">
-                <img
-                  width="auto"
-                  height="auto"
-                  class="aspect-square object-cover object-center"
-                  :src="d.image"
-                  :alt="d.title" />
-              </div>
-              <div
-                class="flex w-full flex-col gap-y-3 transition-all duration-700 ease-in-out">
-                <div class="space-y-1">
-                  <h2 class="text-xl font-semibold text-fr-yellow">
-                    {{ d.title }}
-                  </h2>
-                  <p class="text-white">
-                    {{ d.excerpt }}
-                  </p>
-                </div>
-                <div>
-                  <a
-                    :href="d.slug"
-                    class="button"
-                    :class="themeStore.theme == 'black' ? 'yellow' : 'red'">
-                    READ MORE
-                    <v-icon
-                      class="h-4 w-4 stroke-2 py-[2px]"
-                      name="fa-chevron-right" />
-                  </a>
-                </div>
+    <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-16">
+      <div class="flex w-full flex-col gap-10">
+        <h2 class="relative text-4xl font-bold leading-none text-white">
+          Artikel lainnya
+        </h2>
+        <!-- List Articles -->
+        <div class="flex flex-col gap-6">
+          <div class="swiper w-full" ref="article">
+            <div class="swiper-wrapper">
+              <div v-for="d in data" class="swiper-slide">
+                <a :href="'artikel/' + d.slug" class="group">
+                  <img
+                    width="auto"
+                    height="auto"
+                    class="relative aspect-square object-cover object-center"
+                    :src="d.image"
+                    :alt="d.title" />
+                  <div
+                    :class="
+                      themeStore.theme == 'black'
+                        ? 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
+                        : 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
+                    "
+                    class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
+                    <div class="flex flex-col items-center gap-3 text-zinc-800">
+                      <h3 class="px-3 text-center text-lg font-semibold">
+                        {{ d.title }}
+                      </h3>
+                      <p>{{ d.timestamp }}</p>
+                    </div>
+                    <p
+                      class="absolute -bottom-12 rounded-full bg-fr-red px-6 py-2 text-sm font-medium text-white transition-all duration-500 ease-in-out group-hover:bottom-8">
+                      READ MORE
+                    </p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>

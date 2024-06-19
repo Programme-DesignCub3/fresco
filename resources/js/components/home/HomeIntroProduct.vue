@@ -3,6 +3,7 @@ import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { splitBlack, splitCappuccino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/theme-store.js';
+import { useIdle } from '@vueuse/core';
 import { onMounted, ref, watch } from 'vue';
 import { Navigation } from 'swiper/modules';
 import SplitType from 'split-type';
@@ -10,6 +11,8 @@ import AOS from 'aos';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
+const { idle } = useIdle(1000);
+const idleWrapper = ref(false);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const first = ref(null);
@@ -24,7 +27,6 @@ const swiperOption = {
   autoHeight: true,
   slidesPerView: 1,
   spaceBetween: 100,
-  loop: true,
   modules: [Navigation],
   navigation: {
     nextEl: '.home-intro-product .next',
@@ -106,12 +108,30 @@ window.addEventListener('resize', () => {
       themeStore.getTheme().value != null
     "
     class="home-intro-product"
+    @mouseenter="idleWrapper = true"
+    @mouseleave="idleWrapper = false"
     :class="themeStore.theme">
     <!-- Arrow Slider -->
-    <div class="prev">
+    <div
+      class="prev"
+      :class="
+        idleWrapper
+          ? idle && idleWrapper
+            ? 'opacity-0'
+            : 'opacity-100'
+          : 'opacity-0'
+      ">
       <v-icon name="fa-chevron-left" />
     </div>
-    <div class="next">
+    <div
+      class="next"
+      :class="
+        idleWrapper
+          ? idle && idleWrapper
+            ? 'opacity-0'
+            : 'opacity-100'
+          : 'opacity-0'
+      ">
       <v-icon name="fa-chevron-right" />
     </div>
     <!-- Home Intro Wrapper -->
@@ -123,10 +143,8 @@ window.addEventListener('resize', () => {
             <!-- First Slide -->
             <div class="swiper-slide">
               <div class="black-slider" :class="data.black_intro_layout">
-                <!-- Title (Black) -->
                 <div class="heading-wrapper" id="black-anchor">
                   <h1 ref="first">{{ data.black_intro_title }}</h1>
-                  <!-- Description (Black) -->
                   <div
                     class="description-wrapper home-intro-body"
                     data-aos="fade-up"
@@ -134,7 +152,6 @@ window.addEventListener('resize', () => {
                     data-aos-offset="0"
                     v-html="data.black_intro_desc"></div>
                 </div>
-                <!-- Image (Black) -->
                 <div class="image-wrapper">
                   <img
                     width="auto"
@@ -149,11 +166,9 @@ window.addEventListener('resize', () => {
             </div>
             <!-- Second Slide -->
             <div class="swiper-slide">
-              <div class="black-slider" :class="data.black_intro_layout">
-                <!-- Title (Black) -->
+              <div class="black-slider" :class="data.cappuccino_intro_layout">
                 <div class="heading-wrapper" id="black-anchor">
                   <h1 ref="second">{{ data.cappuccino_intro_title }}</h1>
-                  <!-- Description (Black) -->
                   <div
                     class="description-wrapper home-intro-body"
                     data-aos="fade-up"
@@ -161,7 +176,6 @@ window.addEventListener('resize', () => {
                     data-aos-offset="0"
                     v-html="data.cappuccino_intro_desc"></div>
                 </div>
-                <!-- Image (Black) -->
                 <div class="image-wrapper">
                   <img
                     width="auto"
@@ -183,7 +197,6 @@ window.addEventListener('resize', () => {
               <div
                 class="cappuccino-slider"
                 :class="data.cappuccino_intro_layout">
-                <!-- Title (Cappuccino) -->
                 <div class="heading-wrapper" id="cappuccino-anchor">
                   <div class="relative">
                     <h1 ref="first">{{ data.cappuccino_intro_title }}</h1>
@@ -197,7 +210,6 @@ window.addEventListener('resize', () => {
                       {{ data.cappuccino_intro_title }}
                     </h2>
                   </div>
-                  <!-- Description (Cappuccino) -->
                   <div
                     class="description-wrapper home-intro-body"
                     data-aos="fade-up"
@@ -205,7 +217,6 @@ window.addEventListener('resize', () => {
                     data-aos-offset="0"
                     v-html="data.cappuccino_intro_desc"></div>
                 </div>
-                <!-- Image (Cappuccino) -->
                 <div class="image-wrapper">
                   <img
                     width="auto"
@@ -223,7 +234,6 @@ window.addEventListener('resize', () => {
               <div
                 class="cappuccino-slider"
                 :class="data.cappuccino_intro_layout">
-                <!-- Title (Cappuccino) -->
                 <div class="heading-wrapper" id="cappuccino-anchor">
                   <div class="relative">
                     <h1 ref="second">{{ data.black_intro_title }}</h1>
@@ -237,7 +247,6 @@ window.addEventListener('resize', () => {
                       {{ data.black_intro_title }}
                     </h2>
                   </div>
-                  <!-- Description (Cappuccino) -->
                   <div
                     class="description-wrapper home-intro-body"
                     data-aos="fade-up"
@@ -245,7 +254,6 @@ window.addEventListener('resize', () => {
                     data-aos-offset="0"
                     v-html="data.black_intro_desc"></div>
                 </div>
-                <!-- Image (Cappuccino) -->
                 <div class="image-wrapper">
                   <img
                     width="auto"

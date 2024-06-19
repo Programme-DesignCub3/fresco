@@ -4,7 +4,7 @@
 @section('title', 'Artikel')
 @section('meta_url', URL::to('/artikel'))
 @section('meta_title', 'Artikel')
-@section('meta_description', 'Kopi Kapal Api FresCo, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
+@section('meta_description', 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
 @section('meta_image', asset('assets/images/meta-image.png'))
 
 @section('content')
@@ -16,12 +16,11 @@
 
     {{-- Article List Section --}}
     <div
-      class="bg-fr-yellow bg-cover bg-top bg-no-repeat px-4 py-10 sm:px-0 md:py-20 dark:bg-fr-black dark:bg-article">
+      class="bg-fr-yellow bg-cover bg-top bg-no-repeat px-4 py-10 md:px-0 md:py-20 dark:bg-fr-black dark:bg-article">
       <div class="fr-container mx-auto space-y-12">
         <div
           class="flex flex-col justify-between gap-y-8 md:flex-row md:gap-y-12">
           <div class="space-y-12">
-            {{-- Page Title --}}
             <h2
               data-aos="flip-down"
               data-aos-delay="400"
@@ -30,7 +29,6 @@
               class="page-title cappuccino dark:black">
               ARTIKEL
             </h2>
-            {{-- Searching Text --}}
             @if (request('search'))
               <p class="text-fr-dark dark:text-white">
                 Pencarian untuk
@@ -38,7 +36,6 @@
               </p>
             @endif
           </div>
-          {{-- Search Bar --}}
           <form class="relative" action="{{ url('/artikel') }}">
             <input
               id="searchbar"
@@ -61,46 +58,38 @@
             </button>
           </form>
         </div>
-        <!-- Card -->
         @if ($article->count() > 0)
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             @foreach ($article as $a)
-              <div class="group flex flex-col">
-                <div class="w-full overflow-hidden">
-                  {{-- Image --}}
+              <a
+                href="artikel/{{ $a->slug }}"
+                class="group grid grid-cols-2 bg-fr-green md:flex md:flex-col dark:bg-fr-yellow">
+                <div>
                   <img
                     width="auto"
                     height="auto"
-                    class="aspect-square w-full object-cover object-center transition-all duration-700 ease-in-out group-hover:scale-110"
+                    class="aspect-square w-full object-cover object-center transition-all duration-700 ease-in-out"
                     src="{{ $a->featured_image->url }}"
                     alt="{{ $a->title }}" />
                 </div>
-                {{-- Detail Card --}}
                 <div
-                  class="group-hover:bg-radial-red dark:group-hover:bg-radial-red flex-col justify-between space-y-6 bg-fr-green p-6 sm:flex sm:h-full sm:max-h-[300px] sm:space-y-0 dark:bg-fr-yellow">
-                  <div class="space-y-1">
-                    {{-- Title --}}
+                  class="group-hover:bg-radial-red dark:group-hover:bg-radial-red flex h-full flex-col gap-3 p-4 md:p-6">
+                  <div
+                    class="flex flex-col-reverse gap-3 text-white md:flex-col md:gap-0 dark:text-fr-black">
                     <h3
-                      class="text-xl font-semibold text-white group-hover:text-white dark:text-fr-black">
+                      class="font-semibold group-hover:text-white sm:text-lg md:text-xl">
                       {{ $a->title }}
                     </h3>
-                    {{-- Excerpt --}}
-                    <p
-                      class="font-medium text-white group-hover:text-white dark:text-fr-black">
-                      {{ $a->excerpt }}
+                    <p class="md:text-md text-sm group-hover:text-white">
+                      {{ $a->timestamp }}
                     </p>
                   </div>
-                  {{-- Read More Button --}}
-                  <a
-                    href="artikel/{{ $a->slug }}"
-                    class="button red group-hover:green dark:group-hover:yellow flex max-w-[140px] items-center md:max-w-[150px]">
-                    <span class="flex items-center">
-                      READ MORE
-                      <i class="fa-solid fa-chevron-right ml-2 text-[11px]"></i>
-                    </span>
-                  </a>
+                  <p
+                    class="hidden text-white group-hover:text-white md:block dark:text-fr-black">
+                    {{ $a->excerpt }}
+                  </p>
                 </div>
-              </div>
+              </a>
             @endforeach
           </div>
         @else
@@ -111,14 +100,20 @@
             </p>
           </div>
         @endif
-        <!-- Pagination -->
         @include('partials.pagination', ['article' => $article])
       </div>
     </div>
   </section>
 @endsection
 
-@push('scripts')
+@push('top-scripts')
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+@endpush
+
+@push('bottom-scripts')
   <script>
     $(document).ready(() => {
       if ($('#searchbar').val() != '') {

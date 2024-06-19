@@ -1,8 +1,10 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme-store.js';
+import { useIdle } from '@vueuse/core';
 import { ref } from 'vue';
 
 const { data, type } = defineProps(['data', 'type']);
+const { idle } = useIdle(1000);
 const url = window.location;
 const themeStore = useThemeStore();
 const scroll = ref();
@@ -63,9 +65,14 @@ window.addEventListener('scroll', () => {
             ? 'nav-black'
             : 'nav-cappuccino'
           : 'bg-transparent'
-        : themeStore.theme == 'black'
-          ? 'nav-black'
-          : 'nav-cappuccino',
+        : url.pathname !== '/'
+          && scroll > 20
+            ? themeStore.theme == 'black'
+              ? 'nav-black'
+              : 'nav-cappuccino'
+            : themeStore.theme == 'black'
+              ? 'nav-black'
+              : 'nav-cappuccino',
     ]">
     <!-- Navigation Wrapper -->
     <div class="navigation-wrapper">
@@ -76,14 +83,14 @@ window.addEventListener('scroll', () => {
             width="auto"
             height="auto"
             src="/assets/images/logo.png"
-            alt="FresCo" />
+            alt="Fresco" />
         </button>
         <a v-else href="/">
           <img
             width="auto"
             height="auto"
             src="/assets/images/logo.png"
-            alt="FresCo" />
+            alt="Fresco" />
         </a>
       </div>
       <!-- Navbar Toggler (Mobile) -->
@@ -148,7 +155,7 @@ window.addEventListener('scroll', () => {
               :class="
                 themeStore.theme == 'black' ? 'text-fr-black' : 'text-white',
                 social.name == 'facebook' && 'h-9 w-9 pt-2',
-                social.name == 'instagram' && 'h-9 w-9 p-1',
+                social.name == 'instagram' && 'h-9 w-9 p-1.5',
                 social.name == 'twitter' && 'h-9 w-9 p-1.5',
                 social.name == 'tiktok' && 'h-9 w-9 p-1.5',
                 social.name == 'youtube' && 'h-9 w-9 p-1.5'
@@ -163,6 +170,7 @@ window.addEventListener('scroll', () => {
     <!-- (Cappuccino) -->
     <Transition name="slide" mode="out-in">
       <div
+        :class="idle ? '-right-40' : 'right-4'"
         class="float-animate theme-changer"
         v-if="themeStore.theme == 'black'">
         <div class="is-cappuccino" @click="enableCustomLayout('cappuccino')">
@@ -178,6 +186,7 @@ window.addEventListener('scroll', () => {
     <!-- (Black) -->
     <Transition name="slide" mode="out-in">
       <div
+        :class="idle ? '-right-40' : 'right-4'"
         class="float-animate theme-changer"
         v-if="themeStore.theme == 'cappuccino'">
         <div class="is-black" @click="enableCustomLayout('black')">
@@ -245,10 +254,12 @@ path {
     --total-length: 111.22813415527344;
     --offset: -45.228134;
   }
+
   .line--2 {
     --total-length: 99;
     --offset: -33.228134;
   }
+
   input:checked + svg {
     path {
       transform: translateX(30px);

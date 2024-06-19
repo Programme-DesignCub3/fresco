@@ -16,7 +16,7 @@ return new class extends SettingsMigration
             ],
             'video' => [
                 'url' => 'https://www.youtube.com/watch?v=XPspg1WM2zM',
-                'desc' => 'Kopi FresCo bangga berkolaborasi dengan PSSI untuk mendukung para pemain sepak bola Indonesia dan pengembangan olahraga. Melalui kemitraan ini, Kami berkomitmen untuk memajukan prestasi sepak bola nasional dan menyemangati semangat juang atlet-atlet Indonesia. Kopi FresCo, menyertai setiap langkah menuju kejayaan.',
+                'desc' => 'Kopi Fresco bangga berkolaborasi dengan PSSI untuk mendukung para pemain sepak bola Indonesia dan pengembangan olahraga. Melalui kemitraan ini, Kami berkomitmen untuk memajukan prestasi sepak bola nasional dan menyemangati semangat juang atlet-atlet Indonesia. Kopi Fresco, menyertai setiap langkah menuju kejayaan.',
                 'collab' => []
             ],
             'pages' => [
@@ -47,13 +47,13 @@ return new class extends SettingsMigration
         $cappuccino_coffee_default = [
             'intro' => [
                 'title' => 'ENAKNYA NGOPI FRESCO, ENAKIN TIAP MOMEN',
-                'layout' => 'column',
+                'layout' => 'row',
                 'desc' => 'Enakin tiap momen dengan #EnaknyaNgopiFresco. Mau panas mau dingin, Fresco Cappuccino enak dinikmati kapan aja dan dimana aja. <br /><br /> Kombinasi sempurna dari biji kopi pilihan, jadikan tiap momen bersama temen-temen lo jadi lebih asik, lebih seru dan PERFECTO !',
                 'image' => ''
             ],
             'video' => [
                 'url' => 'https://www.youtube.com/watch?v=QXYyFCfruRg',
-                'desc' => 'Kopi FresCo berkolaborasi dengan Tenue de Attire untuk mendukung para pengrajin kemeja lokal di Indonesia. Melalui kemitraan ini, kami berupaya memberikan dukungan kepada para perajin pakaian dalam negeri, mempromosikan keindahan dan kualitas produk lokal. Kopi FresCo, turut mendukung pertumbuhan industri kreatif Indonesia.',
+                'desc' => 'Kopi Fresco berkolaborasi dengan Tenue de Attire untuk mendukung para pengrajin kemeja lokal di Indonesia. Melalui kemitraan ini, kami berupaya memberikan dukungan kepada para perajin pakaian dalam negeri, mempromosikan keindahan dan kualitas produk lokal. Kopi Fresco, turut mendukung pertumbuhan industri kreatif Indonesia.',
                 'collab' => [],
             ],
             'pages' => [

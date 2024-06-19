@@ -39,6 +39,7 @@ class ArticleController extends Controller
 
         $article->transform(function ($art) {
             $art->image = $art->featured_image->url ?? null;
+            $art->timestamp = $art->created_at->translatedFormat('M d, Y');
             return $art;
         });
 
@@ -53,20 +54,22 @@ class ArticleController extends Controller
         // Article Detail
         (Article::where('slug', $slug)->doesntExist()) && abort(404);
         $article = Article::where('slug', $slug)->with('featured_image')->first();
-        $article['content'] = collect($article['content'])->map(function ($arc) {
-            if (array_key_exists('type', $arc) && $arc['type'] == 'video') {
-                $arc['data']['content'] = $this->getID($arc['data']['content']);
-            } else if (!array_key_exists('type', $arc)) {
+        $article['content'] = collect($article['content'])->map(function ($art) {
+            if (array_key_exists('type', $art) && $art['type'] == 'video') {
+                $art['data']['content'] = $this->getID($art['data']['content']);
+            } else if (!array_key_exists('type', $art)) {
                 return null;
             }
 
-            return $arc;
+            return $art;
         })->filter()->toArray();
+        $article['timestamp'] = $article->created_at->translatedFormat('M d, Y');
 
         // Other Articles
-        $other = Article::where('published', true)->where('slug', '!=', $slug)->with('featured_image')->latest()->take(4)->get();
+        $other = Article::where('published', true)->where('slug', '!=', $slug)->with('featured_image')->latest()->take(6)->get();
         $other->transform(function ($o) {
             $o->image = $o->featured_image->url ?? null;
+            $o->timestamp = $o->created_at->translatedFormat('M d, Y');
             return $o;
         });
 

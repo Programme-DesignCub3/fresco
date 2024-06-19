@@ -18,7 +18,6 @@ onMounted(() => {
   <div
     v-show="show"
     @click.self="closePopup"
-    @click.outside="null"
     class="fixed bottom-0 left-0 right-0 top-0 z-[99999999] flex h-full w-full items-center justify-center overflow-hidden bg-fr-black/80 px-4 md:px-12 lg:px-0">
     <div class="relative flex w-full flex-col md:w-2/3 lg:w-[550px]">
       <img
@@ -28,10 +27,7 @@ onMounted(() => {
         :src="data.image"
         :alt="data.title" />
       <div class="bg-linear-red space-y-1 rounded-xl px-6 py-4 md:px-8 md:py-6">
-        <h2
-          class="relative text-center text-lg font-bold tracking-[0.2em] text-white before:absolute before:left-0 before:top-1/2 before:h-[2px] before:w-[10%] before:-translate-y-1/2 before:rounded-full before:bg-white before:content-[''] after:absolute after:right-0 after:top-1/2 after:h-[2px] after:w-[10%] after:-translate-y-1/2 after:rounded-full after:bg-white after:content-[''] min-[425px]:before:w-1/6 min-[425px]:after:w-1/6 sm:before:w-1/4 sm:after:w-1/4 md:before:w-1/5 md:after:w-1/5 lg:before:w-1/4 lg:after:w-1/4">
-          CONSUMER PROMO
-        </h2>
+        <h2 class="home-popup-title">CONSUMER PROMO</h2>
         <h1
           class="text-center text-3xl font-bold tracking-wider text-white md:text-5xl lg:text-7xl">
           {{ data.title }}

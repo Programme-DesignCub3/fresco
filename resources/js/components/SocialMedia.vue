@@ -66,23 +66,12 @@ window.addEventListener('scroll', () => {
         :class="[
           themeStore.theme == 'black' ? 'text-fr-black' : 'text-white',
           social.name == 'facebook' && 'h-9 w-9 pt-2',
-          social.name == 'instagram' && 'h-9 w-9 p-1',
+          social.name == 'instagram' && 'h-9 w-9 p-1.5',
           social.name == 'twitter' && 'h-9 w-9 p-1.5',
           social.name == 'tiktok' && 'h-9 w-9 p-1.5',
           social.name == 'youtube' && 'h-9 w-9 p-1.5',
         ]"
         :name="social.icon" />
-    </a>
-  </div>
-  <!-- WhatsApp -->
-  <div class="fixed bottom-32 right-4 z-[99] md:bottom-4">
-    <a :href="data.whatsapp_link ? data.whatsapp_link : '#'" target="_blank">
-      <img
-        width="auto"
-        height="auto"
-        class="h-16 w-16"
-        src="/assets/images/icons/whatsapp.png"
-        alt="WhatsApp" />
     </a>
   </div>
 </template>

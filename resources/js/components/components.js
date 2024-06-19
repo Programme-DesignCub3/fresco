@@ -4,7 +4,6 @@ import Navbar from '@/components/Navbar.vue';
 import SocialMedia from '@/components/SocialMedia.vue';
 import Footer from '@/components/Footer.vue';
 import ProductSlide from '@/components/ProductSlide.vue';
-import Description from '@/components/Description.vue';
 import HeaderPage from '@/components/HeaderPage.vue';
 
 /** @import Home Components */
@@ -19,6 +18,8 @@ import HomeCurator from '@/components/home/HomeCurator.vue';
 import ProductList from '@/components/product/ProductList.vue';
 import ProductMarketplace from '@/components/product/ProductMarketplace.vue';
 import ProductDescTitle from '@/components/product/ProductDescTitle.vue';
+import ProductDescription from '@/components/product/ProductDescription.vue';
+import ProductPopup from '@/components/product/ProductPopup.vue';
 
 /** @import Article Components */
 import ArticleSlide from '@/components/article/ArticleSlide.vue';
@@ -37,7 +38,6 @@ export {
   Navbar,
   SocialMedia,
   ProductSlide,
-  Description,
   HeaderPage,
   Footer,
   HomeIntro,
@@ -49,6 +49,8 @@ export {
   ProductList,
   ProductMarketplace,
   ProductDescTitle,
+  ProductDescription,
+  ProductPopup,
   ArticleSlide,
   ActivityList,
   ContactForm,

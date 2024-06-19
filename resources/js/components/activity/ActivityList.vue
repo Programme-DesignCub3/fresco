@@ -3,11 +3,14 @@ import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme-store.js';
+import { useIdle } from '@vueuse/core';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 
 const { data } = defineProps(['data']);
+const { idle } = useIdle(1000);
+const idleWrapper = ref(false);
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const activity = ref();
@@ -74,12 +77,32 @@ watch(theme, () => {
 
 <template>
   <!-- Activity List -->
-  <div class="activity-list" :class="themeStore.theme">
+  <div
+    @mouseenter="idleWrapper = true"
+    @mouseleave="idleWrapper = false"
+    class="activity-list"
+    :class="themeStore.theme">
     <!-- Arrow Slider -->
-    <div class="prev">
+    <div
+      class="prev"
+      :class="
+        idleWrapper
+          ? idle && idleWrapper
+            ? 'opacity-0'
+            : 'opacity-100'
+          : 'opacity-0'
+      ">
       <v-icon name="fa-chevron-left" />
     </div>
-    <div class="next">
+    <div
+      class="next"
+      :class="
+        idleWrapper
+          ? idle && idleWrapper
+            ? 'opacity-0'
+            : 'opacity-100'
+          : 'opacity-0'
+      ">
       <v-icon name="fa-chevron-right" />
     </div>
     <!-- Activity List Wrapper -->
@@ -99,20 +122,16 @@ watch(theme, () => {
         <div class="swiper-wrapper">
           <div v-for="(d, i) in data" :key="i" class="swiper-slide">
             <div class="activity-list-slide">
-              <img
-                :src="d.image"
-                :alt="d.title ? d.title : 'FresCo Activity'"
-                width="auto"
-                height="auto" />
+              <a :href="activityLink" target="_blank">
+                <img
+                  :src="d.image"
+                  :alt="d.title ? d.title : 'Fresco Activity'"
+                  width="auto"
+                  height="auto" />
+              </a>
               <div class="activity-list-slide-detail">
                 <h3>{{ d.title }}</h3>
                 <p v-html="d.description"></p>
-                <a :href="activityLink" target="_blank" class="button red mt-5">
-                  READ MORE
-                  <v-icon
-                    class="h-4 w-4 stroke-2 py-[2px]"
-                    name="fa-chevron-right" />
-                </a>
               </div>
             </div>
           </div>
