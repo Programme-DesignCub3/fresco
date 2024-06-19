@@ -6,7 +6,7 @@ import {
 import { Swiper } from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { useThemeStore } from '@/stores/theme-store.js';
-import { useIdle } from '@vueuse/core';
+import { useIdle, useMediaQuery } from '@vueuse/core';
 import { onMounted, watch, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import SplitType from 'split-type';
@@ -14,8 +14,9 @@ import AOS from 'aos';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
-const { idle } = useIdle(1000);
+const { idle } = useIdle(3500);
 const idleWrapper = ref(false);
+const isDesktop = useMediaQuery('(min-width: 768px)');
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const description = ref();
@@ -167,8 +168,6 @@ window.addEventListener('resize', () => {
     <div
       @mouseenter="idleWrapper = true"
       @mouseleave="idleWrapper = false"
-      @touchstart="idleWrapper = true"
-      @touchend="idleWrapper = false"
       class="relative block h-full w-full lg:hidden"
       :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
       <!-- Arrow Slider -->
@@ -178,11 +177,15 @@ window.addEventListener('resize', () => {
           themeStore.theme == 'black'
             ? 'bg-fr-yellow text-fr-black'
             : 'bg-fr-red text-white',
-          idleWrapper
-            ? idle && idleWrapper
+          isDesktop
+            ? idleWrapper
+              ? idle && idleWrapper
+                ? 'opacity-0'
+                : 'opacity-100'
+              : 'opacity-0'
+            : idle
               ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0',
+              : 'opacity-100',
         ]">
         <v-icon name="fa-chevron-left" />
       </div>
@@ -192,11 +195,15 @@ window.addEventListener('resize', () => {
           themeStore.theme == 'black'
             ? 'bg-fr-yellow text-fr-black'
             : 'bg-fr-red text-white',
-          idleWrapper
-            ? idle && idleWrapper
+          isDesktop
+            ? idleWrapper
+              ? idle && idleWrapper
+                ? 'opacity-0'
+                : 'opacity-100'
+              : 'opacity-0'
+            : idle
               ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0',
+              : 'opacity-100',
         ]">
         <v-icon name="fa-chevron-right" />
       </div>
@@ -243,7 +250,7 @@ window.addEventListener('resize', () => {
             class="swiper-slide">
             <div class="grid grid-rows-1">
               <img
-                class="aspect-video object-cover object-center"
+                class="aspect-video w-full object-cover object-center"
                 width="auto"
                 height="auto"
                 :src="d.cappuccino_desc_image"

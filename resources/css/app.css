@@ -110,7 +110,7 @@
   }
 
   .navigation .navigation-wrapper .nav-logo {
-    @apply absolute left-4 top-4 z-[999] md:static md:left-0 xl:absolute xl:-top-3;
+    @apply absolute left-4 top-4 z-[999] flex justify-center md:static md:left-0 xl:absolute xl:-top-3;
   }
 
   .navigation .navigation-wrapper .nav-logo button img,
@@ -289,7 +289,7 @@
   }
 
   .home-intro-product.black .home-intro-product-wrapper .black-slider.row {
-    @apply grid grid-flow-row gap-8 lg:grid-cols-5;
+    @apply grid grid-flow-row gap-y-8 lg:grid-cols-5 lg:gap-x-8;
   }
 
   .home-intro-product.black .home-intro-product-wrapper .black-slider.column {
@@ -375,7 +375,7 @@
   .home-intro-product.cappuccino
     .home-intro-product-wrapper
     .cappuccino-slider.row {
-    @apply grid grid-flow-row gap-8 lg:grid-cols-5;
+    @apply grid grid-flow-row gap-y-8 lg:grid-cols-5 lg:gap-x-8;
   }
 
   .home-intro-product.cappuccino

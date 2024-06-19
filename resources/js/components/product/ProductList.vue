@@ -5,7 +5,7 @@ import { ref, onMounted, watch } from 'vue';
 import { splitBlack, splitCappuccino } from '@/misc/utils.js';
 import { useProductStore } from '@/stores/product-store';
 import { useThemeStore } from '@/stores/theme-store.js';
-import { useIdle } from '@vueuse/core';
+import { useIdle, useMediaQuery } from '@vueuse/core';
 import { Navigation } from 'swiper/modules';
 import ProductPopup from '@/components/product/ProductPopup.vue';
 import SplitType from 'split-type';
@@ -16,8 +16,9 @@ const { data, black, cappuccino } = defineProps([
   'black',
   'cappuccino',
 ]);
-const { idle } = useIdle(1000);
+const { idle } = useIdle(3500);
 const idleWrapper = ref(false);
+const isDesktop = useMediaQuery('(min-width: 768px)');
 const productStore = useProductStore();
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
@@ -108,8 +109,6 @@ window.addEventListener('resize', () => {
     class="product-list"
     @mouseenter="idleWrapper = true"
     @mouseleave="idleWrapper = false"
-    @touchstart="idleWrapper = true"
-    @touchend="idleWrapper = false"
     :style="{
       'background-image':
         themeStore.theme == 'black'
@@ -193,11 +192,15 @@ window.addEventListener('resize', () => {
             themeStore.theme == 'black'
               ? 'bg-fr-red text-white'
               : 'bg-fr-yellow text-fr-black',
-            idleWrapper
-              ? idle && idleWrapper
+            isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 'opacity-0'
+                  : 'opacity-100'
+                : 'opacity-0'
+              : idle
                 ? 'opacity-0'
-                : 'opacity-100'
-              : 'opacity-0',
+                : 'opacity-100',
           ]">
           <v-icon name="fa-chevron-left" />
         </div>
@@ -207,11 +210,15 @@ window.addEventListener('resize', () => {
             themeStore.theme == 'black'
               ? 'bg-fr-red text-white'
               : 'bg-fr-yellow text-fr-black',
-            idleWrapper
-              ? idle && idleWrapper
+            isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 'opacity-0'
+                  : 'opacity-100'
+                : 'opacity-0'
+              : idle
                 ? 'opacity-0'
-                : 'opacity-100'
-              : 'opacity-0',
+                : 'opacity-100',
           ]">
           <v-icon name="fa-chevron-right" />
         </div>

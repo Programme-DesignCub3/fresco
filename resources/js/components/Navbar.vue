@@ -4,7 +4,7 @@ import { useIdle } from '@vueuse/core';
 import { ref } from 'vue';
 
 const { data, type } = defineProps(['data', 'type']);
-const { idle } = useIdle(1000);
+const { idle } = useIdle(3500);
 const url = window.location;
 const themeStore = useThemeStore();
 const scroll = ref();

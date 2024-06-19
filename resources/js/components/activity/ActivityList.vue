@@ -3,14 +3,15 @@ import { Swiper } from 'swiper';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme-store.js';
-import { useIdle } from '@vueuse/core';
+import { useIdle, useMediaQuery } from '@vueuse/core';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 
 const { data } = defineProps(['data']);
-const { idle } = useIdle(1000);
+const { idle } = useIdle(3500);
 const idleWrapper = ref(false);
+const isDesktop = useMediaQuery('(min-width: 768px)');
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const activity = ref();
@@ -80,30 +81,36 @@ watch(theme, () => {
   <div
     @mouseenter="idleWrapper = true"
     @mouseleave="idleWrapper = false"
-    @touchstart="idleWrapper = true"
-    @touchend="idleWrapper = false"
     class="activity-list"
     :class="themeStore.theme">
     <!-- Arrow Slider -->
     <div
       class="prev"
       :class="
-        idleWrapper
-          ? idle && idleWrapper
+        isDesktop
+          ? idleWrapper
+            ? idle && idleWrapper
+              ? 'opacity-0'
+              : 'opacity-100'
+            : 'opacity-0'
+          : idle
             ? 'opacity-0'
             : 'opacity-100'
-          : 'opacity-0'
       ">
       <v-icon name="fa-chevron-left" />
     </div>
     <div
       class="next"
       :class="
-        idleWrapper
-          ? idle && idleWrapper
+        isDesktop
+          ? idleWrapper
+            ? idle && idleWrapper
+              ? 'opacity-0'
+              : 'opacity-100'
+            : 'opacity-0'
+          : idle
             ? 'opacity-0'
             : 'opacity-100'
-          : 'opacity-0'
       ">
       <v-icon name="fa-chevron-right" />
     </div>
