@@ -100,7 +100,6 @@ window.addEventListener('scroll', () => {
             @change="themeStore.setOpenMenu(!themeStore.openMenu)"
             type="checkbox" />
           <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="30" />
             <path
               class="line--1 stroke-fr-yellow"
               d="M0 70l28-28c2-2 2-2 7-2h64" />
@@ -203,15 +202,6 @@ window.addEventListener('scroll', () => {
 </template>
 
 <style scoped lang="scss">
-circle {
-  fill: #fff3;
-  opacity: 0;
-}
-
-label:hover circle {
-  opacity: 1;
-}
-
 .cross input:checked + svg {
   .line--1,
   .line--3 {

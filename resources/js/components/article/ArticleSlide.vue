@@ -101,7 +101,7 @@ watch(theme, () => {
           <div class="swiper w-full" ref="article">
             <div class="swiper-wrapper">
               <div v-for="d in data" class="swiper-slide">
-                <a :href="'artikel/' + d.slug" class="group">
+                <a :href="d.slug" class="group">
                   <img
                     width="auto"
                     height="auto"
