@@ -32,6 +32,7 @@ const swiperOption = {
   navigation: {
     nextEl: '.home-intro-product .next',
     prevEl: '.home-intro-product .prev',
+    hideOnClick: true,
   },
 };
 
@@ -112,37 +113,6 @@ window.addEventListener('resize', () => {
     @mouseenter="idleWrapper = true"
     @mouseleave="idleWrapper = false"
     :class="themeStore.theme">
-    <!-- Arrow Slider -->
-    <div
-      class="prev"
-      :class="
-        isDesktop
-          ? idleWrapper
-            ? idle && idleWrapper
-              ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0'
-          : idle
-            ? 'opacity-0'
-            : 'opacity-100'
-      ">
-      <v-icon name="fa-chevron-left" />
-    </div>
-    <div
-      class="next"
-      :class="
-        isDesktop
-          ? idleWrapper
-            ? idle && idleWrapper
-              ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0'
-          : idle
-            ? 'opacity-0'
-            : 'opacity-100'
-      ">
-      <v-icon name="fa-chevron-right" />
-    </div>
     <!-- Home Intro Wrapper -->
     <div class="home-intro-product-wrapper">
       <div class="swiper" ref="home">
@@ -276,6 +246,37 @@ window.addEventListener('resize', () => {
               </div>
             </div>
           </template>
+        </div>
+        <!-- Arrow Slider -->
+        <div
+          class="prev"
+          :style="{
+            opacity: isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 0
+                  : 1
+                : 0
+              : idle
+                ? 0
+                : 1,
+          }">
+          <v-icon name="fa-chevron-left" />
+        </div>
+        <div
+          class="next"
+          :style="{
+            opacity: isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 0
+                  : 1
+                : 0
+              : idle
+                ? 0
+                : 1,
+          }">
+          <v-icon name="fa-chevron-right" />
         </div>
       </div>
     </div>

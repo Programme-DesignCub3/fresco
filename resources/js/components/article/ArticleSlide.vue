@@ -60,37 +60,6 @@ watch(theme, () => {
     @mouseleave="idleWrapper = false"
     class="article-slide"
     :class="themeStore.theme">
-    <!-- Arrow Slider -->
-    <div
-      class="prev"
-      :class="
-        isDesktop
-          ? idleWrapper
-            ? idle && idleWrapper
-              ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0'
-          : idle
-            ? 'opacity-0'
-            : 'opacity-100'
-      ">
-      <v-icon name="fa-chevron-left" />
-    </div>
-    <div
-      class="next"
-      :class="
-        isDesktop
-          ? idleWrapper
-            ? idle && idleWrapper
-              ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0'
-          : idle
-            ? 'opacity-0'
-            : 'opacity-100'
-      ">
-      <v-icon name="fa-chevron-right" />
-    </div>
     <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-16">
       <div class="flex w-full flex-col gap-10">
         <h2 class="relative text-4xl font-bold leading-none text-white">
@@ -128,6 +97,37 @@ watch(theme, () => {
                   </div>
                 </a>
               </div>
+            </div>
+            <!-- Arrow Slider -->
+            <div
+              class="prev"
+              :style="{
+                opacity: isDesktop
+                  ? idleWrapper
+                    ? idle && idleWrapper
+                      ? 0
+                      : 1
+                    : 0
+                  : idle
+                    ? 0
+                    : 1,
+              }">
+              <v-icon name="fa-chevron-left" />
+            </div>
+            <div
+              class="next"
+              :style="{
+                opacity: isDesktop
+                  ? idleWrapper
+                    ? idle && idleWrapper
+                      ? 0
+                      : 1
+                    : 0
+                  : idle
+                    ? 0
+                    : 1,
+              }">
+              <v-icon name="fa-chevron-right" />
             </div>
           </div>
         </div>

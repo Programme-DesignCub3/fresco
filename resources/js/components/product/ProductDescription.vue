@@ -170,43 +170,6 @@ window.addEventListener('resize', () => {
       @mouseleave="idleWrapper = false"
       class="relative block h-full w-full lg:hidden"
       :class="themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'">
-      <!-- Arrow Slider -->
-      <div
-        class="description-prev"
-        :class="[
-          themeStore.theme == 'black'
-            ? 'bg-fr-yellow text-fr-black'
-            : 'bg-fr-red text-white',
-          isDesktop
-            ? idleWrapper
-              ? idle && idleWrapper
-                ? 'opacity-0'
-                : 'opacity-100'
-              : 'opacity-0'
-            : idle
-              ? 'opacity-0'
-              : 'opacity-100',
-        ]">
-        <v-icon name="fa-chevron-left" />
-      </div>
-      <div
-        class="description-next"
-        :class="[
-          themeStore.theme == 'black'
-            ? 'bg-fr-yellow text-fr-black'
-            : 'bg-fr-red text-white',
-          isDesktop
-            ? idleWrapper
-              ? idle && idleWrapper
-                ? 'opacity-0'
-                : 'opacity-100'
-              : 'opacity-0'
-            : idle
-              ? 'opacity-0'
-              : 'opacity-100',
-        ]">
-        <v-icon name="fa-chevron-right" />
-      </div>
       <!-- Black Coffee -->
       <div v-if="themeStore.theme == 'black'" class="swiper" ref="description">
         <div class="swiper-wrapper">
@@ -236,6 +199,37 @@ window.addEventListener('resize', () => {
               </div>
             </div>
           </div>
+        </div>
+        <!-- Arrow Slider -->
+        <div
+          class="description-prev black"
+          :style="{
+            opacity: isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 0
+                  : 1
+                : 0
+              : idle
+                ? 0
+                : 1,
+          }">
+          <v-icon name="fa-chevron-left" />
+        </div>
+        <div
+          class="description-next black"
+          :style="{
+            opacity: isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 0
+                  : 1
+                : 0
+              : idle
+                ? 0
+                : 1,
+          }">
+          <v-icon name="fa-chevron-right" />
         </div>
       </div>
       <!-- Cappuccino -->
@@ -270,6 +264,37 @@ window.addEventListener('resize', () => {
               </div>
             </div>
           </div>
+        </div>
+        <!-- Arrow Slider -->
+        <div
+          class="description-prev cappuccino"
+          :style="{
+            opacity: isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 0
+                  : 1
+                : 0
+              : idle
+                ? 0
+                : 1,
+          }">
+          <v-icon name="fa-chevron-left" />
+        </div>
+        <div
+          class="description-next cappuccino"
+          :style="{
+            opacity: isDesktop
+              ? idleWrapper
+                ? idle && idleWrapper
+                  ? 0
+                  : 1
+                : 0
+              : idle
+                ? 0
+                : 1,
+          }">
+          <v-icon name="fa-chevron-right" />
         </div>
       </div>
     </div>

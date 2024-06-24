@@ -60,11 +60,31 @@
   /* Description Component */
 
   .description-prev {
-    @apply absolute left-[2%] top-1/2 z-40 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:left-[4%] md:left-[6%] lg:left-[8%] 2xl:left-[10%];
+    @apply absolute left-[2%] top-1/2 z-40 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out;
   }
 
   .description-next {
-    @apply absolute right-[2%] top-1/2 z-40 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out sm:right-[4%] md:right-[6%] lg:right-[8%] 2xl:right-[10%];
+    @apply absolute right-[2%] top-1/2 z-40 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out;
+  }
+
+  .description-prev.black,
+  .description-next.black {
+    @apply bg-fr-yellow text-fr-black;
+  }
+
+  .description-prev.cappuccino,
+  .description-next.cappuccino {
+    @apply bg-fr-red text-white;
+  }
+
+  .description-prev.black.swiper-button-disabled,
+  .description-next.black.swiper-button-disabled {
+    @apply cursor-default bg-fr-yellow/50 text-fr-black/50;
+  }
+
+  .description-prev.cappuccino.swiper-button-disabled,
+  .description-next.cappuccino.swiper-button-disabled {
+    @apply cursor-default bg-fr-red/50 text-white/50;
   }
 
   /* Footer Component */
@@ -267,11 +287,11 @@
   }
 
   .home-intro-product .next {
-    @apply right-[2%] sm:right-[4%] md:right-[6%] lg:right-[8%] 2xl:right-[10%];
+    @apply right-0;
   }
 
   .home-intro-product .prev {
-    @apply left-[2%] sm:left-[4%] md:left-[6%] lg:left-[8%] 2xl:left-[10%];
+    @apply left-0;
   }
 
   .home-intro-product.black .next,
@@ -282,6 +302,16 @@
   .home-intro-product.cappuccino .next,
   .home-intro-product.cappuccino .prev {
     @apply border-2 border-black text-fr-black;
+  }
+
+  .home-intro-product.black .next.swiper-button-disabled,
+  .home-intro-product.black .prev.swiper-button-disabled {
+    @apply cursor-default border-white/50 text-white/50;
+  }
+
+  .home-intro-product.cappuccino .next.swiper-button-disabled,
+  .home-intro-product.cappuccino .prev.swiper-button-disabled {
+    @apply cursor-default border-fr-black/50 text-fr-black/50;
   }
 
   .home-intro-product .home-intro-product-wrapper {
@@ -502,21 +532,31 @@
   }
 
   .home-post .next {
-    @apply right-[2%] sm:right-[4%] md:right-[6%] lg:right-[8%] 2xl:right-[10%];
+    @apply right-1;
   }
 
   .home-post .prev {
-    @apply left-[2%] sm:left-[4%] md:left-[6%] lg:left-[8%] 2xl:left-[10%];
+    @apply left-1;
   }
 
   .home-post.black .next,
   .home-post.black .prev {
-    @apply border-2 border-fr-red bg-fr-red text-white;
+    @apply border-2 border-fr-yellow bg-fr-yellow text-fr-black;
   }
 
   .home-post.cappuccino .next,
   .home-post.cappuccino .prev {
-    @apply border-2 border-fr-red bg-fr-red text-white;
+    @apply border-2 border-fr-yellow bg-fr-yellow text-fr-black;
+  }
+
+  .home-post.black .next.swiper-button-disabled,
+  .home-post.black .prev.swiper-button-disabled {
+    @apply cursor-default border-none bg-fr-yellow/50 text-fr-black/50;
+  }
+
+  .home-post.cappuccino .next.swiper-button-disabled,
+  .home-post.cappuccino .prev.swiper-button-disabled {
+    @apply cursor-default border-none bg-fr-yellow/50 text-fr-black/50;
   }
 
   /* HomeVideo Component */
@@ -567,16 +607,21 @@
   }
 
   .article-slide .next {
-    @apply right-[2%] sm:right-[4%] md:right-[6%] lg:right-[8%] 2xl:right-[10%];
+    @apply right-1;
   }
 
   .article-slide .prev {
-    @apply left-[2%] sm:left-[4%] md:left-[6%] lg:left-[8%] 2xl:left-[10%];
+    @apply left-1;
   }
 
   .article-slide .next,
   .article-slide .prev {
-    @apply border-2 border-fr-yellow bg-fr-yellow text-fr-black;
+    @apply border-2 border-fr-red bg-fr-red text-white;
+  }
+
+  .article-slide .next.swiper-button-disabled,
+  .article-slide .prev.swiper-button-disabled {
+    @apply cursor-default border-none bg-fr-red/50 text-white/50;
   }
 
   /* ActivityList Component */

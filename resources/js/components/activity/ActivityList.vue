@@ -86,32 +86,32 @@ watch(theme, () => {
     <!-- Arrow Slider -->
     <div
       class="prev"
-      :class="
-        isDesktop
+      :style="{
+        opacity: isDesktop
           ? idleWrapper
             ? idle && idleWrapper
-              ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0'
+              ? 0
+              : 1
+            : 0
           : idle
-            ? 'opacity-0'
-            : 'opacity-100'
-      ">
+            ? 0
+            : 1,
+      }">
       <v-icon name="fa-chevron-left" />
     </div>
     <div
       class="next"
-      :class="
-        isDesktop
+      :style="{
+        opacity: isDesktop
           ? idleWrapper
             ? idle && idleWrapper
-              ? 'opacity-0'
-              : 'opacity-100'
-            : 'opacity-0'
+              ? 0
+              : 1
+            : 0
           : idle
-            ? 'opacity-0'
-            : 'opacity-100'
-      ">
+            ? 0
+            : 1,
+      }">
       <v-icon name="fa-chevron-right" />
     </div>
     <!-- Activity List Wrapper -->

@@ -36,11 +36,11 @@ const themeStore = useThemeStore();
           :href="d.marketplace_url"
           target="_blank">
           <div
-            class="box-shadow flex h-[80px] w-[220px] items-center justify-center rounded-2xl bg-white transition-all duration-300 ease-in-out hover:scale-105">
+            class="box-shadow flex h-[60px] w-[180px] items-center justify-center rounded-2xl bg-white transition-all duration-300 ease-in-out hover:scale-105 md:h-[80px] md:w-[220px]">
             <img
               width="auto"
               height="auto"
-              class="w-40"
+              class="w-32 md:w-40"
               :src="d.marketplace_image"
               :alt="d.marketplace_name" />
           </div>
