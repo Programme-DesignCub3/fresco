@@ -25,7 +25,7 @@ const swiper = ref();
 const home = ref();
 
 const swiperOption = {
-  autoHeight: true,
+  autoHeight: false,
   slidesPerView: 1,
   spaceBetween: 100,
   modules: [Navigation],
