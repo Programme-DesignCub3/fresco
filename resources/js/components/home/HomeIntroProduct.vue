@@ -116,7 +116,7 @@ window.addEventListener('resize', () => {
     <!-- Home Intro Wrapper -->
     <div class="home-intro-product-wrapper">
       <div class="swiper" ref="home">
-        <div class="swiper-wrapper">
+        <div class="swiper-wrapper py-10 md:py-20">
           <!-- Black Theme -->
           <template v-if="themeStore.theme == 'black'">
             <!-- First Slide -->
@@ -132,6 +132,7 @@ window.addEventListener('resize', () => {
                     v-html="data.black_intro_desc"></div>
                 </div>
                 <div class="image-wrapper">
+                  <img class="absolute -top-8" src="/assets/images/batik-pattern.png" alt="Batik Pattern">
                   <img
                     width="auto"
                     height="auto"
@@ -156,6 +157,7 @@ window.addEventListener('resize', () => {
                     v-html="data.cappuccino_intro_desc"></div>
                 </div>
                 <div class="image-wrapper">
+                  <img class="absolute -top-8" src="/assets/images/batik-pattern.png" alt="Batik Pattern">
                   <img
                     width="auto"
                     height="auto"

@@ -192,7 +192,7 @@ window.addEventListener('scroll', () => {
           <img
             width="auto"
             height="auto"
-            src="/assets/images/black-toggler.png"
+            src="/assets/images/logo.png"
             alt="Black Coffee Toggler"
             class="max-w-full" />
         </div>
