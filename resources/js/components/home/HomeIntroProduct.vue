@@ -78,7 +78,7 @@ onMounted(() => {
       splitterText(second.value);
       splitterStroke(stroke.value);
       splitterStroke(stroke2.value);
-  }, 10);
+  }, 5);
 
   setTimeout(() => {
     AOS.refresh();
