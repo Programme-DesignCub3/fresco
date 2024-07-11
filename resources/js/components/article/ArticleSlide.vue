@@ -98,37 +98,37 @@ watch(theme, () => {
                 </a>
               </div>
             </div>
-            <!-- Arrow Slider -->
-            <div
-              class="prev"
-              :style="{
-                opacity: isDesktop
-                  ? idleWrapper
-                    ? idle && idleWrapper
-                      ? 0
-                      : 1
-                    : 0
-                  : idle
+          </div>
+          <!-- Arrow Slider -->
+          <div
+            class="prev"
+            :style="{
+              opacity: isDesktop
+                ? idleWrapper
+                  ? idle && idleWrapper
                     ? 0
-                    : 1,
-              }">
-              <v-icon name="fa-chevron-left" />
-            </div>
-            <div
-              class="next"
-              :style="{
-                opacity: isDesktop
-                  ? idleWrapper
-                    ? idle && idleWrapper
-                      ? 0
-                      : 1
-                    : 0
-                  : idle
+                    : 1
+                  : 0
+                : idle
+                  ? 0
+                  : 1,
+            }">
+            <v-icon name="fa-chevron-left" />
+          </div>
+          <div
+            class="next"
+            :style="{
+              opacity: isDesktop
+                ? idleWrapper
+                  ? idle && idleWrapper
                     ? 0
-                    : 1,
-              }">
-              <v-icon name="fa-chevron-right" />
-            </div>
+                    : 1
+                  : 0
+                : idle
+                  ? 0
+                  : 1,
+            }">
+            <v-icon name="fa-chevron-right" />
           </div>
         </div>
       </div>

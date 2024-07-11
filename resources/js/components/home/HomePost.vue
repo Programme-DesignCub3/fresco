@@ -64,10 +64,7 @@ watch(theme, () => {
     <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-16">
       <div class="flex w-full flex-col gap-16">
         <h2
-          class="relative text-4xl font-bold leading-none after:absolute after:-bottom-6 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-fr-red"
-          :class="
-            themeStore.theme == 'black' ? 'text-fr-black' : 'text-fr-black'
-          ">
+          class="relative text-4xl font-bold leading-none text-fr-black after:absolute after:-bottom-6 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-fr-red">
           Articles
         </h2>
         <!-- List Articles -->
@@ -104,37 +101,37 @@ watch(theme, () => {
                 </a>
               </div>
             </div>
-            <!-- Arrow Slider -->
-            <div
-              class="prev"
-              :style="{
-                opacity: isDesktop
-                  ? idleWrapper
-                    ? idle && idleWrapper
-                      ? 0
-                      : 1
-                    : 0
-                  : idle
+          </div>
+          <!-- Arrow Slider -->
+          <div
+            class="prev"
+            :style="{
+              opacity: isDesktop
+                ? idleWrapper
+                  ? idle && idleWrapper
                     ? 0
-                    : 1,
-              }">
-              <v-icon name="fa-chevron-left" />
-            </div>
-            <div
-              class="next"
-              :style="{
-                opacity: isDesktop
-                  ? idleWrapper
-                    ? idle && idleWrapper
-                      ? 0
-                      : 1
-                    : 0
-                  : idle
+                    : 1
+                  : 0
+                : idle
+                  ? 0
+                  : 1,
+            }">
+            <v-icon name="fa-chevron-left" />
+          </div>
+          <div
+            class="next"
+            :style="{
+              opacity: isDesktop
+                ? idleWrapper
+                  ? idle && idleWrapper
                     ? 0
-                    : 1,
-              }">
-              <v-icon name="fa-chevron-right" />
-            </div>
+                    : 1
+                  : 0
+                : idle
+                  ? 0
+                  : 1,
+            }">
+            <v-icon name="fa-chevron-right" />
           </div>
           <!-- See All Button -->
           <div class="text-end">

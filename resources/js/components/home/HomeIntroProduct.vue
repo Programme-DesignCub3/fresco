@@ -132,7 +132,10 @@ window.addEventListener('resize', () => {
                     v-html="data.black_intro_desc"></div>
                 </div>
                 <div class="image-wrapper">
-                  <img class="absolute -top-8" src="/assets/images/batik-pattern.png" alt="Batik Pattern">
+                  <img
+                    class="absolute -top-8"
+                    src="/assets/images/batik-pattern.png"
+                    alt="Batik Pattern" />
                   <img
                     width="auto"
                     height="auto"
@@ -157,7 +160,10 @@ window.addEventListener('resize', () => {
                     v-html="data.cappuccino_intro_desc"></div>
                 </div>
                 <div class="image-wrapper">
-                  <img class="absolute -top-8" src="/assets/images/batik-pattern.png" alt="Batik Pattern">
+                  <img
+                    class="absolute -top-8"
+                    src="/assets/images/batik-pattern.png"
+                    alt="Batik Pattern" />
                   <img
                     width="auto"
                     height="auto"
@@ -249,37 +255,37 @@ window.addEventListener('resize', () => {
             </div>
           </template>
         </div>
-        <!-- Arrow Slider -->
-        <div
-          class="prev"
-          :style="{
-            opacity: isDesktop
-              ? idleWrapper
-                ? idle && idleWrapper
-                  ? 0
-                  : 1
-                : 0
-              : idle
+      </div>
+      <!-- Arrow Slider -->
+      <div
+        class="prev"
+        :style="{
+          opacity: isDesktop
+            ? idleWrapper
+              ? idle && idleWrapper
                 ? 0
-                : 1,
-          }">
-          <v-icon name="fa-chevron-left" />
-        </div>
-        <div
-          class="next"
-          :style="{
-            opacity: isDesktop
-              ? idleWrapper
-                ? idle && idleWrapper
-                  ? 0
-                  : 1
-                : 0
-              : idle
+                : 1
+              : 0
+            : idle
+              ? 0
+              : 1,
+        }">
+        <v-icon name="fa-chevron-left" />
+      </div>
+      <div
+        class="next"
+        :style="{
+          opacity: isDesktop
+            ? idleWrapper
+              ? idle && idleWrapper
                 ? 0
-                : 1,
-          }">
-          <v-icon name="fa-chevron-right" />
-        </div>
+                : 1
+              : 0
+            : idle
+              ? 0
+              : 1,
+        }">
+        <v-icon name="fa-chevron-right" />
       </div>
     </div>
   </div>

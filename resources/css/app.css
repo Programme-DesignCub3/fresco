@@ -287,11 +287,11 @@
   }
 
   .home-intro-product .next {
-    @apply right-0;
+    @apply right-[2%] lg:right-[4%] xl:right-[6%] 2xl:right-[8%];
   }
 
   .home-intro-product .prev {
-    @apply left-0;
+    @apply left-[2%] lg:left-[4%] xl:left-[6%] 2xl:left-[8%];
   }
 
   .home-intro-product.black .next,
@@ -315,19 +315,19 @@
   }
 
   .home-intro-product .home-intro-product-wrapper {
-    @apply fr-container relative mx-auto w-full px-4 md:px-0;
+    @apply relative w-full px-4 md:px-0;
   }
 
   .home-intro-product .home-intro-product-wrapper .swiper-wrapper {
-    @apply py-10 md:py-20
+    @apply py-10 md:py-20;
   }
 
   .home-intro-product.black .home-intro-product-wrapper .black-slider.row {
-    @apply grid grid-flow-row gap-y-8 lg:grid-cols-5 lg:gap-x-8;
+    @apply fr-container mx-auto grid grid-flow-row gap-y-8 lg:grid-cols-5 lg:gap-x-8;
   }
 
   .home-intro-product.black .home-intro-product-wrapper .black-slider.column {
-    @apply flex flex-col items-center space-y-8;
+    @apply fr-container mx-auto flex flex-col items-center space-y-8;
   }
 
   .home-intro-product.black
@@ -380,7 +380,7 @@
     .home-intro-product-wrapper
     .black-slider.row
     .image-wrapper {
-    @apply col-span-3 flex justify-center relative;
+    @apply relative col-span-3 flex justify-center;
   }
 
   .home-intro-product.black
@@ -417,13 +417,13 @@
   .home-intro-product.cappuccino
     .home-intro-product-wrapper
     .cappuccino-slider.row {
-    @apply grid grid-flow-row gap-y-8 lg:grid-cols-5 lg:gap-x-8;
+    @apply fr-container mx-auto grid grid-flow-row gap-y-8 lg:grid-cols-5 lg:gap-x-8;
   }
 
   .home-intro-product.cappuccino
     .home-intro-product-wrapper
     .cappuccino-slider.column {
-    @apply flex flex-col items-center space-y-8;
+    @apply fr-container mx-auto flex flex-col items-center space-y-8;
   }
 
   .home-intro-product.cappuccino
@@ -461,7 +461,7 @@
     .cappuccino-slider.row
     .heading-wrapper
     h2 {
-    @apply text-white-stroke absolute -left-1 -right-1 -top-1 text-center text-[40px] font-bold leading-none text-white md:text-5xl lg:-top-1.5 lg:left-1 lg:right-1 lg:text-left lg:text-6xl;
+    @apply text-white-stroke absolute -left-1 -right-1 -top-1 text-center text-[40px] font-bold leading-none text-white md:text-5xl lg:-top-[1%] lg:left-[0.8%] lg:text-left lg:text-6xl;
   }
 
   .home-intro-product.cappuccino
@@ -544,31 +544,31 @@
   }
 
   .home-post .next {
-    @apply right-1;
+    @apply right-[2%] lg:right-[4%] xl:right-[6%] 2xl:right-[8%];
   }
 
   .home-post .prev {
-    @apply left-1;
+    @apply left-[2%] lg:left-[4%] xl:left-[6%] 2xl:left-[8%];
   }
 
   .home-post.black .next,
   .home-post.black .prev {
-    @apply border-2 border-fr-yellow bg-fr-yellow text-fr-black;
+    @apply border-2 border-fr-red bg-fr-red text-white;
   }
 
   .home-post.cappuccino .next,
   .home-post.cappuccino .prev {
-    @apply border-2 border-fr-yellow bg-fr-yellow text-fr-black;
+    @apply border-2 border-fr-red bg-fr-red text-white;
   }
 
   .home-post.black .next.swiper-button-disabled,
   .home-post.black .prev.swiper-button-disabled {
-    @apply cursor-default border-none bg-fr-yellow/50 text-fr-black/50;
+    @apply cursor-default border-none bg-fr-red/50 text-white;
   }
 
   .home-post.cappuccino .next.swiper-button-disabled,
   .home-post.cappuccino .prev.swiper-button-disabled {
-    @apply cursor-default border-none bg-fr-yellow/50 text-fr-black/50;
+    @apply cursor-default border-none bg-fr-red/50 text-white;
   }
 
   /* HomeVideo Component */
@@ -619,20 +619,30 @@
   }
 
   .article-slide .next {
-    @apply right-1;
+    @apply right-[2%] lg:right-[4%] xl:right-[6%] 2xl:right-[8%];
   }
 
   .article-slide .prev {
-    @apply left-1;
+    @apply left-[2%] lg:left-[4%] xl:left-[6%] 2xl:left-[8%];
   }
 
-  .article-slide .next,
-  .article-slide .prev {
+  .article-slide.black .next,
+  .article-slide.black .prev {
+    @apply border-2 border-fr-yellow bg-fr-yellow text-black;
+  }
+
+  .article-slide.cappuccino .next,
+  .article-slide.cappuccino .prev {
     @apply border-2 border-fr-red bg-fr-red text-white;
   }
 
-  .article-slide .next.swiper-button-disabled,
-  .article-slide .prev.swiper-button-disabled {
+  .article-slide.black .next.swiper-button-disabled,
+  .article-slide.black .prev.swiper-button-disabled {
+    @apply cursor-default border-none bg-fr-yellow/50 text-black/50;
+  }
+
+  .article-slide.cappuccino .next.swiper-button-disabled,
+  .article-slide.cappuccino .prev.swiper-button-disabled {
     @apply cursor-default border-none bg-fr-red/50 text-white/50;
   }
 

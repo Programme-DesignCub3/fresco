@@ -44,7 +44,7 @@ const themeStore = useThemeStore();
             data-aos-offset="0"
             data-aos="zoom-out"
             data-aos-duration="1000"
-            class="font-semibold text-lg text-fr-black md:text-xl">
+            class="text-lg font-semibold text-fr-black md:text-xl">
             Fresco in collaboration with
             {{
               themeStore.theme == 'black'
