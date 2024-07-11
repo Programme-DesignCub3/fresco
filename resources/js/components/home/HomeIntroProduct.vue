@@ -14,6 +14,7 @@ const { data } = defineProps(['data']);
 const { idle } = useIdle(3500);
 const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
+const isTablet = useMediaQuery('(min-width: 1024px)');
 const themeStore = useThemeStore();
 const { theme } = storeToRefs(themeStore);
 const first = ref(null);
@@ -55,8 +56,8 @@ const splitterText = (target) => {
     let element = target.children[index];
     delay += 100;
     themeStore.theme == 'black'
-      ? splitBlack(element, index, delay, 1, '#black-anchor')
-      : splitCappuccino(element, index, delay, 1, '#cappuccino-anchor');
+      ? splitBlack(element, index, delay, isTablet.value ? 2 : 1, '#black-anchor')
+      : splitCappuccino(element, index, delay, isTablet.value ? 2 : 1, '#cappuccino-anchor');
   }
 
   delayAos.value = delay + 100;
@@ -71,11 +72,13 @@ const splitterStroke = (target) => {
 };
 
 onMounted(() => {
-  initSwiper();
-  splitterText(first.value);
-  splitterText(second.value);
-  splitterStroke(stroke.value);
-  splitterStroke(stroke2.value);
+  setTimeout(() => {
+      initSwiper();
+      splitterText(first.value);
+      splitterText(second.value);
+      splitterStroke(stroke.value);
+      splitterStroke(stroke2.value);
+  }, 10);
 
   setTimeout(() => {
     AOS.refresh();
@@ -132,10 +135,7 @@ window.addEventListener('resize', () => {
                     v-html="data.black_intro_desc"></div>
                 </div>
                 <div class="image-wrapper">
-                  <img
-                    class="absolute -top-8"
-                    src="/assets/images/batik-pattern.png"
-                    alt="Batik Pattern" />
+                  <img class="absolute -top-8" src="/assets/images/batik-pattern.png" alt="Batik Pattern">
                   <img
                     width="auto"
                     height="auto"
@@ -160,10 +160,7 @@ window.addEventListener('resize', () => {
                     v-html="data.cappuccino_intro_desc"></div>
                 </div>
                 <div class="image-wrapper">
-                  <img
-                    class="absolute -top-8"
-                    src="/assets/images/batik-pattern.png"
-                    alt="Batik Pattern" />
+                  <img class="absolute -top-8" src="/assets/images/batik-pattern.png" alt="Batik Pattern">
                   <img
                     width="auto"
                     height="auto"
@@ -255,38 +252,38 @@ window.addEventListener('resize', () => {
             </div>
           </template>
         </div>
-      </div>
-      <!-- Arrow Slider -->
-      <div
-        class="prev"
-        :style="{
-          opacity: isDesktop
-            ? idleWrapper
-              ? idle && idleWrapper
-                ? 0
-                : 1
-              : 0
-            : idle
+    </div>
+    <!-- Arrow Slider -->
+    <div
+      class="prev"
+      :style="{
+        opacity: isDesktop
+          ? idleWrapper
+            ? idle && idleWrapper
               ? 0
-              : 1,
-        }">
-        <v-icon name="fa-chevron-left" />
-      </div>
-      <div
-        class="next"
-        :style="{
-          opacity: isDesktop
-            ? idleWrapper
-              ? idle && idleWrapper
-                ? 0
-                : 1
-              : 0
-            : idle
+              : 1
+            : 0
+          : idle
+            ? 0
+            : 1,
+      }">
+      <v-icon name="fa-chevron-left" />
+    </div>
+    <div
+      class="next"
+      :style="{
+        opacity: isDesktop
+          ? idleWrapper
+            ? idle && idleWrapper
               ? 0
-              : 1,
-        }">
-        <v-icon name="fa-chevron-right" />
-      </div>
+              : 1
+            : 0
+          : idle
+            ? 0
+            : 1,
+      }">
+      <v-icon name="fa-chevron-right" />
+    </div>
     </div>
   </div>
 </template>
