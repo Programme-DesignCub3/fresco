@@ -43,6 +43,7 @@ const initSwiper = () => {
 };
 
 const splitterText = (target) => {
+    console.log('splitterText load');
     let split = new SplitType(target, {
         types: 'lines',
         tagName: 'span',
@@ -89,7 +90,7 @@ onMounted(() => {
         splitterStroke(stroke.value);
         splitterStroke(stroke2.value);
         AOS.refresh();
-    }, 1000);
+    }, 10);
 });
 
 watch(theme, () => {
