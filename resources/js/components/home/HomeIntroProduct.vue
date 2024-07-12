@@ -90,21 +90,17 @@ onMounted(() => {
         splitterText(second.value);
         splitterStroke(stroke.value);
         splitterStroke(stroke2.value);
-    }, 10);
-
-    setTimeout(() => {
         AOS.refresh();
     }, 10);
 });
 
 watch(theme, () => {
-    initSwiper();
-    splitterText(first.value);
-    splitterText(second.value);
-    splitterStroke(stroke.value);
-    splitterStroke(stroke2.value);
-
     setTimeout(() => {
+        initSwiper();
+        splitterText(first.value);
+        splitterText(second.value);
+        splitterStroke(stroke.value);
+        splitterStroke(stroke2.value);
         AOS.refresh();
     }, 10);
 });
