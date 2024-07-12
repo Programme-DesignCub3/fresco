@@ -17,121 +17,123 @@ const article = ref();
 const swiper = ref();
 
 const swiperOption = {
-  autoHeight: true,
-  spaceBetween: 20,
-  slidesPerView: 1,
-  modules: [Navigation],
-  navigation: {
-    nextEl: '.article-slide .next',
-    prevEl: '.article-slide .prev',
-  },
-  breakpoints: {
-    1024: {
-      slidesPerView: 3,
+    autoHeight: true,
+    spaceBetween: 20,
+    slidesPerView: 1,
+    modules: [Navigation],
+    navigation: {
+        nextEl: '.article-slide .next',
+        prevEl: '.article-slide .prev',
     },
-    640: {
-      slidesPerView: 2,
+    breakpoints: {
+        1024: {
+            slidesPerView: 3,
+        },
+        640: {
+            slidesPerView: 2,
+        },
     },
-  },
 };
 
 const initSwiper = () => {
-  swiper.value = new Swiper(article.value, swiperOption);
+    swiper.value = new Swiper(article.value, swiperOption);
 };
 
 onMounted(() => {
-  if (!swiper.value) {
-    initSwiper();
-  }
+    if (!swiper.value) {
+        initSwiper();
+    }
 });
 
 watch(theme, () => {
-  swiper.value = null;
-  setTimeout(() => {
-    initSwiper();
-  });
+    swiper.value = null;
+    setTimeout(() => {
+        initSwiper();
+    });
 });
 </script>
 
 <template>
-  <div
-    v-if="themeStore.theme != undefined || themeStore.theme != null"
-    @mouseenter="idleWrapper = true"
-    @mouseleave="idleWrapper = false"
-    class="article-slide"
-    :class="themeStore.theme">
-    <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-16">
-      <div class="flex w-full flex-col gap-10">
-        <h2 class="relative text-4xl font-bold leading-none text-white">
-          Artikel lainnya
-        </h2>
-        <!-- List Articles -->
-        <div class="flex flex-col gap-6">
-          <div class="swiper w-full" ref="article">
-            <div class="swiper-wrapper">
-              <div v-for="d in data" class="swiper-slide">
-                <a :href="d.slug" class="group">
-                  <img
-                    width="auto"
-                    height="auto"
-                    class="relative aspect-square object-cover object-center"
-                    :src="d.image"
-                    :alt="d.title" />
-                  <div
-                    :class="
-                      themeStore.theme == 'black'
-                        ? 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
-                        : 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
-                    "
-                    class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
-                    <div class="flex flex-col items-center gap-3 text-zinc-800">
-                      <h3 class="px-3 text-center text-lg font-semibold">
-                        {{ d.title }}
-                      </h3>
-                      <p>{{ d.timestamp }}</p>
+    <div
+        v-if="themeStore.theme != undefined || themeStore.theme != null"
+        @mouseenter="idleWrapper = true"
+        @mouseleave="idleWrapper = false"
+        class="article-slide"
+        :class="themeStore.theme">
+        <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-16">
+            <div class="flex w-full flex-col gap-10">
+                <h2 class="relative text-4xl font-bold leading-none text-white">
+                    Artikel lainnya
+                </h2>
+                <!-- List Articles -->
+                <div class="flex flex-col gap-6">
+                    <div class="swiper w-full" ref="article">
+                        <div class="swiper-wrapper">
+                            <div v-for="d in data" class="swiper-slide">
+                                <a :href="d.slug" class="group">
+                                    <img
+                                        width="auto"
+                                        height="auto"
+                                        class="relative aspect-square object-cover object-center"
+                                        :src="d.image"
+                                        :alt="d.title" />
+                                    <div
+                                        :class="
+                                            themeStore.theme == 'black'
+                                                ? 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
+                                                : 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
+                                        "
+                                        class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
+                                        <div
+                                            class="flex flex-col items-center gap-3 text-zinc-800">
+                                            <h3
+                                                class="px-3 text-center text-lg font-semibold">
+                                                {{ d.title }}
+                                            </h3>
+                                            <p>{{ d.timestamp }}</p>
+                                        </div>
+                                        <p
+                                            class="absolute -bottom-12 rounded-full bg-fr-red px-6 py-2 text-sm font-medium text-white transition-all duration-500 ease-in-out group-hover:bottom-8">
+                                            READ MORE
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <p
-                      class="absolute -bottom-12 rounded-full bg-fr-red px-6 py-2 text-sm font-medium text-white transition-all duration-500 ease-in-out group-hover:bottom-8">
-                      READ MORE
-                    </p>
-                  </div>
-                </a>
-              </div>
+                    <!-- Arrow Slider -->
+                    <div
+                        class="prev"
+                        :style="{
+                            opacity: isDesktop
+                                ? idleWrapper
+                                    ? idle && idleWrapper
+                                        ? 0
+                                        : 1
+                                    : 0
+                                : idle
+                                  ? 0
+                                  : 1,
+                        }">
+                        <v-icon name="fa-chevron-left" />
+                    </div>
+                    <div
+                        class="next"
+                        :style="{
+                            opacity: isDesktop
+                                ? idleWrapper
+                                    ? idle && idleWrapper
+                                        ? 0
+                                        : 1
+                                    : 0
+                                : idle
+                                  ? 0
+                                  : 1,
+                        }">
+                        <v-icon name="fa-chevron-right" />
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- Arrow Slider -->
-          <div
-            class="prev"
-            :style="{
-              opacity: isDesktop
-                ? idleWrapper
-                  ? idle && idleWrapper
-                    ? 0
-                    : 1
-                  : 0
-                : idle
-                  ? 0
-                  : 1,
-            }">
-            <v-icon name="fa-chevron-left" />
-          </div>
-          <div
-            class="next"
-            :style="{
-              opacity: isDesktop
-                ? idleWrapper
-                  ? idle && idleWrapper
-                    ? 0
-                    : 1
-                  : 0
-                : idle
-                  ? 0
-                  : 1,
-            }">
-            <v-icon name="fa-chevron-right" />
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
