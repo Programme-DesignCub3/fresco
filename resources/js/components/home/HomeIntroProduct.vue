@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia';
 import { splitBlack, splitCappuccino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
-import { onMounted, ref, watch } from 'vue';
+import { nextTick, onMounted, ref, watch } from 'vue';
 import { Navigation } from 'swiper/modules';
 import SplitType from 'split-type';
 import AOS from 'aos';
@@ -82,15 +82,14 @@ const splitterStroke = (target) => {
 };
 
 onMounted(() => {
-    initSwiper();
-    splitterStroke(stroke.value);
-    splitterStroke(stroke2.value);
-
     setTimeout(() => {
+        initSwiper();
         splitterText(first.value);
         splitterText(second.value);
+        splitterStroke(stroke.value);
+        splitterStroke(stroke2.value);
         AOS.refresh();
-    }, 10);
+    }, 1000);
 });
 
 watch(theme, () => {
