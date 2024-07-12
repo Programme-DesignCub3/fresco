@@ -90,7 +90,7 @@ onMounted(() => {
         splitterStroke(stroke.value);
         splitterStroke(stroke2.value);
         AOS.refresh();
-    }, 100);
+    }, 500);
 });
 
 watch(theme, () => {
