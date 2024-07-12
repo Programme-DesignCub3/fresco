@@ -38,9 +38,7 @@ const swiperOption = {
 };
 
 const initSwiper = () => {
-    if (swiper.value) {
-        swiper.value = null;
-    }
+    swiper.value = null;
     swiper.value = new Swiper(home.value, swiperOption);
 };
 
@@ -84,23 +82,25 @@ const splitterStroke = (target) => {
 };
 
 onMounted(() => {
+    initSwiper();
+    splitterStroke(stroke.value);
+    splitterStroke(stroke2.value);
+
     setTimeout(() => {
-        initSwiper();
         splitterText(first.value);
         splitterText(second.value);
-        splitterStroke(stroke.value);
-        splitterStroke(stroke2.value);
         AOS.refresh();
     }, 10);
 });
 
 watch(theme, () => {
+    initSwiper();
+    splitterText(first.value);
+    splitterText(second.value);
+    splitterStroke(stroke.value);
+    splitterStroke(stroke2.value);
+
     setTimeout(() => {
-        initSwiper();
-        splitterText(first.value);
-        splitterText(second.value);
-        splitterStroke(stroke.value);
-        splitterStroke(stroke2.value);
         AOS.refresh();
     }, 10);
 });
