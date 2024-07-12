@@ -1,13 +1,11 @@
 <script setup>
 import { Swiper } from 'swiper';
-import { storeToRefs } from 'pinia';
 import { splitBlack, splitCappuccino } from '@/misc/utils.js';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
-import { nextTick, onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Navigation } from 'swiper/modules';
 import SplitType from 'split-type';
-import AOS from 'aos';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
@@ -16,7 +14,6 @@ const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
 const isTablet = useMediaQuery('(min-width: 1024px)');
 const themeStore = useThemeStore();
-const { theme } = storeToRefs(themeStore);
 const first = ref(null);
 const second = ref(null);
 const stroke = ref(null);
@@ -38,12 +35,13 @@ const swiperOption = {
 };
 
 const initSwiper = () => {
-    swiper.value = null;
+    if (swiper.value) {
+        swiper.value = null;
+    }
     swiper.value = new Swiper(home.value, swiperOption);
 };
 
 const splitterText = (target) => {
-    console.log('splitterText load');
     let split = new SplitType(target, {
         types: 'lines',
         tagName: 'span',
@@ -83,26 +81,15 @@ const splitterStroke = (target) => {
 };
 
 onMounted(() => {
+    splitterText(first.value);
+    splitterText(second.value);
     setTimeout(() => {
-        initSwiper();
         splitterText(first.value);
         splitterText(second.value);
         splitterStroke(stroke.value);
         splitterStroke(stroke2.value);
-        AOS.refresh();
-    }, 500);
-});
-
-watch(theme, () => {
-    initSwiper();
-    splitterText(first.value);
-    splitterText(second.value);
-    splitterStroke(stroke.value);
-    splitterStroke(stroke2.value);
-
-    setTimeout(() => {
-        AOS.refresh();
-    }, 10);
+        initSwiper();
+    }, 1000);
 });
 
 window.addEventListener('resize', () => {
