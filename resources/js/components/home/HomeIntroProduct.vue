@@ -81,6 +81,7 @@ const splitterStroke = (target) => {
 };
 
 onMounted(() => {
+    initSwiper();
     splitterText(first.value);
     splitterText(second.value);
     splitterStroke(stroke.value);
@@ -90,7 +91,6 @@ onMounted(() => {
         splitterText(second.value);
         splitterStroke(stroke.value);
         splitterStroke(stroke2.value);
-        initSwiper();
     }, 1000);
 });
 

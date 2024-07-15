@@ -349,7 +349,7 @@
         .black-slider.row
         .heading-wrapper
         h1 {
-        @apply text-center text-[40px] font-bold leading-none md:pr-16 md:text-5xl lg:text-left lg:text-6xl;
+        @apply text-center text-[40px] font-bold leading-none md:text-5xl lg:pr-16 lg:text-left lg:text-6xl;
     }
 
     .home-intro-product.black
