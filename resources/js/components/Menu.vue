@@ -3,6 +3,7 @@ import { Swiper } from 'swiper';
 import { onMounted, ref, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { storeToRefs } from 'pinia';
+import { Autoplay } from 'swiper/modules';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
@@ -14,6 +15,11 @@ const swiperOption = {
     slidesPerView: 1,
     centeredSlides: true,
     loop: true,
+    module: [Autoplay],
+    autoplay: {
+        delay: 1000,
+        disableOnInteraction: false,
+    },
     breakpoints: {
         768: {
             slidesPerView: 3,
@@ -139,7 +145,7 @@ watch(theme, () => {
                             name="fa-chevron-right" />
                     </span>
                     <h4
-                        class="text-shadow z-[999] flex w-full flex-col text-right text-3xl font-black leading-none text-white sm:text-4xl md:w-[200px] md:text-left md:text-5xl lg:mr-[220px] xl:mr-[250px]">
+                        class="text-shadow z-[999] flex w-full flex-col text-right text-2xl font-black leading-none text-white min-[400px]:text-3xl sm:text-4xl md:w-[200px] md:text-left md:text-5xl lg:mr-[220px] xl:mr-[250px]">
                         CARI TAHU ENAKNYA
                     </h4>
                 </div>
@@ -168,7 +174,7 @@ watch(theme, () => {
                 <div
                     class="flex flex-col-reverse items-start justify-center gap-3 md:flex-row md:items-center md:gap-6">
                     <h4
-                        class="text-shadow z-[999] flex w-full flex-col text-left text-3xl font-black leading-none text-white sm:text-4xl md:w-[270px] md:text-right md:text-5xl lg:ml-[150px] xl:ml-[180px]">
+                        class="text-shadow z-[999] flex w-full flex-col text-left text-2xl font-black leading-none text-white min-[400px]:text-3xl sm:text-4xl md:w-[270px] md:text-right md:text-5xl lg:ml-[150px] xl:ml-[180px]">
                         BANYAK CARA NIKMATINNYA
                     </h4>
                     <span

@@ -83,6 +83,8 @@ const splitterStroke = (target) => {
 onMounted(() => {
     splitterText(first.value);
     splitterText(second.value);
+    splitterStroke(stroke.value);
+    splitterStroke(stroke2.value);
     setTimeout(() => {
         splitterText(first.value);
         splitterText(second.value);
