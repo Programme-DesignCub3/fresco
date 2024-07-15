@@ -446,7 +446,7 @@
         .cappuccino-slider.row
         .heading-wrapper
         h1 {
-        @apply text-center text-[40px] font-bold leading-none md:pr-16 md:text-5xl lg:text-left lg:text-6xl;
+        @apply text-center text-[40px] font-bold leading-none md:text-5xl lg:pr-16 lg:text-left lg:text-6xl;
     }
 
     .home-intro-product.cappuccino
@@ -462,7 +462,7 @@
         .cappuccino-slider.row
         .heading-wrapper
         h2 {
-        @apply text-white-stroke absolute -left-1 -right-1 -top-1 text-center text-[40px] font-bold leading-none text-white md:pr-16 md:text-5xl lg:-top-[0.5%] lg:left-[0.3%] lg:text-left lg:text-6xl;
+        @apply text-white-stroke absolute text-center text-[40px] font-bold leading-none w-full -top-px -right-px text-white md:text-5xl lg:pr-16 lg:-top-[0.5%] lg:left-[0.3%] lg:text-left lg:text-6xl;
     }
 
     .home-intro-product.cappuccino
