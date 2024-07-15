@@ -117,7 +117,7 @@ window.addEventListener('resize', () => {
                         "
                         class="relative w-full">
                         <img
-                            class="aspect-video w-full object-cover object-top"
+                            class="h-[600px] w-full object-cover object-center"
                             width="auto"
                             height="auto"
                             :src="
@@ -191,7 +191,7 @@ window.addEventListener('resize', () => {
                         class="swiper-slide">
                         <div class="grid grid-rows-1">
                             <img
-                                class="aspect-video w-full object-cover object-center"
+                                class="aspect-square w-full object-cover object-center sm:h-[500px]"
                                 width="auto"
                                 height="auto"
                                 :src="d.black_desc_image"
@@ -256,7 +256,7 @@ window.addEventListener('resize', () => {
                         class="swiper-slide">
                         <div class="grid grid-rows-1">
                             <img
-                                class="aspect-video w-full object-cover object-center"
+                                class="aspect-square w-full object-cover object-center sm:h-[500px]"
                                 width="auto"
                                 height="auto"
                                 :src="d.cappuccino_desc_image"
