@@ -136,7 +136,7 @@ window.addEventListener('resize', () => {
                                 </div>
                                 <div class="image-wrapper">
                                     <img
-                                        class="absolute -top-8"
+                                        class="absolute -top-8 lg:top-8 xl:-top-8"
                                         src="/assets/images/batik-pattern.png"
                                         alt="Batik Pattern" />
                                     <img
@@ -169,7 +169,7 @@ window.addEventListener('resize', () => {
                                 </div>
                                 <div class="image-wrapper">
                                     <img
-                                        class="absolute -top-8"
+                                        class="absolute -top-24 lg:top-8 xl:-top-24"
                                         src="/assets/images/batik-pattern.png"
                                         alt="Batik Pattern" />
                                     <img

@@ -319,7 +319,7 @@
     }
 
     .home-intro-product .home-intro-product-wrapper .swiper-wrapper {
-        @apply py-10 md:py-20;
+        @apply py-10 items-center md:py-20;
     }
 
     .home-intro-product.black .home-intro-product-wrapper .black-slider {
