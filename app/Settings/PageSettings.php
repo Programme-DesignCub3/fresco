@@ -12,13 +12,11 @@ class PageSettings extends Settings
      */
     // Introduction Section
     public string $black_intro_title;
-    public string $black_intro_layout;
     public string $black_intro_desc;
     public string $black_intro_image_id;
     public string $black_intro_image;
 
     public string $cappuccino_intro_title;
-    public string $cappuccino_intro_layout;
     public string $cappuccino_intro_desc;
     public string $cappuccino_intro_image_id;
     public string $cappuccino_intro_image;

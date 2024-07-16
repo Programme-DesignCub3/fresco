@@ -10,7 +10,6 @@ return new class extends SettingsMigration
         $black_coffee_default = [
             'intro' => [
                 'title' => 'PADUAN SEMPURNA ENAKNYA NGOPI FRESCO',
-                'layout' => 'row',
                 'desc' => 'Fresco hadir dengan perpaduan sempurna dari biji kopi Arabica & Robusta pilihan terbaik yang siap menjadi kopi andalan dengan aroma yang harum dan cita rasa yang nikmat dalam setiap kemasan Kopi Fresco. <br /><br /> #EnaknyaNgopiFresco yang nikmat disajikan panas kapanpun dan dimanapun siap menyegarkan harimu.',
                 'image' => ''
             ],
@@ -47,7 +46,6 @@ return new class extends SettingsMigration
         $cappuccino_coffee_default = [
             'intro' => [
                 'title' => 'ENAKNYA NGOPI FRESCO, ENAKIN TIAP MOMEN',
-                'layout' => 'row',
                 'desc' => 'Enakin tiap momen dengan #EnaknyaNgopiFresco. Mau panas mau dingin, Fresco Cappuccino enak dinikmati kapan aja dan dimana aja. <br /><br /> Kombinasi sempurna dari biji kopi pilihan, jadikan tiap momen bersama temen-temen lo jadi lebih asik, lebih seru dan PERFECTO !',
                 'image' => ''
             ],
@@ -85,13 +83,11 @@ return new class extends SettingsMigration
          */
         // Introduction Section
         $this->migrator->add('pages.black_intro_title', $black_coffee_default['intro']['title']);
-        $this->migrator->add('pages.black_intro_layout', $black_coffee_default['intro']['layout']);
         $this->migrator->add('pages.black_intro_desc', $black_coffee_default['intro']['desc']);
         $this->migrator->add('pages.black_intro_image_id', $black_coffee_default['intro']['image']);
         $this->migrator->add('pages.black_intro_image', $black_coffee_default['intro']['image']);
 
         $this->migrator->add('pages.cappuccino_intro_title', $cappuccino_coffee_default['intro']['title']);
-        $this->migrator->add('pages.cappuccino_intro_layout', $cappuccino_coffee_default['intro']['layout']);
         $this->migrator->add('pages.cappuccino_intro_desc', $cappuccino_coffee_default['intro']['desc']);
         $this->migrator->add('pages.cappuccino_intro_image_id', $cappuccino_coffee_default['intro']['image']);
         $this->migrator->add('pages.cappuccino_intro_image', $cappuccino_coffee_default['intro']['image']);

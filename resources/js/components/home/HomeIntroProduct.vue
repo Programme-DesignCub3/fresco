@@ -122,8 +122,7 @@ window.addEventListener('resize', () => {
                         <!-- First Slide -->
                         <div class="swiper-slide">
                             <div
-                                class="black-slider"
-                                :class="data.black_intro_layout">
+                                class="black-slider">
                                 <div class="heading-wrapper" id="black-anchor">
                                     <h1 ref="first">
                                         {{ data.black_intro_title }}
@@ -154,8 +153,7 @@ window.addEventListener('resize', () => {
                         <!-- Second Slide -->
                         <div class="swiper-slide">
                             <div
-                                class="black-slider"
-                                :class="data.cappuccino_intro_layout">
+                                class="black-slider">
                                 <div class="heading-wrapper" id="black-anchor">
                                     <h1 ref="second">
                                         {{ data.cappuccino_intro_title }}
@@ -192,8 +190,7 @@ window.addEventListener('resize', () => {
                         <!-- First Slide -->
                         <div class="swiper-slide">
                             <div
-                                class="cappuccino-slider"
-                                :class="data.cappuccino_intro_layout">
+                                class="cappuccino-slider">
                                 <div
                                     class="heading-wrapper"
                                     id="cappuccino-anchor">
@@ -235,8 +232,7 @@ window.addEventListener('resize', () => {
                         <!-- Second Slide -->
                         <div class="swiper-slide">
                             <div
-                                class="cappuccino-slider"
-                                :class="data.cappuccino_intro_layout">
+                                class="cappuccino-slider">
                                 <div
                                     class="heading-wrapper"
                                     id="cappuccino-anchor">

@@ -85,13 +85,6 @@ class ManageHome extends SettingsPage
                                                 ->autocomplete(false)
                                                 ->helperText('Maximum 8 words.')
                                                 ->required(),
-                                            Radio::make('black_intro_layout')
-                                                ->label('Layout')
-                                                ->options([
-                                                    'row' => 'Row',
-                                                    'column' => 'Column',
-                                                ])
-                                                ->required(),
                                             RichEditor::make('black_intro_desc')
                                                 ->disableToolbarButtons([
                                                     'h2',
@@ -124,13 +117,6 @@ class ManageHome extends SettingsPage
                                                 ->autocomplete(false)
                                                 ->helperText('Maximum 8 words.')
                                                 ->columns()
-                                                ->required(),
-                                            Radio::make('cappuccino_intro_layout')
-                                                ->label('Layout')
-                                                ->options([
-                                                    'row' => 'Row',
-                                                    'column' => 'Column',
-                                                ])
                                                 ->required(),
                                             RichEditor::make('cappuccino_intro_desc')
                                                 ->disableToolbarButtons([

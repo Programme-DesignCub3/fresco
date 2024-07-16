@@ -50,7 +50,7 @@ export default {
                         maxWidth: '920px',
                     },
                     '@screen xl': {
-                        maxWidth: '1080px',
+                        maxWidth: '1150px',
                     },
                     '@screen 2xl': {
                         maxWidth: '1200px',
