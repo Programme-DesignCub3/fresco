@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { Icon } from '@iconify/vue';
 
 const { data } = defineProps(['data']);
 const show = ref(true);
@@ -46,7 +47,7 @@ onMounted(() => {
             <button
                 class="absolute -bottom-28 left-1/2 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border border-white bg-fr-black md:-right-10 md:-top-10 md:left-auto md:translate-x-0"
                 @click="closePopup">
-                <v-icon class="text-white" name="fa-times" />
+                <Icon class="text-white" icon="fa-solid:times" />
             </button>
         </div>
     </div>

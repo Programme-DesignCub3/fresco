@@ -1,6 +1,5 @@
 import { createApp } from 'vue/dist/vue.esm-bundler.js';
 import { createPinia } from 'pinia';
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import {
     Menu,
     Navbar,
@@ -24,45 +23,8 @@ import {
     ContactForm,
     Loading,
 } from '@/components/components';
-import {
-    FaPhoneAlt,
-    FaEnvelope,
-    FaWhatsapp,
-    FaLine,
-    FaSearch,
-    FaFacebookF,
-    FaInstagram,
-    FaTwitter,
-    FaTiktok,
-    FaYoutube,
-    FaChevronLeft,
-    FaChevronRight,
-    FaCheckCircle,
-    FaTimes,
-    FaTimesCircle,
-    FaShoppingCart,
-} from 'oh-vue-icons/icons';
 import '@/misc/plugins';
 import '@/bootstrap';
-
-addIcons(
-    FaPhoneAlt,
-    FaEnvelope,
-    FaWhatsapp,
-    FaLine,
-    FaSearch,
-    FaFacebookF,
-    FaInstagram,
-    FaTwitter,
-    FaTiktok,
-    FaYoutube,
-    FaChevronLeft,
-    FaChevronRight,
-    FaCheckCircle,
-    FaTimes,
-    FaTimesCircle,
-    FaShoppingCart,
-);
 
 const app = createApp({});
 const pinia = createPinia();
@@ -104,5 +66,4 @@ app
     .component('LoadingComponent', Loading);
 
 app.use(pinia);
-app.component('v-icon', OhVueIcon);
 app.mount('#app');

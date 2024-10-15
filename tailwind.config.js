@@ -10,13 +10,15 @@ export default {
         extend: {
             backgroundImage: {
                 article:
-                    "url('https://fresco.democube.id/assets/images/bg-article.webp')",
+                    "url('../../public/assets/images/bg-article.png')",
                 activity:
-                    "url('https://fresco.democube.id/assets/images/bg-activity.webp')",
+                    "url('../../public/assets/images/bg-activity.png')",
+                'intro-product':
+                    "url('../../public/assets/images/bg-shiny.png')"
             },
             backgroundColor: {
                 'fr-black': '#050505',
-                'fr-yellow': '#fdc64b',
+                'fr-yellow': '#ffc60b',
                 'fr-red': '#ed1d24',
                 'fr-green': '#006838',
                 'fr-darker-yellow': '#edba48',
@@ -25,7 +27,7 @@ export default {
             },
             colors: {
                 'fr-black': '#050505',
-                'fr-yellow': '#fdc64b',
+                'fr-yellow': '#ffc60b',
                 'fr-red': '#ed1d24',
                 'fr-green': '#006838',
                 'fr-darker-yellow': '#edba48',

@@ -4,6 +4,7 @@ import { onMounted, ref, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { storeToRefs } from 'pinia';
 import { Autoplay } from 'swiper/modules';
+import { Icon } from '@iconify/vue';
 
 const { data } = defineProps(['data']);
 const themeStore = useThemeStore();
@@ -140,9 +141,9 @@ watch(theme, () => {
                     class="flex flex-col items-end justify-center gap-3 md:flex-row md:items-center md:gap-6">
                     <span
                         class="flex h-9 w-9 rotate-180 items-center justify-center rounded-full bg-fr-yellow text-fr-black">
-                        <v-icon
+                        <Icon
                             class="arrow-slide-fade-right"
-                            name="fa-chevron-right" />
+                            icon="fa-solid:chevron-right" />
                     </span>
                     <h4
                         class="text-shadow z-[999] flex w-full flex-col text-right text-2xl font-black leading-none text-white min-[400px]:text-3xl sm:text-4xl md:w-[200px] md:text-left md:text-5xl lg:mr-[220px] xl:mr-[250px]">
@@ -179,9 +180,9 @@ watch(theme, () => {
                     </h4>
                     <span
                         class="flex h-9 w-9 items-center justify-center rounded-full bg-fr-red text-white">
-                        <v-icon
+                        <Icon
                             class="arrow-slide-fade-right"
-                            name="fa-chevron-right" />
+                            icon="fa-solid:chevron-right" />
                     </span>
                 </div>
             </button>

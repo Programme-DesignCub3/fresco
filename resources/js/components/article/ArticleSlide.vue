@@ -5,10 +5,11 @@ import { ref, onMounted, watch } from 'vue';
 import { Navigation } from 'swiper/modules';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
+import { Icon } from '@iconify/vue';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
-const { idle } = useIdle(3500);
+const { idle } = useIdle(2000);
 const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
 const themeStore = useThemeStore();
@@ -80,8 +81,8 @@ watch(theme, () => {
                                     <div
                                         :class="
                                             themeStore.theme == 'black'
-                                                ? 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
-                                                : 'from-fr-yellow via-fr-yellow/80 group-hover:bg-fr-yellow/30'
+                                                ? 'from-fr-yellow/80 via-fr-yellow/60 group-hover:bg-fr-yellow/30'
+                                                : 'from-fr-yellow/80 via-fr-yellow/60 group-hover:bg-fr-yellow/30'
                                         "
                                         class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
                                         <div
@@ -115,7 +116,7 @@ watch(theme, () => {
                                   ? 0
                                   : 1,
                         }">
-                        <v-icon name="fa-chevron-left" />
+                        <Icon icon="fa-solid:chevron-left" />
                     </div>
                     <div
                         class="next"
@@ -130,7 +131,7 @@ watch(theme, () => {
                                   ? 0
                                   : 1,
                         }">
-                        <v-icon name="fa-chevron-right" />
+                        <Icon icon="fa-solid:chevron-right" />
                     </div>
                 </div>
             </div>

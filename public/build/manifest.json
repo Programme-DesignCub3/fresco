@@ -1,6 +1,18 @@
 {
+  "public/assets/images/bg-activity.png": {
+    "file": "assets/bg-activity-195dcb7d.png",
+    "src": "public/assets/images/bg-activity.png"
+  },
+  "public/assets/images/bg-article.png": {
+    "file": "assets/bg-article-ab2b189c.png",
+    "src": "public/assets/images/bg-article.png"
+  },
+  "public/assets/images/bg-shiny.png": {
+    "file": "assets/bg-shiny-2f5da35c.png",
+    "src": "public/assets/images/bg-shiny.png"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-7aec3ad7.css",
+    "file": "assets/app-eec297dc.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -10,14 +22,14 @@
     "src": "resources/css/filament/admin/theme.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app-b8f4029b.css",
+    "file": "assets/app-ed20d18e.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
     "css": [
-      "assets/app-b8f4029b.css"
+      "assets/app-ed20d18e.css"
     ],
-    "file": "assets/app-0bc1cfed.js",
+    "file": "assets/app-a02a4b5e.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

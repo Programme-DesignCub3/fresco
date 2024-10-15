@@ -5,11 +5,12 @@ import { ref, onMounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
+import { Icon } from '@iconify/vue';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 
 const { data } = defineProps(['data']);
-const { idle } = useIdle(3500);
+const { idle } = useIdle(2000);
 const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
 const themeStore = useThemeStore();
@@ -97,7 +98,7 @@ watch(theme, () => {
                       ? 0
                       : 1,
             }">
-            <v-icon name="fa-chevron-left" />
+            <Icon icon="fa-solid:chevron-left" />
         </div>
         <div
             class="next"
@@ -112,7 +113,7 @@ watch(theme, () => {
                       ? 0
                       : 1,
             }">
-            <v-icon name="fa-chevron-right" />
+            <Icon icon="fa-solid:chevron-right" />
         </div>
         <!-- Activity List Wrapper -->
         <div class="activity-list-wrapper">

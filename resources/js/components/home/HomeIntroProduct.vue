@@ -5,11 +5,12 @@ import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
 import { onMounted, ref } from 'vue';
 import { Navigation } from 'swiper/modules';
+import { Icon } from '@iconify/vue';
 import SplitType from 'split-type';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
-const { idle } = useIdle(3500);
+const { idle } = useIdle(2000);
 const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
 const isTablet = useMediaQuery('(min-width: 1024px)');
@@ -136,10 +137,6 @@ window.addEventListener('resize', () => {
                                 </div>
                                 <div class="image-wrapper">
                                     <img
-                                        class="absolute -top-8 lg:top-8 xl:-top-8"
-                                        src="/assets/images/batik-pattern.png"
-                                        alt="Batik Pattern" />
-                                    <img
                                         width="auto"
                                         height="auto"
                                         :src="data.black_intro_image"
@@ -168,10 +165,6 @@ window.addEventListener('resize', () => {
                                         "></div>
                                 </div>
                                 <div class="image-wrapper">
-                                    <img
-                                        class="absolute -top-24 lg:top-8 xl:-top-24"
-                                        src="/assets/images/batik-pattern.png"
-                                        alt="Batik Pattern" />
                                     <img
                                         width="auto"
                                         height="auto"
@@ -286,7 +279,7 @@ window.addEventListener('resize', () => {
                           ? 0
                           : 1,
                 }">
-                <v-icon name="fa-chevron-left" />
+                <Icon icon="fa-solid:chevron-left" />
             </div>
             <div
                 class="next"
@@ -301,7 +294,7 @@ window.addEventListener('resize', () => {
                           ? 0
                           : 1,
                 }">
-                <v-icon name="fa-chevron-right" />
+                <Icon icon="fa-solid:chevron-right" />
             </div>
         </div>
     </div>

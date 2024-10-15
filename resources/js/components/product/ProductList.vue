@@ -7,6 +7,7 @@ import { useProductStore } from '@/stores/product-store';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
 import { Navigation } from 'swiper/modules';
+import { Icon } from '@iconify/vue';
 import ProductPopup from '@/components/product/ProductPopup.vue';
 import SplitType from 'split-type';
 import 'swiper/css';
@@ -16,7 +17,7 @@ const { data, black, cappuccino } = defineProps([
     'black',
     'cappuccino',
 ]);
-const { idle } = useIdle(3500);
+const { idle } = useIdle(2000);
 const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
 const productStore = useProductStore();
@@ -217,7 +218,7 @@ window.addEventListener('resize', () => {
                               ? 'opacity-0'
                               : 'opacity-100',
                     ]">
-                    <v-icon name="fa-chevron-left" />
+                    <Icon icon="fa-solid:chevron-left" />
                 </div>
                 <div
                     class="fr-product-slider-next absolute right-[2%] top-1/2 z-[90] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all duration-700 ease-in-out"
@@ -235,7 +236,7 @@ window.addEventListener('resize', () => {
                               ? 'opacity-0'
                               : 'opacity-100',
                     ]">
-                    <v-icon name="fa-chevron-right" />
+                    <Icon icon="fa-solid:chevron-right" />
                 </div>
                 <!-- Slider Black -->
                 <div

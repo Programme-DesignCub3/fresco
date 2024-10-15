@@ -5,10 +5,11 @@ import { ref, onMounted, watch } from 'vue';
 import { Navigation } from 'swiper/modules';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
+import { Icon } from '@iconify/vue';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
-const { idle } = useIdle(3500);
+const { idle } = useIdle(2000);
 const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
 const themeStore = useThemeStore();
@@ -55,12 +56,8 @@ watch(theme, () => {
 
 <template>
     <!-- Home Post -->
-    <div
-        v-if="themeStore.theme != undefined || themeStore.theme != null"
-        @mouseenter="idleWrapper = true"
-        @mouseleave="idleWrapper = false"
-        class="home-post"
-        :class="themeStore.theme">
+    <div v-if="themeStore.theme != undefined || themeStore.theme != null" @mouseenter="idleWrapper = true"
+        @mouseleave="idleWrapper = false" class="home-post" :class="themeStore.theme">
         <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-16">
             <div class="flex w-full flex-col gap-16">
                 <h2
@@ -73,23 +70,16 @@ watch(theme, () => {
                         <div class="swiper-wrapper">
                             <div v-for="d in data" class="swiper-slide">
                                 <a :href="'artikel/' + d.slug" class="group">
-                                    <img
-                                        width="auto"
-                                        height="auto"
-                                        class="relative aspect-square object-cover object-center"
-                                        :src="d.image"
+                                    <img width="auto" height="auto"
+                                        class="relative aspect-square object-cover object-center" :src="d.image"
                                         :alt="d.title" />
-                                    <div
-                                        :class="
-                                            themeStore.theme == 'black'
-                                                ? 'from-fr-red via-fr-red/80 group-hover:bg-fr-red/30'
-                                                : 'from-fr-red via-fr-red/80 group-hover:bg-fr-red/30'
+                                    <div :class="themeStore.theme == 'black'
+                                            ? 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
+                                            : 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
                                         "
                                         class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
-                                        <div
-                                            class="flex flex-col items-center gap-3 text-white">
-                                            <h3
-                                                class="px-3 text-center text-lg font-semibold text-white">
+                                        <div class="flex flex-col items-center gap-3 text-white">
+                                            <h3 class="px-3 text-center text-lg font-semibold text-white">
                                                 {{ d.title }}
                                             </h3>
                                             <p>{{ d.timestamp }}</p>
@@ -104,50 +94,40 @@ watch(theme, () => {
                         </div>
                     </div>
                     <!-- Arrow Slider -->
-                    <div
-                        class="prev"
-                        :style="{
-                            opacity: isDesktop
-                                ? idleWrapper
-                                    ? idle && idleWrapper
-                                        ? 0
-                                        : 1
-                                    : 0
-                                : idle
-                                  ? 0
-                                  : 1,
-                        }">
-                        <v-icon name="fa-chevron-left" />
+                    <div class="prev" :style="{
+                        opacity: isDesktop
+                            ? idleWrapper
+                                ? idle && idleWrapper
+                                    ? 0
+                                    : 1
+                                : 0
+                            : idle
+                                ? 0
+                                : 1,
+                    }">
+                        <Icon icon="fa-solid:chevron-left" />
                     </div>
-                    <div
-                        class="next"
-                        :style="{
-                            opacity: isDesktop
-                                ? idleWrapper
-                                    ? idle && idleWrapper
-                                        ? 0
-                                        : 1
-                                    : 0
-                                : idle
-                                  ? 0
-                                  : 1,
-                        }">
-                        <v-icon name="fa-chevron-right" />
+                    <div class="next" :style="{
+                        opacity: isDesktop
+                            ? idleWrapper
+                                ? idle && idleWrapper
+                                    ? 0
+                                    : 1
+                                : 0
+                            : idle
+                                ? 0
+                                : 1,
+                    }">
+                        <Icon icon="fa-solid:chevron-right" />
                     </div>
                     <!-- See All Button -->
                     <div class="text-end">
-                        <a
-                            href="/artikel"
-                            class="cursor-pointer transition-all duration-700 ease-in-out"
-                            :class="
-                                themeStore.theme == 'black'
-                                    ? 'button red'
-                                    : 'button red'
+                        <a href="/artikel" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
+                                ? 'button red'
+                                : 'button red'
                             ">
                             SEE ALL ARTICLES
-                            <v-icon
-                                class="h-4 w-4 stroke-2 py-[2px]"
-                                name="fa-chevron-right" />
+                            <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
                         </a>
                     </div>
                 </div>

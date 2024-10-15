@@ -1,6 +1,7 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme-store.js';
 import { VueRecaptcha } from 'vue-recaptcha';
+import { Icon } from '@iconify/vue';
 import { ref } from 'vue';
 import Loading from '@/assets/Loading.vue';
 import axios from 'axios';
@@ -215,9 +216,9 @@ const sendMessageHandler = async (e) => {
                     class="button red">
                     <template v-if="sendCooldown == false">
                         <span>KIRIM</span>
-                        <v-icon
-                            class="h-4 w-4 stroke-2 py-[2px]"
-                            name="fa-chevron-right" />
+                        <Icon
+                            class="inline-block h-4 w-4 stroke-2 pb-1 pl-1 py-[2px]"
+                            icon="fa-solid:chevron-right" />
                     </template>
                     <template v-else>
                         <Loading />
@@ -226,7 +227,7 @@ const sendMessageHandler = async (e) => {
                 <!-- Notification Success -->
                 <Transition name="faded" mode="out-in">
                     <div v-show="toast" class="toast green">
-                        <v-icon class="h-6 w-6" name="fa-check-circle" />
+                        <Icon class="h-6 w-6" icon="fa-solid:check-circle" />
                         <p>{{ toastMessage }}</p>
                     </div>
                 </Transition>

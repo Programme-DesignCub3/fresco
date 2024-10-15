@@ -12,13 +12,10 @@ const themeStore = useThemeStore();
         <div class="home-intro-video" :class="themeStore.theme">
             <div class="home-intro-video-wrapper">
                 <img
-                    data-aos="fade-down"
-                    data-aos-offset="0"
-                    data-aos-duration="2000"
                     width="auto"
                     height="auto"
-                    class="absolute left-0 top-0 h-auto w-full -translate-y-[500px] object-cover object-bottom brightness-75 md:h-[320px]"
-                    src="/assets/images/black-bg-home.webp"
+                    class="absolute left-0 top-0 h-auto w-full object-cover object-bottom brightness-75 md:h-[320px]"
+                    src="/assets/images/black-bg-home.png"
                     alt="Black Coffee Home Background" />
                 <div
                     class="absolute left-0 top-0 h-28 w-full bg-gradient-to-b from-fr-black/75 to-transparent"></div>

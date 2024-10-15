@@ -9,12 +9,13 @@ import { useThemeStore } from '@/stores/theme-store.js';
 import { useIdle, useMediaQuery } from '@vueuse/core';
 import { onMounted, watch, ref } from 'vue';
 import { storeToRefs } from 'pinia';
+import { Icon } from '@iconify/vue';
 import SplitType from 'split-type';
 import AOS from 'aos';
 import 'swiper/css';
 
 const { data } = defineProps(['data']);
-const { idle } = useIdle(3500);
+const { idle } = useIdle(2000);
 const idleWrapper = ref(false);
 const isDesktop = useMediaQuery('(min-width: 768px)');
 const themeStore = useThemeStore();
@@ -101,7 +102,7 @@ window.addEventListener('resize', () => {
                 : data.cappuccino_desc_list"
             :key="i"
             class="hidden overflow-x-hidden lg:block">
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2" :class="themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-fr-yellow'">
                 <div
                     :class="
                         themeStore.theme == 'black'
@@ -110,11 +111,6 @@ window.addEventListener('resize', () => {
                               'order-last'
                     ">
                     <div
-                        :class="
-                            themeStore.theme == 'black'
-                                ? 'bg-fr-black'
-                                : 'bg-fr-yellow'
-                        "
                         class="relative w-full">
                         <img
                             class="h-[600px] w-full object-cover object-center"
@@ -135,9 +131,6 @@ window.addEventListener('resize', () => {
                 <div
                     class="z-20 my-auto flex h-full w-full flex-col justify-center px-16 transition-all duration-700 ease-in-out"
                     :class="[
-                        themeStore.theme == 'black'
-                            ? 'bg-fr-black'
-                            : 'bg-fr-yellow',
                         d.black_desc_position == 'right' && 'items-end',
                         d.cappuccino_desc_position == 'right' && 'items-end',
                     ]">
@@ -177,7 +170,7 @@ window.addEventListener('resize', () => {
             @mouseleave="idleWrapper = false"
             class="relative block h-full w-full lg:hidden"
             :class="
-                themeStore.theme == 'black' ? 'bg-fr-black' : 'bg-fr-yellow'
+                themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-fr-yellow'
             ">
             <!-- Black Coffee -->
             <div
@@ -226,7 +219,7 @@ window.addEventListener('resize', () => {
                               ? 0
                               : 1,
                     }">
-                    <v-icon name="fa-chevron-left" />
+                    <Icon icon="fa-solid:chevron-left" />
                 </div>
                 <div
                     class="description-next black"
@@ -241,7 +234,7 @@ window.addEventListener('resize', () => {
                               ? 0
                               : 1,
                     }">
-                    <v-icon name="fa-chevron-right" />
+                    <Icon icon="fa-solid:chevron-right" />
                 </div>
             </div>
             <!-- Cappuccino -->
@@ -293,7 +286,7 @@ window.addEventListener('resize', () => {
                               ? 0
                               : 1,
                     }">
-                    <v-icon name="fa-chevron-left" />
+                    <Icon icon="fa-solid:chevron-left" />
                 </div>
                 <div
                     class="description-next cappuccino"
@@ -308,7 +301,7 @@ window.addEventListener('resize', () => {
                               ? 0
                               : 1,
                     }">
-                    <v-icon name="fa-chevron-right" />
+                    <Icon icon="fa-solid:chevron-right" />
                 </div>
             </div>
         </div>

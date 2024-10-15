@@ -118,7 +118,7 @@
     }
 
     .navigation.nav-black {
-        @apply bg-black;
+        @apply bg-radial-dark;
     }
 
     .navigation.nav-cappuccino {
@@ -248,11 +248,11 @@
     /* HomeIntro Component */
 
     .home-intro-video {
-        @apply w-full space-y-2 pt-24 md:space-y-12 md:pt-48 xl:pt-40 2xl:pt-44;
+        @apply w-full space-y-2 pt-24 pb-16 md:space-y-12 md:pt-48 xl:pt-40 2xl:pt-44;
     }
 
     .home-intro-video.black {
-        @apply relative bg-black;
+        @apply relative bg-gradient-dark;
     }
 
     .home-intro-video.cappuccino {
@@ -274,11 +274,11 @@
     }
 
     .home-intro-product.black {
-        @apply bg-fr-black;
+        @apply bg-intro-product bg-no-repeat bg-cover bg-center;
     }
 
     .home-intro-product.cappuccino {
-        @apply bg-fr-yellow;
+        @apply bg-radial-yellow;
     }
 
     .home-intro-product .next,
@@ -476,7 +476,7 @@
     }
 
     .home-video.black {
-        @apply bg-fr-yellow;
+        @apply bg-gradient-dark;
     }
 
     .home-video.cappuccino {
@@ -645,7 +645,7 @@
     }
 
     .contact-form.black {
-        @apply bg-fr-black;
+        @apply bg-gradient-dark;
     }
 
     .contact-form.cappuccino {
@@ -702,6 +702,14 @@
 }
 
 @layer utilities {
+    .bg-gradient-dark {
+        background: rgb(57,23,16);
+        background: -moz-linear-gradient(90deg, rgba(57,23,16,1) 0%, rgba(147,84,35,1) 25%, rgba(175,133,91,1) 50%, rgba(147,84,35,1) 75%, rgba(57,23,16,1) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(57,23,16,1) 0%, rgba(147,84,35,1) 25%, rgba(175,133,91,1) 50%, rgba(147,84,35,1) 75%, rgba(57,23,16,1) 100%);
+        background: linear-gradient(90deg, rgba(57,23,16,1) 0%, rgba(147,84,35,1) 25%, rgba(175,133,91,1) 50%, rgba(147,84,35,1) 75%, rgba(57,23,16,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#391710",endColorstr="#391710",GradientType=1);
+    }
+
     .bg-radial-darker-red {
         background: rgb(157, 28, 32);
         background: radial-gradient(
@@ -709,6 +717,14 @@
             rgba(157, 28, 32, 1) 0%,
             rgba(87, 11, 23, 1) 80%
         );
+    }
+
+    .bg-radial-dark {
+        background: rgb(41,28,19);
+        background: -moz-radial-gradient(circle, rgba(41,28,19,1) 0%, rgba(18,8,5,1) 100%);
+        background: -webkit-radial-gradient(circle, rgba(41,28,19,1) 0%, rgba(18,8,5,1) 100%);
+        background: radial-gradient(circle, rgba(41,28,19,1) 0%, rgba(18,8,5,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#291c13",endColorstr="#120805",GradientType=1);
     }
 
     .bg-radial-red {
@@ -738,6 +754,14 @@
             rgba(0, 142, 68, 1) 50%,
             rgba(0, 105, 56, 1) 100%
         );
+    }
+
+    .bg-radial-yellow {
+        background: rgb(254,214,2);
+        background: -moz-radial-gradient(circle, rgba(254,214,2,1) 0%, rgba(218,107,38,1) 100%);
+        background: -webkit-radial-gradient(circle, rgba(254,214,2,1) 0%, rgba(218,107,38,1) 100%);
+        background: radial-gradient(circle, rgba(254,214,2,1) 0%, rgba(218,107,38,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fed602",endColorstr="#da6b26",GradientType=1);
     }
 
     .bg-linear-red {

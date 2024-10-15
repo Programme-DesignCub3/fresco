@@ -40,13 +40,13 @@ const themeStore = useThemeStore();
                     <p
                         :class="
                             themeStore.theme == 'black'
-                                ? 'text-fr-black'
+                                ? 'text-white'
                                 : 'text-white'
                         "
                         data-aos-offset="0"
                         data-aos="zoom-out"
                         data-aos-duration="1000"
-                        class="text-lg font-semibold text-fr-black md:text-xl">
+                        class="text-lg font-semibold md:text-xl">
                         Fresco in collaboration with
                         {{
                             themeStore.theme == 'black'
@@ -91,7 +91,7 @@ const themeStore = useThemeStore();
             <div class="pt-3 text-center leading-8">
                 <div
                     v-if="themeStore.theme == 'black'"
-                    class="home-video-body text-fr-black"
+                    class="home-video-body text-white"
                     data-aos="fade-up"
                     data-aos-delay="500"
                     data-aos-offset="0"

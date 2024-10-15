@@ -2,6 +2,7 @@
 import { useProductStore } from '@/stores/product-store';
 import { useThemeStore } from '@/stores/theme-store';
 import { storeToRefs } from 'pinia';
+import { Icon } from '@iconify/vue';
 
 const themeStore = useThemeStore();
 const productStore = useProductStore();
@@ -47,9 +48,9 @@ const closePopup = () => {
                     target="_blank"
                     class="button yellow group-hover:yellow dark:group-hover:green dark:green mt-3 flex items-center">
                     <span class="flex items-center">
-                        <v-icon
+                        <Icon
                             class="mr-2 h-4 w-4 stroke-2"
-                            name="fa-shopping-cart" />
+                            icon="fa-solid:shopping-cart" />
                         BELI SEKARANG
                     </span>
                 </a>
@@ -57,7 +58,7 @@ const closePopup = () => {
             <button
                 class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full border border-white bg-fr-black xl:-right-10 xl:-top-10 xl:left-auto xl:translate-x-0"
                 @click="closePopup">
-                <v-icon class="text-white" name="fa-times" />
+                <Icon class="text-white" icon="fa-solid:times" />
             </button>
         </div>
     </div>

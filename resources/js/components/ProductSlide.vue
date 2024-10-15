@@ -4,6 +4,7 @@ import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
 import { useThemeStore } from '@/stores/theme-store.js';
 import { Navigation } from 'swiper/modules';
+import { Icon } from '@iconify/vue';
 import 'swiper/css';
 
 const themeStore = useThemeStore();
@@ -83,7 +84,7 @@ watch(theme, () => {
                     ? 'bg-fr-yellow text-fr-black'
                     : 'bg-fr-yellow text-fr-black'
             ">
-            <v-icon name="fa-chevron-left" />
+            <Icon icon="fa-solid:chevron-left" />
         </div>
         <!-- Navigation (Next Arrow) -->
         <div
@@ -93,7 +94,7 @@ watch(theme, () => {
                     ? 'bg-fr-yellow text-fr-black'
                     : 'bg-fr-yellow text-fr-black'
             ">
-            <v-icon name="fa-chevron-right" />
+            <Icon icon="fa-solid:chevron-right" />
         </div>
         <div class="fr-container mx-auto w-full space-y-16 text-center">
             <!-- Black Coffee -->
@@ -138,9 +139,9 @@ watch(theme, () => {
                                             target="_blank"
                                             class="button green opacity-0 md:opacity-100">
                                             TEMUKAN PRODUK
-                                            <v-icon
+                                            <Icon
                                                 class="h-4 w-4 stroke-2 py-[2px]"
-                                                name="fa-chevron-right" />
+                                                icon="fa-solid:chevron-right" />
                                         </a>
                                     </div>
                                 </div>
@@ -191,9 +192,9 @@ watch(theme, () => {
                                             target="_blank"
                                             class="button yellow opacity-0 md:opacity-100">
                                             BELI SEKARANG
-                                            <v-icon
+                                            <Icon
                                                 class="h-4 w-4 stroke-2 py-[2px]"
-                                                name="fa-chevron-right" />
+                                                icon="fa-solid:chevron-right" />
                                         </a>
                                     </div>
                                 </div>
