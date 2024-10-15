@@ -38,9 +38,10 @@ class HomeController extends Controller
         });
 
         // Article Resource
-        $article = Article::where('published', true)->with('featured_image')->latest()->limit(6)->get();
+        $article = Article::where('published', true)->with('featured_image')->with('featured_image_square')->latest()->limit(6)->get();
         $article->transform(function ($art) {
             $art->image = $art->featured_image->url ?? null;
+            $art->image_square = $art->featured_image_square->url ?? null;
             $art->timestamp = $art->created_at->translatedFormat('M d, Y');
             return $art;
         });

@@ -68,8 +68,14 @@ watch(theme, () => {
                         <div class="swiper-wrapper">
                             <div v-for="d in data" class="swiper-slide">
                                 <a :href="d.slug" class="group">
-                                    <img width="auto" height="auto"
+                                    <img v-if="d.image_square" width="auto" height="auto"
+                                        class="relative w-full aspect-square object-cover object-center" :src="d.image_square"
+                                        :alt="d.title" />
+                                    <img v-else-if="d.image_square == null && d.image" width="auto" height="auto"
                                         class="relative w-full aspect-square object-cover object-center" :src="d.image"
+                                        :alt="d.title" />
+                                    <img v-else-if="d.image_square == null && d.image == null" width="auto" height="auto"
+                                        class="relative w-full aspect-square object-cover object-center" src="/assets/images/meta-image.png"
                                         :alt="d.title" />
                                     <div :class="themeStore.theme == 'black'
                                             ? 'from-fr-yellow/80 via-fr-yellow/60 group-hover:bg-fr-yellow/30'

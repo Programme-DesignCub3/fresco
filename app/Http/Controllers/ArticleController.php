@@ -66,9 +66,10 @@ class ArticleController extends Controller
         $article['timestamp'] = $article->created_at->translatedFormat('M d, Y');
 
         // Other Articles
-        $other = Article::where('published', true)->where('slug', '!=', $slug)->with('featured_image')->latest()->take(6)->get();
+        $other = Article::where('published', true)->where('slug', '!=', $slug)->with('featured_image')->with('featured_image_square')->latest()->take(6)->get();
         $other->transform(function ($o) {
             $o->image = $o->featured_image->url ?? null;
+            $o->image_square = $o->featured_image_square->url ?? null;
             $o->timestamp = $o->created_at->translatedFormat('M d, Y');
             return $o;
         });
