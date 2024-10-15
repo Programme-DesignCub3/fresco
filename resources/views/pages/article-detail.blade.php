@@ -5,7 +5,7 @@
 @section('meta_url', URL::to('/artikel/' . $article->slug))
 @section('meta_title', $article->title)
 @section('meta_description', $article->excerpt)
-@section('meta_image', $article->featured_image->url)
+@section('meta_image', $article->featured_image ?? asset('assets/images/meta-image.png'))
 
 @section('content')
     <section id="detail-article">
@@ -15,12 +15,14 @@
                 <div
                     class="flex w-full flex-col bg-white px-4 pb-10 pt-24 sm:pt-4 md:px-8 md:pb-16 md:pt-8 lg:px-16 lg:pb-24 lg:pt-16">
                     <div class="space-y-6 md:space-y-10">
-                        <img
-                            width="auto"
-                            height="auto"
-                            class="aspect-video w-full object-cover object-center"
-                            src="{{ $article->featured_image->url }}"
-                            alt="{{ $article->title }}" />
+                        @if($article->featured_image)
+                            <img
+                                width="auto"
+                                height="auto"
+                                class="aspect-video w-full object-cover object-center"
+                                src="{{ $article->featured_image->url }}"
+                                alt="{{ $article->title }}" />
+                        @endif
                         <article class="space-y-3">
                             <div class="space-y-1">
                                 <h1

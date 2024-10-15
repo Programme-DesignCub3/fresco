@@ -40,28 +40,21 @@ const socials = ref([
 </script>
 
 <template>
-    <footer
-        v-if="themeStore.theme != undefined || themeStore.theme != null"
+    <footer v-if="themeStore.theme != undefined || themeStore.theme != null"
         class="pb-24 pt-14 transition-all duration-700 ease-in-out"
         :class="themeStore.theme == 'black' ? 'bg-radial-dark' : 'bg-radial-red'">
         <div class="flex flex-col items-center justify-center gap-y-6 px-4">
             <div class="footer-list">
                 <!-- Social Media -->
-                <a
-                    v-for="social in socials"
-                    class="footer-item"
-                    :href="social.link ? social.link : '#'"
+                <a v-for="social in socials" class="footer-item" :href="social.link ? social.link : '#'"
                     target="_blank">
-                    <Icon
-                        class="text-fr-black"
-                        :class="[
-                            social.name == 'facebook' && 'h-9 w-9 pt-2',
-                            social.name == 'instagram' && 'h-9 w-9 p-1.5',
-                            social.name == 'twitter' && 'h-9 w-9 p-1.5',
-                            social.name == 'tiktok' && 'h-9 w-9 p-1.5',
-                            social.name == 'youtube' && 'h-9 w-9 p-1.5',
-                        ]"
-                        :icon="social.icon" />
+                    <Icon class="text-fr-black" :class="[
+                        social.name == 'facebook' && 'h-9 w-9 pt-2',
+                        social.name == 'instagram' && 'h-9 w-9 p-1.5',
+                        social.name == 'twitter' && 'h-9 w-9 p-1.5',
+                        social.name == 'tiktok' && 'h-9 w-9 p-1.5',
+                        social.name == 'youtube' && 'h-9 w-9 p-1.5',
+                    ]" :icon="social.icon" />
                 </a>
             </div>
             <p class="text-center font-medium text-white">

@@ -25,6 +25,11 @@ class Article extends Model
         return $this->belongsTo(Media::class, 'image', 'id');
     }
 
+    public function featured_image_square(): BelongsTo
+    {
+        return $this->belongsTo(Media::class, 'image_square', 'id');
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

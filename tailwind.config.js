@@ -10,11 +10,13 @@ export default {
         extend: {
             backgroundImage: {
                 article:
-                    "url('../../public/assets/images/bg-article.png')",
+                    "url('https://fresco.democube.id/assets/images/bg-article.png')",
                 activity:
-                    "url('../../public/assets/images/bg-activity.png')",
+                    "url('https://fresco.democube.id/assets/images/bg-activity.png')",
                 'intro-product':
-                    "url('../../public/assets/images/bg-shiny.png')"
+                    "url('https://fresco.democube.id/assets/images/bg-shiny.png')",
+                'intro-product-portrait':
+                    "url('https://fresco.democube.id/assets/images/bg-shiny-portrait.png')",
             },
             backgroundColor: {
                 'fr-black': '#050505',

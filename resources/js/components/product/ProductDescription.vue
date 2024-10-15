@@ -96,109 +96,66 @@ window.addEventListener('resize', () => {
 <template>
     <template v-if="themeStore.theme != undefined || themeStore.theme != null">
         <!-- (Desktop) -->
-        <div
-            v-for="(d, i) in themeStore.theme == 'black'
-                ? data.black_desc_list
-                : data.cappuccino_desc_list"
-            :key="i"
-            class="hidden overflow-x-hidden lg:block">
+        <div v-for="(d, i) in themeStore.theme == 'black'
+            ? data.black_desc_list
+            : data.cappuccino_desc_list" :key="i" class="hidden overflow-x-hidden lg:block">
             <div class="grid grid-cols-2" :class="themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-fr-yellow'">
-                <div
-                    :class="
-                        themeStore.theme == 'black'
-                            ? d.black_desc_position == 'right' && 'order-last'
-                            : d.cappuccino_desc_position == 'right' &&
-                              'order-last'
+                <div :class="themeStore.theme == 'black'
+                        ? d.black_desc_position == 'right' && 'order-last'
+                        : d.cappuccino_desc_position == 'right' &&
+                        'order-last'
                     ">
-                    <div
-                        class="relative w-full">
-                        <img
-                            class="h-[600px] w-full object-cover object-center"
-                            width="auto"
-                            height="auto"
-                            :src="
-                                themeStore.theme == 'black'
-                                    ? d.black_desc_image
-                                    : d.cappuccino_desc_image
-                            "
-                            :alt="
-                                themeStore.theme == 'black'
+                    <div class="relative w-full">
+                        <img class="h-[600px] w-full object-cover object-center" width="auto" height="auto" :src="themeStore.theme == 'black'
+                                ? d.black_desc_image
+                                : d.cappuccino_desc_image
+                            " :alt="themeStore.theme == 'black'
                                     ? d.black_desc_title
                                     : d.cappuccino_desc_title
-                            " />
+                                " />
                     </div>
                 </div>
-                <div
-                    class="z-20 my-auto flex h-full w-full flex-col justify-center px-16 transition-all duration-700 ease-in-out"
+                <div class="z-20 my-auto flex h-full w-full flex-col justify-center px-16 transition-all duration-700 ease-in-out"
                     :class="[
                         d.black_desc_position == 'right' && 'items-end',
                         d.cappuccino_desc_position == 'right' && 'items-end',
                     ]">
                     <div class="w-full space-y-4 2xl:w-[600px]">
-                        <h2
-                            class="text-4xl font-bold leading-none xl:text-6xl"
-                            ref="manifest">
+                        <h2 class="text-4xl font-bold leading-none xl:text-6xl" ref="manifest">
                             {{
                                 themeStore.theme == 'black'
                                     ? d.black_desc_title
                                     : d.cappuccino_desc_title
                             }}
                         </h2>
-                        <div
-                            data-aos="fade-down"
-                            data-aos-offset="0"
-                            :data-aos-delay="delayAos"
-                            :class="
-                                themeStore.theme == 'black'
-                                    ? 'text-white'
-                                    : 'text-fr-black'
-                            "
-                            class="description-body font-medium leading-8"
-                            v-html="
-                                themeStore.theme == 'black'
+                        <div data-aos="fade-down" data-aos-offset="0" :data-aos-delay="delayAos" :class="themeStore.theme == 'black'
+                                ? 'text-white'
+                                : 'text-fr-black'
+                            " class="description-body font-medium leading-8" v-html="themeStore.theme == 'black'
                                     ? d.black_desc_explanation
                                     : d.cappuccino_desc_explanation
-                            "></div>
+                                "></div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- (Mobile) -->
-        <div
-            @mouseenter="idleWrapper = true"
-            @mouseleave="idleWrapper = false"
-            class="relative block h-full w-full lg:hidden"
-            :class="
-                themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-fr-yellow'
-            ">
+        <div @mouseenter="idleWrapper = true" @mouseleave="idleWrapper = false"
+            class="relative block h-full w-full lg:hidden" :class="themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-fr-yellow'
+                ">
             <!-- Black Coffee -->
-            <div
-                v-if="themeStore.theme == 'black'"
-                class="swiper"
-                ref="description">
+            <div v-if="themeStore.theme == 'black'" class="swiper" ref="description">
                 <div class="swiper-wrapper">
-                    <div
-                        v-for="(d, i) in data.black_desc_list"
-                        :key="i"
-                        class="swiper-slide">
+                    <div v-for="(d, i) in data.black_desc_list" :key="i" class="swiper-slide">
                         <div class="grid grid-rows-1">
-                            <img
-                                class="aspect-square w-full object-cover object-center sm:h-[500px]"
-                                width="auto"
-                                height="auto"
-                                :src="d.black_desc_image"
-                                :alt="d.black_desc_title" />
-                            <div
-                                class="flex w-full flex-col justify-between space-y-4 px-4 py-8">
-                                <h2
-                                    class="text-center text-[40px] font-bold leading-none text-white"
-                                    ref="manifest">
+                            <img class="aspect-square w-full object-cover object-center sm:h-[500px]" width="auto"
+                                height="auto" :src="d.black_desc_image" :alt="d.black_desc_title" />
+                            <div class="flex w-full flex-col justify-between space-y-4 px-4 py-8">
+                                <h2 class="text-center text-[40px] font-bold leading-none text-white" ref="manifest">
                                     {{ d.black_desc_title }}
                                 </h2>
-                                <div
-                                    data-aos="fade-down"
-                                    data-aos-offset="0"
+                                <div data-aos="fade-down" data-aos-offset="0"
                                     class="description-body text-center font-medium leading-8 text-white"
                                     v-html="d.black_desc_explanation"></div>
                             </div>
@@ -206,101 +163,76 @@ window.addEventListener('resize', () => {
                     </div>
                 </div>
                 <!-- Arrow Slider -->
-                <div
-                    class="description-prev black"
-                    :style="{
-                        opacity: isDesktop
-                            ? idleWrapper
-                                ? idle && idleWrapper
-                                    ? 0
-                                    : 1
-                                : 0
-                            : idle
-                              ? 0
-                              : 1,
-                    }">
+                <div class="description-prev black" :style="{
+                    opacity: isDesktop
+                        ? idleWrapper
+                            ? idle && idleWrapper
+                                ? 0
+                                : 1
+                            : 0
+                        : idle
+                            ? 0
+                            : 1,
+                }">
                     <Icon icon="fa-solid:chevron-left" />
                 </div>
-                <div
-                    class="description-next black"
-                    :style="{
-                        opacity: isDesktop
-                            ? idleWrapper
-                                ? idle && idleWrapper
-                                    ? 0
-                                    : 1
-                                : 0
-                            : idle
-                              ? 0
-                              : 1,
-                    }">
+                <div class="description-next black" :style="{
+                    opacity: isDesktop
+                        ? idleWrapper
+                            ? idle && idleWrapper
+                                ? 0
+                                : 1
+                            : 0
+                        : idle
+                            ? 0
+                            : 1,
+                }">
                     <Icon icon="fa-solid:chevron-right" />
                 </div>
             </div>
             <!-- Cappuccino -->
-            <div
-                v-if="themeStore.theme == 'cappuccino'"
-                class="swiper"
-                ref="description">
+            <div v-if="themeStore.theme == 'cappuccino'" class="swiper" ref="description">
                 <div class="swiper-wrapper">
-                    <div
-                        v-for="(d, i) in data.cappuccino_desc_list"
-                        :key="i"
-                        class="swiper-slide">
+                    <div v-for="(d, i) in data.cappuccino_desc_list" :key="i" class="swiper-slide">
                         <div class="grid grid-rows-1">
-                            <img
-                                class="aspect-square w-full object-cover object-center sm:h-[500px]"
-                                width="auto"
-                                height="auto"
-                                :src="d.cappuccino_desc_image"
-                                :alt="d.cappuccino_desc_title" />
-                            <div
-                                class="flex w-full flex-col justify-between space-y-4 px-4 py-8">
-                                <h2
-                                    class="text-center text-[40px] font-bold leading-none text-white"
-                                    ref="manifest">
+                            <img class="aspect-square w-full object-cover object-center sm:h-[500px]" width="auto"
+                                height="auto" :src="d.cappuccino_desc_image" :alt="d.cappuccino_desc_title" />
+                            <div class="flex w-full flex-col justify-between space-y-4 px-4 py-8">
+                                <h2 class="text-center text-[40px] font-bold leading-none text-white" ref="manifest">
                                     {{ d.cappuccino_desc_title }}
                                 </h2>
-                                <div
-                                    data-aos="fade-down"
-                                    data-aos-offset="0"
-                                    class="text-center font-medium leading-8 text-fr-black"
-                                    v-html="
-                                        d.cappuccino_desc_explanation
-                                    "></div>
+                                <div data-aos="fade-down" data-aos-offset="0"
+                                    class="text-center font-medium leading-8 text-fr-black" v-html="d.cappuccino_desc_explanation
+                                        "></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Arrow Slider -->
-                <div
-                    class="description-prev cappuccino"
-                    :style="{
-                        opacity: isDesktop
-                            ? idleWrapper
-                                ? idle && idleWrapper
-                                    ? 0
-                                    : 1
-                                : 0
-                            : idle
-                              ? 0
-                              : 1,
-                    }">
+                <div class="description-prev cappuccino" :style="{
+                    opacity: isDesktop
+                        ? idleWrapper
+                            ? idle && idleWrapper
+                                ? 0
+                                : 1
+                            : 0
+                        : idle
+                            ? 0
+                            : 1,
+                }">
                     <Icon icon="fa-solid:chevron-left" />
                 </div>
-                <div
-                    class="description-next cappuccino"
-                    :style="{
-                        opacity: isDesktop
-                            ? idleWrapper
-                                ? idle && idleWrapper
-                                    ? 0
-                                    : 1
-                                : 0
-                            : idle
-                              ? 0
-                              : 1,
-                    }">
+                <div class="description-next cappuccino" :style="{
+                    opacity: isDesktop
+                        ? idleWrapper
+                            ? idle && idleWrapper
+                                ? 0
+                                : 1
+                            : 0
+                        : idle
+                            ? 0
+                            : 1,
+                }">
                     <Icon icon="fa-solid:chevron-right" />
                 </div>
             </div>

@@ -25,12 +25,12 @@ const splitterText = (target) => {
         themeStore.theme == 'black'
             ? splitBlack(element, index, delay, 1, '#product-title-anchor')
             : splitCappuccino(
-                  element,
-                  index,
-                  delay,
-                  1,
-                  '#product-title-anchor',
-              );
+                element,
+                index,
+                delay,
+                1,
+                '#product-title-anchor',
+            );
     }
 };
 
@@ -54,89 +54,53 @@ window.addEventListener('resize', () => {
 
 <template>
     <!-- Article Header -->
-    <div
-        v-if="header == 'article'"
-        class="header-page-wrapper"
-        :class="
-            themeStore.theme == 'black'
-                ? `bg-fr-black ${data.ar_black_banner_position}`
-                : `bg-fr-yellow ${data.ar_cappuccino_banner_position}`
-        "
-        :style="{
+    <div v-if="header == 'article'" class="header-page-wrapper" :class="themeStore.theme == 'black'
+            ? `bg-fr-black ${data.ar_black_banner_position}`
+            : `bg-fr-yellow ${data.ar_cappuccino_banner_position}`
+        " :style="{
             'background-image':
                 themeStore.theme == 'black'
                     ? `url(/${data.ar_black_banner_image})`
                     : `url(/${data.ar_cappuccino_banner_image})`,
         }">
-        <div
-            class="header-page-title-wrapper"
-            :class="themeStore.theme == 'black' && 'text-shadow'">
-            <h1
-                ref="blackTitle"
-                v-if="themeStore.theme == 'black'"
-                v-html="data.ar_black_banner_title"></h1>
-            <h1
-                ref="cappuccinoTitle"
-                v-if="themeStore.theme == 'cappuccino'"
-                v-html="data.ar_cappuccino_banner_title"></h1>
+        <div class="header-page-title-wrapper" :class="themeStore.theme == 'black' && 'text-shadow'">
+            <h1 ref="blackTitle" v-if="themeStore.theme == 'black'" v-html="data.ar_black_banner_title"></h1>
+            <h1 ref="cappuccinoTitle" v-if="themeStore.theme == 'cappuccino'" v-html="data.ar_cappuccino_banner_title">
+            </h1>
         </div>
     </div>
 
     <!-- Activity Header -->
-    <div
-        v-if="header == 'activity'"
-        class="header-page-wrapper"
-        :class="
-            themeStore.theme == 'black'
-                ? `bg-fr-black ${data.ac_black_banner_position}`
-                : `bg-fr-yellow ${data.ac_cappuccino_banner_position}`
-        "
-        :style="{
+    <div v-if="header == 'activity'" class="header-page-wrapper" :class="themeStore.theme == 'black'
+            ? `bg-fr-black ${data.ac_black_banner_position}`
+            : `bg-fr-yellow ${data.ac_cappuccino_banner_position}`
+        " :style="{
             'background-image':
                 themeStore.theme == 'black'
                     ? `url(/${data.ac_black_banner_image})`
                     : `url(/${data.ac_cappuccino_banner_image})`,
         }">
-        <div
-            class="header-page-title-wrapper"
-            :class="themeStore.theme == 'black' && 'text-shadow'">
-            <h1
-                ref="blackTitle"
-                v-if="themeStore.theme == 'black'"
-                v-html="data.ac_black_banner_title"></h1>
-            <h1
-                ref="cappuccinoTitle"
-                v-if="themeStore.theme == 'cappuccino'"
-                v-html="data.ac_cappuccino_banner_title"></h1>
+        <div class="header-page-title-wrapper" :class="themeStore.theme == 'black' && 'text-shadow'">
+            <h1 ref="blackTitle" v-if="themeStore.theme == 'black'" v-html="data.ac_black_banner_title"></h1>
+            <h1 ref="cappuccinoTitle" v-if="themeStore.theme == 'cappuccino'" v-html="data.ac_cappuccino_banner_title">
+            </h1>
         </div>
     </div>
 
     <!-- Contact Header -->
-    <div
-        v-if="header == 'contact'"
-        class="header-page-wrapper"
-        :class="
-            themeStore.theme == 'black'
-                ? `bg-fr-black ${data.cn_black_banner_position}`
-                : `bg-fr-yellow ${data.cn_cappuccino_banner_position}`
-        "
-        :style="{
+    <div v-if="header == 'contact'" class="header-page-wrapper" :class="themeStore.theme == 'black'
+            ? `bg-fr-black ${data.cn_black_banner_position}`
+            : `bg-fr-yellow ${data.cn_cappuccino_banner_position}`
+        " :style="{
             'background-image':
                 themeStore.theme == 'black'
                     ? `url(/${data.cn_black_banner_image})`
                     : `url(/${data.cn_cappuccino_banner_image})`,
         }">
-        <div
-            class="header-page-title-wrapper"
-            :class="themeStore.theme == 'black' && 'text-shadow'">
-            <h1
-                ref="blackTitle"
-                v-if="themeStore.theme == 'black'"
-                v-html="data.cn_black_banner_title"></h1>
-            <h1
-                ref="cappuccinoTitle"
-                v-if="themeStore.theme == 'cappuccino'"
-                v-html="data.cn_cappuccino_banner_title"></h1>
+        <div class="header-page-title-wrapper" :class="themeStore.theme == 'black' && 'text-shadow'">
+            <h1 ref="blackTitle" v-if="themeStore.theme == 'black'" v-html="data.cn_black_banner_title"></h1>
+            <h1 ref="cappuccinoTitle" v-if="themeStore.theme == 'cappuccino'" v-html="data.cn_cappuccino_banner_title">
+            </h1>
         </div>
     </div>
 </template>

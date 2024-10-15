@@ -71,11 +71,11 @@ watch(theme, () => {
                             <div v-for="d in data" class="swiper-slide">
                                 <a :href="'artikel/' + d.slug" class="group">
                                     <img width="auto" height="auto"
-                                        class="relative aspect-square object-cover object-center" :src="d.image"
+                                        class="relative w-full aspect-square object-cover object-center" :src="d.image"
                                         :alt="d.title" />
                                     <div :class="themeStore.theme == 'black'
-                                            ? 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
-                                            : 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
+                                        ? 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
+                                        : 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
                                         "
                                         class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
                                         <div class="flex flex-col items-center gap-3 text-white">
@@ -123,8 +123,8 @@ watch(theme, () => {
                     <!-- See All Button -->
                     <div class="text-end">
                         <a href="/artikel" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
-                                ? 'button red'
-                                : 'button red'
+                            ? 'button red'
+                            : 'button red'
                             ">
                             SEE ALL ARTICLES
                             <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />

@@ -187,8 +187,13 @@ class ArticleResource extends Resource
                                 ->maxSize(2048)
                                 ->maxItems(1)
                                 ->acceptedFileTypes(['image/*'])
-                                ->helperText('Maximum 2 MB.')
-                                ->required(),
+                                ->helperText('Maximum 2 MB.'),
+                            CuratorPicker::make('image_square')
+                                ->label('Featured Image (Square)')
+                                ->maxSize(2048)
+                                ->maxItems(1)
+                                ->acceptedFileTypes(['image/*'])
+                                ->helperText('Maximum 2 MB.'),
                         ]),
                 ]),
             ]);

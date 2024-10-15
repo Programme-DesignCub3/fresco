@@ -274,7 +274,7 @@
     }
 
     .home-intro-product.black {
-        @apply bg-intro-product bg-no-repeat bg-cover bg-center;
+        @apply bg-intro-product-portrait bg-no-repeat bg-top bg-cover md:bg-center lg:bg-intro-product;
     }
 
     .home-intro-product.cappuccino {

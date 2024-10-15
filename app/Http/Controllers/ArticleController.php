@@ -32,9 +32,9 @@ class ArticleController extends Controller
 
         // Article Resource
         if(request('search')) {
-            $article = Article::where('title', 'like', '%' . request('search') . '%')->where('published', true)->with('featured_image')->paginate(6)->withQueryString();
+            $article = Article::where('title', 'like', '%' . request('search') . '%')->where('published', true)->with('featured_image')->with('featured_image_square')->paginate(6)->withQueryString();
         } else {
-            $article = Article::where('published', true)->with('featured_image')->latest()->paginate(6);
+            $article = Article::where('published', true)->with('featured_image')->with('featured_image_square')->latest()->paginate(6);
         }
 
         $article->transform(function ($art) {

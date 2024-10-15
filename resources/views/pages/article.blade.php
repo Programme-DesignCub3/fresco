@@ -65,13 +65,29 @@
                             <a
                                 href="artikel/{{ $a->slug }}"
                                 class="group grid grid-cols-2 bg-fr-green md:flex md:flex-col dark:bg-fr-yellow">
-                                <div>
-                                    <img
-                                        width="auto"
-                                        height="auto"
-                                        class="aspect-square w-full object-cover object-center transition-all duration-700 ease-in-out"
-                                        src="{{ $a->featured_image->url }}"
-                                        alt="{{ $a->title }}" />
+                                <div class="w-auto">
+                                    @if($a->featured_image_square)
+                                        <img
+                                            width="auto"
+                                            height="auto"
+                                            class="aspect-square w-full object-cover object-center transition-all duration-700 ease-in-out"
+                                            src="{{ $a->featured_image_square->url }}"
+                                            alt="{{ $a->title }}" />
+                                    @elseif($a->featured_image_square == null && $a->featured_image)
+                                        <img
+                                            width="auto"
+                                            height="auto"
+                                            class="aspect-square w-full object-cover object-center transition-all duration-700 ease-in-out"
+                                            src="{{ $a->featured_image->url }}"
+                                            alt="{{ $a->title }}" />
+                                    @elseif($a->featured_image == null && $a->featured_image_square == null)
+                                        <img
+                                            width="auto"
+                                            height="auto"
+                                            class="aspect-square w-full object-cover object-center transition-all duration-700 ease-in-out"
+                                            src="{{ asset('assets/images/meta-image.png') }}"
+                                            alt="{{ $a->title }}" />
+                                    @endif
                                 </div>
                                 <div
                                     class="group-hover:bg-radial-red dark:group-hover:bg-radial-red flex h-full flex-col gap-3 p-4 md:p-6">

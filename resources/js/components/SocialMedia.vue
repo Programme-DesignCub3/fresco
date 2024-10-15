@@ -49,34 +49,23 @@ window.addEventListener('scroll', () => {
 </script>
 
 <template>
-    <div
-        v-if="
-            themeStore.getTheme().value != undefined ||
-            themeStore.getTheme().value != null
-        "
-        class="social-media-list"
-        :class="scrollBottom && '-right-10'">
+    <div v-if="
+        themeStore.getTheme().value != undefined ||
+        themeStore.getTheme().value != null
+    " class="social-media-list" :class="scrollBottom && '-right-10'">
         <!-- Social Media -->
-        <a
-            v-for="social in socials"
-            :class="
-                themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
-            "
-            :href="social.link ? social.link : '#'"
-            target="_blank">
-            <Icon
-                class="h-9 w-9 pt-2"
-                :class="[
-                    themeStore.theme == 'black'
-                        ? 'text-fr-black'
-                        : 'text-white',
-                    social.name == 'facebook' && 'h-9 w-9 pt-2',
-                    social.name == 'instagram' && 'h-9 w-9 p-1.5',
-                    social.name == 'twitter' && 'h-9 w-9 p-1.5',
-                    social.name == 'tiktok' && 'h-9 w-9 p-1.5',
-                    social.name == 'youtube' && 'h-9 w-9 p-1.5',
-                ]"
-                :icon="social.icon" />
+        <a v-for="social in socials" :class="themeStore.theme == 'black' ? 'bg-fr-yellow' : 'bg-fr-green'
+            " :href="social.link ? social.link : '#'" target="_blank">
+            <Icon class="h-9 w-9 pt-2" :class="[
+                themeStore.theme == 'black'
+                    ? 'text-fr-black'
+                    : 'text-white',
+                social.name == 'facebook' && 'h-9 w-9 pt-2',
+                social.name == 'instagram' && 'h-9 w-9 p-1.5',
+                social.name == 'twitter' && 'h-9 w-9 p-1.5',
+                social.name == 'tiktok' && 'h-9 w-9 p-1.5',
+                social.name == 'youtube' && 'h-9 w-9 p-1.5',
+            ]" :icon="social.icon" />
         </a>
     </div>
 </template>

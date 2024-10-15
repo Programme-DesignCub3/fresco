@@ -55,19 +55,19 @@ const splitterText = (target) => {
         delay += 100;
         themeStore.theme == 'black'
             ? splitBlack(
-                  element,
-                  index,
-                  delay,
-                  isTablet.value ? 2 : 1,
-                  '#black-anchor',
-              )
+                element,
+                index,
+                delay,
+                isTablet.value ? 2 : 1,
+                '#black-anchor',
+            )
             : splitCappuccino(
-                  element,
-                  index,
-                  delay,
-                  isTablet.value ? 2 : 1,
-                  '#cappuccino-anchor',
-              );
+                element,
+                index,
+                delay,
+                isTablet.value ? 2 : 1,
+                '#cappuccino-anchor',
+            );
     }
 
     delayAos.value = delay + 100;
@@ -105,14 +105,10 @@ window.addEventListener('resize', () => {
 
 <template>
     <!-- Home Intro Product -->
-    <div
-        v-if="
-            themeStore.getTheme().value != undefined &&
-            themeStore.getTheme().value != null
-        "
-        class="home-intro-product"
-        @mouseenter="idleWrapper = true"
-        @mouseleave="idleWrapper = false"
+    <div v-if="
+        themeStore.getTheme().value != undefined &&
+        themeStore.getTheme().value != null
+    " class="home-intro-product" @mouseenter="idleWrapper = true" @mouseleave="idleWrapper = false"
         :class="themeStore.theme">
         <!-- Home Intro Wrapper -->
         <div class="home-intro-product-wrapper">
@@ -122,56 +118,35 @@ window.addEventListener('resize', () => {
                     <template v-if="themeStore.theme == 'black'">
                         <!-- First Slide -->
                         <div class="swiper-slide">
-                            <div
-                                class="black-slider">
+                            <div class="black-slider">
                                 <div class="heading-wrapper" id="black-anchor">
                                     <h1 ref="first">
                                         {{ data.black_intro_title }}
                                     </h1>
-                                    <div
-                                        class="description-wrapper home-intro-body"
-                                        data-aos="fade-up"
-                                        data-aos-delay="200"
-                                        data-aos-offset="0"
-                                        v-html="data.black_intro_desc"></div>
+                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
+                                        data-aos-delay="200" data-aos-offset="0" v-html="data.black_intro_desc"></div>
                                 </div>
                                 <div class="image-wrapper">
-                                    <img
-                                        width="auto"
-                                        height="auto"
-                                        :src="data.black_intro_image"
-                                        :alt="data.black_intro_title"
-                                        data-aos-offset="0"
-                                        data-aos="zoom-in"
+                                    <img width="auto" height="auto" :src="data.black_intro_image"
+                                        :alt="data.black_intro_title" data-aos-offset="0" data-aos="zoom-in"
                                         data-aos-delay="150" />
                                 </div>
                             </div>
                         </div>
                         <!-- Second Slide -->
                         <div class="swiper-slide">
-                            <div
-                                class="black-slider">
+                            <div class="black-slider">
                                 <div class="heading-wrapper" id="black-anchor">
                                     <h1 ref="second">
                                         {{ data.cappuccino_intro_title }}
                                     </h1>
-                                    <div
-                                        class="description-wrapper home-intro-body"
-                                        data-aos="fade-up"
-                                        data-aos-delay="200"
-                                        data-aos-offset="0"
-                                        v-html="
-                                            data.cappuccino_intro_desc
-                                        "></div>
+                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
+                                        data-aos-delay="200" data-aos-offset="0" v-html="data.cappuccino_intro_desc
+                                            "></div>
                                 </div>
                                 <div class="image-wrapper">
-                                    <img
-                                        width="auto"
-                                        height="auto"
-                                        :src="data.cappuccino_intro_image"
-                                        :alt="data.cappuccino_intro_title"
-                                        data-aos-offset="0"
-                                        data-aos="zoom-in"
+                                    <img width="auto" height="auto" :src="data.cappuccino_intro_image"
+                                        :alt="data.cappuccino_intro_title" data-aos-offset="0" data-aos="zoom-in"
                                         data-aos-delay="150" />
                                 </div>
                             </div>
@@ -182,82 +157,49 @@ window.addEventListener('resize', () => {
                     <template v-if="themeStore.theme == 'cappuccino'">
                         <!-- First Slide -->
                         <div class="swiper-slide">
-                            <div
-                                class="cappuccino-slider">
-                                <div
-                                    class="heading-wrapper"
-                                    id="cappuccino-anchor">
+                            <div class="cappuccino-slider">
+                                <div class="heading-wrapper" id="cappuccino-anchor">
                                     <div class="relative">
                                         <h1 ref="first">
                                             {{ data.cappuccino_intro_title }}
                                         </h1>
-                                        <h2
-                                            ref="stroke"
-                                            data-aos="fade-in"
-                                            :data-aos-delay="delayAos"
-                                            data-aos-duration="1200"
-                                            data-aos-anchor="#cappuccino-anchor"
+                                        <h2 ref="stroke" data-aos="fade-in" :data-aos-delay="delayAos"
+                                            data-aos-duration="1200" data-aos-anchor="#cappuccino-anchor"
                                             data-aos-offset="100">
                                             {{ data.cappuccino_intro_title }}
                                         </h2>
                                     </div>
-                                    <div
-                                        class="description-wrapper home-intro-body"
-                                        data-aos="fade-up"
-                                        data-aos-delay="200"
-                                        data-aos-offset="0"
-                                        v-html="
-                                            data.cappuccino_intro_desc
-                                        "></div>
+                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
+                                        data-aos-delay="200" data-aos-offset="0" v-html="data.cappuccino_intro_desc
+                                            "></div>
                                 </div>
                                 <div class="image-wrapper">
-                                    <img
-                                        width="auto"
-                                        height="auto"
-                                        :src="data.cappuccino_intro_image"
-                                        :alt="data.cappuccino_intro_title"
-                                        data-aos-offset="0"
-                                        data-aos="zoom-in"
+                                    <img width="auto" height="auto" :src="data.cappuccino_intro_image"
+                                        :alt="data.cappuccino_intro_title" data-aos-offset="0" data-aos="zoom-in"
                                         data-aos-delay="150" />
                                 </div>
                             </div>
                         </div>
                         <!-- Second Slide -->
                         <div class="swiper-slide">
-                            <div
-                                class="cappuccino-slider">
-                                <div
-                                    class="heading-wrapper"
-                                    id="cappuccino-anchor">
+                            <div class="cappuccino-slider">
+                                <div class="heading-wrapper" id="cappuccino-anchor">
                                     <div class="relative">
                                         <h1 ref="second">
                                             {{ data.black_intro_title }}
                                         </h1>
-                                        <h2
-                                            ref="stroke2"
-                                            data-aos="fade-in"
-                                            :data-aos-delay="delayAos"
-                                            data-aos-duration="1200"
-                                            data-aos-anchor="#cappuccino-anchor"
+                                        <h2 ref="stroke2" data-aos="fade-in" :data-aos-delay="delayAos"
+                                            data-aos-duration="1200" data-aos-anchor="#cappuccino-anchor"
                                             data-aos-offset="100">
                                             {{ data.black_intro_title }}
                                         </h2>
                                     </div>
-                                    <div
-                                        class="description-wrapper home-intro-body"
-                                        data-aos="fade-up"
-                                        data-aos-delay="200"
-                                        data-aos-offset="0"
-                                        v-html="data.black_intro_desc"></div>
+                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
+                                        data-aos-delay="200" data-aos-offset="0" v-html="data.black_intro_desc"></div>
                                 </div>
                                 <div class="image-wrapper">
-                                    <img
-                                        width="auto"
-                                        height="auto"
-                                        :src="data.black_intro_image"
-                                        :alt="data.black_intro_title"
-                                        data-aos-offset="0"
-                                        data-aos="zoom-in"
+                                    <img width="auto" height="auto" :src="data.black_intro_image"
+                                        :alt="data.black_intro_title" data-aos-offset="0" data-aos="zoom-in"
                                         data-aos-delay="150" />
                                 </div>
                             </div>
@@ -266,34 +208,30 @@ window.addEventListener('resize', () => {
                 </div>
             </div>
             <!-- Arrow Slider -->
-            <div
-                class="prev"
-                :style="{
-                    opacity: isDesktop
-                        ? idleWrapper
-                            ? idle && idleWrapper
-                                ? 0
-                                : 1
-                            : 0
-                        : idle
-                          ? 0
-                          : 1,
-                }">
+            <div class="prev" :style="{
+                opacity: isDesktop
+                    ? idleWrapper
+                        ? idle && idleWrapper
+                            ? 0
+                            : 1
+                        : 0
+                    : idle
+                        ? 0
+                        : 1,
+            }">
                 <Icon icon="fa-solid:chevron-left" />
             </div>
-            <div
-                class="next"
-                :style="{
-                    opacity: isDesktop
-                        ? idleWrapper
-                            ? idle && idleWrapper
-                                ? 0
-                                : 1
-                            : 0
-                        : idle
-                          ? 0
-                          : 1,
-                }">
+            <div class="next" :style="{
+                opacity: isDesktop
+                    ? idleWrapper
+                        ? idle && idleWrapper
+                            ? 0
+                            : 1
+                        : 0
+                    : idle
+                        ? 0
+                        : 1,
+            }">
                 <Icon icon="fa-solid:chevron-right" />
             </div>
         </div>

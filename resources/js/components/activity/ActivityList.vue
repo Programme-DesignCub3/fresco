@@ -79,52 +79,40 @@ watch(theme, () => {
 
 <template>
     <!-- Activity List -->
-    <div
-        @mouseenter="idleWrapper = true"
-        @mouseleave="idleWrapper = false"
-        class="activity-list"
+    <div @mouseenter="idleWrapper = true" @mouseleave="idleWrapper = false" class="activity-list"
         :class="themeStore.theme">
         <!-- Arrow Slider -->
-        <div
-            class="prev"
-            :style="{
-                opacity: isDesktop
-                    ? idleWrapper
-                        ? idle && idleWrapper
-                            ? 0
-                            : 1
-                        : 0
-                    : idle
-                      ? 0
-                      : 1,
-            }">
+        <div class="prev" :style="{
+            opacity: isDesktop
+                ? idleWrapper
+                    ? idle && idleWrapper
+                        ? 0
+                        : 1
+                    : 0
+                : idle
+                    ? 0
+                    : 1,
+        }">
             <Icon icon="fa-solid:chevron-left" />
         </div>
-        <div
-            class="next"
-            :style="{
-                opacity: isDesktop
-                    ? idleWrapper
-                        ? idle && idleWrapper
-                            ? 0
-                            : 1
-                        : 0
-                    : idle
-                      ? 0
-                      : 1,
-            }">
+        <div class="next" :style="{
+            opacity: isDesktop
+                ? idleWrapper
+                    ? idle && idleWrapper
+                        ? 0
+                        : 1
+                    : 0
+                : idle
+                    ? 0
+                    : 1,
+        }">
             <Icon icon="fa-solid:chevron-right" />
         </div>
         <!-- Activity List Wrapper -->
         <div class="activity-list-wrapper">
             <!-- Page Title -->
-            <h2
-                data-aos="flip-down"
-                data-aos-delay="400"
-                data-aos-duration="1000"
-                data-aos-offset="0"
-                class="page-title-center"
-                :class="themeStore.theme">
+            <h2 data-aos="flip-down" data-aos-delay="400" data-aos-duration="1000" data-aos-offset="0"
+                class="page-title-center" :class="themeStore.theme">
                 AKTIVITAS
             </h2>
             <!-- Slider -->
@@ -133,10 +121,7 @@ watch(theme, () => {
                     <div v-for="(d, i) in data" :key="i" class="swiper-slide">
                         <div class="activity-list-slide">
                             <a :href="activityLink" target="_blank">
-                                <img
-                                    :src="d.image"
-                                    :alt="d.title ? d.title : 'Fresco Activity'"
-                                    width="auto"
+                                <img :src="d.image" :alt="d.title ? d.title : 'Fresco Activity'" width="auto"
                                     height="auto" />
                             </a>
                             <div class="activity-list-slide-detail">

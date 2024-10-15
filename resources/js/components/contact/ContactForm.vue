@@ -75,30 +75,18 @@ const sendMessageHandler = async (e) => {
             <!-- Detail Information -->
             <div class="contact-form-information">
                 <!-- Page Title -->
-                <h2
-                    data-aos="flip-down"
-                    data-aos-delay="400"
-                    data-aos-duration="1000"
-                    class="page-title"
+                <h2 data-aos="flip-down" data-aos-delay="400" data-aos-duration="1000" class="page-title"
                     :class="themeStore.theme">
                     HUBUNGI KAMI
                 </h2>
                 <div class="space-y-4">
                     <!-- Description -->
-                    <p
-                        data-aos="fade-down"
-                        data-aos-delay="400"
-                        data-aos-duration="1000"
-                        data-aos-offset="0">
+                    <p data-aos="fade-down" data-aos-delay="400" data-aos-duration="1000" data-aos-offset="0">
                         Kirimkan semua kritik, saran ataupun pertanyaan seputar
                         kopi Fresco dengan menggunakan form kontak disamping.
                     </p>
                     <!-- Contact Information -->
-                    <div
-                        data-aos="fade-down"
-                        data-aos-delay="500"
-                        data-aos-duration="1000"
-                        data-aos-offset="0"
+                    <div data-aos="fade-down" data-aos-delay="500" data-aos-duration="1000" data-aos-offset="0"
                         class="space-y-1">
                         <h3>PT SANTOS JAYA ABADI</h3>
                         <p>{{ data.phone_alias }} (SANTOS)</p>
@@ -111,17 +99,9 @@ const sendMessageHandler = async (e) => {
             <form class="space-y-3 md:space-y-6" @submit="sendMessageHandler">
                 <!-- Form Name -->
                 <div class="space-y-2">
-                    <label for="name"
-                        >Nama
-                        <span class="font-medium text-fr-red">*</span></label
-                    >
-                    <input
-                        v-model="name"
-                        type="text"
-                        id="name"
-                        minlength="3"
-                        maxlength="255"
-                        required />
+                    <label for="name">Nama
+                        <span class="font-medium text-fr-red">*</span></label>
+                    <input v-model="name" type="text" id="name" minlength="3" maxlength="255" required />
                     <div v-if="errMessage">
                         <p v-if="errMessage.name" class="contact-error-message">
                             {{ errMessage.name[0] }}
@@ -130,95 +110,55 @@ const sendMessageHandler = async (e) => {
                 </div>
                 <!-- Form Email -->
                 <div class="space-y-2">
-                    <label for="email"
-                        >Email
-                        <span class="font-medium text-fr-red">*</span></label
-                    >
-                    <input
-                        v-model="email"
-                        type="email"
-                        id="email"
-                        maxlength="255"
-                        required />
+                    <label for="email">Email
+                        <span class="font-medium text-fr-red">*</span></label>
+                    <input v-model="email" type="email" id="email" maxlength="255" required />
                     <div v-if="errMessage">
-                        <p
-                            v-if="errMessage.email"
-                            class="contact-error-message">
+                        <p v-if="errMessage.email" class="contact-error-message">
                             {{ errMessage.email[0] }}
                         </p>
                     </div>
                 </div>
                 <!-- Form Subject -->
                 <div class="space-y-2">
-                    <label for="subject"
-                        >Subject
-                        <span class="font-medium text-fr-red">*</span></label
-                    >
-                    <input
-                        v-model="subject"
-                        type="text"
-                        id="subject"
-                        maxlength="255"
-                        minlength="3"
-                        required />
+                    <label for="subject">Subject
+                        <span class="font-medium text-fr-red">*</span></label>
+                    <input v-model="subject" type="text" id="subject" maxlength="255" minlength="3" required />
                     <div v-if="errMessage">
-                        <p
-                            v-if="errMessage.subject"
-                            class="contact-error-message">
+                        <p v-if="errMessage.subject" class="contact-error-message">
                             {{ errMessage.subject[0] }}
                         </p>
                     </div>
                 </div>
                 <!-- Form Message -->
                 <div class="space-y-2">
-                    <label for="message"
-                        >Pesan Anda
-                        <span class="font-medium text-fr-red">*</span></label
-                    >
-                    <textarea
-                        v-model="message"
-                        id="message"
-                        rows="6"
-                        required></textarea>
+                    <label for="message">Pesan Anda
+                        <span class="font-medium text-fr-red">*</span></label>
+                    <textarea v-model="message" id="message" rows="6" required></textarea>
                     <div v-if="errMessage">
-                        <p
-                            v-if="errMessage.message"
-                            class="contact-error-message">
+                        <p v-if="errMessage.message" class="contact-error-message">
                             {{ errMessage.message[0] }}
                         </p>
                     </div>
                 </div>
                 <!-- Form Recaptcha -->
                 <div class="space-y-2">
-                    <VueRecaptcha
-                        class="full-width"
-                        :sitekey="siteKey"
-                        :load-recaptcha-script="true"
-                        @verify="handleSuccess"
-                        @error="handleError"
-                        @expired="handleExpired">
+                    <VueRecaptcha class="full-width" :sitekey="siteKey" :load-recaptcha-script="true"
+                        @verify="handleSuccess" @error="handleError" @expired="handleExpired">
                     </VueRecaptcha>
                     <div v-if="errMessage">
-                        <p
-                            v-if="errMessage['g-recaptcha-response']"
-                            class="contact-error-message">
+                        <p v-if="errMessage['g-recaptcha-response']" class="contact-error-message">
                             {{ errMessage['g-recaptcha-response'][0] }}
                         </p>
                     </div>
                 </div>
                 <!-- Submit Button -->
-                <button
-                    :disabled="sendCooldown || sendDisabled"
-                    :class="
-                        sendCooldown ||
-                        (sendDisabled && 'cursor-not-allowed opacity-50')
-                    "
-                    class="button red">
+                <button :disabled="sendCooldown || sendDisabled" :class="sendCooldown ||
+                    (sendDisabled && 'cursor-not-allowed opacity-50')
+                    " class="button red">
                     <template v-if="sendCooldown == false">
                         <span>KIRIM</span>
-                        <Icon
-                            class="inline-block h-4 w-4 stroke-2 pb-1 pl-1 py-[2px]"
-                            icon="fa-solid:chevron-right" />
+                        <Icon class="inline-block h-4 w-4 stroke-2 pb-1 pl-1 py-[2px]" icon="fa-solid:chevron-right" />
                     </template>
                     <template v-else>
                         <Loading />
@@ -241,6 +181,7 @@ const sendMessageHandler = async (e) => {
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
