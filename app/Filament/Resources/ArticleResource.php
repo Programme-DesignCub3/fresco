@@ -203,8 +203,6 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                CuratorColumn::make('image')
-                    ->width(80),
                 TextColumn::make('title')
                     ->limit(50),
                 ToggleColumn::make('published')
