@@ -189,11 +189,11 @@ class ArticleResource extends Resource
                                 ->acceptedFileTypes(['image/*'])
                                 ->helperText('Maximum 2 MB.'),
                             CuratorPicker::make('image_square')
-                                ->label('Featured Image (Square)')
+                                ->label('Thumbnail Image')
                                 ->maxSize(2048)
                                 ->maxItems(1)
                                 ->acceptedFileTypes(['image/*'])
-                                ->helperText('Maximum 2 MB.'),
+                                ->helperText('Maximum 2 MB. 1:1 Aspect ratio.'),
                         ]),
                 ]),
             ]);
