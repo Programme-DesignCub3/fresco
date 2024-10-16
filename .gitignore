@@ -4,6 +4,7 @@
 # /public/assets/images
 /public/hot
 /public/storage
+/public/assets/images/old
 /storage/*.key
 /vendor
 .env
