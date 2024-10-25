@@ -12,9 +12,9 @@ const themeStore = useThemeStore();
         <div class="home-intro-video" :class="themeStore.theme">
             <div class="home-intro-video-wrapper">
                 <img width="auto" height="auto"
-                    class="absolute left-0 top-0 h-auto w-full object-cover object-bottom brightness-75 md:h-[500px]"
+                    class="absolute left-0 top-0 h-auto w-full object-cover object-bottom md:h-[500px]"
                     src="/assets/images/black-bg-home.png" alt="Black Coffee Home Background" />
-                <div class="absolute left-0 top-0 h-28 w-full bg-gradient-to-b from-fr-black/75 to-transparent"></div>
+                <div class="absolute left-0 top-0 h-32 w-full bg-gradient-to-b from-fr-black/80 to-transparent"></div>
                 <video autoplay muted loop playsinline id="black-coffee"
                     poster="/assets/images/placeholder-black-coffee.webp">
                     <source src="/assets/videos/black-coffee-video.mp4" type="video/mp4" />
