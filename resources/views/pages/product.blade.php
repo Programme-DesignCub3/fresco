@@ -19,9 +19,6 @@
         <product-marketplace-component
             :data="{{ json_encode($general) }}"></product-marketplace-component>
 
-        {{-- Product Description Title Section --}}
-        <product-desc-title-component></product-desc-title-component>
-
         {{-- Product Description Section --}}
         <product-description-component
             :data="{{ json_encode($general) }}"></product-description-component>

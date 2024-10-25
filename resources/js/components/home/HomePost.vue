@@ -58,10 +58,11 @@ watch(theme, () => {
     <!-- Home Post -->
     <div v-if="themeStore.theme != undefined || themeStore.theme != null" @mouseenter="idleWrapper = true"
         @mouseleave="idleWrapper = false" class="home-post" :class="themeStore.theme">
-        <div class="fr-container mx-auto w-full px-4 py-10 md:px-0 md:py-16">
+        <div class="fr-container mx-auto w-full px-4 py-5 md:px-0 md:py-10">
             <div class="flex w-full flex-col gap-16">
                 <h2
-                    class="relative text-4xl font-bold leading-none text-fr-black after:absolute after:-bottom-6 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-fr-red">
+                    :class="themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'"
+                    class="relative text-4xl font-bold leading-none transition-all duration-300 ease-in-out after:absolute after:-bottom-6 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-fr-red">
                     Articles
                 </h2>
                 <!-- List Articles -->

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Message;
 use App\Rules\MinWord;
 use App\Settings\GeneralSettings;
 use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
@@ -17,11 +19,9 @@ class ContactController extends Controller
         // Settings
         $general = $generalSettings->toArray();
         $pageSettings->originalValues->transform(function($value, $key) use ($pageSettings){
-            // Transform cn_cappuccino_banner_title to breakline
             if ($key == 'cn_cappuccino_banner_title') {
                 $pageSettings->cn_cappuccino_banner_title = nl2br($value);
             }
-            // Transform cn_black_banner_title to breakline
             if ($key == 'cn_black_banner_title') {
                 $pageSettings->cn_black_banner_title = nl2br($value);
             }
@@ -76,16 +76,11 @@ class ContactController extends Controller
                 ], 422);
             }
 
-            Message::create([
+            $message = Message::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'subject' => $request['subject'],
                 'message' => $request['message']
-            ]);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Berhasil mengirimkan pesan!'
             ]);
 
         } catch (\Throwable $th) {
@@ -94,5 +89,16 @@ class ContactController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+
+        try {
+            Mail::to('admin@fresco.co.id')->send(new ContactMail($message));
+        } catch (\Throwable $th) {
+            log($th->getMessage());
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Berhasil mengirimkan pesan!'
+        ]);
     }
 }

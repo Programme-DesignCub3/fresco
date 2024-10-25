@@ -8,13 +8,13 @@ const themeStore = useThemeStore();
 <template>
     <!-- Home Video -->
     <div v-if="themeStore.theme != undefined || themeStore.theme != null" class="home-video" :class="themeStore.theme">
-        <div class="fr-container mx-auto w-full px-4 md:px-0">
+        <div class="max-w-screen-md mx-auto w-full px-4 md:px-0">
             <div class="w-full pb-10">
-                <iframe v-if="themeStore.theme == 'black'" class="h-[360px] w-full lg:h-[660px]"
+                <iframe v-if="themeStore.theme == 'black'" class="aspect-video w-full h-full"
                     :src="`https://www.youtube.com/embed/${data.black_video_url}`" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
-                <iframe v-else class="h-[360px] w-full lg:h-[660px]"
+                <iframe v-else class="aspect-video w-full h-full"
                     :src="`https://www.youtube.com/embed/${data.cappuccino_video_url}`" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
@@ -27,7 +27,7 @@ const themeStore = useThemeStore();
                 <div class="grid items-center justify-center text-center">
                     <p :class="themeStore.theme == 'black'
                             ? 'text-white'
-                            : 'text-white'
+                            : 'text-fr-black'
                         " data-aos-offset="0" data-aos="zoom-out" data-aos-duration="1000"
                         class="text-lg font-semibold md:text-xl">
                         Fresco in collaboration with
@@ -57,7 +57,7 @@ const themeStore = useThemeStore();
             <div class="pt-3 text-center leading-8">
                 <div v-if="themeStore.theme == 'black'" class="home-video-body text-white" data-aos="fade-up"
                     data-aos-delay="500" data-aos-offset="0" v-html="data.black_video_desc"></div>
-                <div v-else class="home-video-body text-white" v-html="data.cappuccino_video_desc" data-aos="fade-up"
+                <div v-else class="home-video-body text-black" v-html="data.cappuccino_video_desc" data-aos="fade-up"
                     data-aos-delay="500" data-aos-offset="0"></div>
             </div>
         </div>

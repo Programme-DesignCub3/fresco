@@ -112,127 +112,63 @@ window.addEventListener('resize', () => {
         :class="themeStore.theme">
         <!-- Home Intro Wrapper -->
         <div class="home-intro-product-wrapper">
-            <div class="swiper" ref="home">
-                <div class="swiper-wrapper py-10 md:py-20">
-                    <!-- Black Theme -->
-                    <template v-if="themeStore.theme == 'black'">
-                        <!-- First Slide -->
-                        <div class="swiper-slide">
-                            <div class="black-slider">
-                                <div class="heading-wrapper" id="black-anchor">
-                                    <h1 ref="first">
-                                        {{ data.black_intro_title }}
-                                    </h1>
-                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
-                                        data-aos-delay="200" data-aos-offset="0" v-html="data.black_intro_desc"></div>
-                                </div>
-                                <div class="image-wrapper">
-                                    <img width="auto" height="auto" :src="data.black_intro_image"
-                                        :alt="data.black_intro_title" data-aos-offset="0" data-aos="zoom-in"
-                                        data-aos-delay="150" />
-                                </div>
+            <div class="py-5 md:py-24">
+                <!-- Black Theme -->
+                <template v-if="themeStore.theme == 'black'">
+                     <div class="gradient grad-top"></div>
+                     <div class="gradient grad-bottom"></div>
+                    <div class="black-slider">
+                        <div class="heading-wrapper" id="black-anchor">
+                            <h1 ref="first">
+                                {{ data.black_intro_title }}
+                            </h1>
+                            <div class="description-wrapper home-intro-body" data-aos="fade-up"
+                                data-aos-delay="200" data-aos-offset="0" v-html="data.black_intro_desc"></div>
+                            <div class="text-center lg:text-left">
+                                <a href="/produk" data-aos="fade-right" data-aos-delay="200" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
+                                    ? 'button red'
+                                    : 'button red'
+                                    ">
+                                    TEMUKAN PRODUK
+                                    <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
+                                </a>
                             </div>
                         </div>
-                        <!-- Second Slide -->
-                        <div class="swiper-slide">
-                            <div class="black-slider">
-                                <div class="heading-wrapper" id="black-anchor">
-                                    <h1 ref="second">
-                                        {{ data.cappuccino_intro_title }}
-                                    </h1>
-                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
-                                        data-aos-delay="200" data-aos-offset="0" v-html="data.cappuccino_intro_desc
-                                            "></div>
-                                </div>
-                                <div class="image-wrapper">
-                                    <img width="auto" height="auto" :src="data.cappuccino_intro_image"
-                                        :alt="data.cappuccino_intro_title" data-aos-offset="0" data-aos="zoom-in"
-                                        data-aos-delay="150" />
-                                </div>
-                            </div>
+                        <div class="image-wrapper">
+                            <img width="auto" height="auto" :src="data.black_intro_image"
+                                :alt="data.black_intro_title" data-aos-offset="0" data-aos="zoom-in"
+                                data-aos-delay="150" />
                         </div>
-                    </template>
+                    </div>
+                </template>
 
-                    <!-- Cappuccino Theme -->
-                    <template v-if="themeStore.theme == 'cappuccino'">
-                        <!-- First Slide -->
-                        <div class="swiper-slide">
-                            <div class="cappuccino-slider">
-                                <div class="heading-wrapper" id="cappuccino-anchor">
-                                    <div class="relative">
-                                        <h1 ref="first">
-                                            {{ data.cappuccino_intro_title }}
-                                        </h1>
-                                        <h2 ref="stroke" data-aos="fade-in" :data-aos-delay="delayAos"
-                                            data-aos-duration="1200" data-aos-anchor="#cappuccino-anchor"
-                                            data-aos-offset="100">
-                                            {{ data.cappuccino_intro_title }}
-                                        </h2>
-                                    </div>
-                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
-                                        data-aos-delay="200" data-aos-offset="0" v-html="data.cappuccino_intro_desc
-                                            "></div>
-                                </div>
-                                <div class="image-wrapper">
-                                    <img width="auto" height="auto" :src="data.cappuccino_intro_image"
-                                        :alt="data.cappuccino_intro_title" data-aos-offset="0" data-aos="zoom-in"
-                                        data-aos-delay="150" />
-                                </div>
+                <!-- Cappuccino Theme -->
+                <template v-if="themeStore.theme == 'cappuccino'">
+                    <div class="cappuccino-slider">
+                        <div class="heading-wrapper" id="cappuccino-anchor">
+                            <h1 ref="first">
+                                {{ data.cappuccino_intro_title }}
+                            </h1>
+                            <div class="description-wrapper home-intro-body" data-aos="fade-up"
+                                data-aos-delay="200" data-aos-offset="0" v-html="data.cappuccino_intro_desc
+                                    "></div>
+                            <div class="text-center lg:text-left">
+                                <a href="/produk" data-aos="fade-right" data-aos-delay="200" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
+                                    ? 'button red'
+                                    : 'button red'
+                                    ">
+                                    TEMUKAN PRODUK
+                                    <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
+                                </a>
                             </div>
                         </div>
-                        <!-- Second Slide -->
-                        <div class="swiper-slide">
-                            <div class="cappuccino-slider">
-                                <div class="heading-wrapper" id="cappuccino-anchor">
-                                    <div class="relative">
-                                        <h1 ref="second">
-                                            {{ data.black_intro_title }}
-                                        </h1>
-                                        <h2 ref="stroke2" data-aos="fade-in" :data-aos-delay="delayAos"
-                                            data-aos-duration="1200" data-aos-anchor="#cappuccino-anchor"
-                                            data-aos-offset="100">
-                                            {{ data.black_intro_title }}
-                                        </h2>
-                                    </div>
-                                    <div class="description-wrapper home-intro-body" data-aos="fade-up"
-                                        data-aos-delay="200" data-aos-offset="0" v-html="data.black_intro_desc"></div>
-                                </div>
-                                <div class="image-wrapper">
-                                    <img width="auto" height="auto" :src="data.black_intro_image"
-                                        :alt="data.black_intro_title" data-aos-offset="0" data-aos="zoom-in"
-                                        data-aos-delay="150" />
-                                </div>
-                            </div>
+                        <div class="image-wrapper">
+                            <img width="auto" height="auto" :src="data.cappuccino_intro_image"
+                                :alt="data.cappuccino_intro_title" data-aos-offset="0" data-aos="zoom-in"
+                                data-aos-delay="150" />
                         </div>
-                    </template>
-                </div>
-            </div>
-            <!-- Arrow Slider -->
-            <div class="prev" :style="{
-                opacity: isDesktop
-                    ? idleWrapper
-                        ? idle && idleWrapper
-                            ? 0
-                            : 1
-                        : 0
-                    : idle
-                        ? 0
-                        : 1,
-            }">
-                <Icon icon="fa-solid:chevron-left" />
-            </div>
-            <div class="next" :style="{
-                opacity: isDesktop
-                    ? idleWrapper
-                        ? idle && idleWrapper
-                            ? 0
-                            : 1
-                        : 0
-                    : idle
-                        ? 0
-                        : 1,
-            }">
-                <Icon icon="fa-solid:chevron-right" />
+                    </div>
+                </template>
             </div>
         </div>
     </div>

@@ -48,4 +48,6 @@ Route::get('galeri', [GalleryController::class, 'index']);
 Route::controller(ContactController::class)->group(function () {
     Route::get('/hubungi', 'index');
     Route::post('/send-message', 'sendMessage');
+
+    Route::get('/mail', 'testMail');
 });

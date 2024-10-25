@@ -161,8 +161,7 @@ window.addEventListener('resize', () => {
                             ? 'text-white'
                             : 'text-fr-black'
                         " class="text-center font-medium">
-                        <p>Fresco</p>
-                        <p>{{ d.product }}</p>
+                        <p>Fresco {{ d.product }}</p>
                     </div>
                 </div>
             </div>

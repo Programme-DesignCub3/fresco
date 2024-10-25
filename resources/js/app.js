@@ -15,7 +15,6 @@ import {
     HomeCurator,
     ProductList,
     ProductMarketplace,
-    ProductDescTitle,
     ProductDescription,
     ProductPopup,
     ArticleSlide,
@@ -49,7 +48,6 @@ app
     /** @register Product Components */
     .component('ProductListComponent', ProductList)
     .component('ProductMarketplaceComponent', ProductMarketplace)
-    .component('ProductDescTitleComponent', ProductDescTitle)
     .component('ProductDescriptionComponent', ProductDescription)
     .component('ProductPopupComponent', ProductPopup)
 

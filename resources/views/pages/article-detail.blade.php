@@ -10,7 +10,7 @@
 @section('content')
     <section id="detail-article">
         <div
-            class="bg-fr-yellow bg-cover bg-top bg-no-repeat pt-0 transition-all duration-700 ease-in-out md:pt-48 dark:bg-fr-black dark:bg-article">
+            class="bg-gradient-yellow pt-0 transition-all duration-700 ease-in-out md:pt-48 dark:bg-fr-black dark:bg-article dark:bg-cover dark:bg-top dark:bg-no-repeat">
             <div class="fr-container mx-auto">
                 <div
                     class="flex w-full flex-col bg-white px-4 pb-10 pt-24 sm:pt-4 md:px-8 md:pb-16 md:pt-8 lg:px-16 lg:pb-24 lg:pt-16">

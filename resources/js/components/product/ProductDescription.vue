@@ -99,7 +99,7 @@ window.addEventListener('resize', () => {
         <div v-for="(d, i) in themeStore.theme == 'black'
             ? data.black_desc_list
             : data.cappuccino_desc_list" :key="i" class="hidden overflow-x-hidden lg:block">
-            <div class="grid grid-cols-2" :class="themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-fr-yellow'">
+            <div class="grid grid-cols-2" :class="themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-gradient-yellow'">
                 <div :class="themeStore.theme == 'black'
                         ? d.black_desc_position == 'right' && 'order-last'
                         : d.cappuccino_desc_position == 'right' &&

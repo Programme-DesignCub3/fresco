@@ -10,13 +10,13 @@ export default {
         extend: {
             backgroundImage: {
                 article:
-                    "url('https://fresco.democube.id/assets/images/bg-article.png')",
+                    "url('http://fresco.test/assets/images/bg-article.png')",
                 activity:
-                    "url('https://fresco.democube.id/assets/images/bg-activity.png')",
+                    "url('http://fresco.test/assets/images/bg-activity.png')",
                 'intro-product':
-                    "url('https://fresco.democube.id/assets/images/bg-shiny.png')",
+                    "url('http://fresco.test/assets/images/bg-shiny.png')",
                 'intro-product-portrait':
-                    "url('https://fresco.democube.id/assets/images/bg-shiny-portrait.png')",
+                    "url('http://fresco.test/assets/images/bg-shiny-portrait.png')",
             },
             backgroundColor: {
                 'fr-black': '#050505',
@@ -26,6 +26,7 @@ export default {
                 'fr-darker-yellow': '#edba48',
                 'fr-darker-red': '#bf1f2e',
                 'fr-darker-green': '#055c34',
+                'fr-dark-brown': '#301612'
             },
             colors: {
                 'fr-black': '#050505',
@@ -35,6 +36,7 @@ export default {
                 'fr-darker-yellow': '#edba48',
                 'fr-darker-red': '#bf1f2e',
                 'fr-darker-green': '#055c34',
+                'fr-dark-brown': '#301612'
             },
         },
     },
@@ -54,7 +56,7 @@ export default {
                         maxWidth: '920px',
                     },
                     '@screen xl': {
-                        maxWidth: '1200px',
+                        maxWidth: '900px',
                     },
                     '@screen 2xl': {
                         maxWidth: '1200px',

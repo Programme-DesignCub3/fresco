@@ -17,7 +17,6 @@ import HomeCurator from '@/components/home/HomeCurator.vue';
 /** @import Product Components */
 import ProductList from '@/components/product/ProductList.vue';
 import ProductMarketplace from '@/components/product/ProductMarketplace.vue';
-import ProductDescTitle from '@/components/product/ProductDescTitle.vue';
 import ProductDescription from '@/components/product/ProductDescription.vue';
 import ProductPopup from '@/components/product/ProductPopup.vue';
 
@@ -48,7 +47,6 @@ export {
     HomeCurator,
     ProductList,
     ProductMarketplace,
-    ProductDescTitle,
     ProductDescription,
     ProductPopup,
     ArticleSlide,

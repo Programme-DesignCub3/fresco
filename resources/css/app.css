@@ -118,11 +118,11 @@
     }
 
     .navigation.nav-black {
-        @apply bg-radial-dark;
+        @apply bg-fr-black;
     }
 
     .navigation.nav-cappuccino {
-        @apply bg-fr-yellow;
+        @apply bg-gradient-yellow;
     }
 
     .navigation .navigation-wrapper {
@@ -135,7 +135,7 @@
 
     .navigation .navigation-wrapper .nav-logo button img,
     .navigation .navigation-wrapper .nav-logo a img {
-        @apply w-[130px] md:w-[160px] xl:w-[200px];
+        @apply w-[130px] md:w-[160px] xl:w-[170px] 2xl:w-[200px];
     }
 
     .navigation .navigation-wrapper .nav-toggle {
@@ -252,11 +252,11 @@
     }
 
     .home-intro-video.black {
-        @apply relative bg-gradient-dark;
+        @apply relative bg-fr-dark-brown;
     }
 
     .home-intro-video.cappuccino {
-        @apply bg-fr-yellow;
+        @apply bg-gradient-yellow;
     }
 
     .home-intro-video-wrapper {
@@ -274,11 +274,11 @@
     }
 
     .home-intro-product.black {
-        @apply bg-intro-product-portrait bg-no-repeat bg-top bg-cover md:bg-center lg:bg-intro-product;
+        @apply bg-fr-dark-brown bg-intro-product-portrait bg-no-repeat bg-cover bg-center lg:bg-intro-product;
     }
 
     .home-intro-product.cappuccino {
-        @apply bg-radial-yellow;
+        @apply bg-gradient-yellow;
     }
 
     .home-intro-product .next,
@@ -323,7 +323,24 @@
     }
 
     .home-intro-product.black .home-intro-product-wrapper .black-slider {
-        @apply fr-container mx-auto grid grid-flow-row gap-y-8 lg:grid-cols-12 lg:gap-x-8;
+        @apply fr-container relative mx-auto grid grid-flow-row gap-y-8 lg:grid-cols-12 lg:gap-x-8;
+    }
+
+    .home-intro-product.black .gradient {
+        @apply absolute left-0 w-full h-24;
+        background: rgb(48,22,18);
+        background: -moz-linear-gradient(0deg, rgba(48,22,18,1) 0%, rgba(48,22,18,0.8) 30%, rgba(48,22,18,0.6) 45%, rgba(48,22,18,0.26) 69%, rgba(48,22,18,0) 100%);
+        background: -webkit-linear-gradient(0deg, rgba(48,22,18,1) 0%, rgba(48,22,18,0.8) 30%, rgba(48,22,18,0.6) 45%, rgba(48,22,18,0.26) 69%, rgba(48,22,18,0) 100%);
+        background: linear-gradient(0deg, rgba(48,22,18,1) 0%, rgba(48,22,18,0.8) 30%, rgba(48,22,18,0.6) 45%, rgba(48,22,18,0.26) 69%, rgba(48,22,18,0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#301612",endColorstr="#301612",GradientType=1);
+    }
+
+    .home-intro-product.black .gradient.grad-top {
+        @apply top-0 -rotate-180;
+    }
+
+    .home-intro-product.black .gradient.grad-bottom {
+        @apply bottom-0;
     }
 
     .home-intro-product.black
@@ -429,11 +446,11 @@
     }
 
     .home-post.black {
-        @apply bg-fr-yellow;
+        @apply bg-fr-dark-brown;
     }
 
     .home-post.cappuccino {
-        @apply bg-fr-yellow;
+        @apply bg-gradient-yellow;
     }
 
     .home-post .next,
@@ -472,15 +489,15 @@
     /* HomeVideo Component */
 
     .home-video {
-        @apply overflow-hidden py-10 transition-all duration-700 ease-in-out lg:py-16;
+        @apply overflow-hidden py-5 transition-all duration-700 ease-in-out lg:py-10;
     }
 
     .home-video.black {
-        @apply bg-gradient-dark;
+        @apply bg-fr-dark-brown;
     }
 
     .home-video.cappuccino {
-        @apply bg-radial-red;
+        @apply bg-gradient-yellow;
     }
 
     /* ProductList Component */
@@ -555,7 +572,7 @@
     }
 
     .activity-list.cappuccino {
-        @apply bg-fr-yellow;
+        @apply bg-gradient-yellow;
     }
 
     .activity-list .next,
@@ -649,7 +666,7 @@
     }
 
     .contact-form.cappuccino {
-        @apply bg-fr-yellow;
+        @apply bg-gradient-yellow;
     }
 
     .contact-form .contact-form-wrapper {
@@ -708,6 +725,14 @@
         background: -webkit-linear-gradient(90deg, rgba(57,23,16,1) 0%, rgba(147,84,35,1) 25%, rgba(175,133,91,1) 50%, rgba(147,84,35,1) 75%, rgba(57,23,16,1) 100%);
         background: linear-gradient(90deg, rgba(57,23,16,1) 0%, rgba(147,84,35,1) 25%, rgba(175,133,91,1) 50%, rgba(147,84,35,1) 75%, rgba(57,23,16,1) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#391710",endColorstr="#391710",GradientType=1);
+    }
+
+    .bg-gradient-yellow {
+        background: rgb(245,153,28);
+        background: -moz-linear-gradient(90deg, rgba(245,153,28,1) 0%, rgba(254,214,2,1) 50%, rgba(245,153,28,1) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(245,153,28,1) 0%, rgba(254,214,2,1) 50%, rgba(245,153,28,1) 100%);
+        background: linear-gradient(90deg, rgba(245,153,28,1) 0%, rgba(254,214,2,1) 50%, rgba(245,153,28,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f5991c",endColorstr="#f5991c",GradientType=1);
     }
 
     .bg-radial-darker-red {

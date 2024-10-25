@@ -16,7 +16,7 @@
 
         {{-- Article List Section --}}
         <div
-            class="bg-fr-yellow bg-cover bg-top bg-no-repeat px-4 py-10 md:px-0 md:py-20 dark:bg-fr-black dark:bg-article">
+            class="bg-gradient-yellow px-4 py-10 md:px-0 md:py-20 dark:bg-fr-black dark:bg-article dark:bg-cover dark:bg-top dark:bg-no-repeat">
             <div class="fr-container mx-auto space-y-12">
                 <div
                     class="flex flex-col justify-between gap-y-8 md:flex-row md:gap-y-12">
