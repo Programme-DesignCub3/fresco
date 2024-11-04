@@ -23,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('articles', function (Blueprint $table) {
-            //
+            $table->string('image')->nullable(false)->change();
+            $table->dropColumn('image_square');
         });
     }
 };

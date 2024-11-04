@@ -23,6 +23,7 @@ use Filament\Tables\Table;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
 
@@ -144,6 +145,23 @@ class ArticleResource extends Resource
                                                     'flex-end' => 'Right',
                                                 ])
                                         ]),
+                                    Block::make('instagram')
+                                        ->icon('heroicon-o-link')
+                                        ->schema([
+                                            Textarea::make('content')
+                                                ->label('Instagram Embed Code')
+                                                ->rows(3)
+                                                ->helperText('Copy the Instagram embed code.')
+                                                ->required(),
+                                            Select::make('instagram_align')
+                                                ->label('Instagram Align')
+                                                ->default('center')
+                                                ->options([
+                                                    'flex-start' => 'Left',
+                                                    'center' => 'Center',
+                                                    'flex-end' => 'Right',
+                                                ])
+                                        ])
                                 ])
                                 ->label('Content')
                                 ->blockNumbers(false)

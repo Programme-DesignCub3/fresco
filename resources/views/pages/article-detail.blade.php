@@ -72,6 +72,15 @@
                                             </div>
 
                                             @break
+                                        @case('instagram')
+                                            <div
+                                                style="
+                                                    display: flex;
+                                                    justify-content: {{ array_key_exists('data', $c) && array_key_exists('instagram_align', $c['data']) ? $c['data']['instagram_align'] : 'center' }};
+                                                ">
+                                                {!! $c['data']['content'] !!}
+                                            </div>
+                                            @break
                                     @endswitch
                                 @endforeach
                             </div>
