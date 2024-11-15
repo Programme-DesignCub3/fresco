@@ -248,7 +248,7 @@
     /* HomeIntro Component */
 
     .home-intro-video {
-        @apply w-full bg-batik bg-repeat-round bg-[length:1000px_397px] space-y-2 pt-24 pb-16 md:space-y-12 md:pt-48 xl:pt-40 2xl:pt-44;
+        @apply w-full bg-batik bg-contain lg:bg-repeat lg:bg-[length:1000px_397px] space-y-2 pt-24 pb-16 md:space-y-12 md:pt-48 xl:pt-40 2xl:pt-44;
     }
 
     .home-intro-video.black {
@@ -442,7 +442,7 @@
     /* HomePost Component */
 
     .home-post {
-        @apply relative bg-batik bg-repeat-round bg-[length:1000px_397px];
+        @apply relative bg-batik bg-contain lg:bg-repeat lg:bg-[length:1000px_397px];
     }
 
     .home-post.black {
@@ -489,7 +489,7 @@
     /* HomeVideo Component */
 
     .home-video {
-        @apply bg-batik bg-repeat-round bg-[length:1000px_397px] overflow-hidden py-5 transition-all duration-700 ease-in-out lg:py-10;
+        @apply bg-batik bg-contain lg:bg-repeat lg:bg-[length:1000px_397px] overflow-hidden py-5 transition-all duration-700 ease-in-out lg:py-10;
     }
 
     .home-video.black {

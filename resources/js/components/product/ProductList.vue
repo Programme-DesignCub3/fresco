@@ -232,7 +232,7 @@ window.addEventListener('resize', () => {
                                     <img width="auto" height="auto" :src="d.image" :alt="d.product" data-aos="fade-up"
                                         data-aos-delay="200" data-aos-duration="1000" class="w-[200px]" />
                                     <div data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000"
-                                        data-aos-offset="20" class="text-center font-bold">
+                                        data-aos-offset="20" class="text-center font-bold" :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-md'">
                                         <p>Fresco</p>
                                         <p>{{ d.product }}</p>
                                     </div>
