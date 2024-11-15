@@ -161,7 +161,7 @@ window.addEventListener('resize', () => {
                             ? 'text-white'
                             : 'text-fr-black'
                         " class="text-center font-medium">
-                        <p>Fresco {{ d.product }}</p>
+                        <p :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-full'">Fresco {{ d.product }}</p>
                     </div>
                 </div>
             </div>

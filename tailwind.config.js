@@ -17,6 +17,8 @@ export default {
                     "url('https://fresco.democube.id/assets/images/bg-shiny.png')",
                 'intro-product-portrait':
                     "url('https://fresco.democube.id/assets/images/bg-shiny-portrait.png')",
+                'batik':
+                    "url('https://fresco.democube.id/assets/images/bg-batik.jpg')",
             },
             backgroundColor: {
                 'fr-black': '#050505',
@@ -26,7 +28,8 @@ export default {
                 'fr-darker-yellow': '#edba48',
                 'fr-darker-red': '#bf1f2e',
                 'fr-darker-green': '#055c34',
-                'fr-dark-brown': '#301612'
+                'fr-dark-brown': '#301612',
+                'fr-gold': '#d5a655'
             },
             colors: {
                 'fr-black': '#050505',
@@ -36,7 +39,8 @@ export default {
                 'fr-darker-yellow': '#edba48',
                 'fr-darker-red': '#bf1f2e',
                 'fr-darker-green': '#055c34',
-                'fr-dark-brown': '#301612'
+                'fr-dark-brown': '#301612',
+                'fr-gold': '#d5a655'
             },
         },
     },
@@ -56,7 +60,7 @@ export default {
                         maxWidth: '920px',
                     },
                     '@screen xl': {
-                        maxWidth: '900px',
+                        maxWidth: '1100px',
                     },
                     '@screen 2xl': {
                         maxWidth: '1200px',

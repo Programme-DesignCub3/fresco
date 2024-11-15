@@ -115,23 +115,24 @@ window.addEventListener('resize', () => {
             <div class="py-5 md:py-24">
                 <!-- Black Theme -->
                 <template v-if="themeStore.theme == 'black'">
-                     <div class="gradient grad-top"></div>
-                     <div class="gradient grad-bottom"></div>
+                     <!-- <div class="gradient grad-top"></div>
+                     <div class="gradient grad-bottom"></div> -->
                     <div class="black-slider">
                         <div class="heading-wrapper" id="black-anchor">
                             <h1 ref="first">
                                 {{ data.black_intro_title }}
                             </h1>
-                            <div class="description-wrapper home-intro-body" data-aos="fade-up"
-                                data-aos-delay="200" data-aos-offset="0" v-html="data.black_intro_desc"></div>
-                            <div class="text-center lg:text-left">
-                                <a href="/produk" data-aos="fade-right" data-aos-delay="200" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
-                                    ? 'button red'
-                                    : 'button red'
-                                    ">
-                                    TEMUKAN PRODUK
-                                    <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
-                                </a>
+                            <div class="space-y-5" data-aos="fade-up" data-aos-delay="200" data-aos-offset="0">
+                                <div class="description-wrapper home-intro-body" v-html="data.black_intro_desc"></div>
+                                <div class="text-center lg:text-left">
+                                    <a href="/produk" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
+                                        ? 'button red'
+                                        : 'button red'
+                                        ">
+                                        TEMUKAN PRODUK
+                                        <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="image-wrapper">
@@ -149,17 +150,17 @@ window.addEventListener('resize', () => {
                             <h1 ref="first">
                                 {{ data.cappuccino_intro_title }}
                             </h1>
-                            <div class="description-wrapper home-intro-body" data-aos="fade-up"
-                                data-aos-delay="200" data-aos-offset="0" v-html="data.cappuccino_intro_desc
-                                    "></div>
-                            <div class="text-center lg:text-left">
-                                <a href="/produk" data-aos="fade-right" data-aos-delay="200" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
-                                    ? 'button red'
-                                    : 'button red'
-                                    ">
-                                    TEMUKAN PRODUK
-                                    <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
-                                </a>
+                            <div class="space-y-5" data-aos="fade-up" data-aos-delay="200" data-aos-offset="0">
+                                <div class="description-wrapper home-intro-body" v-html="data.cappuccino_intro_desc"></div>
+                                <div class="text-center lg:text-left">
+                                    <a href="/produk" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
+                                        ? 'button red'
+                                        : 'button red'
+                                        ">
+                                        TEMUKAN PRODUK
+                                        <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="image-wrapper">

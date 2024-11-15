@@ -81,18 +81,18 @@ watch(theme, () => {
                                         class="relative w-full aspect-square object-cover object-center" src="/assets/images/meta-image.png"
                                         :alt="d.title" />
                                     <div :class="themeStore.theme == 'black'
-                                        ? 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
+                                        ? 'from-fr-gold/80 via-fr-gold/60 group-hover:bg-fr-gold/30'
                                         : 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
                                         "
                                         class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
-                                        <div class="flex flex-col items-center gap-3 text-white">
-                                            <h3 class="px-3 text-center text-lg font-semibold text-white">
+                                        <div class="flex flex-col items-center gap-3" :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
+                                            <h3 class="px-3 text-center text-lg font-semibold">
                                                 {{ d.title }}
                                             </h3>
                                             <p>{{ d.timestamp }}</p>
                                         </div>
                                         <p
-                                            class="absolute -bottom-12 rounded-full bg-fr-yellow px-6 py-2 text-sm font-medium text-black transition-all duration-500 ease-in-out group-hover:bottom-8">
+                                            :class="themeStore.theme == 'black' ? 'bg-fr-red text-white' : 'bg-fr-yellow text-fr-black'" class="absolute -bottom-12 rounded-full px-6 py-2 text-sm font-medium transition-all duration-500 ease-in-out group-hover:bottom-8">
                                             READ MORE
                                         </p>
                                     </div>
