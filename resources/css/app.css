@@ -248,11 +248,11 @@
     /* HomeIntro Component */
 
     .home-intro-video {
-        @apply w-full bg-batik bg-contain lg:bg-repeat lg:bg-[length:1000px_397px] space-y-2 pt-24 pb-16 md:space-y-12 md:pt-48 xl:pt-40 2xl:pt-44;
+        @apply w-full space-y-2 pt-24 pb-16 md:space-y-12 md:pt-48 xl:pt-40 2xl:pt-44;
     }
 
     .home-intro-video.black {
-        @apply relative bg-fr-dark-brown;
+        @apply relative;
     }
 
     .home-intro-video.cappuccino {
@@ -273,9 +273,9 @@
         @apply relative overflow-x-hidden transition-all duration-700 ease-in-out;
     }
 
-    .home-intro-product.black {
+    /* .home-intro-product.black {
         @apply bg-fr-dark-brown bg-intro-product-portrait bg-no-repeat bg-cover bg-center lg:bg-intro-product;
-    }
+    } */
 
     .home-intro-product.cappuccino {
         @apply bg-gradient-yellow;
@@ -442,12 +442,12 @@
     /* HomePost Component */
 
     .home-post {
-        @apply relative bg-batik bg-contain lg:bg-repeat lg:bg-[length:1000px_397px];
+        @apply relative;
     }
 
-    .home-post.black {
+    /* .home-post.black {
         @apply bg-fr-dark-brown;
-    }
+    } */
 
     .home-post.cappuccino {
         @apply bg-gradient-yellow;
@@ -489,12 +489,12 @@
     /* HomeVideo Component */
 
     .home-video {
-        @apply bg-batik bg-contain lg:bg-repeat lg:bg-[length:1000px_397px] overflow-hidden py-5 transition-all duration-700 ease-in-out lg:py-10;
+        @apply overflow-hidden py-5 transition-all duration-700 ease-in-out lg:py-10;
     }
 
-    .home-video.black {
+    /* .home-video.black {
         @apply bg-fr-dark-brown;
-    }
+    } */
 
     .home-video.cappuccino {
         @apply bg-gradient-yellow;
@@ -568,7 +568,7 @@
     }
 
     .activity-list.black {
-        @apply bg-fr-black bg-activity;
+        @apply bg-activity;
     }
 
     .activity-list.cappuccino {
@@ -904,6 +904,12 @@
 }
 
 /* Custom Styles */
+section#home {
+    background-image: url('https://fresco.democube.id/assets/images/bg-batik.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
 
 .swiper-3d .swiper-slide-shadow-left {
     background-image: none !important;
