@@ -115,8 +115,6 @@ window.addEventListener('resize', () => {
             <div class="py-5 md:py-24">
                 <!-- Black Theme -->
                 <template v-if="themeStore.theme == 'black'">
-                     <!-- <div class="gradient grad-top"></div>
-                     <div class="gradient grad-bottom"></div> -->
                     <div class="black-slider">
                         <div class="heading-wrapper" id="black-anchor">
                             <h1 ref="first">
@@ -136,9 +134,7 @@ window.addEventListener('resize', () => {
                             </div>
                         </div>
                         <div class="image-wrapper">
-                            <img width="auto" height="auto" :src="data.black_intro_image"
-                                :alt="data.black_intro_title" data-aos-offset="0" data-aos="zoom-in"
-                                data-aos-delay="150" />
+                            <img width="auto" height="auto" :src="data.black_intro_image" :alt="data.black_intro_title" data-aos-offset="0" data-aos="zoom-in" data-aos-delay="150" />
                         </div>
                     </div>
                 </template>

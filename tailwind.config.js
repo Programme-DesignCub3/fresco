@@ -8,6 +8,10 @@ export default {
     ],
     theme: {
         extend: {
+            content: {
+                'shiny':
+                    "url('https://fresco.democube.id/assets/images/shiny.png')",
+            },
             backgroundImage: {
                 article:
                     "url('https://fresco.democube.id/assets/images/bg-article.png')",
