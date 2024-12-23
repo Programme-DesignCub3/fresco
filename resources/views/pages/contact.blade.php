@@ -8,7 +8,7 @@
 @section('meta_image', asset('assets/images/meta-image.png'))
 
 @section('content')
-    <section id="contact">
+    <section id="contact" class="bg-gradient-yellow dark:bg-batik">
         {{-- Contact Header Section --}}
         <header-page-component
             header="contact"

@@ -17,8 +17,6 @@ export default {
                     "url('https://fresco.democube.id/assets/images/bg-article.png')",
                 activity:
                     "url('https://fresco.democube.id/assets/images/bg-activity.png')",
-                'intro-product':
-                    "url('https://fresco.democube.id/assets/images/bg-shiny.png')",
                 'intro-product-portrait':
                     "url('https://fresco.democube.id/assets/images/bg-shiny-portrait.png')",
                 'batik':

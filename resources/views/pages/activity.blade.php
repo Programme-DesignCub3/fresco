@@ -8,7 +8,7 @@
 @section('meta_image', asset('assets/images/meta-image.png'))
 
 @section('content')
-    <section id="activity">
+    <section id="activity" class="bg-gradient-yellow dark:bg-batik">
         {{-- Activity Header Section --}}
         <header-page-component
             header="activity"

@@ -8,9 +8,9 @@
 @section('meta_image', $article->featured_image ?? asset('assets/images/meta-image.png'))
 
 @section('content')
-    <section id="detail-article">
+    <section id="detail-article" class="bg-gradient-yellow dark:bg-batik">
         <div
-            class="bg-gradient-yellow pt-0 transition-all duration-700 ease-in-out md:pt-48 dark:bg-fr-black dark:bg-article dark:bg-cover dark:bg-top dark:bg-no-repeat">
+            class="pt-0 transition-all duration-700 ease-in-out md:pt-48">
             <div class="fr-container mx-auto">
                 <div
                     class="flex w-full flex-col bg-white px-4 pb-10 pt-24 sm:pt-4 md:px-8 md:pb-16 md:pt-8 lg:px-16 lg:pb-24 lg:pt-16">

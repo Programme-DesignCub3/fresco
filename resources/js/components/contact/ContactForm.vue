@@ -89,9 +89,20 @@ const sendMessageHandler = async (e) => {
                     <div data-aos="fade-down" data-aos-delay="500" data-aos-duration="1000" data-aos-offset="0"
                         class="space-y-1">
                         <h3>PT SANTOS JAYA ABADI</h3>
-                        <p>{{ data.phone_alias }} (SANTOS)</p>
-                        <p>Senin s/d Jumat 09.00-17.00</p>
-                        <p>Email: {{ data.email_alias }}</p>
+                        <div class="flex flex-col gap-y-2">
+                            <div class="flex items-center gap-x-2">
+                                <Icon class="w-6 h-6 text-fr-dark dark:text-white" icon="mdi:phone" />
+                                <a class="w-max" :href="`tel:${data.phone_link}`">{{ data.phone_alias }}</a>
+                            </div>
+                            <div class="flex items-center gap-x-2">
+                                <Icon class="w-6 h-6 text-fr-dark dark:text-white" icon="ri:whatsapp-fill" />
+                                <a class="w-max" :href="data.whatsapp_link" target="_blank">{{ data.whatsapp_alias }}</a>
+                            </div>
+                            <div class="flex items-center gap-x-2">
+                                <Icon class="w-6 h-6 text-fr-dark dark:text-white" icon="foundation:mail" />
+                                <a class="w-max" :href="`mailto:${data.email_link}`">{{ data.email_alias }}</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

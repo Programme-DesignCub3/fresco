@@ -550,9 +550,9 @@
         @apply relative bg-cover bg-bottom bg-no-repeat py-10 md:py-20;
     }
 
-    .activity-list.black {
-        @apply bg-activity;
-    }
+    /* .activity-list.black {
+        @apply bg-batik;
+    } */
 
     .activity-list.cappuccino {
         @apply bg-gradient-yellow;
@@ -644,9 +644,9 @@
         @apply py-10 transition-all duration-700 ease-in-out lg:py-20;
     }
 
-    .contact-form.black {
-        @apply bg-gradient-dark;
-    }
+    /* .contact-form.black {
+        @apply bg-batik;
+    } */
 
     .contact-form.cappuccino {
         @apply bg-gradient-yellow;
@@ -681,11 +681,13 @@
         @apply space-y-8 md:space-y-12;
     }
 
-    .contact-form.black .contact-form-wrapper .contact-form-information p {
+    .contact-form.black .contact-form-wrapper .contact-form-information p,
+    .contact-form.black .contact-form-wrapper .contact-form-information a {
         @apply font-medium text-white;
     }
 
-    .contact-form.cappuccino .contact-form-wrapper .contact-form-information p {
+    .contact-form.cappuccino .contact-form-wrapper .contact-form-information p,
+    .contact-form.cappuccino .contact-form-wrapper .contact-form-information a {
         @apply font-medium text-fr-black;
     }
 
@@ -884,16 +886,16 @@
             rgba(0, 0, 0, 0)
         );
     }
+
+    .bg-batik {
+        background-image: url('https://fresco.democube.id/assets/images/bg-batik.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
 }
 
 /* Custom Styles */
-section#home {
-    background-image: url('https://fresco.democube.id/assets/images/bg-batik.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-}
-
 .swiper-3d .swiper-slide-shadow-left {
     background-image: none !important;
 }

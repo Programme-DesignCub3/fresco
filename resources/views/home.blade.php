@@ -8,7 +8,7 @@
 @section('meta_image', asset('assets/images/meta-image.png'))
 
 @section('content')
-    <section id="home" class="overflow-hidden">
+    <section id="home" class="bg-gradient-yellow dark:bg-batik overflow-hidden">
         {{-- Home Introduction Section --}}
         <home-intro-component
             :data="{{ json_encode($pages) }}"></home-intro-component>

@@ -8,7 +8,7 @@ const themeStore = useThemeStore();
 
 <template>
     <!-- Black Theme -->
-    <div v-if="themeStore.theme == 'black'">
+    <div v-if="themeStore.theme == 'black'" class="min-h-max">
         <div class="home-intro-video" :class="themeStore.theme">
             <div class="home-intro-video-wrapper">
                 <div class="absolute left-0 top-0 h-32 w-full bg-gradient-to-b from-fr-black/80 to-transparent"></div>
@@ -23,7 +23,7 @@ const themeStore = useThemeStore();
     </div>
 
     <!-- Cappuccino Theme -->
-    <div v-if="themeStore.theme == 'cappuccino'">
+    <div v-if="themeStore.theme == 'cappuccino'" class="min-h-max">
         <div class="home-intro-video" :class="themeStore.theme">
             <div class="home-intro-video-wrapper">
                 <video autoplay muted loop playsinline id="cappuccino-coffee"
