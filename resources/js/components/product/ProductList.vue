@@ -153,11 +153,11 @@ window.addEventListener('resize', () => {
                 <div v-for="(d, i) in themeStore.theme == 'black'
                     ? black
                     : cappuccino" :key="i" @click="showPopup(d)"
-                    class="flex cursor-pointer flex-col items-center justify-between space-y-4 md:transition-all md:duration-300 md:ease-in-out md:hover:scale-110">
+                    class="flex flex-col items-center justify-between space-y-4 cursor-pointer md:transition-all md:duration-300 md:ease-in-out md:hover:scale-110">
                     <img width="auto" height="auto" :src="d.image" :alt="d.product" data-aos="fade-up"
                         data-aos-delay="200" data-aos-duration="1000"
-                        class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px]" />
-                    <div data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000" data-aos-offset="20" :class="themeStore.theme == 'black'
+                        class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px] xl:w-[160px]" />
+                    <div :class="themeStore.theme == 'black'
                             ? 'text-white'
                             : 'text-fr-black'
                         " class="text-center font-medium">
@@ -214,8 +214,7 @@ window.addEventListener('resize', () => {
                                         data-aos-delay="200" data-aos-duration="1000" class="w-[200px]" />
                                     <div data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000"
                                         data-aos-offset="20" class="text-center font-bold">
-                                        <p>Fresco</p>
-                                        <p>{{ d.product }}</p>
+                                        <p>Fresco {{ d.product }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -232,9 +231,8 @@ window.addEventListener('resize', () => {
                                     <img width="auto" height="auto" :src="d.image" :alt="d.product" data-aos="fade-up"
                                         data-aos-delay="200" data-aos-duration="1000" class="w-[200px]" />
                                     <div data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000"
-                                        data-aos-offset="20" class="text-center font-bold" :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-md'">
-                                        <p>Fresco</p>
-                                        <p>{{ d.product }}</p>
+                                        data-aos-offset="20" class="text-center font-bold" :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-full'">
+                                        <p>Fresco {{ d.product }}</p>
                                     </div>
                                 </div>
                             </div>
