@@ -159,7 +159,7 @@
     }
 
     .navigation .navigation-wrapper .nav-list {
-        @apply flex flex-col items-center justify-between gap-8 px-8 pb-2 pt-36 md:flex-row md:items-start md:gap-4 md:px-0 md:pt-0;
+        @apply flex flex-col items-center justify-between gap-8 px-8 pb-2 pt-36 md:flex-row md:items-start md:gap-4 md:px-0 md:pt-0 xl:pr-9 min-[1350px]:px-0;
     }
 
     .navigation .navigation-wrapper .nav-list .nav-item {
@@ -210,7 +210,7 @@
     }
 
     .navigation .theme-changer {
-        @apply fixed bottom-4 z-[99999] cursor-pointer overflow-hidden rounded-full border-[5px] border-white shadow-lg transition-all duration-300 ease-in-out hover:scale-105 md:absolute md:bottom-auto md:right-8 md:top-5 xl:bottom-auto xl:right-10 xl:top-2/4 2xl:right-16;
+        @apply fixed bottom-4 z-[99999] cursor-pointer overflow-hidden rounded-full border-[5px] border-white shadow-lg transition-all duration-300 ease-in-out hover:scale-105 md:absolute md:bottom-auto md:right-8 md:top-5 lg:right-2 xl:bottom-auto min-[1350px]:right-10 xl:top-2/4 2xl:right-16;
     }
 
     .navigation .theme-changer .is-black {
