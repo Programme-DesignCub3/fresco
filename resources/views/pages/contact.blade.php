@@ -16,7 +16,8 @@
 
         {{-- Contact Form Section --}}
         <contact-form-component
-            :data="{{ json_encode($general) }}"></contact-form-component>
+            :data="{{ json_encode($general) }}"
+            :sitekey={{ json_encode(config('services.google.recaptcha.site_key')) }}></contact-form-component>
     </section>
 @endsection
 

@@ -6,7 +6,7 @@ import { ref } from 'vue';
 import Loading from '@/assets/Loading.vue';
 import axios from 'axios';
 
-const { data } = defineProps(['data']);
+const { data, sitekey } = defineProps(['data', 'sitekey']);
 const themeStore = useThemeStore();
 const errMessage = ref();
 const name = ref('');
@@ -14,8 +14,6 @@ const email = ref('');
 const subject = ref('');
 const message = ref('');
 
-// Recaptcha Credentials
-const siteKey = ref('6LdoQYgpAAAAAJDbf3AD3UNDhkkX-BximObmo9TX');
 const token = ref(null);
 const toast = ref(false);
 const toastMessage = ref(null);
@@ -154,7 +152,7 @@ const sendMessageHandler = async (e) => {
                 </div>
                 <!-- Form Recaptcha -->
                 <div class="space-y-2">
-                    <VueRecaptcha class="full-width" :sitekey="siteKey" :load-recaptcha-script="true"
+                    <VueRecaptcha class="full-width" :sitekey="sitekey" :load-recaptcha-script="true"
                         @verify="handleSuccess" @error="handleError" @expired="handleExpired">
                     </VueRecaptcha>
                     <div v-if="errMessage">

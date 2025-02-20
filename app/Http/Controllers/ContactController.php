@@ -9,6 +9,7 @@ use App\Settings\GeneralSettings;
 use App\Settings\PageSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,7 +63,7 @@ class ContactController extends Controller
 
             $url = 'https://www.google.com/recaptcha/api/siteverify';
             $data = [
-                'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
+                'secret' => config('services.google.recaptcha.secret_key'),
                 'response' => $request->get('g-recaptcha-response')
             ];
 
@@ -91,14 +92,19 @@ class ContactController extends Controller
         }
 
         try {
-            Mail::to('admin@fresco.co.id')->send(new ContactMail($message));
+            Mail::to('admin@fresco.id')->send(new ContactMail($message));
         } catch (\Throwable $th) {
-            log($th->getMessage());
+            Log::error($th->getMessage());
         }
 
         return response()->json([
             'status' => true,
             'message' => 'Berhasil mengirimkan pesan!'
         ]);
+    }
+
+    public function testMail()
+    {
+        return view('mails.contact-mail');
     }
 }

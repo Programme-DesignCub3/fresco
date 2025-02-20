@@ -32,7 +32,7 @@ class ContactMail extends Mailable
         $now = now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
 
         return new Envelope(
-            from: new Address('noreply@fresco.co.id', 'noreply fresco'),
+            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
             subject: 'Fresco Contact Notification | ' . $now
         );
     }
@@ -42,14 +42,9 @@ class ContactMail extends Mailable
      */
     public function content(): Content
     {
-        $htmlString = '<h1>Seseorang telah mengisi form kontak!</h1>';
-        $htmlString .= '<p>Nama: ' . $this->data['name'] . '</p>';
-        $htmlString .= '<p>Email: ' . $this->data['email'] . '</p>';
-        $htmlString .= '<p>Subject: ' . $this->data['subject'] . '</p>';
-        $htmlString .= '<p>Pesan: ' . $this->data['message'] . '</p>';
-
         return new Content(
-            htmlString: $htmlString
+            view: 'mails.contact-mail',
+            with: ['data' => $this->data]
         );
     }
 
