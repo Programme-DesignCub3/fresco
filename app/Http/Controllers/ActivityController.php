@@ -29,7 +29,7 @@ class ActivityController extends Controller
         $pages = $pageSettings->toArray();
 
         // Activity Resource
-        $activity = Activity::where('start_date', '<=', Carbon::now()->toDateString())->where('end_date', '>=', Carbon::now()->toDateString())->with('featured_image')->with('featured_image_portrait')->latest()->get();
+        $activity = Activity::where('start_date', '<=', Carbon::now()->toDateString())->where('end_date', '>=', Carbon::now()->toDateString())->with('featured_image')->latest()->get();
         $activity->transform(function ($act) {
             $act->image = $act->featured_image->url ?? null;
             return $act;
