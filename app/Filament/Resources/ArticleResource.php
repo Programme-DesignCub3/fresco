@@ -196,6 +196,7 @@ class ArticleResource extends Resource
                         ->schema([
                             Toggle::make('published')
                                 ->inline(false)
+                                ->default(true)
                                 ->label('Publish')
                                 ->onIcon('heroicon-o-signal')
                                 ->offIcon('heroicon-o-signal-slash')

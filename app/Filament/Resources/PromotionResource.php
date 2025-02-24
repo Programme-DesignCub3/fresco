@@ -91,6 +91,9 @@ class PromotionResource extends Resource
                                 ->required(),
                             Repeater::make('links')
                                 ->minItems(1)
+                                ->maxItems(1)
+                                ->deletable(false)
+                                ->reorderable(false)
                                 ->schema([
                                     TextInput::make('link')
                                         ->label('Link')

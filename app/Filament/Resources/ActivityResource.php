@@ -76,6 +76,9 @@ class ActivityResource extends Resource
                                 ]),
                             Repeater::make('links')
                                 ->minItems(1)
+                                ->maxItems(1)
+                                ->deletable(false)
+                                ->reorderable(false)
                                 ->schema([
                                     TextInput::make('link')
                                         ->label('Link')
@@ -116,13 +119,7 @@ class ActivityResource extends Resource
                                 ->maxItems(1)
                                 ->acceptedFileTypes(['image/*'])
                                 ->helperText('Maximum 2 MB.')
-                                ->required(),
-                            CuratorPicker::make('image_portrait')
-                                ->maxSize(2048)
-                                ->acceptedFileTypes(['image/*'])
-                                ->maxItems(1)
-                                ->helperText('Maximum 2 MB.')
-                                ->label('Image Portrait (Optional)'),
+                                ->required()
                         ])
                     ])
             ]);

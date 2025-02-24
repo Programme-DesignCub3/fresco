@@ -74,6 +74,9 @@ class ProductResource extends Resource
                             Repeater::make('links')
                                 ->label('Links')
                                 ->minItems(1)
+                                ->maxItems(1)
+                                ->deletable(false)
+                                ->reorderable(false)
                                 ->required()
                                 ->schema([
                                     TextInput::make('link')
