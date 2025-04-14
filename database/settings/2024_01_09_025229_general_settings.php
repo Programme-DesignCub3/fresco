@@ -97,6 +97,9 @@ return new class extends SettingsMigration
         // Marketplace Link
         $this->migrator->add('general.marketplaces', $default['marketplaces']);
 
+        // Email Recipient
+        $this->migrator->add('general.email_recipient', 'response@kopifresco.id');
+
         // Social Media Link
         $this->migrator->add('general.facebook_alias', 'Kopi Fresco');
         $this->migrator->add('general.facebook_link', 'https://www.facebook.com/kopifresco.id');

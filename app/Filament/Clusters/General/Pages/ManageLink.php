@@ -17,7 +17,7 @@ class ManageLink extends SettingsPage
 
     protected ?string $subheading = 'Manage all link & contact';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $navigationGroup = 'Link';
 

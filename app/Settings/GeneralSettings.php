@@ -13,6 +13,9 @@ class GeneralSettings extends Settings
     // Marketplace Link
     public array $marketplaces;
 
+    // Email Recipient
+    public string $email_recipient;
+
     // Social Media Link
     public string $facebook_alias;
     public string $facebook_link;

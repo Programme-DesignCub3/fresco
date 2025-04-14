@@ -25,6 +25,8 @@ class ManageDescription extends SettingsPage
 
     protected ?string $subheading = 'Manage description section';
 
+    protected static ?int $navigationSort = 1;
+
     protected static ?string $navigationGroup = 'Content';
 
     protected static ?string $navigationLabel = 'Description';
