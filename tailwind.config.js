@@ -3,26 +3,17 @@ import tailwindCssTypography from '@tailwindcss/typography';
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: 'class',
-    content: [
-        './resources/**/*.blade.php',
-        './resources/**/*.js',
-        './resources/**/*.vue',
-    ],
+    content: ['./resources/**/*.blade.php', './resources/**/*.js', './resources/**/*.vue'],
     theme: {
         extend: {
             content: {
-                'shiny':
-                    "url('https://fresco.democube.id/assets/images/shiny.png')",
+                shiny: "url('https://kopifresco.id/assets/images/shiny.png')",
             },
             backgroundImage: {
-                article:
-                    "url('https://fresco.democube.id/assets/images/bg-article.png')",
-                activity:
-                    "url('https://fresco.democube.id/assets/images/bg-activity.png')",
-                'intro-product-portrait':
-                    "url('https://fresco.democube.id/assets/images/bg-shiny-portrait.png')",
-                'batik':
-                    "url('https://fresco.democube.id/assets/images/bg-batik.jpg')",
+                article: "url('https://kopifresco.id/assets/images/bg-article.png')",
+                activity: "url('https://kopifresco.id/assets/images/bg-activity.png')",
+                'intro-product-portrait': "url('https://kopifresco.id/assets/images/bg-shiny-portrait.png')",
+                batik: "url('https://kopifresco.id/assets/images/bg-batik.jpg')",
             },
             backgroundColor: {
                 'fr-black': '#050505',
@@ -33,7 +24,7 @@ export default {
                 'fr-darker-red': '#bf1f2e',
                 'fr-darker-green': '#055c34',
                 'fr-dark-brown': '#301612',
-                'fr-gold': '#d5a655'
+                'fr-gold': '#d5a655',
             },
             colors: {
                 'fr-black': '#050505',
@@ -44,7 +35,7 @@ export default {
                 'fr-darker-red': '#bf1f2e',
                 'fr-darker-green': '#055c34',
                 'fr-dark-brown': '#301612',
-                'fr-gold': '#d5a655'
+                'fr-gold': '#d5a655',
             },
         },
     },
