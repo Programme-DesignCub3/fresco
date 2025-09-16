@@ -60,8 +60,7 @@ watch(theme, () => {
         @mouseleave="idleWrapper = false" class="home-post" :class="themeStore.theme">
         <div class="fr-container mx-auto w-full px-4 py-5 md:px-0 md:py-10">
             <div class="flex w-full flex-col gap-16">
-                <h2
-                    :class="themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'"
+                <h2 :class="themeStore.theme == 'black' ? 'text-white' : 'text-fr-black'"
                     class="relative text-4xl font-bold leading-none transition-all duration-300 ease-in-out after:absolute after:-bottom-6 after:left-0 after:h-1.5 after:w-16 after:rounded-full after:bg-fr-red">
                     Articles
                 </h2>
@@ -72,27 +71,28 @@ watch(theme, () => {
                             <div v-for="d in data" class="swiper-slide">
                                 <a :href="'artikel/' + d.slug" class="group">
                                     <img v-if="d.image_square" width="auto" height="auto"
-                                        class="relative w-full aspect-square object-cover object-center" :src="d.image_square"
-                                        :alt="d.title" />
+                                        class="relative w-full aspect-square object-cover object-center"
+                                        :src="d.image_square" :alt="d.title" />
                                     <img v-else-if="d.image_square == null && d.image" width="auto" height="auto"
                                         class="relative w-full aspect-square object-cover object-center" :src="d.image"
                                         :alt="d.title" />
-                                    <img v-else-if="d.image_square == null && d.image == null" width="auto" height="auto"
-                                        class="relative w-full aspect-square object-cover object-center" src="/assets/images/meta-image.png"
-                                        :alt="d.title" />
+                                    <img v-else-if="d.image_square == null && d.image == null" width="auto"
+                                        height="auto" class="relative w-full aspect-square object-cover object-center"
+                                        src="/assets/images/meta-image.png" :alt="d.title" />
                                     <div :class="themeStore.theme == 'black'
                                         ? 'from-fr-gold/80 via-fr-gold/60 group-hover:bg-fr-gold/30'
                                         : 'from-fr-red/80 via-fr-red/60 group-hover:bg-fr-red/30'
                                         "
                                         class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
-                                        <div class="flex flex-col items-center gap-3" :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
+                                        <div class="flex flex-col items-center gap-3"
+                                            :class="themeStore.theme == 'black' ? 'text-black' : 'text-white'">
                                             <h3 class="px-3 text-center text-lg font-semibold">
                                                 {{ d.title }}
                                             </h3>
                                             <p>{{ d.timestamp }}</p>
                                         </div>
-                                        <p
-                                            :class="themeStore.theme == 'black' ? 'bg-fr-red text-white' : 'bg-fr-yellow text-fr-black'" class="absolute -bottom-12 rounded-full px-6 py-2 text-sm font-medium transition-all duration-500 ease-in-out group-hover:bottom-8">
+                                        <p :class="themeStore.theme == 'black' ? 'bg-fr-red text-white' : 'bg-fr-yellow text-fr-black'"
+                                            class="absolute -bottom-12 rounded-full px-6 py-2 text-sm font-medium transition-all duration-500 ease-in-out group-hover:bottom-8">
                                             READ MORE
                                         </p>
                                     </div>
@@ -129,10 +129,7 @@ watch(theme, () => {
                     </div>
                     <!-- See All Button -->
                     <div class="text-end">
-                        <a href="/artikel" class="cursor-pointer transition-all duration-700 ease-in-out" :class="themeStore.theme == 'black'
-                            ? 'button red'
-                            : 'button red'
-                            ">
+                        <a href="/artikel" class="button red cursor-pointer transition-all duration-700 ease-in-out">
                             SEE ALL ARTICLES
                             <Icon class="inline-block h-4 w-4 stroke-2 py-[2px]" icon="fa-solid:chevron-right" />
                         </a>

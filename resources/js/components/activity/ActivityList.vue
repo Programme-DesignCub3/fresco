@@ -53,7 +53,7 @@ const swiperOption = {
 
 const initSwiper = () => {
     if (swiper.value) {
-        swiper.value.destroy(true, true);
+        swiper.value = null;
     }
     swiper.value = new Swiper(activity.value, swiperOption);
 };

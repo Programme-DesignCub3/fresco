@@ -35,6 +35,19 @@ class ActivityController extends Controller
             return $act;
         });
 
-        return view('pages.activity', compact('general', 'pages', 'activity'));
+        // Meta Data
+        $metaData = [
+            'title' => 'Aktivitas',
+            'url' => url('/aktivitas'),
+            'description' => 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.',
+            'image' => asset('assets/images/meta-image.png'),
+        ];
+
+        return view('pages.activity', [
+            'general' => $general,
+            'pages' => $pages,
+            'activity' => $activity,
+            'metaData' => $metaData
+        ]);
     }
 }

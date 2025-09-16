@@ -888,7 +888,7 @@
     }
 
     .bg-batik {
-        background-image: url('https://fresco.democube.id/assets/images/bg-batik.jpg');
+        background-image: url('/assets/images/bg-batik.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top;

@@ -31,10 +31,22 @@ class ContactController extends Controller
         });
         $pages = $pageSettings->toArray();
 
-        return view('pages.contact', compact('general', 'pages'));
+        // Meta Data
+        $metaData = [
+            'title' => 'Hubungi',
+            'url' => url('/hubungi'),
+            'description' => 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.',
+            'image' => asset('assets/images/meta-image.png'),
+        ];
+
+        return view('pages.contact', [
+            'general' => $general,
+            'pages' => $pages,
+            'metaData' => $metaData
+        ]);
     }
 
-    public function sendMessage(Request $request)
+    public function sendMessage(GeneralSettings $generalSettings, Request $request)
     {
         try {
             $validateRequest = Validator::make($request->all(), [
@@ -92,7 +104,7 @@ class ContactController extends Controller
         }
 
         try {
-            Mail::to('admin@fresco.id')->send(new ContactMail($message));
+            Mail::to($generalSettings->email_recipient)->send(new ContactMail($message));
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
         }
@@ -101,10 +113,5 @@ class ContactController extends Controller
             'status' => true,
             'message' => 'Berhasil mengirimkan pesan!'
         ]);
-    }
-
-    public function testMail()
-    {
-        return view('mails.contact-mail');
     }
 }

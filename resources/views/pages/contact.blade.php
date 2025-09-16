@@ -1,23 +1,9 @@
 @extends('layouts.app')
 
-{{-- Meta --}}
-@section('title', 'Hubungi')
-@section('meta_url', URL::to('/hubungi'))
-@section('meta_title', 'Hubungi')
-@section('meta_description', 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
-@section('meta_image', asset('assets/images/meta-image.png'))
-
 @section('content')
     <section id="contact" class="bg-gradient-yellow dark:bg-batik">
-        {{-- Contact Header Section --}}
-        <header-page-component
-            header="contact"
-            :data="{{ json_encode($pages) }}"></header-page-component>
-
-        {{-- Contact Form Section --}}
-        <contact-form-component
-            :data="{{ json_encode($general) }}"
-            :sitekey={{ json_encode(config('services.google.recaptcha.site_key')) }}></contact-form-component>
+        <header-page-component header="contact" :data="{{ json_encode($pages) }}"></header-page-component>
+        <contact-form-component :data="{{ json_encode($general) }}" :sitekey="{{ json_encode(config('services.google.recaptcha.site_key')) }}"></contact-form-component>
     </section>
 @endsection
 

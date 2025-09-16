@@ -33,13 +33,26 @@ class ProductController extends Controller
             $bk->image = $bk->featured_image->url ?? null;
             return $bk;
         });
-
         $cappuccino = Product::where('type', 'cappuccino')->orderBy('sort')->with('featured_image')->get();
         $cappuccino->transform(function ($cp) {
             $cp->image = $cp->featured_image->url ?? null;
             return $cp;
         });
 
-        return view('pages.product', compact('general', 'pages', 'black', 'cappuccino'));
+        // Meta Data
+        $metaData = [
+            'title' => 'Produk',
+            'url' => url('/produk'),
+            'description' => 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.',
+            'image' => asset('assets/images/meta-image.png'),
+        ];
+
+        return view('pages.product', [
+            'general' => $general,
+            'pages' => $pages,
+            'black' => $black,
+            'cappuccino' => $cappuccino,
+            'metaData' => $metaData
+        ]);
     }
 }

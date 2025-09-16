@@ -69,17 +69,17 @@ watch(theme, () => {
                             <div v-for="d in data" class="swiper-slide">
                                 <a :href="d.slug" class="group">
                                     <img v-if="d.image_square" width="auto" height="auto"
-                                        class="relative w-full aspect-square object-cover object-center" :src="d.image_square"
-                                        :alt="d.title" />
+                                        class="relative w-full aspect-square object-cover object-center"
+                                        :src="d.image_square" :alt="d.title" />
                                     <img v-else-if="d.image_square == null && d.image" width="auto" height="auto"
                                         class="relative w-full aspect-square object-cover object-center" :src="d.image"
                                         :alt="d.title" />
-                                    <img v-else-if="d.image_square == null && d.image == null" width="auto" height="auto"
-                                        class="relative w-full aspect-square object-cover object-center" src="/assets/images/meta-image.png"
-                                        :alt="d.title" />
+                                    <img v-else-if="d.image_square == null && d.image == null" width="auto"
+                                        height="auto" class="relative w-full aspect-square object-cover object-center"
+                                        src="/assets/images/meta-image.png" :alt="d.title" />
                                     <div :class="themeStore.theme == 'black'
-                                            ? 'from-fr-yellow/80 via-fr-yellow/60 group-hover:bg-fr-yellow/30'
-                                            : 'from-fr-yellow/80 via-fr-yellow/60 group-hover:bg-fr-yellow/30'
+                                        ? 'from-fr-yellow/80 via-fr-yellow/60 group-hover:bg-fr-yellow/30'
+                                        : 'from-fr-yellow/80 via-fr-yellow/60 group-hover:bg-fr-yellow/30'
                                         "
                                         class="absolute bottom-0 left-0 right-0 flex aspect-square h-3/4 w-full items-center justify-center bg-gradient-to-t from-15% via-50% to-transparent transition-all duration-500 ease-in-out group-hover:h-full">
                                         <div class="flex flex-col items-center gap-3 text-zinc-800">

@@ -71,7 +71,7 @@ class ManageActivity extends SettingsPage
                                                 ->label('Title')
                                                 ->rules([new MaxWord('Title', 8, 'en')])
                                                 ->autocomplete(false)
-                                                ->helperText('Maximum 8 words.')
+                                                ->helperText('Max 8 words.')
                                                 ->required(),
                                             Radio::make('ac_black_banner_position')
                                                 ->label('Position')
@@ -86,7 +86,7 @@ class ManageActivity extends SettingsPage
                                                 ->maxSize(2048)
                                                 ->acceptedFileTypes(['image/*'])
                                                 ->maxItems(1)
-                                                ->helperText('Maximum 2 MB.')
+                                                ->helperText('Width (adjust) x Height 312px | Max 2 MB.')
                                                 ->required()
                                         ])
                                 ]),
@@ -99,7 +99,7 @@ class ManageActivity extends SettingsPage
                                                 ->label('Title')
                                                 ->rules([new MaxWord('Title', 8, 'en')])
                                                 ->autocomplete(false)
-                                                ->helperText('Maximum 8 words.')
+                                                ->helperText('Max 8 words.')
                                                 ->required(),
                                             Radio::make('ac_cappuccino_banner_position')
                                                 ->label('Position')
@@ -114,7 +114,7 @@ class ManageActivity extends SettingsPage
                                                 ->maxSize(2048)
                                                 ->acceptedFileTypes(['image/*'])
                                                 ->maxItems(1)
-                                                ->helperText('Maximum 2 MB.')
+                                                ->helperText('Width (adjust) x Height 312px | Max 2 MB.')
                                                 ->required()
                                         ])
                                 ]),

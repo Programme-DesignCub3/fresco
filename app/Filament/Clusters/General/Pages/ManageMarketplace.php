@@ -71,7 +71,7 @@ class ManageMarketplace extends SettingsPage
                                     ->label('Image')
                                     ->maxItems(1)
                                     ->acceptedFileTypes(['image/*'])
-                                    ->helperText('Upload image with a transparent or white background. Maximum 2 MB.')
+                                    ->helperText('Recomendation Size 160px x 65px | Upload image with a transparent or white background. Max 2 MB.')
                                     ->columnSpan(2)
                                     ->maxSize(2048)
                                     ->required()

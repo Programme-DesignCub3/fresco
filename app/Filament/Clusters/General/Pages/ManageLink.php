@@ -91,15 +91,15 @@ class ManageLink extends SettingsPage
                     ->icon('heroicon-m-user-plus')
                     ->collapsible()
                     ->schema([
-                        Fieldset::make('Line')
-                            ->columns(2)
-                            ->schema([
-                                TextInput::make('line_alias')
-                                    ->label('Alias'),
-                                TextInput::make('line_link')
-                                    ->prefixIcon('heroicon-m-user-plus')
-                                    ->label('Link'),
-                            ]),
+                        // Fieldset::make('Line')
+                        //     ->columns(2)
+                        //     ->schema([
+                        //         TextInput::make('line_alias')
+                        //             ->label('Alias'),
+                        //         TextInput::make('line_link')
+                        //             ->prefixIcon('heroicon-m-user-plus')
+                        //             ->label('Link'),
+                        //     ]),
                         Fieldset::make('Email')
                             ->columns(2)
                             ->schema([

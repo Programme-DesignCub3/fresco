@@ -117,7 +117,7 @@ class PromotionResource extends Resource
                                 ->label('Image')
                                 ->maxItems(1)
                                 ->acceptedFileTypes(['image/*'])
-                                ->helperText('Maximum 2 MB.')
+                                ->helperText('Width 550px x Height (adjust) | Max 2 MB.')
                                 ->required(),
                         ])
                 ])

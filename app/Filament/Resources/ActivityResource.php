@@ -118,7 +118,7 @@ class ActivityResource extends Resource
                                 ->label('Image')
                                 ->maxItems(1)
                                 ->acceptedFileTypes(['image/*'])
-                                ->helperText('Maximum 2 MB.')
+                                ->helperText('[Recommendation Size] Width 600px x Height 600px or 1:1 Aspect Ratio | Max 2 MB.')
                                 ->required()
                         ])
                     ])

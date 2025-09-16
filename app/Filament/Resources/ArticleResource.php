@@ -74,7 +74,7 @@ class ArticleResource extends Resource
                                 ->label('Title')
                                 ->autocomplete(false)
                                 ->rules([new MaxWord('Title', 14, 'en')])
-                                ->helperText('Maximum 14 words.')
+                                ->helperText('Max 14 words.')
                                 ->required(),
                             Builder::make('content')
                                 ->blocks([
@@ -98,7 +98,7 @@ class ArticleResource extends Resource
                                                 ->maxSize(2048)
                                                 ->maxItems(1)
                                                 ->acceptedFileTypes(['image/*'])
-                                                ->helperText('Maximum 2 MB.')
+                                                ->helperText('Size image (adjust) | Max 2 MB.')
                                                 ->required(),
                                             Select::make('image_width')
                                                 ->label('Image Width')
@@ -206,13 +206,13 @@ class ArticleResource extends Resource
                                 ->maxSize(2048)
                                 ->maxItems(1)
                                 ->acceptedFileTypes(['image/*'])
-                                ->helperText('Maximum 2 MB.'),
+                                ->helperText('[Recommendation Size] Width 1072px x Height 600px | Max 2 MB.'),
                             CuratorPicker::make('image_square')
                                 ->label('Thumbnail Image')
                                 ->maxSize(2048)
                                 ->maxItems(1)
                                 ->acceptedFileTypes(['image/*'])
-                                ->helperText('Maximum 2 MB. 1:1 Aspect ratio.'),
+                                ->helperText('[Recommendation Size] Width 390px x Height 390px or 1:1 Aspect Ratio | Max 2 MB'),
                         ]),
                 ]),
             ]);

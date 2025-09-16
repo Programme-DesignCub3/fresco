@@ -100,7 +100,7 @@ class ProductResource extends Resource
                                 ->acceptedFileTypes(['image/*'])
                                 ->maxSize(2048)
                                 ->maxItems(1)
-                                ->helperText('Maximum 2 MB.')
+                                ->helperText('Width 160px x Height (adjust) | Max 2 MB.')
                                 ->required(),
                             Radio::make('type')
                                 ->label('Type')

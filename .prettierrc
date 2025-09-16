@@ -1,4 +1,5 @@
 {
+    "printWidth": 500,
     "tabWidth": 4,
     "bracketSameLine": true,
     "bracketSpacing": true,

@@ -118,11 +118,11 @@ window.addEventListener('resize', () => {
                 ? `url(/${data.pd_black_banner_image})`
                 : `url(/${data.pd_cappuccino_banner_image})`,
     }" :class="[
-            themeStore.theme,
-            themeStore.theme == 'black'
-                ? `bg-fr-black ${data.pd_black_banner_position}`
-                : `bg-fr-yellow ${data.pd_cappuccino_banner_position}`,
-        ]">
+        themeStore.theme,
+        themeStore.theme == 'black'
+            ? `bg-fr-black ${data.pd_black_banner_position}`
+            : `bg-fr-yellow ${data.pd_cappuccino_banner_position}`,
+    ]">
         <div class="product-list-wrapper">
             <div class="fr-container mx-auto w-full px-4 pt-[50px] md:px-0 md:pt-0" id="product-title-anchor">
                 <h1 :class="themeStore.theme == 'black' && 'text-shadow'" v-if="themeStore.theme == 'black'"
@@ -158,10 +158,11 @@ window.addEventListener('resize', () => {
                         data-aos-delay="200" data-aos-duration="1000"
                         class="w-[150px] sm:w-[180px] md:w-[150px] lg:w-[180px] xl:w-[160px]" />
                     <div :class="themeStore.theme == 'black'
-                            ? 'text-white'
-                            : 'text-fr-black'
+                        ? 'text-white'
+                        : 'text-fr-black'
                         " class="text-center font-medium">
-                        <p :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-full'">Fresco {{ d.product }}</p>
+                        <p :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-full'">Fresco {{
+                            d.product }}</p>
                     </div>
                 </div>
             </div>
@@ -231,7 +232,8 @@ window.addEventListener('resize', () => {
                                     <img width="auto" height="auto" :src="d.image" :alt="d.product" data-aos="fade-up"
                                         data-aos-delay="200" data-aos-duration="1000" class="w-[200px]" />
                                     <div data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000"
-                                        data-aos-offset="20" class="text-center font-bold" :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-full'">
+                                        data-aos-offset="20" class="text-center font-bold"
+                                        :class="themeStore.theme == 'cappuccino' && 'bg-fr-yellow px-4 py-2 rounded-full'">
                                         <p>Fresco {{ d.product }}</p>
                                     </div>
                                 </div>

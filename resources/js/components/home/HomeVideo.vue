@@ -20,14 +20,14 @@ const themeStore = useThemeStore();
                     allowfullscreen></iframe>
             </div>
             <div :class="data.black_video_collab[0].type == 'text' ||
-                    data.cappuccino_video_collab[0].type == 'text'
-                    ? 'grid-flow-col'
-                    : 'grid-cols-3'
+                data.cappuccino_video_collab[0].type == 'text'
+                ? 'grid-flow-col'
+                : 'grid-cols-3'
                 " class="grid w-full items-center justify-center gap-x-3 md:gap-x-10">
                 <div class="grid items-center justify-center text-center">
                     <p :class="themeStore.theme == 'black'
-                            ? 'text-white'
-                            : 'text-fr-black'
+                        ? 'text-white'
+                        : 'text-fr-black'
                         " data-aos-offset="0" data-aos="zoom-out" data-aos-duration="1000"
                         class="text-lg font-semibold md:text-xl">
                         Fresco in collaboration with

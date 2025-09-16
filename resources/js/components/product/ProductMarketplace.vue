@@ -6,8 +6,8 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
-    <div class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-20" :class="themeStore.theme == 'black' ? 'bg-radial-red' : 'bg-radial-green'
-        ">
+    <div class="px-4 py-10 transition-all duration-700 ease-in-out sm:px-0 md:py-20"
+        :class="themeStore.theme == 'black' ? 'bg-radial-red' : 'bg-radial-green'">
         <div class="fr-container mx-auto flex flex-col gap-y-5 lg:gap-y-8">
             <h2
                 class="text-shadow flex flex-col items-center justify-center gap-x-3 text-center text-[40px] font-bold leading-none md:flex-row md:text-5xl lg:text-6xl">

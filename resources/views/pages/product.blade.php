@@ -1,27 +1,10 @@
 @extends('layouts.app')
 
-{{-- Meta --}}
-@section('title', 'Produk')
-@section('meta_url', URL::to('/produk'))
-@section('meta_title', 'Produk')
-@section('meta_description', 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.')
-@section('meta_image', asset('assets/images/meta-image.png'))
-
 @section('content')
     <section id="product">
-        {{-- Product List Section --}}
-        <product-list-component
-            :data="{{ json_encode($pages) }}"
-            :black="{{ json_encode($black) }}"
-            :cappuccino="{{ json_encode($cappuccino) }}"></product-list-component>
-
-        {{-- Product Marketplace Section --}}
-        <product-marketplace-component
-            :data="{{ json_encode($general) }}"></product-marketplace-component>
-
-        {{-- Product Description Section --}}
-        <product-description-component
-            :data="{{ json_encode($general) }}"></product-description-component>
+        <product-list-component :data="{{ json_encode($pages) }}" :black="{{ json_encode($black) }}" :cappuccino="{{ json_encode($cappuccino) }}"></product-list-component>
+        <product-marketplace-component :data="{{ json_encode($general) }}"></product-marketplace-component>
+        <product-description-component :data="{{ json_encode($general) }}"></product-description-component>
     </section>
 @endsection
 

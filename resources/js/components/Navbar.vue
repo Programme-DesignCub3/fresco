@@ -14,7 +14,6 @@ const socials = ref([
         name: 'facebook',
         icon: 'fa:facebook',
         alias: data.facebook_alias,
-        link: data.facebook_link,
     },
     {
         name: 'instagram',
@@ -104,8 +103,8 @@ window.addEventListener('scroll', () => {
                         <a class="nav-link longer" href="/produk">ENAKNYA NGOPI FRESCO</a>
                     </li>
                     <li class="nav-item" :class="url.pathname == '/artikel' || url.pathname.startsWith('/artikel/')
-                            ? 'nav-active'
-                            : ''
+                        ? 'nav-active'
+                        : ''
                         ">
                         <a class="nav-link longer" href="/artikel">ENAKIN TIAP MOMEN</a>
                     </li>

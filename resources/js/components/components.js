@@ -12,7 +12,6 @@ import HomeIntroProduct from '@/components/home/HomeIntroProduct.vue';
 import HomeVideo from '@/components/home/HomeVideo.vue';
 import HomePost from '@/components/home/HomePost.vue';
 import HomePopup from '@/components/home/HomePopup.vue';
-import HomeCurator from '@/components/home/HomeCurator.vue';
 
 /** @import Product Components */
 import ProductList from '@/components/product/ProductList.vue';
@@ -32,25 +31,4 @@ import ContactForm from '@/components/contact/ContactForm.vue';
 /** @import Icon Components */
 import Loading from '@/assets/Loading.vue';
 
-export {
-    Menu,
-    Navbar,
-    SocialMedia,
-    ProductSlide,
-    HeaderPage,
-    Footer,
-    HomeIntro,
-    HomeIntroProduct,
-    HomeVideo,
-    HomePost,
-    HomePopup,
-    HomeCurator,
-    ProductList,
-    ProductMarketplace,
-    ProductDescription,
-    ProductPopup,
-    ArticleSlide,
-    ActivityList,
-    ContactForm,
-    Loading,
-};
+export { Menu, Navbar, SocialMedia, ProductSlide, HeaderPage, Footer, HomeIntro, HomeIntroProduct, HomeVideo, HomePost, HomePopup, ProductList, ProductMarketplace, ProductDescription, ProductPopup, ArticleSlide, ActivityList, ContactForm, Loading };

@@ -3,7 +3,6 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;

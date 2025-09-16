@@ -43,7 +43,20 @@ class ArticleController extends Controller
             return $art;
         });
 
-        return view('pages.article', compact('general', 'pages', 'article'));
+        // Meta Data
+        $metaData = [
+            'title' => 'Artikel',
+            'url' => url('/artikel'),
+            'description' => 'Kopi Kapal Api Fresco, perpaduan sempurna 100% biji kopi Arabika dan Robusta berkualitas tinggi yang diolah langsung setelah dipetik.',
+            'image' => asset('assets/images/meta-image.png'),
+        ];
+
+        return view('pages.article', [
+            'general' => $general,
+            'pages' => $pages,
+            'article' => $article,
+            'metaData' => $metaData
+        ]);
     }
 
     public function detail(GeneralSettings $generalSettings, $slug)
@@ -74,6 +87,19 @@ class ArticleController extends Controller
             return $o;
         });
 
-        return view('pages.article-detail', compact('general', 'article', 'other'));
+        // Meta Data
+        $metaData = [
+            'title' => $article->title,
+            'url' => url('/artikel/' . $article->slug),
+            'description' => $article->excerpt,
+            'image' => $article->featured_image->url ?? asset('assets/images/meta-image.png'),
+        ];
+
+        return view('pages.article-detail', [
+            'general' => $general,
+            'article' => $article,
+            'other' => $other,
+            'metaData' => $metaData
+        ]);
     }
 }

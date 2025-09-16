@@ -83,7 +83,7 @@ class ManageHome extends SettingsPage
                                                 ->label('Title')
                                                 ->rules([new MaxWord('Title', 8, 'en')])
                                                 ->autocomplete(false)
-                                                ->helperText('Maximum 8 words.')
+                                                ->helperText('Max 8 words.')
                                                 ->required(),
                                             RichEditor::make('black_intro_desc')
                                                 ->disableToolbarButtons([
@@ -102,7 +102,7 @@ class ManageHome extends SettingsPage
                                                 ->maxSize(2048)
                                                 ->acceptedFileTypes(['image/*'])
                                                 ->maxItems(1)
-                                                ->helperText('Maximum 2 MB.')
+                                                ->helperText('Width 687px x Height (adjust) | Max 2 MB.')
                                                 ->required()
                                         ])
                                     ]),
@@ -115,7 +115,7 @@ class ManageHome extends SettingsPage
                                                 ->label('Title')
                                                 ->rules([new MaxWord('Title', 8, 'en')])
                                                 ->autocomplete(false)
-                                                ->helperText('Maximum 8 words.')
+                                                ->helperText('Max 8 words.')
                                                 ->columns()
                                                 ->required(),
                                             RichEditor::make('cappuccino_intro_desc')
@@ -135,7 +135,7 @@ class ManageHome extends SettingsPage
                                                 ->maxSize(2048)
                                                 ->acceptedFileTypes(['image/*'])
                                                 ->maxItems(1)
-                                                ->helperText('Maximum 2 MB.')
+                                                ->helperText('Width 687px x Height (adjust) | Max 2 MB.')
                                                 ->required()
                                     ])
                             ])
@@ -182,18 +182,18 @@ class ManageHome extends SettingsPage
                                                 ->blockNumbers(false)
                                                 ->required()
                                                 ->blocks([
-                                                    Block::make('image')
-                                                        ->icon('heroicon-o-photo')
-                                                        ->schema([
-                                                            CuratorPicker::make('image_id')
-                                                                ->label('Image')
-                                                                ->maxSize(2048)
-                                                                ->acceptedFileTypes(['image/*'])
-                                                                ->maxItems(1)
-                                                                ->helperText('Maximum 2 MB.')
-                                                                ->required(),
-                                                            Hidden::make('image')
-                                                        ]),
+                                                    // Block::make('image')
+                                                    //     ->icon('heroicon-o-photo')
+                                                    //     ->schema([
+                                                    //         CuratorPicker::make('image_id')
+                                                    //             ->label('Image')
+                                                    //             ->maxSize(2048)
+                                                    //             ->acceptedFileTypes(['image/*'])
+                                                    //             ->maxItems(1)
+                                                    //             ->helperText('Maximum 2 MB.')
+                                                    //             ->required(),
+                                                    //         Hidden::make('image')
+                                                    //     ]),
                                                     Block::make('text')
                                                         ->icon('heroicon-m-bars-3-bottom-left')
                                                         ->schema([
@@ -234,18 +234,18 @@ class ManageHome extends SettingsPage
                                                 ->blockNumbers(false)
                                                 ->required()
                                                 ->blocks([
-                                                    Block::make('image')
-                                                        ->icon('heroicon-o-photo')
-                                                        ->schema([
-                                                            CuratorPicker::make('image_id')
-                                                                ->label('Image')
-                                                                ->maxSize(2048)
-                                                                ->acceptedFileTypes(['image/*'])
-                                                                ->maxItems(1)
-                                                                ->helperText('Maximum 2 MB.')
-                                                                ->required(),
-                                                            Hidden::make('image')
-                                                        ]),
+                                                    // Block::make('image')
+                                                    //     ->icon('heroicon-o-photo')
+                                                    //     ->schema([
+                                                    //         CuratorPicker::make('image_id')
+                                                    //             ->label('Image')
+                                                    //             ->maxSize(2048)
+                                                    //             ->acceptedFileTypes(['image/*'])
+                                                    //             ->maxItems(1)
+                                                    //             ->helperText('Maximum 2 MB.')
+                                                    //             ->required(),
+                                                    //         Hidden::make('image')
+                                                    //     ]),
                                                     Block::make('text')
                                                         ->icon('heroicon-m-bars-3-bottom-left')
                                                         ->schema([

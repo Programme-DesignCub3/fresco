@@ -99,19 +99,20 @@ window.addEventListener('resize', () => {
         <div v-for="(d, i) in themeStore.theme == 'black'
             ? data.black_desc_list
             : data.cappuccino_desc_list" :key="i" class="hidden overflow-x-hidden lg:block">
-            <div class="grid grid-cols-2" :class="themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-gradient-yellow'">
+            <div class="grid grid-cols-2"
+                :class="themeStore.theme == 'black' ? 'bg-gradient-dark' : 'bg-gradient-yellow'">
                 <div :class="themeStore.theme == 'black'
-                        ? d.black_desc_position == 'right' && 'order-last'
-                        : d.cappuccino_desc_position == 'right' &&
-                        'order-last'
+                    ? d.black_desc_position == 'right' && 'order-last'
+                    : d.cappuccino_desc_position == 'right' &&
+                    'order-last'
                     ">
                     <div class="relative w-full">
                         <img class="h-[600px] w-full object-cover object-center" width="auto" height="auto" :src="themeStore.theme == 'black'
-                                ? d.black_desc_image
-                                : d.cappuccino_desc_image
+                            ? d.black_desc_image
+                            : d.cappuccino_desc_image
                             " :alt="themeStore.theme == 'black'
-                                    ? d.black_desc_title
-                                    : d.cappuccino_desc_title
+                                ? d.black_desc_title
+                                : d.cappuccino_desc_title
                                 " />
                     </div>
                 </div>
@@ -129,11 +130,11 @@ window.addEventListener('resize', () => {
                             }}
                         </h2>
                         <div data-aos="fade-down" data-aos-offset="0" :data-aos-delay="delayAos" :class="themeStore.theme == 'black'
-                                ? 'text-white'
-                                : 'text-fr-black'
+                            ? 'text-white'
+                            : 'text-fr-black'
                             " class="description-body font-medium leading-8" v-html="themeStore.theme == 'black'
-                                    ? d.black_desc_explanation
-                                    : d.cappuccino_desc_explanation
+                                ? d.black_desc_explanation
+                                : d.cappuccino_desc_explanation
                                 "></div>
                     </div>
                 </div>

@@ -55,8 +55,8 @@ window.addEventListener('resize', () => {
 <template>
     <!-- Article Header -->
     <div v-if="header == 'article'" class="header-page-wrapper" :class="themeStore.theme == 'black'
-            ? `bg-fr-black ${data.ar_black_banner_position}`
-            : `bg-fr-yellow ${data.ar_cappuccino_banner_position}`
+        ? `bg-fr-black ${data.ar_black_banner_position}`
+        : `bg-fr-yellow ${data.ar_cappuccino_banner_position}`
         " :style="{
             'background-image':
                 themeStore.theme == 'black'
@@ -72,8 +72,8 @@ window.addEventListener('resize', () => {
 
     <!-- Activity Header -->
     <div v-if="header == 'activity'" class="header-page-wrapper" :class="themeStore.theme == 'black'
-            ? `bg-fr-black ${data.ac_black_banner_position}`
-            : `bg-fr-yellow ${data.ac_cappuccino_banner_position}`
+        ? `bg-fr-black ${data.ac_black_banner_position}`
+        : `bg-fr-yellow ${data.ac_cappuccino_banner_position}`
         " :style="{
             'background-image':
                 themeStore.theme == 'black'
@@ -89,8 +89,8 @@ window.addEventListener('resize', () => {
 
     <!-- Contact Header -->
     <div v-if="header == 'contact'" class="header-page-wrapper" :class="themeStore.theme == 'black'
-            ? `bg-fr-black ${data.cn_black_banner_position}`
-            : `bg-fr-yellow ${data.cn_cappuccino_banner_position}`
+        ? `bg-fr-black ${data.cn_black_banner_position}`
+        : `bg-fr-yellow ${data.cn_cappuccino_banner_position}`
         " :style="{
             'background-image':
                 themeStore.theme == 'black'

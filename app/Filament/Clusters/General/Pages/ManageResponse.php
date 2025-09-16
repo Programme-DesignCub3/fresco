@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\General\Pages;
 use App\Filament\Clusters\General;
 use App\Settings\GeneralSettings;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -37,12 +38,21 @@ class ManageResponse extends SettingsPage
                     ->icon('heroicon-s-envelope')
                     ->collapsible()
                     ->schema([
-                        TextInput::make('email_recipient')
+                        Repeater::make('email_recipient')
                             ->label('Email Recipient')
-                            ->helperText('This email will receive all contact form responses')
-                            ->prefixIcon('heroicon-s-envelope')
-                            ->autocomplete(false)
-                            ->required(),
+                            ->addActionLabel('Add Email Recipient')
+                            ->helperText('This email will receive all contact form responses. Min 1, Max 3')
+                            ->minItems(1)
+                            ->maxItems(3)
+                            ->reorderableWithButtons()
+                            ->required()
+                            ->schema([
+                                TextInput::make('email')
+                                    ->label('Email')
+                                    ->prefixIcon('heroicon-s-envelope')
+                                    ->autocomplete(false)
+                                    ->required(),
+                            ])
                     ]),
             ]);
     }

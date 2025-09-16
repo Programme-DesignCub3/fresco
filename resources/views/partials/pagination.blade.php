@@ -1,6 +1,5 @@
 @if ($article->hasPages())
-    <ul
-        class="flex items-center justify-center gap-x-3 text-lg font-medium text-fr-black dark:text-white">
+    <ul class="flex items-center justify-center gap-x-3 text-lg font-medium text-fr-black dark:text-white">
         {{-- First Page Link --}}
         @if ($article->onFirstPage())
             <li class="disabled"><span>&lt;&lt;</span></li>
@@ -21,8 +20,7 @@
         @foreach (range(1, $article->lastPage()) as $i)
             @if ($i >= $article->currentPage() - 2 && $i <= $article->currentPage() + 2)
                 @if ($i == $article->currentPage())
-                    <li
-                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-fr-red text-center text-white">
+                    <li class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-fr-red text-center text-white">
                         <span>{{ $i }}</span>
                     </li>
                 @else
@@ -43,9 +41,7 @@
 
         @if ($article->hasMorePages())
             <li>
-                <a href="{{ $article->url($article->lastPage()) }}" rel="next">
-                    >>
-                </a>
+                <a href="{{ $article->url($article->lastPage()) }}" rel="next">>></a>
             </li>
         @else
             <li class="disabled"><span>>></span></li>

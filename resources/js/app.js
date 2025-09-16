@@ -1,27 +1,6 @@
 import { createApp } from 'vue/dist/vue.esm-bundler.js';
 import { createPinia } from 'pinia';
-import {
-    Menu,
-    Navbar,
-    SocialMedia,
-    ProductSlide,
-    HeaderPage,
-    Footer,
-    HomeIntro,
-    HomeIntroProduct,
-    HomeVideo,
-    HomePost,
-    HomePopup,
-    HomeCurator,
-    ProductList,
-    ProductMarketplace,
-    ProductDescription,
-    ProductPopup,
-    ArticleSlide,
-    ActivityList,
-    ContactForm,
-    Loading,
-} from '@/components/components';
+import { Menu, Navbar, SocialMedia, ProductSlide, HeaderPage, Footer, HomeIntro, HomeIntroProduct, HomeVideo, HomePost, HomePopup, ProductList, ProductMarketplace, ProductDescription, ProductPopup, ArticleSlide, ActivityList, ContactForm, Loading } from '@/components/components';
 import '@/misc/plugins';
 import '@/bootstrap';
 
@@ -43,7 +22,6 @@ app
     .component('HomeVideoComponent', HomeVideo)
     .component('HomePostComponent', HomePost)
     .component('HomePopupComponent', HomePopup)
-    .component('HomeCuratorComponent', HomeCurator)
 
     /** @register Product Components */
     .component('ProductListComponent', ProductList)
